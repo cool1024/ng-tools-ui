@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-12 col-xl-4 mb-3">
+        <div class="card">
+            <div class="card-header bg-white">
+                单项选择
+                <button tsBtn sm [color]="theme.getColor()" (click)="addRadio()" class="ml-3">添加选项</button>
+                <button tsBtn sm [color]="theme.getColor()" (click)="removeRadio()">移除选项</button>
+            </div>
+            <div tsRadioGroup [(value)]="radioValue" #radioGroup="tsRadioGroup" class="card-body">
+                <form class="form-inline">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-white" type="button">
+                                数值
+                            </button>
+                        </div>
+                        <input [value]="radioValue" type="text" class="form-control bg-white" readonly>
+                    </div>
+                </form>
+                <ts-radio *ngFor="let radio of radios" [color]="theme.getColor()" [label]="radio.label" [value]="radio.value" (groupHandle)="radioGroup.applyRadioChange($event)"></ts-radio>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xl-4 mb-3">
+        <div class="card">
+            <div class="card-header bg-white">
+                多项选择
+                <button tsBtn sm [color]="theme.getColor()" (click)="addCheckbox()" class="ml-3">添加选项</button>
+                <button tsBtn sm [color]="theme.getColor()" (click)="removeCheckbox()">移除选项</button>
+            </div>
+            <div tsCheckboxGroup [(values)]="checkboxValues" #checkboxGroup="tsCheckboxGroup" class="card-body">
+                <form class="form-inline">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-white" type="button">
+                                数值
+                            </button>
+                        </div>
+                        <input [value]="checkboxValues" type="text" class="form-control bg-white" readonly>
+                    </div>
+                </form>
+                <ts-checkbox *ngFor="let checkbox of checkboxs" [color]="theme.getColor()" [label]="checkbox.label" [value]="checkbox.value"
+                    (groupHandle)="checkboxGroup.applyCheckboxChange()"></ts-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xl-4 mb-3">
+        <div class="card">
+            <div class="card-header bg-white">
+                开关
+            </div>
+            <div class="card-body">
+                <form class="form-inline">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-white" type="button">
+                                数值
+                            </button>
+                        </div>
+                        <input [value]="switchValue" type="text" class="form-control bg-white" readonly>
+                    </div>
+                </form>
+                <ts-switch [color]="theme.getColor()" [(value)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
+                <ts-switch [color]="theme.getColor()" [(value)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header bg-white">
+        按钮组
+    </div>
+    <div class="card-body">
+        <form class="form-inline">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-white" type="button">
+                        数值
+                    </button>
+                </div>
+                <input [value]="buttonValue" type="text" class="form-control bg-white" readonly>
+            </div>
+            <div class="input-group mb-3 ml-2">
+                <div class="input-group-prepend">
+                    <button class="btn btn-white" type="button">
+                        数值
+                    </button>
+                </div>
+                <input [value]="buttonValues" type="text" class="form-control bg-white" readonly>
+            </div>
+        </form>
+        <ts-btns outline [color]="theme.getColor()" [(value)]="buttonValue" [items]="buttons"></ts-btns>
+        <ts-btns outline [multi]="true" [color]="theme.getColor()" [(value)]="buttonValues" [items]="buttons"></ts-btns>
+    </div>
+</div>

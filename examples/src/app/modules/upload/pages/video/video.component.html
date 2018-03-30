@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-header bg-white">
+        视频上传
+    </div>
+    <div class="card-body">
+        <ts-video [color]="theme.getColor()" title="选择视频" [src]="videoUrl" sm></ts-video>
+        <ts-video [color]="theme.getColor()" [config]="config" [useUpload]="true" title="选择视频" [(src)]="videoUrl" sm></ts-video>
+        <ts-video [color]="theme.getColor()" [config]="config" [autoUpload]="true" title="选择视频" [(src)]="videoUrl" sm></ts-video>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        音频上传
+    </div>
+    <div class="card-body">
+        <ts-video [color]="theme.getColor()" title="选择音频" type="audio" [videoSize]="['200px','40px']" [src]="audioUrl" sm></ts-video>
+        <ts-video [color]="theme.getColor()" [config]="config" [useUpload]="true" [videoSize]="['200px','40px']" type="audio" title="选择音频"
+            [(src)]="audioUrl" sm></ts-video>
+        <ts-video [color]="theme.getColor()" [config]="config" [autoUpload]="true" [videoSize]="['200px','40px']" type="audio" title="选择音频"
+            [(src)]="audioUrl" sm></ts-video>
+    </div>
+</div>

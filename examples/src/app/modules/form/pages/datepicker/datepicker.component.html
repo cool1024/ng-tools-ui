@@ -1,0 +1,30 @@
+<ts-datepicker #datepicker="tsDatepicker" [(value)]="date" [color]="theme.getColor()" [weekTitles]="['一', '二', '三', '四', '五', '六', '日']"
+    [monthTitles]="['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']">
+</ts-datepicker>
+<div class="card">
+    <div class="card-header bg-white">
+        日期选择
+    </div>
+    <div class="card-body">
+        <form class="form-inline">
+            <div class="input-group mb-3">
+                <input [value]="date|date:'yyyy-MM-dd'" tsToggle [target]="datepicker" [bind]="datepicker" type="text" class="form-control bg-white pointer"
+                    readonly>
+                <div class="input-group-append">
+                    <button class="btn btn-white" type="button" tsToggle [target]="datepicker">
+                        <i class="fa fa-fw fa-calendar"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        示例代码
+    </div>
+    <div class="card-body">
+        <ts-prism [code]="code" language="html"></ts-prism>
+    </div>
+</div>

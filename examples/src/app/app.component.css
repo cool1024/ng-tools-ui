@@ -1,0 +1,63 @@
+.ts-content {
+    top: 60px;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.ts-content-sidebar {
+    width: 230px;
+    float: left;
+    box-shadow: 0px 1px 3px #aaa;
+}
+
+.ts-content-main {
+    width: calc(100% - 233px);
+    padding-bottom: 55px !important;
+    float: right;
+    overflow: scroll;
+}
+
+.app-breadcrumb {
+    font-size: 14px;
+}
+
+.app-head-title {
+    width: 230px;
+}
+
+.dropdown-item:active {
+    background-color: #eee;
+    color: black;
+}
+
+.navbar {
+    box-shadow: 0px 1px 1px #eee;
+}
+
+.badge-message {
+    position: relative;
+    background-image: url("https://png.icons8.com/ios/40/ffffff/message-group-filled.png");
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    width: 30px;
+}
+
+.badge-message[data-badge]:after {
+    content: attr(data-badge);
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: .7em;
+    background: red;
+    color: white;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 50%;
+    box-shadow: 0 0 1px #333;
+}
