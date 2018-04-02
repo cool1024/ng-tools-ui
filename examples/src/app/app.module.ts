@@ -10,14 +10,10 @@ import {
     MenuModule,
     CssloadModule,
     DropdownModule,
+    ConfirmModule,
+    ToastModule
 } from 'ng-tools-ui';
-// import {
-//     ButtonModule,
-//     NavbarModule,
-//     MenuModule,
-//     CssloadModule,
-//     DropdownModule,
-// } from './../tools-ui';
+
 import { AppComponent } from './app.component';
 
 
@@ -29,6 +25,8 @@ import { AppComponent } from './app.component';
         BrowserModule,
         AppRoutingModule,
         CoreModule.forRoot(),
+        ConfirmModule.forRoot({ okTitle: '确认', cancelTitle: '取消' }),
+        ToastModule.forRoot(),
         ButtonModule,
         NavbarModule,
         MenuModule,

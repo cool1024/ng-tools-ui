@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 /*tool-ui*/
 import {
     UploadModule as TSUploadModule
-} from './../../../tools-ui';
+} from 'ng-tools-ui';
 
 /*路由模块*/
 import { UploadRoutingModule } from './upload.routing';

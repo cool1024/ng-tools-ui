@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-12 col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">
+                确认窗口
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-info" (click)="showAlert('info')">信息确认</button>
+                <button type="button" class="btn btn-warning" (click)="showAlert('warning')">警告确认</button>
+                <button type="button" class="btn btn-danger" (click)="showAlert('danger')">危险确认</button>
+                <button type="button" class="btn btn-success" (click)="showAlert('success')">成功确认</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">
+                提示消息
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-info" (click)="showMessage('info')">信息消息</button>
+                <button type="button" class="btn btn-warning" (click)="showMessage('warning')">警告消息</button>
+                <button type="button" class="btn btn-danger" (click)="showMessage('danger')">危险消息</button>
+                <button type="button" class="btn btn-success" (click)="showMessage('success')">成功消息</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">
+                模态框
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-white" (click)="emptyModal()">简单模态框</button>
+                <button type="button" class="btn btn-white" (click)="paramsModal()">修改参数</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+
+    </div>
+</div>

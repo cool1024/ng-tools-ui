@@ -8,7 +8,8 @@ import {
     CheckboxModule,
     SelectModule,
     PrismModule,
-} from './../../../tools-ui';
+    LoopCardModule,
+} from 'ng-tools-ui';
 
 /*路由模块*/
 import { FormRoutingModule } from './form.routing';
@@ -17,6 +18,7 @@ import { FormRoutingModule } from './form.routing';
 import { DatepickerComponent } from './pages/datepicker/datepicker.component';
 import { CheckboxComponent } from './pages/checkbox/checkbox.component';
 import { SelectComponent } from './pages/select/select.component';
+import { LoopCardComponent } from './pages/loop-card/loop-card.component';
 
 
 @NgModule({
@@ -28,11 +30,13 @@ import { SelectComponent } from './pages/select/select.component';
         CheckboxModule,
         SelectModule,
         PrismModule,
+        LoopCardModule,
     ],
     declarations: [
         DatepickerComponent,
         CheckboxComponent,
         SelectComponent,
+        LoopCardComponent,
     ],
 })
 export class FormModule { }

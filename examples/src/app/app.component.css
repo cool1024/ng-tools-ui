@@ -1,5 +1,5 @@
 .ts-content {
-    top: 60px;
+    top: 56px;
     left: 0;
     height: 100%;
     width: 100%;
@@ -14,9 +14,8 @@
 
 .ts-content-main {
     width: calc(100% - 233px);
-    padding-bottom: 55px !important;
     float: right;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .app-breadcrumb {
@@ -60,4 +59,8 @@
     line-height: 18px;
     border-radius: 50%;
     box-shadow: 0 0 1px #333;
+}
+
+.ts-footer {
+    height: 56px;
 }

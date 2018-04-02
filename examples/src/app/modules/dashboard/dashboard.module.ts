@@ -2,7 +2,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { DashboardRoutingModule } from './dashboard.routing';
 import { FormsModule } from '@angular/forms';
 
-
 import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { CommonModule } from '@angular/common';

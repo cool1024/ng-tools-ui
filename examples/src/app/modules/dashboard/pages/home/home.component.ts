@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
             response.results.forEach(user => {
                 this.mediaList.push({ avatar: user.picture.thumbnail, nick: user.name.first, email: user.email });
             });
-            console.log(this.mediaList);
         });
     }
 

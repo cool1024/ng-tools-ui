@@ -14,7 +14,13 @@ export class ToggleDirective implements AfterViewInit {
 
     @Input() bind: Toggle;
 
+    @Input() handleFunc: (target: any) => void;
+
+
     @HostListener('click') onClick() {
+        if (this.handleFunc) {
+            this.handleFunc(this.target);
+        }
         return !this.target || this.target.toggle();
     }
 

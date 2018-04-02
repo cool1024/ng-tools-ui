@@ -10,7 +10,7 @@
                         "parentid": 0,
                         "id": "90",
                         "icon": "fa fa-table fa-fw",
-                        "title": "\u529f\u80fd\u8868\u683c",
+                        "title": "表格示例",
                         "url": "#",
                         "level": "1",
                         "permissionid": "0",
@@ -20,7 +20,7 @@
                         "parentid": 0,
                         "id": "92",
                         "icon": "fa fa-list-alt fa-fw",
-                        "title": "\u8868\u5355",
+                        "title": "表单控件",
                         "url": "#",
                         "level": "2",
                         "permissionid": "0",
@@ -30,7 +30,7 @@
                         "parentid": 0,
                         "id": "99",
                         "icon": "fa fa-folder-open-o fa-fw",
-                        "title": "\u6587\u4ef6\u4e0a\u4f20",
+                        "title": "文件上传",
                         "url": "#",
                         "level": "3",
                         "permissionid": "0",
@@ -40,7 +40,7 @@
                         "parentid": 0,
                         "id": "102",
                         "icon": "fa fa-pencil-square-o fa-fw",
-                        "title": "\u9762\u677f\u5207\u6362",
+                        "title": "显示面板",
                         "url": "#",
                         "level": "4",
                         "permissionid": "0",
@@ -50,7 +50,7 @@
                         "parentid": 0,
                         "id": "103",
                         "icon": "fa fa-comments-o fa-fw",
-                        "title": "\u6d88\u606f\u63d0\u793a",
+                        "title": "消息提示",
                         "url": "#",
                         "level": "5",
                         "permissionid": "0",
@@ -60,65 +60,10 @@
                         "parentid": 0,
                         "id": "116",
                         "icon": "fa fa-archive fa-fw",
-                        "title": "\u7b2c\u4e09\u65b9\u5e93",
+                        "title": "第三方库",
                         "url": "#",
                         "level": "6",
                         "permissionid": "0",
-                        "mid": "1"
-                    },
-                    {
-                        "parentid": 0,
-                        "id": "1",
-                        "icon": "fa fa-cog",
-                        "title": "\u7cfb\u7edf\u8bbe\u7f6e",
-                        "url": "",
-                        "level": "11",
-                        "permissionid": "0",
-                        "mid": "1"
-                    }
-                ]
-            },
-            {
-                "parentid": 1,
-                "groups": [
-                    {
-                        "parentid": 1,
-                        "id": "4",
-                        "icon": "fa fa-lock",
-                        "title": "\u6743\u9650\u5206\u914d",
-                        "url": "\/system\/permission",
-                        "level": "2",
-                        "permissionid": "2",
-                        "mid": "1"
-                    },
-                    {
-                        "parentid": 1,
-                        "id": "3",
-                        "icon": "fa fa-users",
-                        "title": "\u89d2\u8272\u7ba1\u7406",
-                        "url": "\/system\/role",
-                        "level": "3",
-                        "permissionid": "3",
-                        "mid": "1"
-                    },
-                    {
-                        "parentid": 1,
-                        "id": "5",
-                        "icon": "fa fa-user-circle",
-                        "title": "\u8d26\u6237\u7ba1\u7406",
-                        "url": "\/system\/account",
-                        "level": "4",
-                        "permissionid": "4",
-                        "mid": "1"
-                    },
-                    {
-                        "parentid": 1,
-                        "id": "2",
-                        "icon": "fa fa-list-ul",
-                        "title": "\u83dc\u5355\u7f16\u8f91",
-                        "url": "\/system\/menu",
-                        "level": "11",
-                        "permissionid": "1",
                         "mid": "1"
                     }
                 ]
@@ -135,42 +80,12 @@
                         "level": "1",
                         "permissionid": "0",
                         "mid": "1"
-                    },
-                    {
-                        "parentid": 90,
-                        "id": "128",
-                        "icon": "#",
-                        "title": "\u96c6\u6210\u8868\u683c",
-                        "url": "\/table\/smart",
-                        "level": "2",
-                        "permissionid": "0",
-                        "mid": "1"
                     }
                 ]
             },
             {
                 "parentid": 92,
                 "groups": [
-                    {
-                        "parentid": 92,
-                        "id": "93",
-                        "icon": "#",
-                        "title": "\u57fa\u672c\u8868\u5355",
-                        "url": "\/form\/simple",
-                        "level": "1",
-                        "permissionid": "0",
-                        "mid": "1"
-                    },
-                    {
-                        "parentid": 92,
-                        "id": "94",
-                        "icon": "#",
-                        "title": "\u529f\u80fd\u8868\u5355",
-                        "url": "\/form\/muti",
-                        "level": "2",
-                        "permissionid": "0",
-                        "mid": "1"
-                    },
                     {
                         "parentid": 92,
                         "id": "95",
@@ -208,16 +123,6 @@
                         "title": "\u8f6e\u64ad\u56fe",
                         "url": "\/form\/loopcard",
                         "level": "6",
-                        "permissionid": "0",
-                        "mid": "1"
-                    },
-                    {
-                        "parentid": 92,
-                        "id": "126",
-                        "icon": "#",
-                        "title": "\u8868\u5355\u6821\u9a8c",
-                        "url": "\/form\/checkform",
-                        "level": "7",
                         "permissionid": "0",
                         "mid": "1"
                     }
@@ -337,13 +242,8 @@
         "models": [
             {
                 "id": 1,
-                "title": "\u63d2\u4ef6\u5c55\u793a",
+                "title": "插件展示",
                 "level": 1
-            },
-            {
-                "id": 2,
-                "title": "\u6a21\u677f\u793a\u4f8b",
-                "level": 2
             }
         ]
     }

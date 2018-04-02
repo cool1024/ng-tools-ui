@@ -7,7 +7,7 @@ import {
     ImageModule,
     ButtonModule,
     DatePickerModule,
-} from './../../../tools-ui';
+} from 'ng-tools-ui';
 
 /*路由模块*/
 import { TableRoutingModule } from './table.routing';

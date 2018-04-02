@@ -21,3 +21,25 @@
             [(src)]="audioUrl" sm></ts-video>
     </div>
 </div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        自定义选择文件
+    </div>
+    <div class="card-body">
+        <input tsFile #fileDomOne="tsFile" (fileChange)="file=$event" type="file" accept=".doc,.docx">
+        <button class="btn btn-white" (click)="fileDomOne.openFileDialog()">
+            <i class="fa fa-folder-o fa-fw"></i>选择Word文档
+        </button>
+        <input tsFile #fileDomTwo="tsFile" (fileChange)="files=$event" type="file" multiple="true">
+        <button class="btn btn-white" (click)="fileDomTwo.openFileDialog()">
+            <i class="fa fa-folder-o fa-fw"></i>多选文件
+        </button>
+        <div class="text-info">
+            <p class="m-0">{{file?.name}}</p>
+        </div>
+        <div *ngFor="let file of files" class="text-info">
+            <p class="m-0">{{file.name}}</p>
+        </div>
+    </div>
+</div>

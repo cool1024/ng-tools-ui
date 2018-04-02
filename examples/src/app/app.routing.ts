@@ -11,6 +11,7 @@ const routes: Routes = [
     { path: 'upload', loadChildren: 'app/modules/upload/upload.module#UploadModule' },
     { path: 'pad', loadChildren: 'app/modules/pad/pad.module#PadModule' },
     { path: 'table', loadChildren: 'app/modules/table/table.module#TableModule' },
+    { path: 'message', loadChildren: 'app/modules/message/message.module#MessageModule' },
 ];
 
 @NgModule({

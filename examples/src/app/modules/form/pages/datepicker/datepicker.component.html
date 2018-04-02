@@ -28,3 +28,50 @@
         <ts-prism [code]="code" language="html"></ts-prism>
     </div>
 </div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        参数支持
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">color</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>颜色设置，bootstrap的基础颜色[danger,light,info...]</td>
+                </tr>
+                <tr>
+                    <th scope="row">value</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>日期值，支持双向绑定，格式为 年/月/日</td>
+                </tr>
+                <tr>
+                    <th scope="row">weekTitles</th>
+                    <td>
+                        <code>string[]</code>
+                    </td>
+                    <td>日历的星期标题，为一个字符串数组，从周一到周日</td>
+                </tr>
+                <tr>
+                    <th scope="row">monthTitles</th>
+                    <td>
+                        <code>string[]</code>
+                    </td>
+                    <td>日历的月份标题，为一个字符串数组，从一月到十二月</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

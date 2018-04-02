@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12 col-lg-6 mb-2">
         <div class="card">
-            <div class="card-header bg-white">Dropdown</div>
+            <div class="card-header bg-white">自定义下拉菜单</div>
             <div class="card-body">
                 <div tsDropdown>
                     <button tsToggle tsBtn class="dropdown-toggle">Default</button>
@@ -48,9 +48,9 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-lg-6 mb-2    ">
+    <div class="col-12 col-lg-6 mb-2">
         <div class="card">
-            <div class="card-header bg-white">Dropdown</div>
+            <div class="card-header bg-white">集成下拉</div>
             <div class="card-body">
                 <ts-dropdown [items]="dropdowns" [(value)]="dropdownValue" text="Select"></ts-dropdown>
                 <ts-dropdown [items]="dropdowns" [(value)]="dropdownValue" text="Up" dropup></ts-dropdown>
@@ -63,7 +63,7 @@
 <div class="row">
     <div class="col-12 col-lg-6 mb-2">
         <div class="card">
-            <div class="card-header bg-white">Select</div>
+            <div class="card-header bg-white">下拉选择</div>
             <div class="card-body">
                 <input class="form-control mb-2" type="text" [(ngModel)]="selectValue">
                 <ts-select class="form-control p-0" [(value)]="selectValue" [items]="['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
@@ -81,7 +81,7 @@
     </div>
     <div class="col-12 col-lg-6 mb-2">
         <div class="card">
-            <div class="card-header bg-white">Select</div>
+            <div class="card-header bg-white">自定义下拉选择</div>
             <div class="card-body">
                 <div class="input-group input-group-sm mb-2">
                     <div class="input-group-prepend">
@@ -97,7 +97,7 @@
     </div>
     <div class="col-12 col-lg-6 mb-2">
         <div class="card">
-            <div class="card-header bg-white">Select</div>
+            <div class="card-header bg-white">下拉尺寸</div>
             <div class="card-body">
                 <input class="form-control bg-white mb-2" type="number" [(ngModel)]="dropdownValue">
                 <div class="input-group input-group-sm mb-2">

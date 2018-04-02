@@ -39,6 +39,10 @@ export class VideoComponent implements OnInit {
 
     audioUrl = 'https://cool1024.com/upload/c2d8f23c236f257039305cc263ec6439.mp3';
 
+    file: File;
+
+    files: File[];
+
     constructor(
         public theme: ThemeService,
         public http: HttpClient,
