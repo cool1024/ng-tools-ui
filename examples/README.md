@@ -14,4 +14,7 @@ npm install
 ng serve --aot
 ```
 
+## Build
+ng build -bh /docs/ -d //cool1024.com/docs/ --prod
+
 

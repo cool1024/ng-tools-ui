@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './cores/cores.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
+// import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { AppRoutingModule } from './app.routing';
 import {
     ButtonModule,
@@ -35,7 +35,7 @@ import { AppComponent } from './app.component';
         CssloadModule,
         DropdownModule,
         HttpClientModule,
-        DashboardModule
+        // DashboardModule
     ],
     providers: [],
     bootstrap: [AppComponent]

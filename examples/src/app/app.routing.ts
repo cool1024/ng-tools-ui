@@ -4,9 +4,10 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 const routes: Routes = [
 
     // 此处设置网站首页
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: '/dashboard/home', pathMatch: 'full' },
 
     // 懒加载子模块
+    { path: 'dashboard', loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule' },
     { path: 'form', loadChildren: 'app/modules/form/form.module#FormModule' },
     { path: 'upload', loadChildren: 'app/modules/upload/upload.module#UploadModule' },
     { path: 'pad', loadChildren: 'app/modules/pad/pad.module#PadModule' },

@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     }
 
     loadMenu() {
-        this.http.get('/assets/json/menu.json').subscribe(res => {
+        this.http.get('assets/json/menu.json').subscribe(res => {
             if (res['result'] === true) {
                 const menus: any[] = this.menuCtrl.transformMenu(res['datas']['groups'], res['datas']['models']);
                 menus.forEach(model => {
