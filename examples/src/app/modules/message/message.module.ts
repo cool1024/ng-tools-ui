@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ModalModule } from './../../../tools-ui';
+import { ModalModule } from 'ng-tools-ui';
 
 /*路由模块*/
 import { MessageRoutingModule } from './message.routing';

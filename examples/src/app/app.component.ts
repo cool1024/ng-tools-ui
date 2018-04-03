@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Pagination, MenuModel, MenuModule, MenuGroup, MenuItem, Breadcrumb } from './../tools-ui';
+import { Pagination, MenuModel, MenuModule, MenuGroup, MenuItem, Breadcrumb } from 'ng-tools-ui';
 import { MenuService } from './cores/services/menu.service';
 import { Router } from '@angular/router';
 import { ThemeService } from './cores/services/theme.service';

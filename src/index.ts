@@ -20,6 +20,7 @@ export { CollapseModule } from './components/collapse/collapse.module';
 export { ConfirmModule } from './components/confirm/confirm.module';
 export { ToastModule } from './components/toast/toast.module';
 export { ModalModule } from './components/modal/modal.module';
+export { CkeditorModule } from './lib/ckeditor/ckeditor.module';
 
 /**
  * Lib modules export

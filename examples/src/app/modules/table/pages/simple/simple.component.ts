@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Pagination } from './../../../../../tools-ui';
+import { Pagination } from 'ng-tools-ui';
 import { RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ThemeService } from '../../../../cores/services/theme.service';

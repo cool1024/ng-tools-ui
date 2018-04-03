@@ -56,14 +56,14 @@ export class CkeditorComponent implements AfterViewInit, OnChanges {
                 language: 'zh_cn',
                 height: '300',
             })
-            .then(editor => {
+            .then((editor: any) => {
                 this.editroHandle = editor;
                 console.log(this.editroHandle);
                 setInterval(() => {
                     console.log(this.textarea.value);
                 }, 100);
             })
-            .catch(error => {
+            .catch((error: any) => {
                 console.error(error);
             });
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalService } from './../../../../../tools-ui';
+import { ModalService } from 'ng-tools-ui';
 
 @Component({
     template: `

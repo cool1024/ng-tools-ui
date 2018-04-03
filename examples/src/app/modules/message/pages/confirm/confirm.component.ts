@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ThemeService } from '../../../../cores/services/theme.service';
-import { ConfirmService, ToastService } from 'ng-tools-ui';
+import { ConfirmService, ToastService, ModalService } from 'ng-tools-ui';
 import { ModalComponent } from './modal.component';
-import { ModalService } from './.,/../../../../../../tools-ui';
 
 @Component({
     templateUrl: './confirm.component.html',

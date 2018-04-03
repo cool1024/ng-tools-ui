@@ -8,8 +8,6 @@ import {
     PrismModule,
 } from 'ng-tools-ui';
 
-import { CkeditorModule } from './../../../tools-ui';
-
 /*路由模块*/
 import { DemoRoutingModule } from './demo.routing';
 
@@ -26,7 +24,7 @@ import { CodeComponent } from './pages/code/code.component';
         DemoRoutingModule,
         MapModule,
         PrismModule,
-        CkeditorModule,
+        // CkeditorModule,
     ],
     declarations: [
         ChartComponent,

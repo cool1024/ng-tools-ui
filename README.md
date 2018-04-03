@@ -1,8 +1,6 @@
 # ng-tools-ui
 A bootstrap4.0 UI for angular4.0+
 
-## 说明
-
 ## Install
 
 ### To useng-tools-ui in your project install it via npm:
@@ -26,7 +24,7 @@ If you're using the Angular CLI, you can add this to your styles.css:
 
 ```css
 @import "~bootstrap/dist/css/bootstrap.min.css";
-@import "~ng-tools-ui/dist/css/tools-ui.css";
+@import "~ng-tools-ui/dist/src/css/tools-ui.css";
 @import "~font-awesome/css/font-awesome.min.css";
 ```
 

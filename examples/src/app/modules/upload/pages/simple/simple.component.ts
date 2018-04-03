@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../../../cores/services/theme.service';
-import { UploadConfig } from './../../../../../tools-ui/components/upload/upload.interface';
+import { UploadConfig } from 'ng-tools-ui';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';

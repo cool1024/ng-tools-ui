@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoopCard, LoopCardConfig } from './../../../../../tools-ui';
+import { LoopCard, LoopCardConfig } from 'ng-tools-ui';
 
 @Component({
     templateUrl: './loop-card.component.html',
