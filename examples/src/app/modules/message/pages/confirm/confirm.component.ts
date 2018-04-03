@@ -76,4 +76,12 @@ export class ConfirmComponent {
             console.log(res);
         });
     }
+
+    sizeModal() {
+        this.modal.create(ModalComponent, { size: 'lg' }).open();
+    }
+
+    centerModal() {
+        this.modal.create(ModalComponent, { size: 'sm', center: true }).open();
+    }
 }

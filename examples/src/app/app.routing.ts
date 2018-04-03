@@ -12,6 +12,7 @@ const routes: Routes = [
     { path: 'pad', loadChildren: 'app/modules/pad/pad.module#PadModule' },
     { path: 'table', loadChildren: 'app/modules/table/table.module#TableModule' },
     { path: 'message', loadChildren: 'app/modules/message/message.module#MessageModule' },
+    { path: 'demo', loadChildren: 'app/modules/demo/demo.module#DemoModule' },
 ];
 
 @NgModule({

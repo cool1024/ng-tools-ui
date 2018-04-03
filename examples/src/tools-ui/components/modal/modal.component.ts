@@ -6,7 +6,7 @@ import { ModalDirective } from './modal.directive';
     template: `
     <div #pad class="modal fade" (click)="tryClose($event)" [ngClass]="{'show': show}"
         [ngStyle]="{'display': show?'block':'none',overflow:'auto'}">
-        <div class="modal-dialog modal-{{size}}" role="document">
+        <div class="modal-dialog modal-{{size}}" [class.modal-dialog-centered]="center">
             <div class="modal-content">
                 <ng-template tsModalHost></ng-template>
             </div>
@@ -23,8 +23,11 @@ export class ModalComponent {
 
     size: string;
 
+    center: boolean;
+
     constructor(private componentFactoryResolver: ComponentFactoryResolver) {
         this.show = false;
+        this.center = false;
         this.size = '';
     }
 

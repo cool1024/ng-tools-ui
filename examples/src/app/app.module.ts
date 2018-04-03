@@ -11,7 +11,8 @@ import {
     CssloadModule,
     DropdownModule,
     ConfirmModule,
-    ToastModule
+    ToastModule,
+    MapModule,
 } from 'ng-tools-ui';
 
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { AppComponent } from './app.component';
         AppRoutingModule,
         CoreModule.forRoot(),
         ConfirmModule.forRoot({ okTitle: '确认', cancelTitle: '取消' }),
+        MapModule.forRoot('bea16ad29a10b04e05e0624362d504dc'),
         ToastModule.forRoot(),
         ButtonModule,
         NavbarModule,

@@ -44,7 +44,6 @@ or add the follow code in your `.angular-cli.json` file.
 ...
 
 ```
---------------------------------------
 
 Usage
 

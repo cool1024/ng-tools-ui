@@ -10,7 +10,7 @@
     "license": "ISC",
     "module": "ng-tools-ui",
     "name": "ng-tools-ui",
-    "version": "1.0.9",
+    "version": "1.1.2",
     "dependencies": {
         "@angular/animations": "^5.2.0",
         "@angular/common": "^5.2.0",
@@ -20,9 +20,9 @@
         "@angular/platform-browser": "^5.2.0",
         "@angular/platform-browser-dynamic": "^5.2.0",
         "@angular/router": "^5.2.0",
-        "core-js": "^2.4.1",
-        "rxjs": "^5.5.6",
-        "zone.js": "^0.8.19"
+        "core-js": "^2.5.4",
+        "rxjs": "^5.5.8",
+        "zone.js": "^0.8.23"
     },
     "devDependencies": {
         "@angular/compiler": "^5.2.9",
@@ -30,7 +30,7 @@
         "@angular/platform-server": "^5.2.9",
         "@types/jasmine": "~2.8.3",
         "@types/jasminewd2": "~2.0.2",
-        "@types/node": "~6.0.60",
+        "@types/node": "^6.0.103",
         "typescript": "~2.5.3"
     },
     "files": [

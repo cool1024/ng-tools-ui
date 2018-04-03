@@ -1,0 +1,64 @@
+import { Injectable, Injector, ApplicationRef, ComponentFactoryResolver, ComponentRef, ComponentFactory } from '@angular/core';
+import { ModalComponent } from './modal.component';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+
+@Injectable()
+export class ModalService {
+
+    private show: boolean;
+    private modalComponent: any;
+    private baseComponent: ComponentFactory<ModalComponent>;
+    private windowCmptRef: ComponentRef<ModalComponent>;
+    private containerEl: HTMLBodyElement;
+    // private task: Task;
+    private handle: Subject<any>;
+    public modal: ComponentRef<any>;
+
+    constructor(
+        private applicationRef: ApplicationRef,
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private injector: Injector
+    ) { }
+
+    init() {
+        this.baseComponent = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.windowCmptRef = this.baseComponent.create(this.injector);
+        this.applicationRef.attachView(this.windowCmptRef.hostView);
+        this.containerEl = document.querySelector('body');
+        this.containerEl.appendChild(this.windowCmptRef.location.nativeElement);
+    }
+
+    create(content: any, options?: { size: string }): ModalService {
+        this.init();
+        this.modalComponent = content;
+        this.modal = this.windowCmptRef.instance.loadComponent(content);
+        if (options !== undefined) {
+            this.windowCmptRef.instance.size = options.size || '';
+        }
+        return this;
+    }
+
+    get instance(): any {
+        return this.modal.instance;
+    }
+
+    close(params?: any) {
+        this.windowCmptRef.instance.close();
+        this.windowCmptRef.destroy();
+        this.containerEl.removeChild(this.windowCmptRef.location.nativeElement);
+        if (this.handle) { this.handle.next(params); }
+    }
+
+    dismiss() {
+        this.windowCmptRef.instance.close();
+        this.windowCmptRef.destroy();
+        this.containerEl.removeChild(this.windowCmptRef.location.nativeElement);
+    }
+
+    open(): Observable<any> {
+        this.windowCmptRef.instance.open();
+        this.handle = new Subject<any>();
+        return this.handle.asObservable();
+    }
+}

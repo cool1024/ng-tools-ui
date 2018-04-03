@@ -32,8 +32,8 @@ export class PrismComponent implements OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes.language && changes.code) {
-            const language = changes.language.currentValue || 'html';
+        if (this.language && changes.code) {
+            const language = this.language || 'html';
             const code = <string>Prism.highlight(this.code || '', this.languages[language]);
             const lineLength = code.split('\n').length;
             let lineCode = '<span class="line-numbers-rows">';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
     mediaList: any[];
 
@@ -21,6 +21,10 @@ export class HomeComponent implements OnInit {
                 this.mediaList.push({ avatar: user.picture.thumbnail, nick: user.name.first, email: user.email });
             });
         });
+    }
+
+    ngAfterViewInit() {
+
     }
 
 }

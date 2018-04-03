@@ -8,21 +8,28 @@ import { Item } from '../../commons/interfaces/item.interface';
     template: `<div class="d-inline-block">
     <ng-container *ngIf="goTitle">
         <button (click)="page.invalid||sendChange(page.value)" [class]="btnClass">{{goTitle}}</button>
-        <input ngModel #page="ngModel" [min]="1" [class.form-control-sm]="!(sm===null||sm==='false')" [class.form-control-lg]="!(lg===null||lg==='false')"
+        <input ngModel #page="ngModel" [min]="1" [class.form-control-sm]="!(sm===null||sm==='false')"
+        [class.form-control-lg]="!(lg===null||lg==='false')"
             class="form-control pagination-input form-sm-control border-muted" type="number">
     </ng-container>
-    <ts-dropdown *ngIf="items" dropup [lg]="lg" [sm]="sm" [color]="color" [outline]="outline" [(value)]="pagination.limit" [items]="items"></ts-dropdown>
+    <ts-dropdown *ngIf="items" dropup [lg]="lg" [sm]="sm" [color]="color" [outline]="outline"
+    [(value)]="pagination.limit" [items]="items" (valueChange)="sendChange()"></ts-dropdown>
     <div class="btn-group mr-2" role="group">
-        <button type="button" [class]="btnClass" *ngIf="!!startTitle" [class.disabled]="!pagination.hasPrev()" [disabled]="!pagination.hasPrev()"
+        <button type="button" [class]="btnClass" *ngIf="!!startTitle" [class.disabled]="!pagination.hasPrev()"
+        [disabled]="!pagination.hasPrev()"
             (click)="pagination.page=1;sendChange()">{{startTitle}}</button>
-        <button type="button" [class]="btnClass" *ngIf="!!prevTitle" [class.disabled]="!pagination.hasPrev()" [disabled]="!pagination.hasPrev()"
+        <button type="button" [class]="btnClass" *ngIf="!!prevTitle" [class.disabled]="!pagination.hasPrev()"
+        [disabled]="!pagination.hasPrev()"
             (click)="pagination.page=pagination.page-1;sendChange()">{{prevTitle}}</button>
         <ng-template ngFor let-item [ngForOf]="pages" let-i="index">
-            <button [ngClass]="{'active':item == pagination.page}" type="button" [class]="btnClass" (click)="pagination.page=item;sendChange()">{{item}}</button>
+            <button [ngClass]="{'active':item == pagination.page}" type="button" [class]="btnClass"
+            (click)="pagination.page=item;sendChange()">{{item}}</button>
         </ng-template>
-        <button type="button" [class]="btnClass" *ngIf="!!nextTitle" [class.disabled]="!pagination.hasNext()" [disabled]="!pagination.hasNext()"
+        <button type="button" [class]="btnClass" *ngIf="!!nextTitle" [class.disabled]="!pagination.hasNext()"
+        [disabled]="!pagination.hasNext()"
             (click)="pagination.page=pagination.page+1;sendChange()">{{nextTitle}}</button>
-        <button type="button" [class]="btnClass" *ngIf="!!endTitle" [class.disabled]="!pagination.hasNext()" [disabled]="!pagination.hasNext()"
+        <button type="button" [class]="btnClass" *ngIf="!!endTitle" [class.disabled]="!pagination.hasNext()"
+        [disabled]="!pagination.hasNext()"
             (click)="pagination.page=pagination.maxPage;sendChange()">{{endTitle}}</button>
     </div>
 </div>`,
@@ -75,6 +82,8 @@ export class PaginationComponent extends DomAttr implements DoCheck {
         if (page && this.pagination.hasPage(page)) {
             this.pagination.page = page;
             this.setPages();
+            this.pageChange.emit(this.pagination);
+        } else {
             this.pageChange.emit(this.pagination);
         }
     }
