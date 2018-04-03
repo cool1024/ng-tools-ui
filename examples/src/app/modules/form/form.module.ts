@@ -9,6 +9,7 @@ import {
     SelectModule,
     PrismModule,
     LoopCardModule,
+    TabModule,
 } from 'ng-tools-ui';
 
 /*路由模块*/
@@ -31,6 +32,7 @@ import { LoopCardComponent } from './pages/loop-card/loop-card.component';
         SelectModule,
         PrismModule,
         LoopCardModule,
+        TabModule,
     ],
     declarations: [
         DatepickerComponent,

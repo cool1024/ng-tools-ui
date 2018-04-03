@@ -1,5 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Fira+Mono);
-
 /*
  * Hopscotch
  * by Jan T. Sott
@@ -29,9 +28,8 @@ pre[class*="language-"] {
     word-break: break-all;
     word-wrap: break-word;
     background: white;
-    color: #b9b5b8;
+    color: #4e4e4e;
 }
-
 
 /* Code blocks */
 
@@ -40,7 +38,6 @@ pre[class*="language-"] {
     margin: .5em 0;
     overflow: auto;
 }
-
 
 /* Inline code */
 
@@ -53,11 +50,11 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: #797379;
+    color: #165d16;
 }
 
 .token.punctuation {
-    color: #b9b5b8;
+    color: rgb(56, 56, 56);
 }
 
 .namespace {

@@ -3,7 +3,7 @@
 </ts-datepicker>
 <div class="card">
     <div class="card-header bg-white">
-        日期选择
+        组件参数
     </div>
     <div class="card-body">
         <form class="form-inline">
@@ -17,23 +17,6 @@
                 </div>
             </div>
         </form>
-    </div>
-</div>
-<br>
-<div class="card">
-    <div class="card-header bg-white">
-        示例代码
-    </div>
-    <div class="card-body">
-        <ts-prism [code]="code" language="html"></ts-prism>
-    </div>
-</div>
-<br>
-<div class="card">
-    <div class="card-header bg-white">
-        参数支持
-    </div>
-    <div class="card-body">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -73,5 +56,27 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        导入日期模块
+    </div>
+    <div class="card-body p-0">
+        <ts-prism [code]="codes[0]" language="typescript"></ts-prism>
+    </div>
+</div>
+<br>
+
+<ts-tabs [tabs]="['example.html','example.ts']" [color]="theme.getColor()" [target]="tsTabsOne" activeTab="example.html"></ts-tabs>
+<div #tsTabsOne='tsTabs' tsTabs class="card rounded-0 border-top-0">
+    <div class="card-body p-0">
+        <div tsTab tab='example.html'>
+            <ts-prism [code]="codes[1]" language="html"></ts-prism>
+        </div>
+        <div tsTab tab='example.ts'>
+            <ts-prism [code]="codes[2]" language="typescript"></ts-prism>
+        </div>
     </div>
 </div>
