@@ -16,6 +16,7 @@ import { ChartComponent } from './pages/chart/chart.component';
 import { EditorComponent } from './pages/editor/editor.component';
 import { MapComponent } from './pages/map/map.component';
 import { CodeComponent } from './pages/code/code.component';
+import { EChartModule } from '../../../_tools-ui';
 
 @NgModule({
     imports: [
@@ -24,7 +25,7 @@ import { CodeComponent } from './pages/code/code.component';
         DemoRoutingModule,
         MapModule,
         PrismModule,
-        // CkeditorModule,
+        EChartModule
     ],
     declarations: [
         ChartComponent,

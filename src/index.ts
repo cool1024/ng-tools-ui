@@ -28,6 +28,7 @@ export { CkeditorModule } from './lib/ckeditor/ckeditor.module';
 export { PrismModule } from './lib/prism/prism.module';
 export { ChartModule } from './lib/chart-pad/chart.module';
 export { MapModule } from './lib/map/map.module';
+export { EChartModule } from './lib/echart/echart.module';
 
 /**
  * Class export

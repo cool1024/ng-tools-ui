@@ -32,4 +32,8 @@ export class ScriptService {
         }
         return this.useScript;
     }
+
+    complete(func: () => void) {
+        this.useScript.subscribe({ complete: () => func() });
+    }
 }

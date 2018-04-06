@@ -1,4 +1,4 @@
-import { Directive, HostListener, EventEmitter, Input, ElementRef, OnInit, Output, HostBinding } from '@angular/core';
+import { Directive, HostListener, EventEmitter, Input, ElementRef, Output, HostBinding, AfterViewInit } from '@angular/core';
 import { FontAwesome } from './../../commons/classes/font-awesome.class';
 import { DomAttr } from './../../commons/extends/attr.class';
 import { DomLoad } from './../../commons/interfaces/load.interface';
@@ -7,11 +7,13 @@ import { DomLoad } from './../../commons/interfaces/load.interface';
     selector: `button[tsBtn]`,
     exportAs: 'tsBtn'
 })
-export class ButtonDirective extends DomAttr implements OnInit, DomLoad {
+export class ButtonDirective extends DomAttr implements AfterViewInit, DomLoad {
 
     private button: HTMLButtonElement;
 
-    private icon: string;
+    private icon: FontAwesome;
+
+    private iconDom: HTMLElement;
 
     @Input() loading: boolean;
 
@@ -45,13 +47,13 @@ export class ButtonDirective extends DomAttr implements OnInit, DomLoad {
         this.lg = null;
         this.sm = null;
         this.loading = null;
-        this.icon = new FontAwesome('spinner', true).toHtmlString();
+        this.icon = new FontAwesome('spinner', true);
     }
 
     /**
-     * Directive init hook
+     * Directive view init hook
      */
-    ngOnInit() {
+    ngAfterViewInit() {
         this.button = this.el.nativeElement;
         this.button.type = 'button';
     }
@@ -61,7 +63,8 @@ export class ButtonDirective extends DomAttr implements OnInit, DomLoad {
      */
     present() {
         if (this.loading !== null && !this.hasLoadingIcon()) {
-            this.button.innerHTML = this.icon + this.button.innerHTML;
+            this.iconDom = this.icon.toDom();
+            this.button.insertBefore(this.iconDom, this.button.childNodes[0]);
             this.loading = true;
         }
     }
@@ -71,9 +74,9 @@ export class ButtonDirective extends DomAttr implements OnInit, DomLoad {
      */
     dismiss() {
         if (this.hasLoadingIcon()) {
-            this.button.removeChild(this.button.childNodes[0]);
-            this.button.innerHTML = this.button.innerHTML.replace(`<!-- ${this.icon} -->`, '');
+            this.button.removeChild(this.iconDom);
             this.loading = false;
+            this.iconDom = null;
         }
     }
 
@@ -81,7 +84,7 @@ export class ButtonDirective extends DomAttr implements OnInit, DomLoad {
      * Check loading icon
      */
     private hasLoadingIcon(): boolean {
-        return this.button.innerHTML.indexOf(`<!-- ${this.icon} -->`) >= 0;
+        return !!this.iconDom;
     }
 
 }
