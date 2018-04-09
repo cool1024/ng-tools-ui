@@ -75,6 +75,17 @@ export const styleStr = `
         background-color: rgba(0, 0, 0, 0.4);
         box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 0.2), 24px 0px 0px 0px rgba(0, 0, 0, 1);
     }
+}
+.upload-block{
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+.upload-block-window{
+    background-color:black;
+    opacity:0;
+}
+.upload-block-window:hover{
+    opacity:0.5;
 }`;
 
 export const plusSvgData =

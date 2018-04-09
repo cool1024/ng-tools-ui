@@ -259,6 +259,15 @@
                         "level": "1",
                         "permissionid": "0",
                         "mid": "1"
+                    },
+                    {
+                        "parentid": 130,
+                        "icon": "#",
+                        "title": "分页按钮",
+                        "url": "/buttons/page",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
                     }
                 ]
             }

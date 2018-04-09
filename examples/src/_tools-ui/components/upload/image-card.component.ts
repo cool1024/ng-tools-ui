@@ -6,46 +6,34 @@ import { UploadConfig } from './upload.interface';
 import { styleStr, plusSvgData } from './upload.data';
 
 @Component({
-    selector: 'ts-image',
+    selector: 'ts-image-card',
     template: `
-    <div class="d-inline-block">
+    <div class="d-inline-block border border-muted p-1 mb-1 align-top" [ngStyle]="blockStyle">
         <input #input_file class="d-none" type="file" accept="image/*" (change)="changeFile($event.target.files);input_file.value=null">
-        <div class="btn-group" role="group">
-            <button [class]="btnClass" (click)="input_file.click()" type="button">
-                <i class="fa fa-file-image-o fa-fw" aria-hidden="true"></i>{{title||'Open File'}}</button>
-            <button [class]="btnClass" (click)="resetInput(input_file)" type="button">
-                <i class="fa fa-refresh fa-fw" aria-hidden="true"></i>
-            </button>
-            <button [class]="btnClass" (click)="cleanInput(input_file)" type="button">
-                <i class="fa fa-remove fa-fw" aria-hidden="true"></i>
-            </button>
+        <div  *ngIf="!((!showImage&&!src)||isLoading)" class="w-100 h-100 upload-block" [ngStyle]="{'background-image': getUrl()}">
+            <div class="upload-block-window text-white text-center h-100 w-100" [ngStyle]="windowStyle">
+                <!--<i class="fa fa-fw fa-lg fa-eye pointer"></i>-->
+                <i (click)="cleanInput(input_file)" class="fa fa-fw fa-lg fa-trash pointer"></i>
+            </div>
         </div>
-        <br>
-        <div *ngIf="!((!showImage&&!src)||isLoading)"
-            [style.width]="width" [style.height]="width" class="img-thumbnail img-thumbnail-pad d-inline-block mt-2 mr-2 rounded-0">
-            <div class="w-100 h-100 img-thumbnail-image" [ngStyle]="{'background-image': getUrl()}"></div>
+        <div *ngIf="(!showImage&&!src)&&!isLoading" (click)="input_file.click()" class="w-100 h-100 upload-block">
+            <div class="text-muted text-center h-100 w-100 pointer" [ngStyle]="windowStyle">
+                <i class="fa fa-fw fa-lg fa-picture-o"></i>选择图片
+            </div>
         </div>
-        <div *ngIf="((!showImage&&!src)&&!isLoading)"
-            (click)="input_file.click()"
-            [style.width]="width" [style.height]="width"
-            [style.backgroundImage]="plusBackground"
-            class="pointer ts-plus-dom img-thumbnail img-thumbnail-pad d-inline-block mt-2 mr-2 rounded-0">
-            <div class="w-100 h-100 img-thumbnail-image"></div>
-        </div>
-        <div *ngIf="isLoading"
-            class="img-thumbnail img-thumbnail-pad d-inline-block mt-2 mr-2 rounded-0" [style.width]="width" [style.height]="width">
+        <div *ngIf="isLoading" class="w-100 h-100">
             <div class="typing_loader"></div>
         </div>
     </div>`,
     styles: [styleStr]
 })
 
-export class InputImageComponent extends DomAttr implements OnChanges {
+export class ImageCardComponent extends DomAttr implements OnChanges {
 
     @Input() config: UploadConfig;
     @Input() src: string | { blobUrl: string };
     @Input() title: string;
-    @Input() width: string;
+    @Input() width: number;
 
     @Output() fileChange = new EventEmitter<File>(false);
     @Output() srcChange = new EventEmitter<string>(false);
@@ -56,19 +44,27 @@ export class InputImageComponent extends DomAttr implements OnChanges {
     default: string;
     file: File;
 
-    get plusBackground(): SafeStyle {
-        return this.domSanitizer.bypassSecurityTrustStyle(`url(${plusSvgData})`);
-    }
-
     get source(): string { return this.config ? (this.config.host || '') : ''; }
 
     get realSrc(): string {
         return typeof this.src === 'string' ? this.source + this.src : this.src.blobUrl;
     }
 
+    get sizePx(): string {
+        return this.width + 'px';
+    }
+
+    get blockStyle(): any {
+        return { height: this.sizePx, width: this.sizePx };
+    }
+
+    get windowStyle(): any {
+        return { lineHeight: (this.width - 7) + 'px' };
+    }
+
     constructor(private domSanitizer: DomSanitizer) {
         super();
-        this.width = '100px';
+        this.width = 100;
         this.default = '';
     }
 

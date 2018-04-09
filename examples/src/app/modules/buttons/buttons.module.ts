@@ -7,6 +7,7 @@ import {
     CollapseModule,
     TabModule,
     PrismModule,
+    PaginationModule,
 } from 'ng-tools-ui';
 
 /*路由模块*/
@@ -14,6 +15,7 @@ import { ButtonsRoutingModule } from './buttons.routing';
 
 /*页面组件*/
 import { SimpleComponent } from './pages/simple/simple.component';
+import { PaginationComponent } from './pages/pagination/pagination.component';
 
 @NgModule({
     imports: [
@@ -22,10 +24,12 @@ import { SimpleComponent } from './pages/simple/simple.component';
         CollapseModule,
         TabModule,
         PrismModule,
+        PaginationModule,
         ButtonsRoutingModule,
     ],
     declarations: [
         SimpleComponent,
+        PaginationComponent,
     ]
 })
 export class ButtonsModule { }

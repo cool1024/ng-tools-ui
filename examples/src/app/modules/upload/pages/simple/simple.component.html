@@ -5,8 +5,8 @@
                 图片选择--表单提交
             </div>
             <div class="card-body">
-                <ts-image [src]="imageUrl" [color]="theme.getColor()" title="选择图片" sm width="165px"></ts-image>
-                <ts-images [src]="imageUrl" [color]="theme.getColor()" title="选择图片" sm width="165px"></ts-images>
+                <ts-image [src]="imageUrl" [color]="theme.getColor()" title="选择图片" sm width="100px"></ts-image>
+                <ts-images [src]="imageUrl" [color]="theme.getColor()" title="选择图片" sm width="100px"></ts-images>
             </div>
         </div>
     </div>
@@ -16,8 +16,30 @@
                 图片选择--自动上传
             </div>
             <div class="card-body">
-                <ts-image [(src)]="imageUrl" [color]="theme.getColor()" [config]="config" title="选择图片" sm width="165px"></ts-image>
-                <ts-images [(src)]="imagesUrl" [color]="theme.getColor()" [config]="config" title="选择图片" sm width="165px"></ts-images>
+                <ts-image [(src)]="imageUrl" [color]="theme.getColor()" [config]="config" title="选择图片" sm width="100px"></ts-image>
+                <ts-images [(src)]="imagesUrl" [color]="theme.getColor()" [config]="config" title="选择图片" sm width="100px"></ts-images>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">
+                其他样式--单图
+            </div>
+            <div class="card-body">
+                <ts-image-card [config]="config" [width]="100"></ts-image-card>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">
+                其他样式--多图
+            </div>
+            <div class="card-body">
+                <ts-image-cards [(src)]="imagesUrl" [config]="config" [width]="100"></ts-image-cards>
             </div>
         </div>
     </div>
