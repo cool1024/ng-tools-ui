@@ -3,10 +3,10 @@ import { FormsModule } from '@angular/forms';
 
 /*tool-ui*/
 import {
-    PaginationModule,
     ImageModule,
     ButtonModule,
     DatePickerModule,
+    PaginationModule,
 } from 'ng-tools-ui';
 
 /*路由模块*/

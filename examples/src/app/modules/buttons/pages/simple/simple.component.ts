@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Pagination } from 'ng-tools-ui';
-import { RouterOutlet } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/timer';
 import { ThemeService } from '../../../../cores/services/theme.service';
 
 @Component({
@@ -9,44 +8,68 @@ import { ThemeService } from '../../../../cores/services/theme.service';
 })
 export class SimpleComponent implements OnInit {
 
-    // 表格数据
-    list = new Array<any>();
+    codes = [
+        `<button tsBtn>Default</button>
+<button tsBtn color="white">White</button>
+<button tsBtn color="primary">Primary</button>
+<button tsBtn color="secondary">Scondary</button>
+<button tsBtn color="success">Success</button>
+<button tsBtn color="danger">Danager</button>
+<button tsBtn color="warning">Warning</button>
+<button tsBtn color="info">Info</button>
+<button tsBtn color="light">Light</button>
+<button tsBtn color="dark">Dark</button>`,
+        `<button tsBtn sm>Small</button>
+<button tsBtn>Default</button>
+<button tsBtn lg>Large</button>`,
+        `<button tsBtn color="white" outline>White</button>
+<button tsBtn color="primary" outline>Primary</button>
+<button tsBtn color="secondary" outline>Scondary</button>
+<button tsBtn color="success" outline>Success</button>
+<button tsBtn color="danger" outline>Danager</button>
+<button tsBtn color="warning" outline>Warning</button>
+<button tsBtn color="info" outline>Info</button>
+<button tsBtn color="light" outline>Light</button>
+<button tsBtn color="dark" outline>Dark</button>`,
+        `<button tsBtn loading (load)="doSubmit($event)">Submit</button>`,
+        `import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/timer';
 
-    // 表格标题
-    theads = new Array<string>();
+@Component({
+    templateUrl: './example.html',
+})
+export class ExampleComponent {
 
-    pagination = new Pagination();
-
-    search = { start: '', end: '' };
-
-    constructor(private http: HttpClient, public theme: ThemeService) { }
-
-    ngOnInit() {
-
-        this.theads = ['No.', '会员', '联系电话', '收货地址', '注册日期', '操作'];
-        this.pagination.total = 1000;
-        this.pageChanged();
-    }
-
-    pageChanged() {
-        console.log(11);
-        const apiUrl = `https://randomuser.me/api/?page=${this.pagination.page}&results=${this.pagination.limit}`;
-        this.http.get(apiUrl).subscribe(res => {
-            const response = <any>res;
-            this.list = new Array<any>();
-            response.results.forEach(user => {
-                this.list.push({
-                    avatar: user.picture.thumbnail,
-                    nick: user.name.first,
-                    email: user.email,
-                    gender: user.gender,
-                    cell: user.cell,
-                    phone: user.phone,
-                    address: `${user.location.city} ${user.location.street}`,
-                    registered: user.registered
-                });
-            });
+    doSubmit(btn: any) {
+        Observable.timer(2000).subscribe(() => {
+            btn.dismiss();
         });
     }
 
+}`,
+        `export interface DomLoad {
+    present(): void;
+    dismiss(): void;
+}`,
+        `// 导入按钮模块在需要使用这个按钮组件的特性模块
+import { ButtonModule } from 'ng-tools-ui';
+
+@NgModule({
+    imports: [..., ButtonModule ],
+    ...
+})
+export class MyModule { }`];
+
+    constructor(public theme: ThemeService) { }
+
+    ngOnInit() {
+
+    }
+
+    doSubmit(btn: any) {
+        Observable.timer(2000).subscribe(() => {
+            btn.dismiss();
+        });
+    }
 }

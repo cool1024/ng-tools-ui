@@ -30,7 +30,6 @@ export class SimpleComponent implements OnInit {
     }
 
     pageChanged() {
-        console.log(11);
         const apiUrl = `https://randomuser.me/api/?page=${this.pagination.page}&results=${this.pagination.limit}`;
         this.http.get(apiUrl).subscribe(res => {
             const response = <any>res;

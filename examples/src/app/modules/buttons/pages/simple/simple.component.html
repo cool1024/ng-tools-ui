@@ -1,6 +1,111 @@
+<div class="card">
+    <div class="card-header bg-white">
+        指令参数 @Directive
+    </div>
+    <div class="card-body">
+        <p>选择器：
+            <code>button[tsBtn] </code>
+            <button tsBtn color="white">White</button>
+            <button tsBtn color="primary">Primary</button>
+            <button tsBtn color="secondary">Scondary</button>
+            <button tsBtn color="success">Success</button>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">color</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>颜色设置，bootstrap的基础颜色[danger,light,info...]</td>
+                </tr>
+                <tr>
+                    <th scope="row">disabled</th>
+                    <td>
+                        <code>boolean</code>
+                    </td>
+                    <td>是否禁用按钮</td>
+                </tr>
+                <tr>
+                    <th scope="row">outline</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性按钮将会使用outline样式</td>
+                </tr>
+                <tr>
+                    <th scope="row">sm</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性按钮会变小</td>
+                </tr>
+                <tr>
+                    <th scope="row">lg</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性按钮会变大</td>
+                </tr>
+                <tr>
+                    <th scope="row">loading</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性点击按钮会有加载动画</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">事件名称</th>
+                    <th scope="col">事件类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">load</th>
+                    <td>
+                        <code>DomLoad</code>
+                    </td>
+                    <td>当按钮设置了loading属性时，每次按下按钮会触发load绑定的方法</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        接口声明
+        <span class="text-primary">DomLoad</span>
+    </div>
+    <div class="card-body">
+        <ts-prism [code]="codes[5]" language="typescript"></ts-prism>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        导入按钮模块
+    </div>
+    <div class="card-body">
+        <ts-prism [code]="codes[6]" language="typescript"></ts-prism>
+    </div>
+</div>
+<br>
 <div class="row">
-    <div class="col-lg-6">
-        <div class="card rounded-0">
+    <div class="col-lg-6 mb-2">
+        <div class="card">
             <div class="card-header bg-white">按钮颜色</div>
             <div class="card-body">
                 <button tsBtn>Default</button>
@@ -14,15 +119,73 @@
                 <button tsBtn color="light">Light</button>
                 <button tsBtn color="dark">Dark</button>
             </div>
+            <div tsToggle [target]='codePadOne' class="text-primary card-footer bg-white pointer">
+                <i class="fa fa-fw fa-code"></i>查看代码
+            </div>
+            <div #codePadOne='tsCollapse' tsCollapse>
+                <ts-prism [code]="codes[0]"></ts-prism>
+            </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="card rounded-0">
+    <div class="col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">空心按钮</div>
+            <div class="card-body">
+                <button tsBtn color="white" outline>White</button>
+                <button tsBtn color="primary" outline>Primary</button>
+                <button tsBtn color="secondary" outline>Scondary</button>
+                <button tsBtn color="success" outline>Success</button>
+                <button tsBtn color="danger" outline>Danager</button>
+                <button tsBtn color="warning" outline>Warning</button>
+                <button tsBtn color="info" outline>Info</button>
+                <button tsBtn color="light" outline>Light</button>
+                <button tsBtn color="dark" outline>Dark</button>
+            </div>
+            <div tsToggle [target]='codePadThree' class="text-primary card-footer bg-white pointer">
+                <i class="fa fa-fw fa-code"></i>查看代码
+            </div>
+            <div #codePadThree='tsCollapse' tsCollapse>
+                <ts-prism [code]="codes[2]"></ts-prism>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 mb-2">
+        <div class="card">
             <div class="card-header bg-white">按钮尺寸</div>
             <div class="card-body">
                 <button tsBtn sm>Small</button>
                 <button tsBtn>Default</button>
                 <button tsBtn lg>Large</button>
+            </div>
+            <div tsToggle [target]='codePadTwo' class="text-primary card-footer bg-white pointer">
+                <i class="fa fa-fw fa-code"></i>查看代码
+            </div>
+            <div #codePadTwo='tsCollapse' tsCollapse>
+                <ts-prism [code]="codes[1]"></ts-prism>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header bg-white">带加载动画</div>
+            <div class="card-body">
+                <button tsBtn loading (load)="doSubmit($event)">Submit</button>
+            </div>
+            <div tsToggle [target]='codePadFour' class="text-primary card-footer bg-white pointer">
+                <i class="fa fa-fw fa-code"></i>查看代码
+            </div>
+            <div #codePadFour='tsCollapse' tsCollapse class="pl-2">
+                <ts-tabs [tabs]="['example.html','example.component.ts']" [color]="theme.getColor()" [target]="tsTabsOne" activeTab="example.html"></ts-tabs>
+                <div #tsTabsOne='tsTabs' tsTabs class="mt-1">
+                    <div tsTab tab="example.html">
+                        <ts-prism [code]="codes[3]"></ts-prism>
+                    </div>
+                    <div tsTab tab="example.component.ts">
+                        <ts-prism [code]="codes[4]" language="typescript"></ts-prism>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

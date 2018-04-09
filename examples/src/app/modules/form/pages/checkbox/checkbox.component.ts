@@ -42,7 +42,7 @@ export class CheckboxComponent {
     constructor(public theme: ThemeService) { }
 
     addRadio() {
-        const last = this.radios[this.radios.length - 1] || { label: '', value: 1 };
+        const last = this.radios[this.radios.length - 1] || { label: '', value: 0 };
         this.radios.push({ label: `DOM-${last.value + 1}`, value: last.value + 1 });
     }
 
@@ -53,7 +53,7 @@ export class CheckboxComponent {
     }
 
     addCheckbox() {
-        const last = this.checkboxs[this.checkboxs.length - 1];
+        const last = this.checkboxs[this.checkboxs.length - 1] || { label: '', value: 0 };
         this.checkboxs.push({ label: `DOM-${last.value + 1}`, value: last.value + 1 });
     }
 

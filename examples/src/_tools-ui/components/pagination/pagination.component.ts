@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, DoCheck } from '@angular/core';
+import { Component, EventEmitter, Input, Output, DoCheck, ViewEncapsulation } from '@angular/core';
 import { Pagination } from './pagination.class';
 import { DomAttr } from './../../commons/extends/attr.class';
 import { Item } from '../../commons/interfaces/item.interface';
@@ -12,7 +12,7 @@ import { Item } from '../../commons/interfaces/item.interface';
         [class.form-control-lg]="!(lg===null||lg==='false')"
             class="form-control pagination-input form-sm-control border-muted" type="number">
     </ng-container>
-    <ts-dropdown *ngIf="items" dropup [lg]="lg" [sm]="sm" [color]="color" [outline]="outline"
+    <ts-dropdown *ngIf="items" dropup [page]="outline" [lg]="lg" [sm]="sm" [color]="color" [outline]="outline"
     [(value)]="pagination.limit" [items]="items" (valueChange)="sendChange()"></ts-dropdown>
     <div class="btn-group mr-2" role="group">
         <button type="button" [class]="btnClass" *ngIf="!!startTitle" [class.disabled]="!pagination.hasPrev()"
@@ -38,6 +38,47 @@ import { Item } from '../../commons/interfaces/item.interface';
             width: 70px;
             display: inline-block !important;
             vertical-align: middle;
+        }
+        .btn-outline-primary,
+        .btn-outline-secondary,
+        .btn-outline-success,
+        .btn-outline-danger,
+        .btn-outline-warning,
+        .btn-outline-info,
+        .btn-outline-dark{
+            border-color: #eee;
+        }
+
+        .btn-outline-primary.disabled:hover,
+        .btn-outline-secondary.disabled:hover,
+        .btn-outline-success.disabled:hover,
+        .btn-outline-danger.disabled:hover,
+        .btn-outline-warning.disabled:hover,
+        .btn-outline-info.disabled:hover,
+        .btn-outline-dark.disabled:hover{
+            border-color: #eee !important;
+        }
+
+        .btn-outline-primary:hover {
+            border-color: #007bff !important;
+        }
+        .btn-outline-secondary:hover {
+            border-color: #6c757d !important;
+        }
+        .btn-outline-success:hover {
+            border-color: #28a745 !important;
+        }
+        .btn-outline-danger:hover {
+            border-color: #dc3545 !important;
+        }
+        .btn-outline-warning:hover {
+            border-color: #ffc107 !important;
+        }
+        .btn-outline-info:hover {
+            border-color: #17a2b8 !important;
+        }
+        .btn-outline-dark:hover {
+            border-color: #343a40 !important;
         }`
     ]
 })

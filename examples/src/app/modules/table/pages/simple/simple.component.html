@@ -121,7 +121,7 @@
         </tr>
         <tr class="mat-cell">
             <td [attr.colspan]="theads.length" class="text-right">
-                <ts-pagination (pageChange)="pageChanged()" [pagination]="pagination" [items]="[{text:'显示 5 条',value:5},{text:'显示 10 条',value:10},{text:'显示 20 条',value:20}]"
+                <ts-pagination outline (pageChange)="pageChanged()" [pagination]="pagination" [items]="[{text:'显示 5 条',value:5},{text:'显示 10 条',value:10},{text:'显示 20 条',value:20}]"
                     [color]="theme.getColor()" goTitle="跳转" prevTitle="上一页" nextTitle="下一页" startTitle="首页" endTitle="末尾"></ts-pagination>
             </td>
         </tr>

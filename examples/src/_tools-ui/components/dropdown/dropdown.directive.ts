@@ -19,7 +19,7 @@ import { DomLoad } from '../../commons/interfaces/load.interface';
 
 @Directive({
     selector: `[tsDropdown]`,
-    exportAs: 'tsDropdown'
+    exportAs: 'tsDropdown',
 })
 export class DropdownDirective implements AfterViewInit, OnInit, DomLoad {
 
