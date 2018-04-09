@@ -9,23 +9,68 @@ import { DomAttr } from '../../commons/extends/attr.class';
         <button *ngIf="diyClass" [class]="diyClass" type="button" tsToggle>{{item ? item.text : text}}</button>
         <button *ngIf="!diyClass"
             tsToggle tsBtn
-            class="dropdown-toggle"
+            class="dropdown-toggle {{this.page!==null?pageClass:''}}"
             [lg]="lg"
             [sm]="sm"
             [outline]="outline"
             [color]="color">{{item ? item.text : text}}</button>
         <div tsDropMenu>
             <button [class.active]="item.value === value"
-                    class="dropdown-item"
+                    class="dropdown-item pointer"
                     *ngFor="let item of itemList; trackBy: trackByValue"
                     (click)="itemClick(item)">{{item.text}}</button>
         </div>
     </div>
-    `
+    `,
+    styles: [
+        `.btn-page-primary,
+        .btn-page-secondary,
+        .btn-page-success,
+        .btn-page-danger,
+        .btn-page-warning,
+        .btn-page-info,
+        .btn-page-dark{
+            border-color: #eee;
+        }
+
+        .btn-page-primary.disabled:hover,
+        .btn-page-secondary.disabled:hover,
+        .btn-page-success.disabled:hover,
+        .btn-page-danger.disabled:hover,
+        .btn-page-warning.disabled:hover,
+        .btn-page-info.disabled:hover,
+        .btn-page-dark.disabled:hover{
+            border-color: #eee !important;
+        }
+
+        .btn-page-primary:hover {
+            border-color: #007bff !important;
+        }
+        .btn-page-secondary:hover {
+            border-color: #6c757d !important;
+        }
+        .btn-page-success:hover {
+            border-color: #28a745 !important;
+        }
+        .btn-page-danger:hover {
+            border-color: #dc3545 !important;
+        }
+        .btn-page-warning:hover {
+            border-color: #ffc107 !important;
+        }
+        .btn-page-info:hover {
+            border-color: #17a2b8 !important;
+        }
+        .btn-page-dark:hover {
+            border-color: #343a40 !important;
+        }`
+    ]
 })
 export class DropdownComponent extends DomAttr implements OnChanges {
 
     item: Item;
+
+    @Input() page: string;
 
     @Input() text: string;
 
@@ -67,11 +112,16 @@ export class DropdownComponent extends DomAttr implements OnChanges {
         return items;
     }
 
+    get pageClass() {
+        return `btn-page-${this.color}`;
+    }
+
     constructor() {
         super();
         this.items = [];
         this.diyClass = null;
         this.dropup = null;
+        this.page = null;
     }
 
     ngOnChanges(changes: SimpleChanges) {
