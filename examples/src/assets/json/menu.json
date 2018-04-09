@@ -8,6 +8,16 @@
                 "groups": [
                     {
                         "parentid": 0,
+                        "id": "130",
+                        "icon": "fa fa-flickr fa-fw",
+                        "title": "按钮示例",
+                        "url": "#",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 0,
                         "id": "90",
                         "icon": "fa fa-table fa-fw",
                         "title": "表格示例",
@@ -233,6 +243,20 @@
                         "title": "Prism.js\u4ee3\u7801\u9ad8\u4eae",
                         "url": "\/demo\/code",
                         "level": "4",
+                        "permissionid": "0",
+                        "mid": "1"
+                    }
+                ]
+            },
+            {
+                "parentid": 130,
+                "groups": [
+                    {
+                        "parentid": 130,
+                        "icon": "#",
+                        "title": "普通按钮",
+                        "url": "/buttons/simple",
+                        "level": "1",
                         "permissionid": "0",
                         "mid": "1"
                     }
