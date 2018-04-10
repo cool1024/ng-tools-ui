@@ -7,18 +7,18 @@ import { DomAttr } from '../../commons/extends/attr.class';
     selector: `ts-menu`,
     exportAs: 'tsMenu',
     template: `
-    <div class="h-100 pt-2 pr-3">
-        <div class="media pl-2 mb-2" *ngIf="avatars">
-            <img class="mr-3 rounded-circle" [src]="avatars[0]" height="50 " alt="Avatar ">
+    <div class="h-100 pt-2">
+        <div class="media pl-2 mb-2 pt-2" *ngIf="avatars">
+            <img class="mr-3 rounded-circle" [src]="avatars[0]" height="40" width="40" alt="Avatar ">
             <div class="media-body">
-                <h6 class="mt-0 mb-0 d-inline-block">{{avatars[1]}}</h6>
+                <h6 class="mt-0 mb-0 d-inline-block font-weight-bold">{{avatars[1]}}</h6>
                 <p class="mb-0 d-inline-block">{{avatars[2]}}</p>
             </div>
         </div>
-        <hr *ngIf="avatars" class="mt-0 mb-2 ml-2">
+        <hr *ngIf="avatars" class="mt-0 mb-2 ml-3 mr-3">
         <ng-container *ngFor="let model of items;">
             <p class="mb-1 pt-2 pl-3">{{model.modelTitle | titlecase}}</p>
-            <div class="menu-block {{group.active?borderClass:''}}" *ngFor="let group of model.menuGroups">
+            <div class="menu-block pr-3 {{group.active?activeMainClass:''}}" *ngFor="let group of model.menuGroups">
                 <div class="menu-main pointer pl-2" (click)="toggleGroup(group)">
                     <div class="d-table w-100 pb-1 {{group.active?textClass:''}}">
                         <div class="d-table-cell text-center ts-icon">
@@ -33,13 +33,14 @@ import { DomAttr } from '../../commons/extends/attr.class';
                         </div>
                     </div>
                 </div>
-                <div class="menu-child-block" [class.child-open]="group.active" [class.child-close]="!group.active">
-                    <div class="menu-child-item" *ngFor="let item of group.menuItems;index as i">
-                        <div class="d-table w-100 pointer" (click)="toggleMenu(group,i)">
-                            <div class="d-table-cell text-center ts-icon invisible">
-                                <i class="fa fa-fw fa-list" aria-hidden="true"></i>
+                <div class="menu-child-block pr-3" [class.child-open]="group.active" [class.child-close]="!group.active">
+                    <div class="menu-child-item pl-2" *ngFor="let item of group.menuItems;index as i">
+                        <div class="d-table w-100 pointer {{item.active?textClass:''}}" (click)="toggleMenu(group,i)">
+                            <div class="d-table-cell text-center ts-icon">
+                                <!--<img src="https://png.icons8.com/small/50/000000/sphere.png" height="14">-->
+                                <i class="fa fa-fw fa-minus-square-o" aria-hidden="true"></i>
                             </div>
-                            <div class="d-table-cell {{item.active?textClass:''}}">
+                            <div class="d-table-cell">
                                 <span>{{item.title}}</span>
                             </div>
                         </div>
@@ -47,6 +48,7 @@ import { DomAttr } from '../../commons/extends/attr.class';
                 </div>
             </div>
         </ng-container>
+        <div class="menu-temp-bar"></div>
     </div>`,
     styles: [
         `
@@ -104,7 +106,32 @@ import { DomAttr } from '../../commons/extends/attr.class';
             100% {
                 transform: rotate(0deg);
             }
-        }`
+        }
+        .menu-temp-bar{
+            height:60px;
+        }
+        .bg-primary-fill{
+            background-color:#007bff11;
+        }
+        .bg-secondary-fill{
+            background-color:#6c757d11;
+        }
+        .bg-success-fill{
+            background-color:#28a74511;
+        }
+        .bg-danger-fill{
+            background-color:#dc354511;
+        }
+        .bg-warning-fill{
+            background-color:#ffc10711;
+        }
+        .bg-dark-fill{
+            background-color:#343a4011;
+        }
+        .bg-info-fill{
+            background-color:#17a2b811;
+        }
+        `,
     ]
 })
 export class MenuComponent extends DomAttr {
@@ -114,6 +141,10 @@ export class MenuComponent extends DomAttr {
     @Input() avatars: [string, string, string];
 
     @Output() menuActiveChange = new EventEmitter<string>();
+
+    get activeMainClass(): string {
+        return `${this.borderClass} bg-${this.color}-fill`;
+    }
 
     constructor() {
         super();

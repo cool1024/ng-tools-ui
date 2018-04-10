@@ -20,8 +20,6 @@ export class AppComponent implements OnInit {
 
     breadcrumbs: Breadcrumb[];
 
-    date = '2018/1/1';
-
     constructor(
         private http: HttpClient,
         private router: Router,
@@ -30,7 +28,7 @@ export class AppComponent implements OnInit {
 
     ) {
         this.pagination.total = 100;
-        this.avatars = ['assets/images/avatar.jpg', '系统管理员', 'www.cool1024.com'];
+        this.avatars = ['https://png.icons8.com/dusk/100/000000/businessman.png', '系统管理员', 'www.cool1024.com'];
         this.breadcrumbs = [
             { title: '首页', icon: 'fa fa-fw fa-home', url: '/home' },
             { title: '列表页面', icon: 'fa fa-fw fa-list-ul', url: '/home' },
