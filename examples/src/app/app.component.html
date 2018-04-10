@@ -70,11 +70,11 @@
 <div class="ts-content">
     <div class="h-100">
         <nav class="ts-content-sidebar h-100">
-            <ts-menu (menuActiveChange)="goPage($event)" [items]="menuModels" [avatars]="avatars" [color]="themeCtrl.getColor()"></ts-menu>
+            <ts-menu #menuPad="tsMenu" (menuActiveChange)="goPage($event)" [items]="menuModels" [avatars]="avatars" [color]="themeCtrl.getColor()"></ts-menu>
         </nav>
         <main role="main" class="ts-content-main bg-white h-100 p-2">
             <!-- <ts-cssload color="info"></ts-cssload> -->
-            <ts-menu-push></ts-menu-push>
+            <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuItems" [color]="themeCtrl.getColor()" outline></ts-menu-push>
             <router-outlet></router-outlet>
             <div class="ts-footer"></div>
         </main>

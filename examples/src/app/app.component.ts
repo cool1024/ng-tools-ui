@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
 
     avatars: [string, string, string];
 
+    menuItems = new Array<MenuItem>();
+
     breadcrumbs: Breadcrumb[];
 
     constructor(
@@ -25,7 +27,6 @@ export class AppComponent implements OnInit {
         private router: Router,
         private menuCtrl: MenuService,
         public themeCtrl: ThemeService
-
     ) {
         this.pagination.total = 100;
         this.avatars = ['https://png.icons8.com/dusk/100/000000/businessman.png', '系统管理员', 'www.cool1024.com'];
@@ -80,7 +81,12 @@ export class AppComponent implements OnInit {
         this.themeCtrl.setColor(color);
     }
 
-    goPage(url: string) {
-        this.router.navigateByUrl(url);
+    goPage(menu: MenuItem) {
+        this.router.navigateByUrl(menu.url);
+        this.menuItems.push(menu);
+    }
+
+    setPage(menu: MenuItem) {
+        this.router.navigateByUrl(menu.url);
     }
 }

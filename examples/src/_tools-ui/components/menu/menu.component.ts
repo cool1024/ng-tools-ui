@@ -140,7 +140,7 @@ export class MenuComponent extends DomAttr {
 
     @Input() avatars: [string, string, string];
 
-    @Output() menuActiveChange = new EventEmitter<string>();
+    @Output() menuActiveChange = new EventEmitter<MenuItem>();
 
     get activeMainClass(): string {
         return `${this.borderClass} bg-${this.color}-fill`;
@@ -161,7 +161,13 @@ export class MenuComponent extends DomAttr {
         this.setAllInActive();
         group.active = true;
         group.menuItems[itemIndex].active = true;
-        this.menuActiveChange.emit(group.menuItems[itemIndex].url);
+        this.menuActiveChange.emit(group.menuItems[itemIndex]);
+    }
+
+    setActive(menu: MenuItem) {
+        this.setAllInActive();
+        menu.active = true;
+        menu.targetGroup.active = true;
     }
 
     setAllInActive() {
