@@ -21,9 +21,6 @@ export class RadioComponent extends DomAttr implements OnDestroy {
     // radio是否被选中
     @Input() checked: boolean;
 
-    // radio默认颜色
-    @Input() defaultColor: string;
-
     // radio被选中状态变更时触发
     @Output() checkedChange = new EventEmitter<boolean>(false);
 

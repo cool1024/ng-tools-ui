@@ -1,3 +1,246 @@
+<div class="card">
+    <div class="card-header bg-white">
+        单项选择 @Component
+    </div>
+    <div class="card-body">
+        <p>选择器：
+            <code>ts-radio </code>
+            <ts-radio [color]="theme.getColor()" label="单项选择"></ts-radio>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">color</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>颜色设置，bootstrap的基础颜色[danger,light,info...]</td>
+                </tr>
+                <tr>
+                    <th scope="row">value</th>
+                    <td>
+                        <code>any</code>
+                    </td>
+                    <td>选项的对应的值，当这个选项被选中时可以获取这个值</td>
+                </tr>
+                <tr>
+                    <th scope="row">checked</th>
+                    <td>
+                        <code>boolean</code>
+                    </td>
+                    <td>支持双向绑定，设置、获取当前选项是否被选中</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">事件名称</th>
+                    <th scope="col">事件类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">checkedChange</th>
+                    <td>
+                        <code>boolean</code>
+                    </td>
+                    <td>每次选项状态改变时会触发，返回当前选中状态</td>
+                </tr>
+                <tr>
+                    <th scope="row">groupHandle</th>
+                    <td>
+                        <code>{{"{ checked: boolean, value?: any }"}}</code>
+                    </td>
+                    <td>每次选项状态改变时会触发，返回当前选中状态和选项值，一般用于选项组中的绑定</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        多项选择 @Component
+    </div>
+    <div class="card-body">
+        <p>选择器：
+            <code>ts-checkbox </code>
+            <ts-checkbox [color]="theme.getColor()" label="多项选择"></ts-checkbox>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">color</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>颜色设置，bootstrap的基础颜色[danger,light,info...]</td>
+                </tr>
+                <tr>
+                    <th scope="row">value</th>
+                    <td>
+                        <code>any</code>
+                    </td>
+                    <td>选项的对应的值，当这个选项被选中时可以获取这个值</td>
+                </tr>
+                <tr>
+                    <th scope="row">checked</th>
+                    <td>
+                        <code>boolean</code>
+                    </td>
+                    <td>支持双向绑定，设置、获取当前选项是否被选中</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">事件名称</th>
+                    <th scope="col">事件类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">checkedChange</th>
+                    <td>
+                        <code>boolean</code>
+                    </td>
+                    <td>每次选项状态改变时会触发，返回当前选中状态</td>
+                </tr>
+                <tr>
+                    <th scope="row">groupHandle</th>
+                    <td>
+                        <code>{{"{ checked: boolean, value?: any }"}}</code>
+                    </td>
+                    <td>每次选项状态改变时会触发，返回当前选中状态和选项值，一般用于选项组中的绑定</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        单项选择群组 @Directive
+    </div>
+    <div class="card-body">
+        <p>选择器：
+            <code>*[tsRadioGroup] </code>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">value</th>
+                    <td>
+                        <code>any</code>
+                    </td>
+                    <td>支持双向绑定，可以获取/设置选项组的值</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">事件名称</th>
+                    <th scope="col">事件类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">valueChange</th>
+                    <td>
+                        <code>any</code>
+                    </td>
+                    <td>每次选项群组中的状态改变时会触发，返回当前选中选项的值</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        多项选择群组 @Directive
+    </div>
+    <div class="card-body">
+        <p>选择器：
+            <code>*[tsCheckboxGroup] </code>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">values</th>
+                    <td>
+                        <code>any[]</code>
+                    </td>
+                    <td>支持双向绑定，可以获取/设置选项组的值,这是一个所有选中的值的数组</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">事件名称</th>
+                    <th scope="col">事件类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">valueChange</th>
+                    <td>
+                        <code>any[]</code>
+                    </td>
+                    <td>每次选项群组中的状态改变时会触发，返回当前所有选中选项的值</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        导入按钮模块
+    </div>
+    <div class="card-body">
+        <ts-prism [code]="codes[0]" language="typescript"></ts-prism>
+    </div>
+</div>
+<br>
 <div class="row">
     <div class="col-12 col-xl-4 mb-3">
         <div class="card">

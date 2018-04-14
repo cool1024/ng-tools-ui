@@ -38,6 +38,7 @@ import { Item } from '../../commons/interfaces/item.interface';
             width: 70px;
             display: inline-block !important;
             vertical-align: middle;
+            border-color: #eee !important;
         }
         .btn-outline-primary,
         .btn-outline-secondary,

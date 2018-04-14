@@ -8,14 +8,14 @@ import {
     NavbarModule,
     // MenuModule,
     CssloadModule,
-    DropdownModule,
+    // DropdownModule,
     ConfirmModule,
     ToastModule,
     MapModule,
     ButtonModule,
 } from 'ng-tools-ui';
 
-import { MenuModule } from './../_tools-ui';
+import { MenuModule, DropdownModule } from './../_tools-ui';
 
 import { AppComponent } from './app.component';
 

@@ -16,7 +16,7 @@
         <button tsToggle class="btn btn-link">
             <img height="30" src="https://png.icons8.com/ios/40/ffffff/name-filled.png">
         </button>
-        <div left tsDropMenu>
+        <div tsDropMenu [offsetX]="-40" [offsetY]="8">
             <button class="dropdown-item">
                 <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
                 <span>退出当前账户</span>
@@ -31,7 +31,7 @@
         <button tsToggle class="btn btn-link">
             <img height="30" src="https://png.icons8.com/ios-glyphs/50/ffffff/paint-palette.png">
         </button>
-        <div left tsDropMenu>
+        <div tsDropMenu [offsetX]="-75" [offsetY]="8">
             <button (click)="changeTheme('primary')" class="dropdown-item text-primary">
                 <i class="fa fa-fw fa-square"></i>
                 <span>Primary</span>
@@ -74,7 +74,8 @@
         </nav>
         <main role="main" class="ts-content-main bg-white h-100 p-2">
             <!-- <ts-cssload color="info"></ts-cssload> -->
-            <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuItems" [color]="themeCtrl.getColor()" outline></ts-menu-push>
+            <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuItems" [color]="themeCtrl.getColor()"
+                outline></ts-menu-push>
             <router-outlet></router-outlet>
             <div class="ts-footer"></div>
         </main>

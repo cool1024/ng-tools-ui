@@ -7,8 +7,12 @@ import {
     CollapseModule,
     TabModule,
     PrismModule,
-    PaginationModule,
+    // PaginationModule,
 } from 'ng-tools-ui';
+
+import {
+    PaginationModule
+} from './../../../_tools-ui';
 
 /*路由模块*/
 import { ButtonsRoutingModule } from './buttons.routing';

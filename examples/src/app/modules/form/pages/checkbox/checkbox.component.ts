@@ -39,6 +39,17 @@ export class CheckboxComponent {
 
     buttonValues = [1, 3];
 
+    codes = [
+        `// 导入单项&多项选择模块在需要使用这个按钮组件的特性模块
+import { CheckboxModule } from 'ng-tools-ui';
+
+@NgModule({
+    imports: [..., CheckboxModule ],
+    ...
+})
+export class MyModule { }`,
+    ];
+
     constructor(public theme: ThemeService) { }
 
     addRadio() {
