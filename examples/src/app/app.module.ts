@@ -6,16 +6,16 @@ import { CoreModule } from './cores/cores.module';
 import { AppRoutingModule } from './app.routing';
 import {
     NavbarModule,
-    // MenuModule,
+    MenuModule,
     CssloadModule,
-    // DropdownModule,
+    DropdownModule,
     ConfirmModule,
     ToastModule,
     MapModule,
     ButtonModule,
 } from 'ng-tools-ui';
 
-import { MenuModule, DropdownModule } from './../_tools-ui';
+// import { MenuModule, DropdownModule } from './../_tools-ui';
 
 import { AppComponent } from './app.component';
 

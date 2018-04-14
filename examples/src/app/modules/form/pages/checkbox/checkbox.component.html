@@ -1,3 +1,164 @@
+<div class="row">
+    <div class="col-12 col-xl-4 mb-3">
+        <div class="card">
+            <div class="card-header bg-white">
+                单项选择
+                <button tsBtn sm [color]="theme.getColor()" (click)="addRadio()" class="ml-3">添加选项</button>
+                <button tsBtn sm [color]="theme.getColor()" (click)="removeRadio()">移除选项</button>
+            </div>
+            <div tsRadioGroup [(value)]="radioValue" #radioGroup="tsRadioGroup" class="card-body">
+                <form class="form-inline">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-white" type="button">
+                                数值
+                            </button>
+                        </div>
+                        <input [value]="radioValue" type="text" class="form-control bg-white" readonly>
+                    </div>
+                </form>
+                <ts-radio *ngFor="let radio of radios" [color]="theme.getColor()" [label]="radio.label" [value]="radio.value" (groupHandle)="radioGroup.applyRadioChange($event)"></ts-radio>
+            </div>
+            <div tsToggle [target]='codePadOne' class="text-primary card-footer bg-white pointer">
+                <i class="fa fa-fw fa-code"></i>查看代码
+            </div>
+            <div #codePadOne='tsCollapse' tsCollapse>
+                <ts-tabs [tabs]="['example.html','example.component.ts']" [color]="theme.getColor()" [target]="tsTabsOne" activeTab="example.html"></ts-tabs>
+                <div #tsTabsOne='tsTabs' tsTabs class="mt-1">
+                    <div tsTab tab="example.html">
+                        <ts-prism [code]="codes[1]"></ts-prism>
+                    </div>
+                    <div tsTab tab="example.component.ts">
+                        <ts-prism [code]="codes[2]" language="typescript"></ts-prism>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xl-4 mb-3">
+        <div class="card">
+            <div class="card-header bg-white">
+                多项选择
+                <button tsBtn sm [color]="theme.getColor()" (click)="addCheckbox()" class="ml-3">添加选项</button>
+                <button tsBtn sm [color]="theme.getColor()" (click)="removeCheckbox()">移除选项</button>
+            </div>
+            <div tsCheckboxGroup [(values)]="checkboxValues" #checkboxGroup="tsCheckboxGroup" class="card-body">
+                <form class="form-inline">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-white" type="button">
+                                数值
+                            </button>
+                        </div>
+                        <input [value]="checkboxValues" type="text" class="form-control bg-white" readonly>
+                    </div>
+                </form>
+                <ts-checkbox *ngFor="let checkbox of checkboxs" [color]="theme.getColor()" [label]="checkbox.label" [value]="checkbox.value"
+                    (groupHandle)="checkboxGroup.applyCheckboxChange()"></ts-checkbox>
+            </div>
+            <div tsToggle [target]='codePadTwo' class="text-primary card-footer bg-white pointer">
+                <i class="fa fa-fw fa-code"></i>查看代码
+            </div>
+            <div #codePadTwo='tsCollapse' tsCollapse>
+                <ts-tabs [tabs]="['example.html','example.component.ts']" [color]="theme.getColor()" [target]="tsTabsTwo" activeTab="example.html"></ts-tabs>
+                <div #tsTabsTwo='tsTabs' tsTabs class="mt-1">
+                    <div tsTab tab="example.html">
+                        <ts-prism [code]="codes[3]"></ts-prism>
+                    </div>
+                    <div tsTab tab="example.component.ts">
+                        <ts-prism [code]="codes[4]" language="typescript"></ts-prism>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xl-4 mb-3">
+        <div class="card">
+            <div class="card-header bg-white">
+                开关
+            </div>
+            <div class="card-body">
+                <form class="form-inline">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-white" type="button">
+                                数值
+                            </button>
+                        </div>
+                        <input [value]="switchValue" type="text" class="form-control bg-white" readonly>
+                    </div>
+                </form>
+                <ts-switch [color]="theme.getColor()" [(value)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
+                <ts-switch [color]="theme.getColor()" [(value)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
+            </div>
+            <div tsToggle [target]='codePadThree' class="text-primary card-footer bg-white pointer">
+                <i class="fa fa-fw fa-code"></i>查看代码
+            </div>
+            <div #codePadThree='tsCollapse' tsCollapse>
+                <ts-tabs [tabs]="['example.html','example.component.ts']" [color]="theme.getColor()" [target]="tsTabsThree" activeTab="example.html"></ts-tabs>
+                <div #tsTabsThree='tsTabs' tsTabs class="mt-1">
+                    <div tsTab tab="example.html">
+                        <ts-prism [code]="codes[5]"></ts-prism>
+                    </div>
+                    <div tsTab tab="example.component.ts">
+                        <ts-prism [code]="codes[6]" language="typescript"></ts-prism>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header bg-white">
+        按钮组
+    </div>
+    <div class="card-body">
+        <form class="form-inline">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-white" type="button">
+                        数值
+                    </button>
+                </div>
+                <input [value]="buttonValue" type="text" class="form-control bg-white" readonly>
+            </div>
+            <div class="input-group mb-3 ml-2">
+                <div class="input-group-prepend">
+                    <button class="btn btn-white" type="button">
+                        数值
+                    </button>
+                </div>
+                <input [value]="buttonValues" type="text" class="form-control bg-white" readonly>
+            </div>
+        </form>
+        <ts-btns outline [color]="theme.getColor()" [(value)]="buttonValue" [items]="buttons"></ts-btns>
+        <ts-btns outline [multi]="true" [color]="theme.getColor()" [(value)]="buttonValues" [items]="buttons"></ts-btns>
+    </div>
+    <div tsToggle [target]='codePadFour' class="text-primary card-footer bg-white pointer">
+        <i class="fa fa-fw fa-code"></i>查看代码
+    </div>
+    <div #codePadFour='tsCollapse' tsCollapse>
+        <ts-tabs [tabs]="['example.html','example.component.ts']" [color]="theme.getColor()" [target]="tsTabsFour" activeTab="example.html"></ts-tabs>
+        <div #tsTabsFour='tsTabs' tsTabs class="mt-1">
+            <div tsTab tab="example.html">
+                <ts-prism [code]="codes[7]"></ts-prism>
+            </div>
+            <div tsTab tab="example.component.ts">
+                <ts-prism [code]="codes[8]" language="typescript"></ts-prism>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        导入选项模块（此模块包含多选，单选，按钮组）
+    </div>
+    <div class="card-body">
+        <ts-prism [code]="codes[0]" language="typescript"></ts-prism>
+    </div>
+</div>
+<br>
 <div class="card">
     <div class="card-header bg-white">
         单项选择 @Component
@@ -234,105 +395,83 @@
 <br>
 <div class="card">
     <div class="card-header bg-white">
-        导入按钮模块
+        按钮组 @Component
     </div>
     <div class="card-body">
-        <ts-prism [code]="codes[0]" language="typescript"></ts-prism>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-12 col-xl-4 mb-3">
-        <div class="card">
-            <div class="card-header bg-white">
-                单项选择
-                <button tsBtn sm [color]="theme.getColor()" (click)="addRadio()" class="ml-3">添加选项</button>
-                <button tsBtn sm [color]="theme.getColor()" (click)="removeRadio()">移除选项</button>
-            </div>
-            <div tsRadioGroup [(value)]="radioValue" #radioGroup="tsRadioGroup" class="card-body">
-                <form class="form-inline">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-white" type="button">
-                                数值
-                            </button>
-                        </div>
-                        <input [value]="radioValue" type="text" class="form-control bg-white" readonly>
-                    </div>
-                </form>
-                <ts-radio *ngFor="let radio of radios" [color]="theme.getColor()" [label]="radio.label" [value]="radio.value" (groupHandle)="radioGroup.applyRadioChange($event)"></ts-radio>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-xl-4 mb-3">
-        <div class="card">
-            <div class="card-header bg-white">
-                多项选择
-                <button tsBtn sm [color]="theme.getColor()" (click)="addCheckbox()" class="ml-3">添加选项</button>
-                <button tsBtn sm [color]="theme.getColor()" (click)="removeCheckbox()">移除选项</button>
-            </div>
-            <div tsCheckboxGroup [(values)]="checkboxValues" #checkboxGroup="tsCheckboxGroup" class="card-body">
-                <form class="form-inline">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-white" type="button">
-                                数值
-                            </button>
-                        </div>
-                        <input [value]="checkboxValues" type="text" class="form-control bg-white" readonly>
-                    </div>
-                </form>
-                <ts-checkbox *ngFor="let checkbox of checkboxs" [color]="theme.getColor()" [label]="checkbox.label" [value]="checkbox.value"
-                    (groupHandle)="checkboxGroup.applyCheckboxChange()"></ts-checkbox>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-xl-4 mb-3">
-        <div class="card">
-            <div class="card-header bg-white">
-                开关
-            </div>
-            <div class="card-body">
-                <form class="form-inline">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-white" type="button">
-                                数值
-                            </button>
-                        </div>
-                        <input [value]="switchValue" type="text" class="form-control bg-white" readonly>
-                    </div>
-                </form>
-                <ts-switch [color]="theme.getColor()" [(value)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
-                <ts-switch [color]="theme.getColor()" [(value)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="card">
-    <div class="card-header bg-white">
-        按钮组
-    </div>
-    <div class="card-body">
-        <form class="form-inline">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <button class="btn btn-white" type="button">
-                        数值
-                    </button>
-                </div>
-                <input [value]="buttonValue" type="text" class="form-control bg-white" readonly>
-            </div>
-            <div class="input-group mb-3 ml-2">
-                <div class="input-group-prepend">
-                    <button class="btn btn-white" type="button">
-                        数值
-                    </button>
-                </div>
-                <input [value]="buttonValues" type="text" class="form-control bg-white" readonly>
-            </div>
-        </form>
-        <ts-btns outline [color]="theme.getColor()" [(value)]="buttonValue" [items]="buttons"></ts-btns>
-        <ts-btns outline [multi]="true" [color]="theme.getColor()" [(value)]="buttonValues" [items]="buttons"></ts-btns>
+        <p>选择器：
+            <code>ts-btns </code>
+            <ts-btns outline sm [color]="theme.getColor()" [items]="buttons"></ts-btns>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">color</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>颜色设置，bootstrap的基础颜色[danger,light,info...]</td>
+                </tr>
+                <tr>
+                    <th scope="row">outline</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性按钮将会使用outline样式</td>
+                </tr>
+                <tr>
+                    <th scope="row">sm</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性按钮会变小</td>
+                </tr>
+                <tr>
+                    <th scope="row">lg</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性按钮会变大</td>
+                </tr>
+                <tr>
+                    <th scope="row">multi</th>
+                    <td>
+                        <code>boolean</code>
+                    </td>
+                    <td>是否允许多选，默认false</td>
+                </tr>
+                <tr>
+                    <th scope="row">value</th>
+                    <td>
+                        <code>any|any[]</code>
+                    </td>
+                    <td>当前选中的值，支持双向绑定，如果是单选则是选中的值，多选则是所有选中的值数组</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">事件名称</th>
+                    <th scope="col">事件类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">valueChange</th>
+                    <td>
+                        <code>any|any[]</code>
+                    </td>
+                    <td>每次选项状态改变时会触发，返回当前的选中的值（多选时为数组）</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
