@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    templateUrl: './editor.component.html',
+    templateUrl: './echart.component.html',
 })
-export class EditorComponent {
+export class EchartComponent {
 
     optionOne = {
         title: {

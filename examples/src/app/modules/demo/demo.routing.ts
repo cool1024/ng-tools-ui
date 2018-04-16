@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChartComponent } from './pages/chart/chart.component';
 import { MapComponent } from './pages/map/map.component';
 import { CodeComponent } from './pages/code/code.component';
-import { EditorComponent } from './pages/editor/editor.component';
+import { EchartComponent } from './pages/echart/echart.component';
 
 
 const routes: Routes = [
@@ -20,9 +20,16 @@ const routes: Routes = [
         component: CodeComponent,
     },
     {
-        path: 'edit',
-        component: EditorComponent,
+        path: 'echart',
+        component: EchartComponent,
     },
+];
+
+export const declarationComponents = [
+    ChartComponent,
+    CodeComponent,
+    MapComponent,
+    EchartComponent
 ];
 
 @NgModule({

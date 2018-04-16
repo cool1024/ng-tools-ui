@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
         public themeCtrl: ThemeService
     ) {
         this.pagination.total = 100;
-        this.avatars = ['https://png.icons8.com/dusk/100/000000/businessman.png', '系统管理员', 'www.cool1024.com'];
+        this.avatars = ['assets/images/avatar/5.jpg', '系统管理员', 'www.cool1024.com'];
         this.breadcrumbs = [
             { title: '首页', icon: 'fa fa-fw fa-home', url: '/home' },
             { title: '列表页面', icon: 'fa fa-fw fa-list-ul', url: '/home' },

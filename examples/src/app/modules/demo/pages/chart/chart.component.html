@@ -1,11 +1,4 @@
 <div class="card rounded-0">
-    <div class="card-header bg-white">动态图表</div>
-    <div class="card-body">
-        <canvas baseChart [data]="flashData" type="line"></canvas>
-    </div>
-</div>
-<br>
-<div class="card rounded-0">
     <div class="card-header bg-white">图表
         <span class="pull-right">
             <button (click)="randomData()" class="btn btn-sm btn-white" type="button">变换数据</button>
@@ -43,5 +36,12 @@
                 <canvas baseChart #chart="baseChart" [data]="bubbleChartData.data" type="bubble"></canvas>
             </div>
         </div>
+    </div>
+</div>
+<br>
+<div class="card rounded-0">
+    <div class="card-header bg-white">动态图表</div>
+    <div class="card-body">
+        <canvas baseChart [data]="flashData" type="line"></canvas>
     </div>
 </div>

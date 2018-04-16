@@ -6,17 +6,12 @@ import {
     ChartModule,
     MapModule,
     PrismModule,
+    EChartModule,
 } from 'ng-tools-ui';
 
 /*路由模块*/
-import { DemoRoutingModule } from './demo.routing';
+import { DemoRoutingModule, declarationComponents } from './demo.routing';
 
-/*页面组件*/
-import { ChartComponent } from './pages/chart/chart.component';
-import { EditorComponent } from './pages/editor/editor.component';
-import { MapComponent } from './pages/map/map.component';
-import { CodeComponent } from './pages/code/code.component';
-import { EChartModule } from '../../../_tools-ui';
 
 @NgModule({
     imports: [
@@ -28,10 +23,7 @@ import { EChartModule } from '../../../_tools-ui';
         EChartModule
     ],
     declarations: [
-        ChartComponent,
-        CodeComponent,
-        MapComponent,
-        EditorComponent,
+        declarationComponents
     ]
 })
 export class DemoModule { }

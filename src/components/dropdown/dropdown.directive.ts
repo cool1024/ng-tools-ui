@@ -83,7 +83,9 @@ export class DropdownDirective implements AfterViewInit, OnInit, DomLoad {
 })
 export class DropMenuDirective implements AfterViewInit {
 
-    @Input() left: string;
+    @Input() offsetX: number;
+
+    @Input() offsetY: number;
 
     @Output() displayChange = new EventEmitter<boolean>();
 
@@ -97,7 +99,8 @@ export class DropMenuDirective implements AfterViewInit {
         public elementRef: ElementRef,
     ) {
         this.class = 'dropdown-menu';
-        this.left = null;
+        this.offsetX = 0;
+        this.offsetY = 4;
     }
 
     ngAfterViewInit() {
@@ -107,14 +110,10 @@ export class DropMenuDirective implements AfterViewInit {
     }
 
     private setPostion(dropup = false, btnSize: [number, number]) {
-        let offsetLeft = 0;
-        if (this.left !== null) {
-            offsetLeft = btnSize[0] - this.dom.clientWidth;
-        }
         if (dropup !== null && dropup !== false) {
-            this.dom.style.transform = `translate3d(${offsetLeft}px, -${this.dom.clientHeight + 4}px, 0px)`;
+            this.dom.style.transform = `translate3d(${this.offsetX}px, -${this.dom.clientHeight + this.offsetY}px, 0px)`;
         } else {
-            this.dom.style.transform = `translate3d(${offsetLeft}px, ${btnSize[1] + 4}px, 0px)`;
+            this.dom.style.transform = `translate3d(${this.offsetX}px, ${btnSize[1] + this.offsetY}px, 0px)`;
         }
     }
 
