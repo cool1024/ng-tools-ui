@@ -25,6 +25,8 @@ export class ModalComponent {
 
     center: boolean;
 
+    closeHandle: () => void;
+
     constructor(private componentFactoryResolver: ComponentFactoryResolver) {
         this.show = false;
         this.center = false;
@@ -56,6 +58,7 @@ export class ModalComponent {
     tryClose(event: any) {
         if (event.target === this.pad.nativeElement) {
             this.close();
+            this.closeHandle();
         }
     }
 

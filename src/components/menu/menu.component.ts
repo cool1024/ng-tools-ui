@@ -8,8 +8,8 @@ import { DomAttr } from '../../commons/extends/attr.class';
     exportAs: 'tsMenu',
     template: `
     <div class="h-100 pt-2">
-        <div class="media pl-2 mb-2 pt-2" *ngIf="avatars">
-            <img class="mr-3 rounded-circle" [src]="avatars[0]" height="40" width="40" alt="Avatar ">
+        <div class="media pl-3 mb-3 pt-3" *ngIf="avatars">
+            <img class="mr-2 rounded-circle" [src]="avatars[0]" height="40" width="40" alt="Avatar ">
             <div class="media-body">
                 <h6 class="mt-0 mb-0 d-inline-block font-weight-bold">{{avatars[1]}}</h6>
                 <p class="mb-0 d-inline-block">{{avatars[2]}}</p>
@@ -17,7 +17,7 @@ import { DomAttr } from '../../commons/extends/attr.class';
         </div>
         <hr *ngIf="avatars" class="mt-0 mb-2 ml-3 mr-3">
         <ng-container *ngFor="let model of items;">
-            <p class="mb-1 pt-2 pl-3">{{model.modelTitle | titlecase}}</p>
+            <p class="model-title mb-1 pt-2 mt-1 pl-4">{{model.modelTitle | titlecase}}</p>
             <div class="menu-block pr-3 {{group.active?activeMainClass:''}}" *ngFor="let group of model.menuGroups">
                 <div class="menu-main pointer pl-2" (click)="toggleGroup(group)">
                     <div class="d-table w-100 pb-1 {{group.active?textClass:''}}">
@@ -38,7 +38,6 @@ import { DomAttr } from '../../commons/extends/attr.class';
                         <div class="d-table w-100 pointer {{item.active?textClass:''}}" (click)="toggleMenu(group,i)">
                             <div class="d-table-cell text-center ts-icon">
                                 <!--<img src="https://png.icons8.com/small/50/000000/sphere.png" height="14">-->
-                                <i class="fa fa-fw fa-minus-square-o" aria-hidden="true"></i>
                             </div>
                             <div class="d-table-cell">
                                 <span>{{item.title}}</span>
@@ -60,6 +59,10 @@ import { DomAttr } from '../../commons/extends/attr.class';
         }
         .icon-down {
             animation: icon-down 0.5s ease-out forwards;
+        }
+        .model-title{
+            font-size: 15px;
+            opacity: 0.8;
         }
         .menu-block {
             overflow-y: hidden;
