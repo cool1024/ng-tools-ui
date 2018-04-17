@@ -286,7 +286,7 @@
                         "parentid": 200,
                         "icon": "#",
                         "title": "文章列表",
-                        "url": "/buttons/simple",
+                        "url": "/article/table",
                         "level": "1",
                         "permissionid": "0",
                         "mid": "1"
@@ -295,7 +295,7 @@
                         "parentid": 200,
                         "icon": "#",
                         "title": "发布文章",
-                        "url": "/buttons/simple",
+                        "url": "/article/edit",
                         "level": "1",
                         "permissionid": "0",
                         "mid": "1"

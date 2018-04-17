@@ -2,7 +2,7 @@
 
 * {
     font-family: Helvetica Neue For Number, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    /* font-size: 15px; */
 }
 
 a,
@@ -58,7 +58,6 @@ a:visited {
 .table th {
     vertical-align: middle;
 }
-
 
 /*bootstrap4 样式拓展*/
 
@@ -151,4 +150,53 @@ a:visited {
 .rounded-right-0 {
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
+}
+
+.btn-icon {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px !important;
+    line-height: 35px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    color: #555 !important;
+}
+
+.btn-icon:hover {
+    color: #fff !important;
+}
+
+.btn-icon:active {
+    opacity: 0.8;
+}
+
+.btn-icon-primary:hover {
+    border-color: #007bff !important;
+    background-color: #007bff !important;
+}
+
+.btn-icon-secondary:hover {
+    border-color: #6c757d !important;
+    background-color: #6c757d !important;
+}
+
+.btn-icon-success:hover {
+    border-color: #28a745 !important;
+    background-color: #28a745 !important;
+}
+
+.btn-icon-danger:hover {
+    border-color: #dc3545 !important;
+    background-color: #dc3545 !important;
+}
+
+.btn-icon-info:hover {
+    border-color: #17a2b8 !important;
+    background-color: #17a2b8 !important;
+}
+
+.btn-icon-warning:hover {
+    border-color: #ffc107 !important;
+    background-color: #ffc107 !important;
 }

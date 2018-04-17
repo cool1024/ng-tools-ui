@@ -23,6 +23,9 @@ export class ModalService {
     init() {
         this.baseComponent = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
         this.windowCmptRef = this.baseComponent.create(this.injector);
+        this.windowCmptRef.instance.closeHandle = () => {
+            this.dismiss();
+        };
         this.applicationRef.attachView(this.windowCmptRef.hostView);
         this.containerEl = document.querySelector('body');
         this.containerEl.appendChild(this.windowCmptRef.location.nativeElement);

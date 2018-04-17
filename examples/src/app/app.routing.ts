@@ -15,6 +15,7 @@ const routes: Routes = [
     { path: 'message', loadChildren: 'app/modules/message/message.module#MessageModule' },
     { path: 'demo', loadChildren: 'app/modules/demo/demo.module#DemoModule' },
     { path: 'buttons', loadChildren: 'app/modules/buttons/buttons.module#ButtonsModule' },
+    { path: 'article', loadChildren: 'app/modules/article/article.module#ArticleModule' },
 ];
 
 @NgModule({

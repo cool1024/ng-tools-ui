@@ -7,25 +7,35 @@ import {
     OnChanges,
     SimpleChanges,
     Input,
-    ViewEncapsulation
+    ViewEncapsulation,
+    Output,
+    EventEmitter,
+    OnInit
 } from '@angular/core';
-declare const ClassicEditor: any;
+import { ScriptService } from './../../commons/services/script.service';
+declare const window: any;
 
 @Component({
     selector: 'ts-ckeditor',
     exportAs: 'tsCkeditor',
-    template: '<textarea #editor>42341231</textarea>',
-    styles: [
-        `.ck-editor__main {
-            height: 400px !important;
-        }`
-    ],
+    template: `<div #editor></div>`,
+    styles: [],
     encapsulation: ViewEncapsulation.Emulated,
 })
 
-export class CkeditorComponent implements AfterViewInit, OnChanges {
+export class CkeditorComponent implements AfterViewInit, OnInit, OnChanges {
 
     @ViewChild('editor') editor: ElementRef;
+
+    @Input() srcs: string[];
+
+    @Input() content: string;
+
+    @Input() options: any;
+
+    @Output() load = new EventEmitter<any>();
+
+    @Output() contentChange = new EventEmitter<string>();
 
     private editroHandle: any;
 
@@ -33,47 +43,39 @@ export class CkeditorComponent implements AfterViewInit, OnChanges {
 
     private ready: boolean;
 
-    constructor() { }
+    constructor(private script: ScriptService) {
+        this.content = '';
+        this.options = {};
+    }
 
     ngOnChanges(change: SimpleChanges) {
         this.updateContent();
     }
 
+    ngOnInit() {
+        this.script.loads(this.srcs, !!window.ClassicEditor);
+    }
+
     ngAfterViewInit() {
-
         this.textarea = this.editor.nativeElement;
-
-        if (!ClassicEditor) {
-            console.error('ClassicEditor not found,please import ckeditor.js');
-            return;
-        }
-
-        ClassicEditor
-            .create(this.textarea, {
-                ckfinder: {
-                    uploadUrl: 'http://127.0.0.1/webblog/tools-ui/upload'
-                },
-                language: 'zh_cn',
-                height: '300',
-            })
-            .then((editor: any) => {
-                this.editroHandle = editor;
-                console.log(this.editroHandle);
-                setInterval(() => {
-                    console.log(this.textarea.value);
-                }, 100);
-            })
-            .catch((error: any) => {
-                console.error(error);
-            });
-
-        this.ready = true;
-        this.updateContent();
+        this.script.complete(() => {
+            window.ClassicEditor
+                .create(this.textarea, this.options)
+                .then((editor: any) => {
+                    this.editroHandle = editor;
+                    this.ready = true;
+                    this.load.emit(this.editroHandle);
+                    this.updateContent();
+                })
+                .catch((error: any) => {
+                    console.error(error);
+                });
+        });
     }
 
     updateContent() {
         if (this.ready) {
-
+            this.editroHandle.setData(this.content);
         }
     }
 }
