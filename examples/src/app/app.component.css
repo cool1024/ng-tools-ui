@@ -7,14 +7,14 @@
 }
 
 .ts-content-sidebar {
-    width: 230px;
+    width: 250px;
     float: left;
     box-shadow: 0px 1px 3px #aaa;
     overflow-y: auto;
 }
 
 .ts-content-main {
-    width: calc(100% - 233px);
+    width: calc(100% - 252px);
     float: right;
     overflow: auto;
 }
@@ -24,7 +24,7 @@
 }
 
 .app-head-title {
-    width: 230px;
+    width: 250px;
 }
 
 .dropdown-item:active {

@@ -16,4 +16,8 @@ export class ThemeService {
     public getColor(): string {
         return this.color;
     }
+
+    get themeColor(): string {
+        return this.getColor();
+    }
 }

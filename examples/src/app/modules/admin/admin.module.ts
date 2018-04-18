@@ -12,7 +12,7 @@ import {
 
 
 /*路由模块*/
-import { ArticleRoutingModule, declarationComponents, entryComponents } from './article.routing';
+import { AdminRoutingModule, declarationComponents, entryComponents } from './admin.routing';
 
 @NgModule({
     imports: [
@@ -21,12 +21,7 @@ import { ArticleRoutingModule, declarationComponents, entryComponents } from './
         ModalModule,
         DatePickerModule,
         PaginationModule,
-        // CollapseModule,
-        // TabModule,
-        // PrismModule,
-        // PaginationModule,
-        CkeditorModule,
-        ArticleRoutingModule,
+        AdminRoutingModule,
     ],
     declarations: [
         declarationComponents
@@ -36,4 +31,4 @@ import { ArticleRoutingModule, declarationComponents, entryComponents } from './
     ]
 
 })
-export class ArticleModule { }
+export class AdminModule { }
