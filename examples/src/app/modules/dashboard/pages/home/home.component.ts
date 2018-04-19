@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { RequestService } from './../../../../cores/services/request.service';
 
 @Component({
     selector: 'app-home',
@@ -10,13 +10,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     mediaList: any[];
 
-    constructor(private http: HttpClient) {
+    constructor(private request: RequestService) {
         this.mediaList = [];
     }
 
     ngOnInit() {
-        this.http.get('https://randomuser.me/api?results=4').subscribe(res => {
-            const response = <any>res;
+        this.request.wihtoutHost().text('https://randomuser.me/api?results=4').subscribe(res => {
+            const response = JSON.parse(res);
             response.results.forEach(user => {
                 this.mediaList.push({ avatar: user.picture.thumbnail, nick: user.name.first, email: user.email });
             });

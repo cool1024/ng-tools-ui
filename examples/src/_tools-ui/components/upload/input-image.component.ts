@@ -68,7 +68,7 @@ export class InputImageComponent extends DomAttr implements OnChanges {
 
     constructor(private domSanitizer: DomSanitizer) {
         super();
-        this.width = '100px';
+        this.width = '130px';
         this.default = '';
     }
 

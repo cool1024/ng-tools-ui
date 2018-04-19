@@ -5,14 +5,17 @@ import { FormsModule } from '@angular/forms';
 import {
     ButtonModule,
     ModalModule,
-    CkeditorModule,
     DatePickerModule,
     PaginationModule,
+    ConfirmModule,
+    UploadModule,
+    CheckboxModule,
+    ImageModule,
+    CssloadModule,
 } from 'ng-tools-ui';
-
-
 /*路由模块*/
 import { AdminRoutingModule, declarationComponents, entryComponents } from './admin.routing';
+import { CompanyService } from './services/company.service';
 
 @NgModule({
     imports: [
@@ -21,13 +24,21 @@ import { AdminRoutingModule, declarationComponents, entryComponents } from './ad
         ModalModule,
         DatePickerModule,
         PaginationModule,
+        ConfirmModule,
+        UploadModule,
+        CheckboxModule,
+        CssloadModule,
+        ImageModule,
         AdminRoutingModule,
     ],
     declarations: [
-        declarationComponents
+        declarationComponents,
     ],
     entryComponents: [
         entryComponents
+    ],
+    providers: [
+        CompanyService
     ]
 
 })

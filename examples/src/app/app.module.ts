@@ -2,11 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './cores/cores.module';
-// import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { AppRoutingModule } from './app.routing';
 import {
     NavbarModule,
-    // MenuModule,
+    MenuModule,
     CssloadModule,
     DropdownModule,
     ConfirmModule,
@@ -14,8 +14,6 @@ import {
     MapModule,
     ButtonModule,
 } from 'ng-tools-ui';
-
-import { MenuModule } from './../_tools-ui';
 
 import { AppComponent } from './app.component';
 
@@ -26,7 +24,7 @@ import { AppComponent } from './app.component';
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule,
+        HttpClientModule,
         CoreModule.forRoot(),
         ConfirmModule.forRoot({ okTitle: '确认', cancelTitle: '取消' }),
         MapModule.forRoot('bea16ad29a10b04e05e0624362d504dc'),
@@ -36,8 +34,8 @@ import { AppComponent } from './app.component';
         MenuModule,
         CssloadModule,
         DropdownModule,
-        HttpClientModule,
-        // DashboardModule
+        AppRoutingModule,
+        DashboardModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

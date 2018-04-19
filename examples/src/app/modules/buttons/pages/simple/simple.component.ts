@@ -31,7 +31,7 @@ export class SimpleComponent implements OnInit {
 <button tsBtn color="info" outline>Info</button>
 <button tsBtn color="light" outline>Light</button>
 <button tsBtn color="dark" outline>Dark</button>`,
-        `<button tsBtn loading (load)="doSubmit($event)">Submit</button>`,
+        `<button tsBtn loading (submit)="doSubmit($event)">Submit</button>`,
         `import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';

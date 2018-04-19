@@ -6,7 +6,11 @@ export class ThemeService {
     private color: string;
 
     constructor() {
-        this.color = 'dark';
+        this.color = 'primary';
+    }
+
+    get themeColor(): string {
+        return this.getColor();
     }
 
     public setColor(color: string) {
@@ -17,7 +21,4 @@ export class ThemeService {
         return this.color;
     }
 
-    get themeColor(): string {
-        return this.getColor();
-    }
 }

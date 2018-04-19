@@ -6,28 +6,28 @@ import { DomAttr } from '../../commons/extends/attr.class';
     selector: `ts-cssload`,
     exportAs: 'tsCssload',
     template: `
-    <div id="loading">
-        <div id="loading-center">
-            <div id="loading-center-absolute">
-                <div class="{{borderClass}} object" id="object_four"></div>
-                <div class="{{borderClass}} object" id="object_three"></div>
-                <div class="{{borderClass}} object" id="object_two"></div>
-                <div class="{{borderClass}} object" id="object_one"></div>
+    <div class="loading">
+        <div class="loading-center">
+            <div class="loading-center-absolute">
+                <div class="{{borderClass}} object" class="object_four"></div>
+                <div class="{{borderClass}} object" class="object_three"></div>
+                <div class="{{borderClass}} object" class="object_two"></div>
+                <div class="{{borderClass}} object" class="object_one"></div>
             </div>
         </div>
     </div>`,
     styles: [
         `
-        #loading {
+        loading {
             height: 100%;
             width: 100%;
         }
-        #loading-center {
+        .loading-center {
             width: 100%;
             height: 100%;
             position: relative;
         }
-        #loading-center-absolute {
+        .loading-center-absolute {
             position: absolute;
             left: 50%;
             top: 50%;
@@ -48,13 +48,13 @@ import { DomAttr } from '../../commons/extends/attr.class';
             -webkit-animation: animate 2s infinite;
             animation: animate 2s infinite;
         }
-        #object_one {
+        .object_one {
             left: 75px;
             top: 75px;
             width: 50px;
             height: 50px;
         }
-        #object_two {
+        .object_two {
             left: 65px;
             top: 65px;
             width: 70px;
@@ -62,7 +62,7 @@ import { DomAttr } from '../../commons/extends/attr.class';
             -webkit-animation-delay: 0.1s;
             animation-delay: 0.1s;
         }
-        #object_three {
+        .object_three {
             left: 55px;
             top: 55px;
             width: 90px;
@@ -70,7 +70,7 @@ import { DomAttr } from '../../commons/extends/attr.class';
             -webkit-animation-delay: 0.2s;
             animation-delay: 0.2s;
         }
-        #object_four {
+        .object_four {
             left: 45px;
             top: 45px;
             width: 110px;

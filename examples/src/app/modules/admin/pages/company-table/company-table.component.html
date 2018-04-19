@@ -1,101 +1,107 @@
-<ts-datepicker #datepickerOne="tsDatepicker" [color]="theme.themeColor" [weekTitles]="['一', '二', '三', '四', '五', '六', '日']"
+<ts-datepicker #datepickerOne="tsDatepicker" [(value)]="search.params.start" [color]="theme.themeColor" [weekTitles]="['一', '二', '三', '四', '五', '六', '日']"
     [monthTitles]="['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']">
 </ts-datepicker>
-<ts-datepicker #datepickerTwo="tsDatepicker" [color]="theme.themeColor" [weekTitles]="['一', '二', '三', '四', '五', '六', '日']"
+<ts-datepicker #datepickerTwo="tsDatepicker" [(value)]="search.params.end" [color]="theme.themeColor" [weekTitles]="['一', '二', '三', '四', '五', '六', '日']"
     [monthTitles]="['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']">
 </ts-datepicker>
-<div class="card rounded-0">
-    <div class="card-header bg-white">
-        <i class="fa fa-search fa-fw" aria-hidden="true"></i>条件筛选</div>
-    <div class="card-body">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text bg-white">商户名称</span>
+<ng-container *ngIf="!outlet.isActivated">
+    <div class="card rounded-0">
+        <div class="card-header bg-white">
+            <i class="fa fa-search fa-fw" aria-hidden="true"></i>条件筛选</div>
+        <div class="card-body">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">商户名称</span>
+                </div>
+                <input type="text" class="form-control" placeholder="请输入商家名称关键词">
+                <div class="input-group-prepend input-group-append">
+                    <span class="input-group-text bg-white">商户账号</span>
+                </div>
+                <input type="text" class="form-control" placeholder="请输入关键词">
             </div>
-            <input type="text" class="form-control" placeholder="请输入商家名称关键词">
-            <div class="input-group-prepend input-group-append">
-                <span class="input-group-text bg-white">商户账号</span>
+            <br>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">创建时间</span>
+                </div>
+                <input tsToggle [value]="search.params.start|date :'yyyy-MM-dd'" [target]="datepickerOne" [bind]="datepickerOne" type="text"
+                    class="form-control bg-white pointer" placeholder="开始时间" readonly>
+                <div class="input-group-prepend input-group-append">
+                    <span class="input-group-text bg-white">到</span>
+                </div>
+                <input tsToggle [value]="search.params.end|date :'yyyy-MM-dd'" [target]="datepickerTwo" [bind]="datepickerTwo" type="text"
+                    class="form-control bg-white pointer" placeholder="结束时间" readonly>
             </div>
-            <input type="text" class="form-control" placeholder="请输入关键词">
-        </div>
-        <br>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text bg-white">创建时间</span>
-            </div>
-            <input tsToggle [value]="search.start|date :'yyyy-MM-dd'" [target]="datepickerOne" [bind]="datepickerOne" type="text" class="form-control bg-white pointer"
-                placeholder="开始时间" readonly>
-            <div class="input-group-prepend input-group-append">
-                <span class="input-group-text bg-white">到</span>
-            </div>
-            <input tsToggle [value]="search.end|date :'yyyy-MM-dd'" [target]="datepickerTwo" [bind]="datepickerTwo" type="text" class="form-control bg-white pointer"
-                placeholder="结束时间" readonly>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-6">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white">共查询到</span>
-                    </div>
-                    <input type="text" value="{{pagination.total}}" class="form-control text-center bg-white" readonly placeholder="0">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-white">条/结果</span>
+            <br>
+            <div class="row">
+                <div class="col-6">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white">共查询到</span>
+                        </div>
+                        <input type="text" value="{{pagination.total}}" class="form-control text-center bg-white" readonly placeholder="0">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-white">条/结果</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-6 text-right">
-                <button tsBtn color="success">
-                    <span>添加商户</span>
-                </button>
-                <button class="btn btn-white">
-                    <i class="fa fa-refresh fa-fw"></i>
-                    <span>重置</span>
-                </button>
-                <button class="btn btn-white">
-                    <i class="fa fa-search fa-fw"></i>
-                    <span>搜索</span>
-                </button>
+                <div class="col-6 text-right">
+                    <button class="btn btn-success" routerLink="detail">
+                        <span>添加商户</span>
+                    </button>
+                    <button class="btn btn-white">
+                        <i class="fa fa-refresh fa-fw"></i>
+                        <span>重置</span>
+                    </button>
+                    <button class="btn btn-white">
+                        <i class="fa fa-search fa-fw"></i>
+                        <span>搜索</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="card mt-2">
-    <div class="card-body">
-        <table class="table table-striped">
-            <tbody>
-                <tr class="font-weight-bold bg-light">
-                    <td *ngFor="let th of theads">{{th}}</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <img class="rounded-circle" width="40" height="40" src="assets/images/avatar.jpg" alt="Logo">
-                    </td>
-                    <td>安纳斯科技</td>
-                    <td>admin</td>
-                    <td>18270881800</td>
-                    <td>2018/01/24</td>
-                    <td>
-                        <span class="badge badge-success badge-pill">正常</span>
-                    </td>
-                    <td>
-                        <a class="btn-icon btn-icon-primary">
-                            <i class="fa fa-lg fa-fw fa-ellipsis-h align-middle"></i>
-                        </a>
-                        <a class="btn-icon btn-icon-danger">
-                            <i class="fa fa-lg fa-fw fa-trash-o align-middle"></i>
-                        </a>
-                        <a class="btn-icon btn-icon-info">
-                            <i class="fa fa-lg fa-fw fa-edit align-middle"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="text-right">
-            <ts-pagination outline [pagination]="pagination" [items]="[{text:'显示 5 条',value:5},{text:'显示 10 条',value:10},{text:'显示 20 条',value:20}]"
-                [color]="theme.themeColor" goTitle="跳转" prevTitle="上一页" nextTitle="下一页" startTitle="首页" endTitle="末尾"></ts-pagination>
+    <div class="card rounded-0 mt-2">
+        <div class="card-body">
+            <ts-table-load #tsTableLoad="tsTableLoad" [display]="loading" [color]="theme.themeColor"></ts-table-load>
+            <table class="table table-striped">
+                <tbody>
+                    <tr class="font-weight-bold bg-light">
+                        <td *ngFor="let th of theads">{{th}}</td>
+                    </tr>
+                    <tr *ngFor="let td of list">
+                        <td>{{td.id}}</td>
+                        <td>
+                            <img tsImg [src]="td.companyLogo" dataSrc="assets/images/404.jpg" class="rounded-circle" width="40" height="40" alt="Logo">
+                        </td>
+                        <td>{{td.companyName}}</td>
+                        <td>{{td.companyManagerAccount}}</td>
+                        <td>{{td.companyManagerMobile}}</td>
+                        <td>{{td.createdAt|date:'yyyy/MM/dd'}}</td>
+                        <td>
+                            <span *ngIf="td.isActive===1" class="badge badge-success badge-pill">启用</span>
+                            <span *ngIf="td.isActive!==1" class="badge badge-secondary badge-pill">停用</span>
+                        </td>
+                        <td>
+                            <a class="btn-icon btn-icon-primary">
+                                <i class="fa fa-lg fa-fw fa-ellipsis-h align-middle"></i>
+                            </a>
+                            <a (click)="confirmDelete(td)" class="btn-icon btn-icon-danger">
+                                <i class="fa fa-lg fa-fw fa-trash-o align-middle"></i>
+                            </a>
+                            <a class="btn-icon btn-icon-info" routerLink="detail/{{td.id}}">
+                                <i class="fa fa-lg fa-fw fa-edit align-middle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <ts-pagination (pageChange)="loadDatas()" [pagination]="pagination" [items]="[{text:'显示 5 条',value:5},{text:'显示 10 条',value:10},{text:'显示 20 条',value:20}]"
+                    [color]="theme.themeColor" goTitle="跳转" prevTitle="上一页" nextTitle="下一页" startTitle="首页" endTitle="末尾" outline></ts-pagination>
+            </div>
         </div>
     </div>
-</div>
+</ng-container>
+
+<router-outlet #outlet="outlet"></router-outlet>

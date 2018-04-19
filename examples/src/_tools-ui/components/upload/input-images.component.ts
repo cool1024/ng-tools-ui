@@ -60,7 +60,7 @@ export class InputImagesComponent extends DomAttr implements OnChanges {
         this.src = '';
         this.config = { host: '' };
         this.default = '';
-        this.width = '100px';
+        this.width = '130px';
     }
 
     ngOnChanges(changes: SimpleChanges) {

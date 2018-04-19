@@ -73,11 +73,11 @@
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">load</th>
+                    <th scope="row">submit</th>
                     <td>
                         <code>DomLoad</code>
                     </td>
-                    <td>当按钮设置了loading属性时，每次按下按钮会触发load绑定的方法</td>
+                    <td>当按钮设置了loading属性时，每次按下按钮会触发submit绑定的方法</td>
                 </tr>
             </tbody>
         </table>
@@ -171,7 +171,7 @@
         <div class="card">
             <div class="card-header bg-white">带加载动画</div>
             <div class="card-body">
-                <button tsBtn loading (load)="doSubmit($event)">Submit</button>
+                <button tsBtn loading (submit)="doSubmit($event)">Submit</button>
             </div>
             <div tsToggle [target]='codePadFour' class="text-primary card-footer bg-white pointer">
                 <i class="fa fa-fw fa-code"></i>查看代码

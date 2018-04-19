@@ -19,7 +19,7 @@ export class ButtonDirective extends DomAttr implements AfterViewInit, DomLoad {
 
     @Input() class: string;
 
-    @Output() load = new EventEmitter<DomLoad>();
+    @Output() submit = new EventEmitter<DomLoad>();
 
     @Input() disabled: boolean;
 
@@ -33,7 +33,7 @@ export class ButtonDirective extends DomAttr implements AfterViewInit, DomLoad {
 
     @HostListener('click', ['$event']) onClick() {
         this.present();
-        this.load.emit(this);
+        this.submit.emit(this);
     }
 
     /**

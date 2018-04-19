@@ -11,7 +11,7 @@ import { styleStr } from './upload.data';
     <div class="w-100">
         <input #input_file class="d-none" type="file" multiple="multiple"
          accept="image/*" (change)="changeFile($event.target.files);input_file.value=null">
-        <div *ngFor="let item of images.list;index as i"  class="d-inline-block border border-muted p-1 mr-1 mb-1 align-top"
+        <div *ngFor="let item of images.list;index as i"  class="d-inline-block rounded border border-muted p-1 mr-1 mb-1 align-top"
             [ngStyle]="blockStyle">
             <div *ngIf="!item.uploading" class="w-100 h-100 upload-block" [ngStyle]="{'background-image': getUrl(item)}">
                 <div class="upload-block-window text-white text-center h-100 w-100" [ngStyle]="windowStyle">
@@ -22,7 +22,7 @@ import { styleStr } from './upload.data';
             <div *ngIf="item.uploading" class="span w-100 h-100">
                 <div class="typing_loader"></div>
             </div>
-        </div><div class="d-inline-block border border-muted p-1 mb-1 align-top" [ngStyle]="blockStyle">
+        </div><div class="d-inline-block rounded border border-muted p-1 mb-1 align-top" [ngStyle]="blockStyle">
             <div (click)="input_file.click()" class="w-100 h-100 upload-block">
                 <div class="text-muted text-center h-100 w-100 pointer" [ngStyle]="windowStyle">
                     <i class="fa fa-fw fa-lg fa-picture-o"></i>选择图片
@@ -48,6 +48,10 @@ export class ImageCardsComponent extends DomAttr implements OnChanges {
     uploading = false;
     default: string;
 
+    get source(): string { return this.config ? (this.config.host || '') : ''; }
+
+    get query(): string { return this.config ? (this.config.queryString || '') : ''; }
+
     get sizePx(): string {
         return this.width + 'px';
     }
@@ -67,7 +71,7 @@ export class ImageCardsComponent extends DomAttr implements OnChanges {
         this.src = '';
         this.config = { host: '' };
         this.default = '';
-        this.width = 100;
+        this.width = 130;
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -90,7 +94,7 @@ export class ImageCardsComponent extends DomAttr implements OnChanges {
         if (image.type === 'file') {
             return `url(${image.url})`;
         } else {
-            return `url(${image.url ? this.config.host + image.url : ''}`;
+            return `url(${image.url ? this.source + image.url + this.query : ''}`;
         }
     }
 

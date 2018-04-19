@@ -8,7 +8,7 @@ import { styleStr, plusSvgData } from './upload.data';
 @Component({
     selector: 'ts-image-card',
     template: `
-    <div class="d-inline-block border border-muted p-1 mb-1 align-top" [ngStyle]="blockStyle">
+    <div class="d-inline-block rounded border border-muted p-1 mb-1 align-top" [ngStyle]="blockStyle">
         <input #input_file class="d-none" type="file" accept="image/*" (change)="changeFile($event.target.files);input_file.value=null">
         <div  *ngIf="!((!showImage&&!src)||isLoading)" class="w-100 h-100 upload-block" [ngStyle]="{'background-image': getUrl()}">
             <div class="upload-block-window text-white text-center h-100 w-100" [ngStyle]="windowStyle">
@@ -46,8 +46,10 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
 
     get source(): string { return this.config ? (this.config.host || '') : ''; }
 
+    get query(): string { return this.config ? (this.config.queryString || '') : ''; }
+
     get realSrc(): string {
-        return typeof this.src === 'string' ? this.source + this.src : this.src.blobUrl;
+        return typeof this.src === 'string' ? this.source + this.src + this.query : this.src.blobUrl;
     }
 
     get sizePx(): string {
@@ -64,7 +66,7 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
 
     constructor(private domSanitizer: DomSanitizer) {
         super();
-        this.width = 100;
+        this.width = 130;
         this.default = '';
     }
 

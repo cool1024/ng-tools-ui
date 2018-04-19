@@ -7,7 +7,7 @@ import { DomAttr } from '../../commons/extends/attr.class';
     selector: `ts-menu`,
     exportAs: 'tsMenu',
     template: `
-    <div class="h-100 pt-2">
+    <div class="h-100 pt-2 menu-bg">
         <div class="media pl-3 mb-3 pt-3" *ngIf="avatars">
             <img class="mr-2 rounded-circle" [src]="avatars[0]" height="40" width="40" alt="Avatar ">
             <div class="media-body">
@@ -15,31 +15,32 @@ import { DomAttr } from '../../commons/extends/attr.class';
                 <p class="mb-0 d-inline-block">{{avatars[2]}}</p>
             </div>
         </div>
-        <hr *ngIf="avatars" class="mt-0 mb-2 ml-3 mr-3">
+        <!--<hr *ngIf="avatars" class="mt-0 mb-2 ml-3 mr-3">-->
         <ng-container *ngFor="let model of items;">
-            <p class="model-title mb-1 pt-2 mt-1 pl-4">{{model.modelTitle | titlecase}}</p>
-            <div class="menu-block pr-3 {{group.active?activeMainClass:''}}" *ngFor="let group of model.menuGroups">
-                <div class="menu-main pointer pl-2" (click)="toggleGroup(group)">
-                    <div class="d-table w-100 pb-1 {{group.active?textClass:''}}">
+            <!--<h5 class="model-title mb-1 pt-2 mt-1 pl-3">{{model.modelTitle | titlecase}}</h5>-->
+            <hr class="mt-0 mb-2 ml-1 mr-1">
+            <div class="menu-block {{group.active?activeMainClass:''}}" *ngFor="let group of model.menuGroups">
+                <div class="menu-main pointer pl-2 pr-3 {{group.active?activeParentClass:''}}" (click)="toggleGroup(group)">
+                    <div class="d-table w-100 pb-1">
                         <div class="d-table-cell text-center ts-icon">
                             <i [class]="group.icon" aria-hidden="true"></i>
                         </div>
-                        <div class="d-table-cell">
+                        <div class="d-table-cell pl-3">
                             <span>{{group.groupTitle | titlecase}}</span>
                         </div>
                         <div class="d-table-cell text-right pr-2">
-                            <i class="fa fa-angle-down" aria-hidden="true"
+                            <i class="fa fa-caret-down ts-icon-sm" aria-hidden="true"
                             [class.icon-up]="group.active" [class.icon-down]="!group.active"></i>
                         </div>
                     </div>
                 </div>
-                <div class="menu-child-block pr-3" [class.child-open]="group.active" [class.child-close]="!group.active">
-                    <div class="menu-child-item pl-2" *ngFor="let item of group.menuItems;index as i">
-                        <div class="d-table w-100 pointer {{item.active?textClass:''}}" (click)="toggleMenu(group,i)">
+                <div class="menu-child-block" [class.child-open]="group.active" [class.child-close]="!group.active">
+                    <div class="menu-child-item" *ngFor="let item of group.menuItems;index as i">
+                        <div class="d-table w-100 pl-2 pointer {{item.active?activeChildClass:''}}" (click)="toggleMenu(group,i)">
                             <div class="d-table-cell text-center ts-icon">
-                                <!--<img src="https://png.icons8.com/small/50/000000/sphere.png" height="14">-->
+                                <i class="fa fa-angle-right"></i>
                             </div>
-                            <div class="d-table-cell">
+                            <div class="d-table-cell pl-3">
                                 <span>{{item.title}}</span>
                             </div>
                         </div>
@@ -51,6 +52,12 @@ import { DomAttr } from '../../commons/extends/attr.class';
     </div>`,
     styles: [
         `
+        .menu-bg{
+            background-size:cover;
+        }
+        .ts-icon-sm{
+            font-size:11px;
+        }
         .ts-icon{
             width:30px;
         }
@@ -61,12 +68,10 @@ import { DomAttr } from '../../commons/extends/attr.class';
             animation: icon-down 0.5s ease-out forwards;
         }
         .model-title{
-            font-size: 15px;
             opacity: 0.8;
         }
         .menu-block {
             overflow-y: hidden;
-            font-size: 14px;
             -moz-user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
@@ -77,10 +82,13 @@ import { DomAttr } from '../../commons/extends/attr.class';
             border-left-color:transparent;
         }
         .menu-main{
-            line-height:35px;
+            line-height:42px;
         }
         .menu-child-block{
-            line-height:35px;
+            line-height:42px;
+        }
+        .menu-child-item:hover{
+            background-color:#343a4011;;
         }
         .child-close {
             max-height: 0px;
@@ -134,6 +142,9 @@ import { DomAttr } from '../../commons/extends/attr.class';
         .bg-info-fill{
             background-color:#17a2b811;
         }
+        .bg-light-fill{
+            background-color:#ffffff22;
+        }
         `,
     ]
 })
@@ -147,6 +158,14 @@ export class MenuComponent extends DomAttr {
 
     get activeMainClass(): string {
         return `${this.borderClass} bg-${this.color}-fill`;
+    }
+
+    get activeParentClass(): string {
+        return `${this.textClass}`;
+    }
+
+    get activeChildClass(): string {
+        return `${this.textClass}`;
     }
 
     constructor() {
