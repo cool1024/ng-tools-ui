@@ -1,0 +1,319 @@
+{
+    "result": true,
+    "message": "get datas success",
+    "datas": {
+        "groups": [
+            {
+                "parentid": 0,
+                "groups": [
+                    {
+                        "parentid": 0,
+                        "id": "130",
+                        "icon": "fa fa-flickr fa-fw",
+                        "title": "按钮示例",
+                        "url": "#",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 0,
+                        "id": "90",
+                        "icon": "fa fa-table fa-fw",
+                        "title": "表格示例",
+                        "url": "#",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 0,
+                        "id": "92",
+                        "icon": "fa fa-list-alt fa-fw",
+                        "title": "表单控件",
+                        "url": "#",
+                        "level": "2",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 0,
+                        "id": "99",
+                        "icon": "fa fa-folder-open-o fa-fw",
+                        "title": "文件上传",
+                        "url": "#",
+                        "level": "3",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 0,
+                        "id": "102",
+                        "icon": "fa fa-pencil-square-o fa-fw",
+                        "title": "显示面板",
+                        "url": "#",
+                        "level": "4",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 0,
+                        "id": "103",
+                        "icon": "fa fa-comments-o fa-fw",
+                        "title": "消息提示",
+                        "url": "#",
+                        "level": "5",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 0,
+                        "id": "116",
+                        "icon": "fa fa-archive fa-fw",
+                        "title": "第三方库",
+                        "url": "#",
+                        "level": "6",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 0,
+                        "id": "200",
+                        "icon": "fa fa-book fa-fw",
+                        "title": "文章管理",
+                        "url": "#",
+                        "level": "6",
+                        "permissionid": "0",
+                        "mid": "2"
+                    }
+                ]
+            },
+            {
+                "parentid": 90,
+                "groups": [
+                    {
+                        "parentid": 90,
+                        "id": "91",
+                        "icon": "#",
+                        "title": "\u6807\u51c6\u8868\u683c",
+                        "url": "\/table\/simple",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    }
+                ]
+            },
+            {
+                "parentid": 92,
+                "groups": [
+                    {
+                        "parentid": 92,
+                        "id": "95",
+                        "icon": "#",
+                        "title": "\u591a\u9009\/\u5355\u9009",
+                        "url": "\/form\/checkbox",
+                        "level": "3",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 92,
+                        "id": "96",
+                        "icon": "#",
+                        "title": "\u4e0b\u62c9\u9009\u62e9",
+                        "url": "\/form\/select",
+                        "level": "4",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 92,
+                        "id": "97",
+                        "icon": "#",
+                        "title": "\u65e5\u671f\u9009\u62e9",
+                        "url": "\/form\/datepicker",
+                        "level": "5",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 92,
+                        "id": "98",
+                        "icon": "#",
+                        "title": "\u8f6e\u64ad\u56fe",
+                        "url": "\/form\/loopcard",
+                        "level": "6",
+                        "permissionid": "0",
+                        "mid": "1"
+                    }
+                ]
+            },
+            {
+                "parentid": 99,
+                "groups": [
+                    {
+                        "parentid": 99,
+                        "id": "100",
+                        "icon": "#",
+                        "title": "\u56fe\u7247\u4e0a\u4f20",
+                        "url": "\/upload\/simple",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 99,
+                        "id": "101",
+                        "icon": "#",
+                        "title": "\u5176\u4ed6\u4e0a\u4f20",
+                        "url": "\/upload\/video",
+                        "level": "2",
+                        "permissionid": "0",
+                        "mid": "1"
+                    }
+                ]
+            },
+            {
+                "parentid": 102,
+                "groups": [
+                    {
+                        "parentid": 102,
+                        "id": "104",
+                        "icon": "#",
+                        "title": "Tab\u5207\u6362",
+                        "url": "\/pad\/tab",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 102,
+                        "id": "105",
+                        "icon": "#",
+                        "title": "Collapse\u6298\u53e0",
+                        "url": "\/pad\/collapse",
+                        "level": "2",
+                        "permissionid": "0",
+                        "mid": "1"
+                    }
+                ]
+            },
+            {
+                "parentid": 103,
+                "groups": [
+                    {
+                        "parentid": 103,
+                        "id": "106",
+                        "icon": "#",
+                        "title": "\u7b80\u5355\u793a\u4f8b",
+                        "url": "\/message\/simple",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    }
+                ]
+            },
+            {
+                "parentid": 116,
+                "groups": [
+                    {
+                        "parentid": 116,
+                        "id": "117",
+                        "icon": "#",
+                        "title": "基础图表",
+                        "url": "\/demo\/chart",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 116,
+                        "icon": "#",
+                        "title": "百度图表",
+                        "url": "/demo/echart",
+                        "level": "1",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 116,
+                        "id": "120",
+                        "icon": "#",
+                        "title": "高德地图",
+                        "url": "\/demo\/map",
+                        "level": "3",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 116,
+                        "id": "127",
+                        "icon": "#",
+                        "title": "代码语法高亮",
+                        "url": "\/demo\/code",
+                        "level": "4",
+                        "permissionid": "0",
+                        "mid": "1"
+                    }
+                ]
+            },
+            {
+                "parentid": 130,
+                "groups": [
+                    {
+                        "parentid": 130,
+                        "icon": "#",
+                        "title": "普通按钮",
+                        "url": "/buttons/simple",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 130,
+                        "icon": "#",
+                        "title": "分页按钮",
+                        "url": "/buttons/page",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    }
+                ]
+            },
+            {
+                "parentid": 200,
+                "groups": [
+                    {
+                        "parentid": 200,
+                        "icon": "#",
+                        "title": "文章列表",
+                        "url": "/article/table",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    },
+                    {
+                        "parentid": 200,
+                        "icon": "#",
+                        "title": "发布文章",
+                        "url": "/article/edit",
+                        "level": "1",
+                        "permissionid": "0",
+                        "mid": "1"
+                    }
+                ]
+            }
+        ],
+        "models": [
+            {
+                "id": 1,
+                "title": "插件展示",
+                "level": 1
+            },
+            {
+                "id": 2,
+                "title": "博客管理",
+                "level": 1
+            }
+        ]
+    }
+}

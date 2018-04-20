@@ -1,0 +1,85 @@
+<nav tsNavbar [color]="themeCtrl.getColor()" class="fixed-top">
+    <a tsNavBrand class="app-head-title pr-5">
+        <!-- <h5 class="m-0">管理系统模板</h5> -->
+        <img height="35" src="http://echarts.baidu.com/images/logo.png" alt="管理系统模板">
+    </a>
+    <button class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div tsNavList>
+        <!-- <div class="app-breadcrumb">
+            <ts-nav-breadcrumb [breadcrumbs]="breadcrumbs" (breadcrumbActiveChange)="goPage($event)"></ts-nav-breadcrumb>
+        </div> -->
+    </div>
+    <button class="badge-message mr-3" data-badge="17" src="https://png.icons8.com/ios/40/ffffff/message-group-filled.png">
+    </button>
+    <div tsDropdown diy>
+        <button tsToggle class="btn btn-link">
+            <img height="30" src="https://png.icons8.com/ios/40/ffffff/name-filled.png">
+        </button>
+        <div tsDropMenu [offsetX]="-40" [offsetY]="8">
+            <button class="dropdown-item">
+                <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
+                <span>退出当前账户</span>
+            </button>
+            <button class="dropdown-item">
+                <i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>
+                <span>修改资料</span>
+            </button>
+        </div>
+    </div>
+    <div tsDropdown>
+        <button tsToggle class="btn btn-link">
+            <img height="30" src="https://png.icons8.com/ios-glyphs/50/ffffff/paint-palette.png">
+        </button>
+        <div tsDropMenu [offsetX]="-75" [offsetY]="8">
+            <button (click)="changeTheme('primary')" class="dropdown-item text-primary">
+                <i class="fa fa-fw fa-square"></i>
+                <span>Primary</span>
+            </button>
+            <button (click)="changeTheme('secondary')" class="dropdown-item text-secondary">
+                <i class="fa fa-fw fa-square"></i>
+                <span>Secondary</span>
+            </button>
+            <button (click)="changeTheme('success')" class="dropdown-item text-success">
+                <i class="fa fa-fw fa-square"></i>
+                <span>Success</span>
+            </button>
+            <button (click)="changeTheme('danger')" class="dropdown-item text-danger">
+                <i class="fa fa-fw fa-square"></i>
+                <span>Danger</span>
+            </button>
+            <button (click)="changeTheme('warning')" class="dropdown-item text-warning">
+                <i class="fa fa-fw fa-square"></i>
+                <span>Warning</span>
+            </button>
+            <button (click)="changeTheme('dark')" class="dropdown-item text-dark">
+                <i class="fa fa-fw fa-square"></i>
+                <span>Dark</span>
+            </button>
+            <button (click)="changeTheme('light')" class="dropdown-item text-light">
+                <i class="fa fa-fw fa-square"></i>
+                <span>Light</span>
+            </button>
+            <button (click)="changeTheme('info')" class="dropdown-item text-info">
+                <i class="fa fa-fw fa-square"></i>
+                <span>Info</span>
+            </button>
+        </div>
+    </div>
+</nav>
+<div class="ts-content">
+    <div class="h-100">
+        <nav class="ts-content-sidebar h-100">
+            <ts-menu #menuPad="tsMenu" (menuActiveChange)="goPage($event)" [items]="menuModels" [avatars]="avatars" [color]="themeCtrl.getColor()"></ts-menu>
+        </nav>
+        <main role="main" class="ts-content-main bg-light h-100 p-2">
+            <!-- <ts-cssload color="info"></ts-cssload> -->
+            <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuItems" [color]="themeCtrl.getColor()"
+                outline></ts-menu-push>
+            <!-- <hr class="mt-0 mb-1"> -->
+            <router-outlet></router-outlet>
+            <div class="ts-footer"></div>
+        </main>
+    </div>
+</div>
