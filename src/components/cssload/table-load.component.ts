@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DomAttr } from '../../commons/extends/attr.class';
 import { DomLoad } from '../../commons/interfaces/load.interface';
 
-
 @Component({
     selector: `ts-table-load`,
     exportAs: 'tsTableLoad',

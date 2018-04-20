@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-12 col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">
+                图片选择--表单提交
+            </div>
+            <div class="card-body">
+                <ts-image [src]="imageUrl" [color]="global.getValue('color')" title="选择图片" sm></ts-image>
+                <ts-images [src]="imageUrl" [color]="global.getValue('color')" title="选择图片" sm></ts-images>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">
+                图片选择--自动上传
+            </div>
+            <div class="card-body">
+                <ts-image [(src)]="imageUrl" [color]="global.getValue('color')" [config]="config" title="选择图片" sm></ts-image>
+                <ts-images [(src)]="imagesUrl" [color]="global.getValue('color')" [config]="config" title="选择图片" sm></ts-images>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">
+                其他样式--单图
+            </div>
+            <div class="card-body">
+                <ts-image-card [config]="config"></ts-image-card>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-white">
+                其他样式--多图
+            </div>
+            <div class="card-body">
+                <ts-image-cards [(src)]="imagesUrl" [config]="config"></ts-image-cards>
+            </div>
+        </div>
+    </div>
+</div>

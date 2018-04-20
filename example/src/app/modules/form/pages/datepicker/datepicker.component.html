@@ -1,0 +1,82 @@
+<ts-datepicker #datepicker="tsDatepicker" [(value)]="date" [color]="global.getValue('color')" [weekTitles]="['一', '二', '三', '四', '五', '六', '日']"
+    [monthTitles]="['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']">
+</ts-datepicker>
+<div class="card">
+    <div class="card-header bg-white">
+        组件参数
+    </div>
+    <div class="card-body">
+        <form class="form-inline">
+            <div class="input-group mb-3">
+                <input [value]="date|date:'yyyy-MM-dd'" tsToggle [target]="datepicker" [bind]="datepicker" type="text" class="form-control bg-white pointer"
+                    readonly>
+                <div class="input-group-append">
+                    <button class="btn btn-white" type="button" tsToggle [target]="datepicker">
+                        <i class="fa fa-fw fa-calendar"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">color</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>颜色设置，bootstrap的基础颜色[danger,light,info...]</td>
+                </tr>
+                <tr>
+                    <th scope="row">value</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>日期值，支持双向绑定，格式为 年/月/日</td>
+                </tr>
+                <tr>
+                    <th scope="row">weekTitles</th>
+                    <td>
+                        <code>string[]</code>
+                    </td>
+                    <td>日历的星期标题，为一个字符串数组，从周一到周日</td>
+                </tr>
+                <tr>
+                    <th scope="row">monthTitles</th>
+                    <td>
+                        <code>string[]</code>
+                    </td>
+                    <td>日历的月份标题，为一个字符串数组，从一月到十二月</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">
+        导入日期模块
+    </div>
+    <div class="card-body p-0">
+        <ts-prism [code]="codes[0]" language="typescript"></ts-prism>
+    </div>
+</div>
+<br>
+
+<ts-tabs [tabs]="['example.html','example.ts']" [color]="global.getValue('color')" [target]="tsTabsOne" activeTab="example.html"></ts-tabs>
+<div #tsTabsOne='tsTabs' tsTabs class="card rounded-0 border-top-0">
+    <div class="card-body p-0">
+        <div tsTab tab='example.html'>
+            <ts-prism [code]="codes[1]" language="html"></ts-prism>
+        </div>
+        <div tsTab tab='example.ts'>
+            <ts-prism [code]="codes[2]" language="typescript"></ts-prism>
+        </div>
+    </div>
+</div>
