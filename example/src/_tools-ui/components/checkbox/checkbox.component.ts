@@ -4,11 +4,11 @@ import { DomAttr } from './../../commons/extends/attr.class';
 @Component({
     selector: 'ts-checkbox',
     template: `
-        <span (click)="changeStatus()" class="pointer {{textClass}}">
+        <span (click)="changeStatus()" class="pointer no-select {{textClass}}">
             <i *ngIf="!checked" class="fa fa-square-o fa-fw fa-lg"></i>
             <i *ngIf="checked" class="fa fa-check-square fa-fw fa-lg"></i>
         </span>
-        <span (click)="changeStatus()" class="pointer">{{label||''}}</span>`,
+        <span (click)="changeStatus()" class="pointer no-select">{{label||''}}</span>`,
 })
 export class CheckboxComponent extends DomAttr implements OnDestroy {
 

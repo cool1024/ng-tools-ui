@@ -74,13 +74,13 @@
             <ts-menu #menuPad="tsMenu" (menuActiveChange)="goPage($event)" [items]="menuModels" [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
         </nav>
         <main role="main" class="ts-content-main bg-light h-100 p-2">
-            <ts-cssload *ngIf="global.getValue('lazyload'); else viewPad" [color]="global.getValue('color')"></ts-cssload>
-            <ng-template #viewPad>
+            <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
+            <div [class.d-none]="global.getValue('lazyload')">
                 <!-- <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuItems" [color]="global.getValue('color')"
                     outline></ts-menu-push> -->
                 <router-outlet></router-outlet>
                 <div class="ts-footer"></div>
-            </ng-template>
+            </div>
         </main>
     </div>
 </div>

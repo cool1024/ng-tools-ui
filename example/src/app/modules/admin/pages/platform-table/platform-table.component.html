@@ -11,11 +11,11 @@
         <div class="card-body">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text bg-white">商户名称</span>
+                    <span class="input-group-text bg-white">平台管理名称</span>
                 </div>
                 <input [(ngModel)]="search.params.name" type="text" class="form-control" placeholder="请输入商家名称关键词">
                 <div class="input-group-prepend input-group-append">
-                    <span class="input-group-text bg-white">商户账号</span>
+                    <span class="input-group-text bg-white">管理账号</span>
                 </div>
                 <input [(ngModel)]="search.params.account" type="text" class="form-control" placeholder="请输入关键词">
             </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-6 text-right">
                     <button class="btn btn-success" routerLink="detail">
-                        <span>添加商户</span>
+                        <span>添加管理</span>
                     </button>
                     <button (click)="doReset()" class="btn btn-white">
                         <i class="fa fa-refresh fa-fw"></i>
@@ -72,12 +72,9 @@
                         </tr>
                         <tr *ngFor="let td of list">
                             <td>{{td.id}}</td>
-                            <td>
-                                <img tsImg [src]="td.companyLogo" dataSrc="assets/images/404.jpg" class="rounded-circle" width="40" height="40" alt="Logo">
-                            </td>
-                            <td>{{td.companyName}}</td>
-                            <td>{{td.companyManagerAccount}}</td>
-                            <td>{{td.companyManagerMobile}}</td>
+                            <td>{{td.platformManagerName}}</td>
+                            <td>{{td.platformManagerAccount}}</td>
+                            <td>{{td.platformManagerMobile}}</td>
                             <td>{{td.createdAt|date:'yyyy/MM/dd'}}</td>
                             <td>
                                 <span *ngIf="td.isActive===1" class="badge badge-success badge-pill">启用</span>

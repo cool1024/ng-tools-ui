@@ -1,0 +1,22 @@
+.login-pad input {
+    padding: 10px;
+}
+
+.card {
+    opacity: .90;
+}
+
+.login-header {
+    height: 100px;
+    line-height: 100px;
+    padding: 0px;
+    background: white;
+}
+
+.login-header img {
+    vertical-align: middle;
+}
+
+.login-header span {
+    font-size: 20px !important;
+}

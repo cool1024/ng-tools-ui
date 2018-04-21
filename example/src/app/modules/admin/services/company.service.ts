@@ -15,7 +15,7 @@ export class CompanyService {
      * 查询商户，分页（公司）
      */
     searchCompany(pagination: Pagination, search: SearchParams): Observable<ApiData> {
-        return this.request.get('/admin/company/search', pagination.getpageDataWith(search));
+        return this.request.get('/admin/company/search', pagination.getpageDataWith(search.params));
     }
     /**
     * 获取指定商户（公司）
@@ -41,7 +41,7 @@ export class CompanyService {
     /**
      * 删除商户信息（公司）
      */
-    deleteCompay(companyId: number): Observable<ApiData> {
+    deleteCompany(companyId: number): Observable<ApiData> {
         return this.request.delete('/admin/company/delete', { companyId });
     }
 

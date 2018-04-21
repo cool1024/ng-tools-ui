@@ -1,11 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { DashboardRoutingModule } from './dashboard.routing';
 import { FormsModule } from '@angular/forms';
-
-import { HomeComponent } from './pages/home/home.component';
-import { ErrorComponent } from './pages/error/error.component';
 import { CommonModule } from '@angular/common';
-
+import { DashboardRoutingModule, declarationComponents } from './dashboard.routing';
 
 @NgModule({
     imports: [
@@ -13,10 +9,7 @@ import { CommonModule } from '@angular/common';
         CommonModule,
         DashboardRoutingModule
     ],
-    declarations: [
-        ErrorComponent,
-        HomeComponent,
-    ]
+    declarations: [declarationComponents]
 })
 export class DashboardModule {
 

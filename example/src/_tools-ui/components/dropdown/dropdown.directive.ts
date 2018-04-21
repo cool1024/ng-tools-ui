@@ -27,6 +27,8 @@ export class DropdownDirective implements AfterViewInit, OnInit, DomLoad {
 
     @Input() class: string;
 
+    @Input() useItemClickClose = true;
+
     @ContentChild(forwardRef(() => ToggleDirective)) toggleDirective: ToggleDirective;
 
     @ContentChild(forwardRef(() => DropMenuDirective)) dropMenuDirective: DropMenuDirective;
@@ -34,7 +36,8 @@ export class DropdownDirective implements AfterViewInit, OnInit, DomLoad {
     @HostBinding('class') _class: string;
 
     @HostListener('document:click', ['$event.target']) onDocumentClick(dom: any): void {
-        if (!this.isClose() && !this.elementRef.nativeElement.contains(dom)) {
+        console.log(this.useItemClickClose);
+        if ((!this.isClose()) && (!this.elementRef.nativeElement.contains(dom))) {
             this.dismiss();
         }
     }
@@ -54,7 +57,9 @@ export class DropdownDirective implements AfterViewInit, OnInit, DomLoad {
             this.toggleDirective.dom.type = 'button';
         }
         this.dropMenuDirective.onClick = () => {
-            this.toggle();
+            if (this.useItemClickClose) {
+                this.toggle();
+            }
         };
     }
 

@@ -13,9 +13,13 @@ import {
     ImageModule,
     CssloadModule,
 } from 'ng-tools-ui';
+
 /*路由模块*/
 import { AdminRoutingModule, declarationComponents, entryComponents } from './admin.routing';
+
+/*服务列表*/
 import { CompanyService } from './services/company.service';
+import { PlatformService } from './services/platform.service';
 
 @NgModule({
     imports: [
@@ -38,7 +42,8 @@ import { CompanyService } from './services/company.service';
         entryComponents
     ],
     providers: [
-        CompanyService
+        CompanyService,
+        PlatformService,
     ]
 
 })

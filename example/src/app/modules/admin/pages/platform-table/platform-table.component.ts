@@ -3,23 +3,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Pagination, ConfirmService, ToastService } from 'ng-tools-ui';
 import { ApiData, SearchParams } from '../../../../cores/classes';
 import { GlobalService } from '../../../../cores/services';
-import { CompanyService } from '../../services/company.service';
-import { Company } from './../../interfaces/company.interfaces';
+import { PlatformService } from '../../services/platform.service';
+import { PlatformManager } from './../../interfaces/platform.interfaces';
 import 'rxjs/add/operator/skipWhile';
 import 'rxjs/add/operator/switchMap';
 
 
 @Component({
-    templateUrl: './company-table.component.html',
+    selector: 'app-platform-table',
+    templateUrl: './platform-table.component.html',
+    styleUrls: ['./platform-table.component.scss']
 })
-export class CompanyTableComponent implements OnInit {
+export class PlatformTableComponent implements OnInit {
 
-
-    theads = ['#', '图标', '商户名', '账号', '负责人电话', '创建时间', '状态', '操作'];
+    theads = ['#', '平台账号', '管理员名称', '负责人电话', '创建时间', '状态', '操作'];
 
     search = new SearchParams({ start: '', end: '' });
 
-    list = new Array<Company>();
+    list = new Array<PlatformManager>();
 
     loading = false;
 
@@ -30,13 +31,13 @@ export class CompanyTableComponent implements OnInit {
         private router: Router,
         public global: GlobalService,
         private confirm: ConfirmService,
-        private companyService: CompanyService,
+        private platformService: PlatformService,
         private toast: ToastService,
     ) { }
 
     ngOnInit() {
         this.activatedRoute.url
-            .skipWhile(() => this.router.url !== '/admin/company')
+            .skipWhile(() => this.router.url !== '/admin/platform')
             .subscribe(() => this.loadDatas());
     }
 
@@ -52,7 +53,7 @@ export class CompanyTableComponent implements OnInit {
 
     loadDatas() {
         this.loading = true;
-        this.companyService.searchCompany(this.pagination, this.search).subscribe({
+        this.platformService.searchPlatformManager(this.pagination, this.search).subscribe({
             next: res => {
                 this.pagination.total = res.datas.total;
                 this.list = res.datas.rows;
@@ -61,13 +62,13 @@ export class CompanyTableComponent implements OnInit {
         });
     }
 
-    confirmDelete(company: Company) {
-        this.confirm.danger('删除确认', `您确认删除商户'${company.companyName}'吗？`)
-            .switchMap<void, ApiData>(() => this.companyService.deleteCompany(company.id))
-            .subscribe(() => {
-                this.list.splice(this.list.indexOf(company), 1);
-                this.toast.success('删除成功', `成功删除商户'${company.companyName}`);
-                this.loadDatas();
-            });
+    confirmDelete(platformManager: PlatformManager) {
+        // this.confirm.danger('删除确认', `您确认删除商户'${company.companyName}'吗？`)
+        //     .switchMap<void, ApiData>(() => this.companyService.deleteCompay(company.id))
+        //     .subscribe(() => {
+        //         this.list.splice(this.list.indexOf(company), 1);
+        //         this.toast.success('删除成功', `成功删除商户'${company.companyName}`);
+        //         this.loadDatas();
+        //     });
     }
 }
