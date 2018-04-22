@@ -4,8 +4,8 @@ import { DomAttr } from '../../commons/extends/attr.class';
 @Component({
     selector: 'ts-switch',
     template: `
-    <span class="d-inline-block triggle-line {{isOpen?bgClass:'bg-secondary'}}" (click)="toggle()">
-        <span class="d-inline-block rounded-circle triggle-bar bg-white"
+    <span class="d-inline-block triggle-line no-select {{isOpen?bgClass:'bg-secondary'}}" (click)="toggle()">
+        <span class="d-inline-block rounded-circle triggle-bar bg-white align-top no-select"
         [ngClass]="{'triggle-open':isOpen,'triggle-close':!isOpen}"></span>
     </span>`,
     styles: [
