@@ -52,6 +52,9 @@ export class AppComponent implements OnInit {
             }
         });
 
+        // 获取登入状态
+        this.global.setValue('loginStatus', false);
+
 
         this.loadMenu();
     }
