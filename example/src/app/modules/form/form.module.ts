@@ -6,14 +6,12 @@ import {
     DatePickerModule,
     DropdownModule,
     CheckboxModule,
-    // SelectModule,
+    SelectModule,
     PrismModule,
     LoopCardModule,
     TabModule,
     CollapseModule,
 } from 'ng-tools-ui';
-
-import { SelectModule } from './../../../_tools-ui';
 
 /*路由模块*/
 import { FormRoutingModule } from './form.routing';

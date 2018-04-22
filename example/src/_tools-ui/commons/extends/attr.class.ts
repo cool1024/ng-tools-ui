@@ -55,6 +55,10 @@ export class DomAttr {
         return `text-${this.color}`;
     }
 
+    get badgeClass(): string {
+        return `badge-${this.color}`;
+    }
+
     get lightOrDark(): string {
         return LightColors.indexOf(this.color) >= 0 ? 'light' : 'dark';
     }

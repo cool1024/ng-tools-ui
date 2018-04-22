@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../../cores/services';
+import { Item } from 'ng-tools-ui';
 
 @Component({
     selector: 'app-select',
@@ -36,14 +37,16 @@ export class SelectComponent implements OnInit {
             content: `<img class="rounded-circle" src="https://randomuser.me/api/portraits/thumb/women/74.jpg"> Alis`,
             text: 'Alis',
             value: 4
-        },
+        }
     ];
 
     dropdownValue = 2;
 
     selectValue = 'Birmingham';
 
-    diyOption: any;
+    diyOption: Item;
+
+    selectValues = [1];
 
     constructor(public global: GlobalService) { }
 
