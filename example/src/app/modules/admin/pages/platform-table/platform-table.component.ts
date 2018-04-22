@@ -63,12 +63,12 @@ export class PlatformTableComponent implements OnInit {
     }
 
     confirmDelete(platformManager: PlatformManager) {
-        // this.confirm.danger('删除确认', `您确认删除商户'${company.companyName}'吗？`)
-        //     .switchMap<void, ApiData>(() => this.companyService.deleteCompay(company.id))
-        //     .subscribe(() => {
-        //         this.list.splice(this.list.indexOf(company), 1);
-        //         this.toast.success('删除成功', `成功删除商户'${company.companyName}`);
-        //         this.loadDatas();
-        //     });
+        this.confirm.danger('删除确认', `您确认删除管理员'${platformManager.platformManagerName}'吗？`)
+            .switchMap<void, ApiData>(() => this.platformService.deletePlatformManager(platformManager.id))
+            .subscribe(() => {
+                this.list.splice(this.list.indexOf(platformManager), 1);
+                this.toast.success('删除成功', `成功删除管理员'${platformManager.platformManagerName}`);
+                this.loadDatas();
+            });
     }
 }

@@ -9,7 +9,7 @@ import { Item } from './../../commons/interfaces/item.interface';
 import { DomAttr, Color } from '../../commons/extends/attr.class';
 
 @Component({
-    selector: 'ts-select,*tsSelect',
+    selector: 'ts-select',
     template: `
     <div tsDropdown class="w-100">
         <input tsToggle

@@ -69,6 +69,14 @@ a:visited {
     cursor: pointer;
 }
 
+.no-select {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
 .tab-border-primary {
     border-top: 3px solid #007bff !important;
 }

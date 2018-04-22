@@ -1,4 +1,4 @@
-<nav tsNavbar [color]="global.getValue('color')" class="fixed-top">
+<nav tsNavbar [color]="global.getValue('color')">
     <a tsNavBrand class="app-head-title pr-5">
         <!-- <h5 class="m-0">管理系统模板</h5> -->
         <img height="35" src="http://echarts.baidu.com/images/logo.png" alt="管理系统模板">
@@ -7,9 +7,9 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div tsNavList>
-        <!-- <div class="app-breadcrumb">
+        <div class="app-breadcrumb">
             <ts-nav-breadcrumb [breadcrumbs]="breadcrumbs" (breadcrumbActiveChange)="goPage($event)"></ts-nav-breadcrumb>
-        </div> -->
+        </div>
     </div>
     <button class="badge-message mr-3" data-badge="17" src="https://png.icons8.com/ios/40/ffffff/message-group-filled.png">
     </button>
@@ -73,7 +73,7 @@
         <nav class="ts-content-sidebar h-100">
             <ts-menu #menuPad="tsMenu" (menuActiveChange)="goPage($event)" [items]="menuModels" [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
         </nav>
-        <main role="main" class="ts-content-main bg-light h-100 p-2">
+        <main class="ts-content-main bg-light h-100 p-2">
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
             <div [class.d-none]="global.getValue('lazyload')">
                 <!-- <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuItems" [color]="global.getValue('color')"
