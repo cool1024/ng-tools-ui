@@ -290,6 +290,28 @@ export class AppComponent implements OnInit {
                             url: '/admin/account',
                         }
                     ]
+                },
+                {
+                    icon: 'fa fa-cube fa-fw',
+                    title: '商城管理',
+                    children: [
+                        {
+                            title: '商品管理',
+                            url: '/store/goods',
+                        },
+                        {
+                            title: '商品分类',
+                            url: '/store/types',
+                        },
+                        {
+                            title: '订单列表',
+                            url: '/store/order',
+                        },
+                        {
+                            title: '会员列表',
+                            url: '/store/user',
+                        },
+                    ]
                 }
             ]
         }

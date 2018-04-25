@@ -2,7 +2,7 @@
 
 * {
     font-family: Helvetica Neue For Number, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    /* font-size: 15px; */
 }
 
 a,
@@ -14,6 +14,10 @@ textarea {
     text-decoration: none !important;
     z-index: 0 !important;
     box-shadow: 0px 0px 0px white !important;
+}
+
+textarea {
+    height: 100px;
 }
 
 div,
@@ -56,9 +60,8 @@ a:visited {
 
 .table td,
 .table th {
-    vertical-align: middle;
+    vertical-align: middle !important;
 }
-
 
 /*bootstrap4 样式拓展*/
 
@@ -66,40 +69,19 @@ a:visited {
     cursor: pointer;
 }
 
-.tab-border-primary {
-    border-top: 3px solid #007bff !important;
+.no-select {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
 }
 
-.tab-border-danger {
-    border-top: 3px solid #dc3545 !important;
-}
-
-.tab-border-success {
-    border-top: 3px solid #28a745 !important;
-}
-
-.tab-border-light {
-    border-top: 3px solid #f8f9fa !important;
-}
-
-.tab-border-light {
-    border-top: 3px solid #ffffff !important;
-}
-
-.tab-border-dark {
-    border-top: 3px solid #343a40 !important;
-}
-
-.tab-border-secondary {
-    border-top: 3px solid #6c757d !important;
-}
-
-.tab-border-warning {
-    border-top: 3px solid #ffc107 !important;
-}
-
-.tab-border-info {
-    border-top: 3px solid #17a2b8 !important;
+@each $color,
+$value in $theme-colors {
+    .tab-border-#{$color} {
+        border-top: 3px solid #{$value} !important;
+    }
 }
 
 .btn-white,
@@ -151,4 +133,32 @@ a:visited {
 .rounded-right-0 {
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
+}
+
+.btn-icon {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px !important;
+    line-height: 35px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn-icon:hover {
+    color: #fff !important;
+}
+
+.btn-icon:active {
+    opacity: 0.8;
+}
+
+@each $color,
+$value in $theme-colors {
+    .btn-icon-#{$color} {
+        color: #{$value} !important;
+    }
+    .btn-icon-#{$color}:hover {
+        background-color: #{$value} !important;
+    }
 }

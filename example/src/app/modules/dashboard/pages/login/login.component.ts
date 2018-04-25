@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppConfig } from '../../../../configs/app.config';
 import { Account } from '../../interfaces/account.interface';
+import { Router } from '@angular/router';
+import { GlobalService } from '../../../../cores/services';
 
 @Component({
     selector: 'app-login',
@@ -16,5 +18,12 @@ export class LoginComponent {
         password: '',
     };
 
-    constructor() { }
+    constructor(
+        private router: Router,
+        public global: GlobalService,
+    ) { }
+
+    confirmLogin() {
+        this.router.navigateByUrl('/');
+    }
 }

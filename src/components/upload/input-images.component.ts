@@ -19,7 +19,7 @@ import { styleStr, plusSvgData } from './upload.data';
         </button>
     </div>
     <br>
-    <div *ngFor="let item of images.list;index as i"
+    <div *ngFor="let item of images.items;index as i"
         [style.width]="width" [style.height]="width" class="img-thumbnail img-thumbnail-pad d-inline-block mt-2 mr-2 rounded-0">
         <span *ngIf="!item.uploading" class="close text-danger" (click)="removeImage(i)">&times;</span>
         <div *ngIf="!item.uploading" class="w-100 h-100 img-thumbnail-image" [ngStyle]="{'background-image': getUrl(item)}"></div>
@@ -27,7 +27,7 @@ import { styleStr, plusSvgData } from './upload.data';
             <div class="typing_loader"></div>
         </div>
     </div>
-    <div *ngIf="images.list.length<=0"
+    <div *ngIf="images.items.length<=0"
         (click)="input_file.click()" class="pointer ts-plus-dom img-thumbnail img-thumbnail-pad d-inline-block mt-2 mr-2 rounded-0"
         [style.width]="width" [style.height]="width" [style.backgroundImage]="plusBackground">
     </div>
@@ -88,7 +88,7 @@ export class InputImagesComponent extends DomAttr implements OnChanges {
     }
 
     removeImage(index: number) {
-        this.deleteChange.emit(this.images.list[index]);
+        this.deleteChange.emit(this.images.items[index]);
         this.images.remove(index);
         this.srcChange.emit(this.images.urls.join());
     }

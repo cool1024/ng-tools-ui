@@ -31,11 +31,16 @@ export class TabComponent extends DomAttr implements AfterViewInit {
     @Output() tabChange = new EventEmitter<string>();
 
     ngAfterViewInit() {
-        this.target.changeTab(this.activeTab || null);
+        if (this.target) {
+            this.target.changeTab(this.activeTab || null);
+        }
     }
 
     changeTab(tab: string) {
         this.activeTab = tab;
-        this.target.changeTab(tab);
+        if (this.target) {
+            this.target.changeTab(this.activeTab || null);
+        }
+        this.tabChange.emit(tab);
     }
 }

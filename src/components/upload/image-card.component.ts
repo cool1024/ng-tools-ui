@@ -18,7 +18,7 @@ import { styleStr, plusSvgData } from './upload.data';
         </div>
         <div *ngIf="(!showImage&&!src)&&!isLoading" (click)="input_file.click()" class="w-100 h-100 upload-block">
             <div class="text-muted text-center h-100 w-100 pointer" [ngStyle]="windowStyle">
-                <i class="fa fa-fw fa-lg fa-picture-o"></i>选择图片
+                <i class="fa fa-fw fa-lg fa-picture-o"></i>{{title}}
             </div>
         </div>
         <div *ngIf="isLoading" class="w-100 h-100">
@@ -68,6 +68,7 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
         super();
         this.width = 130;
         this.default = '';
+        this.title = 'Click...';
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -87,7 +88,8 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
             this.src = { blobUrl: window.URL.createObjectURL(files[0]) };
             this.showImage = true;
             if (!!this.config) {
-                this.uploadFile();
+                console.log(111);
+                if (this.config.uploader) { this.uploadFile(); }
             }
         }
     }

@@ -1,44 +1,49 @@
 <div class="fixed-top h-100 w-100 login-pad" [ngStyle]="{'background':config.BACKGROUND_IMAGE_SRC}">
-    <form style="width:32rem" class="card rounded-0  border-0 ml-auto mr-auto mt-5 shadow-b" autocomplete="off">
-        <div class="card-header login-header text-center">
-            <img [src]="config.LOGO" height="40">
-            <span class="ml-2">{{config.TITLE}}</span>
-            <!-- <span class="pull-right text-muted">版本 2.0.0</span> -->
-        </div>
-        <div class="card-body">
-            <div class="mb-4">
-                <h5 class="text-info">{{config.SUBJECT}}</h5>
-                <small class="text-muted">{{config.DESCRIPTION}}</small>
+    <div class="w-100 h-100 window">
+        <form style="width:25rem" class="card pull-right h-100 rounded-0  border-0 ml-auto mr-auto shadow-b" autocomplete="off">
+            <div class="card-header login-header text-center">
+                <img [src]="config.LOGO">
+                <span class="ml-2">{{config.TITLE}}</span>
+                <!-- <span class="pull-right text-muted">版本 2.0.0</span> -->
             </div>
-            <div class="form-group">
-                <label>{{config.FIRST_LABEL}}</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white rounded-0">
-                            <i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>
-                        </span>
-                    </div>
-                    <input type="text" name="account" [(ngModel)]="account.account" class="form-control rounded-0" [placeholder]="config.FIRST_PLACEHOLDER">
+            <div class="card-body">
+                <div class="mb-4">
+                    <h5 class="text-{{global.getValue('color')}}">{{config.SUBJECT}}</h5>
+                    <small class="text-muted">{{config.DESCRIPTION}}</small>
                 </div>
-            </div>
-            <div class=" form-group">
-                <label>密码</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white rounded-0">
-                            <i class="fa fa-key fa-fw" aria-hidden="true"></i>
-                        </span>
+                <div class="form-group">
+                    <label>{{config.FIRST_LABEL}}</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white rounded-0">
+                                <i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <input type="text" name="account" [(ngModel)]="account.account" class="form-control rounded-0" [placeholder]="config.FIRST_PLACEHOLDER">
                     </div>
-                    <input type="password" name="password" [(ngModel)]="account.password" class="form-control
+                </div>
+                <div class=" form-group">
+                    <label>密码</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white rounded-0">
+                                <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <input type="password" name="password" [(ngModel)]="account.password" class="form-control
                     rounded-0" [placeholder]="config.SECOND_PLACEHOLDER">
+                    </div>
                 </div>
+                <div class="form-group ">
+                    <span class="pull-right text-muted ">忘记密码？</span>
+                </div>
+                <div class="p-4"></div>
+                <button (click)="confirmLogin()" type="button " class="btn btn-lg btn-{{global.getValue('color')}} btn-block">登入</button>
             </div>
-            <div class="form-group ">
-                <span class="pull-right text-muted ">忘记密码？</span>
+            <div class="card-footer bg-white text-center">
+                <p class="mt-1 mb-0">Copyright © 2016 XiaoJian. All Rights Reserved.
+                    <br> 赣 ICP备16010587号</p>
             </div>
-        </div>
-        <div class="card-footer bg-white">
-            <button type="button " class="btn btn-lg btn-info btn-block">登入</button>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

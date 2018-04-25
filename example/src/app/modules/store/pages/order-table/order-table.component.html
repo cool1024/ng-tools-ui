@@ -1,0 +1,129 @@
+<ng-container *ngIf="!outlet.isActivated">
+    <ts-tabs [tabs]="['全部订单','待发货','已完成']" [color]="global.getValue('color')" activeTab="全部订单">
+    </ts-tabs>
+    <div class="card border-top-0">
+        <div class="card-body">
+            <table class="table table-bordered border-0">
+                <thead>
+                    <tr class="bg-light">
+                        <th class="border-0" scope="col">商品</th>
+                        <th class="border-0" scope="col">买家</th>
+                        <th class="border-0" scope="col">状态/配送</th>
+                        <th class="border-0" scope="col">价格</th>
+                        <th class="border-0" scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-top-space"></tr>
+                    <tr class="card-header table-light">
+                        <td colspan="5">
+                            <span class="badge badge-success badge-pill">待发货</span>
+                            <span>2018-02-28 15:47:48</span>
+                            <span class="text-muted">订单编号: SH20180228154748664486</span>
+                        </td>
+                    </tr>
+                    <tr class="card-body">
+                        <td>
+                            <div class="media">
+                                <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-1.jpg"
+                                    height="60" width="60">
+                                <div class="media-body">
+                                    <p class="m-0">测试商品001</p>
+                                    <p class="m-0 text-muted">
+                                        <small>
+                                            ￥100.00
+                                            <br> x1
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-2.jpg"
+                                    height="60" width="60">
+                                <div class="media-body">
+                                    <p class="m-0">测试商品002</p>
+                                    <p class="m-0 text-muted">
+                                        <small>
+                                            ￥100.00
+                                            <br> x1
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            梦想的(ˇˍˇ) 想～
+                        </td>
+                        <td>
+                            江西省南昌市高新区紫阳大道1000号
+                            <br> 18270881855
+                        </td>
+                        <td>
+                            200.00
+                        </td>
+                        <td>
+                            <button routerLink="detail/1" class="btn btn-link">查看详情</button>
+                        </td>
+                    </tr>
+                    <tr class="border-top-space"></tr>
+                    <tr class="card-header table-lightable-light table-light">
+                        <td colspan="5">
+                            <span class="badge badge-success badge-pill">待发货</span>
+                            <span>2018-02-28 15:47:48</span>
+                            <span class="text-muted">订单编号: SH20180228154748664486</span>
+                        </td>
+                    </tr>
+                    <tr class="card-body">
+                        <td>
+                            <div class="media">
+                                <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-1.jpg"
+                                    height="60" width="60">
+                                <div class="media-body">
+                                    <p class="m-0">测试商品001</p>
+                                    <p class="m-0 text-muted">
+                                        <small>
+                                            ￥100.00
+                                            <br> x1
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-2.jpg"
+                                    height="60" width="60">
+                                <div class="media-body">
+                                    <p class="m-0">测试商品002</p>
+                                    <p class="m-0 text-muted">
+                                        <small>
+                                            ￥100.00
+                                            <br> x1
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            梦想的(ˇˍˇ) 想～
+                        </td>
+                        <td>
+                            江西省南昌市高新区紫阳大道1000号
+                            <br> 18270881855
+                        </td>
+                        <td>
+                            200.00
+                        </td>
+                        <td>
+                            <button class="btn btn-link">查看详情</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <ts-pagination (pageChange)="loadDatas()" [pagination]="pagination" [items]="[{text:'显示 5 条',value:5},{text:'显示 10 条',value:10},{text:'显示 20 条',value:20}]"
+                    [color]="global.getValue('color')" goTitle="跳转" prevTitle="上一页" nextTitle="下一页" startTitle="首页" endTitle="末尾"
+                    outline></ts-pagination>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<router-outlet #outlet="outlet"></router-outlet>

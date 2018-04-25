@@ -11,11 +11,10 @@ import { styleStr } from './upload.data';
     <div class="w-100">
         <input #input_file class="d-none" type="file" multiple="multiple"
          accept="image/*" (change)="changeFile($event.target.files);input_file.value=null">
-        <div *ngFor="let item of images.list;index as i"  class="d-inline-block rounded border border-muted p-1 mr-1 mb-1 align-top"
+        <div *ngFor="let item of images.items;index as i"  class="d-inline-block rounded border border-muted p-1 mr-1 mb-1 align-top"
             [ngStyle]="blockStyle">
             <div *ngIf="!item.uploading" class="w-100 h-100 upload-block" [ngStyle]="{'background-image': getUrl(item)}">
                 <div class="upload-block-window text-white text-center h-100 w-100" [ngStyle]="windowStyle">
-                    <!--<i class="fa fa-fw fa-lg fa-eye pointer"></i>-->
                     <i (click)="removeImage(i)" class="fa fa-fw fa-lg fa-trash pointer"></i>
                 </div>
             </div>
@@ -25,7 +24,7 @@ import { styleStr } from './upload.data';
         </div><div class="d-inline-block rounded border border-muted p-1 mb-1 align-top" [ngStyle]="blockStyle">
             <div (click)="input_file.click()" class="w-100 h-100 upload-block">
                 <div class="text-muted text-center h-100 w-100 pointer" [ngStyle]="windowStyle">
-                    <i class="fa fa-fw fa-lg fa-picture-o"></i>选择图片
+                    <i class="fa fa-fw fa-lg fa-picture-o"></i>{{title}}
                 </div>
             </div>
         </div>
@@ -44,6 +43,7 @@ export class ImageCardsComponent extends DomAttr implements OnChanges {
     @Output() fileChange = new EventEmitter<File[]>(false);
     @Output() deleteChange = new EventEmitter<any>(false);
 
+    noInputChange = false;
     images = new InputImages();
     uploading = false;
     default: string;
@@ -68,6 +68,7 @@ export class ImageCardsComponent extends DomAttr implements OnChanges {
         private domSanitizer: DomSanitizer
     ) {
         super();
+        this.title = 'Click...';
         this.src = '';
         this.config = { host: '' };
         this.default = '';
@@ -76,8 +77,12 @@ export class ImageCardsComponent extends DomAttr implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         if (!this.uploading) {
-            this.images = new InputImages(this.src);
             if (changes.src && !this.default) { this.default = changes.src.currentValue; }
+            if (this.noInputChange) {
+                this.noInputChange = false;
+                return;
+            }
+            this.images = new InputImages(this.src);
         }
     }
 
@@ -99,7 +104,8 @@ export class ImageCardsComponent extends DomAttr implements OnChanges {
     }
 
     removeImage(index: number) {
-        this.deleteChange.emit(this.images.list[index]);
+        this.noInputChange = true;
+        this.deleteChange.emit(this.images.items[index]);
         this.images.remove(index);
         this.srcChange.emit(this.images.urls.join());
     }

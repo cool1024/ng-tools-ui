@@ -1,0 +1,89 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <div class="d-table">
+                    <div class="d-table-row">
+                        <div class="d-table-cell">订单编号：</div>
+                        <div class="d-table-cell">SH20180228154748664486</div>
+                    </div>
+                    <br>
+                    <div class="d-table-row">
+                        <div class="d-table-cell">付款方式：</div>
+                        <div class="d-table-cell">未支付</div>
+                    </div>
+                    <br>
+                    <div class="d-table-row">
+                        <div class="d-table-cell">买家：</div>
+                        <div routerLink="/store/user/detail/1" class="d-table-cell text-info pointer">安纳斯-廖亮</div>
+                    </div>
+                    <br>
+                    <div class="d-table-row">
+                        <div class="d-table-cell">收货人：</div>
+                        <div class="d-table-cell">北京 北京市 东城区 测试, 测试, 15178963695</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="d-table">
+                    <div class="d-table-row">
+                        <div class="d-table-cell">订单状态：</div>
+                        <div class="d-table-cell">
+                            <span class="text-danger">待付款</span> （ 等待买家付款）
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">商品</th>
+                    <th scope="col">规格</th>
+                    <th scope="col">单价</th>
+                    <th scope="col">数量</th>
+                    <th scope="col">合计</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-1.jpg"
+                            height="60" width="60">
+                        <span>测试商品</span>
+                    </td>
+                    <td>红色，4+64G，官方标配</td>
+                    <td>100.00</td>
+                    <td>1</td>
+                    <td>100.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-2.jpg"
+                            height="60" width="60">
+                        <span>测试商品</span>
+                    </td>
+                    <td>红色，4+64G，官方标配</td>
+                    <td>100.00</td>
+                    <td>1</td>
+                    <td>100.00</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-6">
+                <button tsBtn color="white">订单列表</button>
+            </div>
+            <div class="col-6 text-right">
+                <p>商品小计：
+                    <span class="font-weight-bold">￥124.00</span>
+                </p>
+                <p>实付款：
+                    <span class="font-weight-bold text-danger">￥124.00</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

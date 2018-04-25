@@ -3,7 +3,8 @@
 }
 
 .card {
-    opacity: .90;
+    opacity: .99;
+    box-shadow: -1px 0px 2px #8c8c8c;
 }
 
 .login-header {
@@ -19,4 +20,8 @@
 
 .login-header span {
     font-size: 20px !important;
+}
+
+.window {
+    background-color: rgba(0, 0, 0, .2)
 }

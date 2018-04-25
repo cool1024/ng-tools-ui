@@ -46,6 +46,13 @@
                     </div>
                 </div>
             </div>
+            <div class="card-footer bg-white" tsCollapses>
+                <div tsToggle class="text-info pointer">
+                    <i class="fa fa-fw fa-code"></i>查看代码</div>
+                <div tsCollapse>
+                    <ts-prism [code]="codes[0]"></ts-prism>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-12 col-lg-6 mb-2">
@@ -57,6 +64,23 @@
                 <ts-dropdown [items]="stringDropdowns" [(value)]="dropdownValue" [useNumber]="1" text="Number"></ts-dropdown>
                 <ts-dropdown [items]="stringDropdowns" text="String"></ts-dropdown>
             </div>
+            <div class="card-footer bg-white" tsCollapses>
+                <div tsToggle class="text-info pointer">
+                    <i class="fa fa-fw fa-code"></i>查看代码</div>
+                <div tsCollapse>
+                    <ts-tabs [tabs]="['html','ts']" [color]="global.getValue('color')" [target]="tsTabsOne" activeTab="html"></ts-tabs>
+                    <div #tsTabsOne='tsTabs' tsTabs class="card rounded-0 border-top-0">
+                        <div class="card-body">
+                            <div tsTab tab='html'>
+                                <ts-prism [code]="codes[1]"></ts-prism>
+                            </div>
+                            <div tsTab tab='ts'>
+                                <ts-prism [code]="codes[2]" language="typescript"></ts-prism>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -66,7 +90,7 @@
             <div class="card-header bg-white">下拉选择</div>
             <div class="card-body">
                 <input class="form-control mb-2" type="text" [(ngModel)]="selectValue">
-                <ts-select class="form-control p-0" [(value)]="selectValue" [items]="['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
+                <ts-select class="form-control p-0" [color]="global.getValue('color')" [(value)]="selectValue" [items]="['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
                 'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
                 'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin',
                 'Düsseldorf', 'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg',
@@ -90,6 +114,23 @@
                     <ts-select class="form-control p-0" [color]="global.getValue('color')" (optionChange)="diyOption = $event" [items]="diySelects"></ts-select>
                 </div>
                 <div [innerHTML]="diyOption?.content||''"></div>
+            </div>
+            <div class="card-footer bg-white" tsCollapses>
+                <div tsToggle class="text-info pointer">
+                    <i class="fa fa-fw fa-code"></i>查看代码</div>
+                <div tsCollapse>
+                    <ts-tabs [tabs]="['html','ts']" [color]="global.getValue('color')" [target]="tsTabsOne" activeTab="html"></ts-tabs>
+                    <div #tsTabsOne='tsTabs' tsTabs class="card rounded-0 border-top-0">
+                        <div class="card-body">
+                            <div tsTab tab='html'>
+                                <ts-prism [code]="codes[3]"></ts-prism>
+                            </div>
+                            <div tsTab tab='ts'>
+                                <ts-prism [code]="codes[4]" language="typescript"></ts-prism>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -125,6 +166,183 @@
             <div class="card-body">
                 <div tsSelects [items]="diySelects" [(values)]="selectValues" [color]="global.getValue('color')"></div>
             </div>
+            <div class="card-footer bg-white" tsCollapses>
+                <div tsToggle class="text-info pointer">
+                    <i class="fa fa-fw fa-code"></i>查看代码</div>
+                <div tsCollapse>
+                    <ts-tabs [tabs]="['html','ts']" [color]="global.getValue('color')" [target]="tsTabsOne" activeTab="html"></ts-tabs>
+                    <div #tsTabsOne='tsTabs' tsTabs class="card rounded-0 border-top-0">
+                        <div class="card-body">
+                            <div tsTab tab='html'>
+                                <ts-prism [code]="codes[5]"></ts-prism>
+                            </div>
+                            <div tsTab tab='ts'>
+                                <ts-prism [code]="codes[6]" language="typescript"></ts-prism>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header bg-white">
+        指令参数 [ 所属模块：
+        <code>DropdownModule</code> ]
+    </div>
+    <div class="card-body">
+        <form class="form-inline">
+            <div class="input-group mb-3">
+                <div tsDropdown>
+                    <button tsToggle tsBtn class="dropdown-toggle">下拉按钮</button>
+                    <div tsDropMenu>
+                        <button class="dropdown-item pointer">操作1</button>
+                        <button class="dropdown-item pointer">操作2</button>
+                        <button class="dropdown-item pointer">操作3</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">指令名称</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="text-danger">tsDropdown</th>
+                    <td>下拉外部根元素指令，一般使用在一个div元素中，不要给样式</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-danger">tsToggle</th>
+                    <td>触发器指令，修饰的元素如果被点击将会显示/隐藏面板，一般为按钮，这个元素可以自定义样式</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-danger">tsDropMenu</th>
+                    <td>下拉面板指令，修饰的元素会隐藏，直到按下触发按钮</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">dropup</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性将会在触发元素上方显示</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card mt-2">
+    <div class="card-header bg-white">
+        组件参数 [ 所属模块：
+        <code>DropdownModule</code> ]
+    </div>
+    <div class="card-body">
+        <p>选择器：
+            <code>ts-dropdown</code>
+        </p>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">dropup</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性将会在触发元素上方显示</td>
+                </tr>
+                <tr>
+                    <th scope="row">color,sm,lg,outline</th>
+                    <td>
+                        <code>查看按钮文档</code>
+                    </td>
+                    <td>颜色，尺寸，空心</td>
+                </tr>
+                <tr>
+                    <th scope="row">value</th>
+                    <td>
+                        <code>any</code>
+                    </td>
+                    <td>下拉选中的值，支持双向绑定</td>
+                </tr>
+                <tr>
+                    <th scope="row">items</th>
+                    <td>
+                        <code>Item[]</code>
+                    </td>
+                    <td>下拉选项列表，具体看上方例子：集成下拉</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card mt-2">
+    <div class="card-header bg-white">
+        组件参数 [ 所属模块：
+        <code>SelectModule</code> ]
+    </div>
+    <div class="card-body">
+        <p>选择器：
+            <code>ts-select</code>
+        </p>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">dropup</th>
+                    <td>
+                        <code>不需要设值</code>
+                    </td>
+                    <td>添加这个属性将会在触发元素上方显示</td>
+                </tr>
+                <tr>
+                    <th scope="row">color,sm,lg</th>
+                    <td>
+                        <code>同上</code>
+                    </td>
+                    <td>颜色，尺寸</td>
+                </tr>
+                <tr>
+                    <th scope="row">value</th>
+                    <td>
+                        <code>any</code>
+                    </td>
+                    <td>下拉选中的值，支持双向绑定</td>
+                </tr>
+                <tr>
+                    <th scope="row">items</th>
+                    <td>
+                        <code>Item[]</code>
+                    </td>
+                    <td>下拉选项列表，注意，如果Item只有value,text两个属性的话，将会显示text内容作为下拉，如果还有content内容那么将会显示content的内容而text会用于查询（value,text是必须要有的）</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

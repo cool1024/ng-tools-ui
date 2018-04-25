@@ -2,7 +2,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 
 export class InputImages {
 
-    private items: Array<{ type: string, file: File, url: string | SafeResourceUrl, uploading: boolean }>;
+    public items: Array<{ type: string, file: File, url: string | SafeResourceUrl, uploading: boolean }>;
 
     constructor(images: string = '') {
         this.items = new Array<{ type: string, file: File, url: string | SafeResourceUrl, uploading: boolean }>();
@@ -41,10 +41,6 @@ export class InputImages {
             }
         });
         return fileItems;
-    }
-
-    get list(): Array<{ type: string, file: File, url: string | SafeResourceUrl, uploading: boolean }> {
-        return this.items;
     }
 
     push(item: { type: string, file: File, url: string | SafeResourceUrl, uploading: boolean }) {

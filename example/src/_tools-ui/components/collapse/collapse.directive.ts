@@ -1,4 +1,4 @@
-import { Directive, ElementRef, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, AfterViewInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { HtmlDomService } from './../../commons/services/htmldom.service';
 import { Toggle } from './../../commons/interfaces/toggle.interface';
 
@@ -6,7 +6,7 @@ import { Toggle } from './../../commons/interfaces/toggle.interface';
     selector: '*[tsCollapse]',
     exportAs: 'tsCollapse',
 })
-export class CollapseDirective implements AfterViewInit, Toggle {
+export class CollapseDirective implements AfterViewInit, OnChanges, Toggle {
 
     @Input() open: boolean;
 
@@ -14,8 +14,17 @@ export class CollapseDirective implements AfterViewInit, Toggle {
 
     private pad: HTMLElement;
 
+    private isReady: boolean;
+
     constructor(private elementRef: ElementRef, private htmlDomService: HtmlDomService) {
         this.open = false;
+        this.isReady = false;
+    }
+
+    ngOnChanges() {
+        if (this.isReady) {
+            this.open ? this.collapseOpen() : this.collapseClose();
+        }
     }
 
     ngAfterViewInit() {
@@ -23,6 +32,7 @@ export class CollapseDirective implements AfterViewInit, Toggle {
         this.pad.style.transition = 'height .35s ease';
         this.pad.style.overflow += 'hidden';
         this.open ? this.collapseOpen() : this.collapseClose();
+        this.isReady = true;
     }
 
     collapseClose() {

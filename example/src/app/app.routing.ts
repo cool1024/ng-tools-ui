@@ -16,6 +16,7 @@ const routes: Routes = [
     { path: 'demo', loadChildren: 'app/modules/demo/demo.module#DemoModule' },
     { path: 'buttons', loadChildren: 'app/modules/buttons/buttons.module#ButtonsModule' },
     { path: 'admin', loadChildren: 'app/modules/admin/admin.module#AdminModule' },
+    { path: 'store', loadChildren: 'app/modules/store/store.module#StoreModule' },
 
     // 最后全局匹配其他链接
     { path: '**', redirectTo: 'dashboard/error', pathMatch: 'full' },
