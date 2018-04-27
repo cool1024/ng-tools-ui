@@ -18,7 +18,7 @@
             <img height="30" src="https://png.icons8.com/ios/40/ffffff/name-filled.png">
         </button>
         <div tsDropMenu [offsetX]="-50" [offsetY]="10">
-            <button class="dropdown-item">
+            <button (click)="signOut()" class="dropdown-item">
                 <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
                 <span>退出当前账户</span>
             </button>
@@ -71,7 +71,8 @@
 <div class="ts-content">
     <div class="h-100">
         <nav class="ts-content-sidebar h-100">
-            <ts-menu #menuPad="tsMenu" (menuActiveChange)="goPage($event)" [items]="menuModels" [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
+            <ts-menu #menuPad="tsMenu" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels" [avatars]="avatars"
+                [color]="global.getValue('color')"></ts-menu>
         </nav>
         <main class="ts-content-main bg-light h-100 p-2">
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>

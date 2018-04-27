@@ -10,5 +10,12 @@ export const AppConfig = {
         SECOND_LABEL: '密码',
         SECOND_PLACEHOLDER: '请输入您的密码',
         BACKGROUND_IMAGE_SRC: 'url(assets/images/background/3.jpg)'
+    },
+
+    MENU_CONFIG: {
+        BACKGROUND_IMAGE_SRC: 'url(assets/images/background/1.jpg)',
+        BACKGROUND_COLOR: 'rgba(255,255,255,0.9)',
+        DEFAULT_TEXT_COLOR: 'black',
+        LINE_COLOR: 'rgb(0, 0, 0,.1)'
     }
 };

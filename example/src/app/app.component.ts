@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
 import { Pagination, MenuModel, MenuModule, MenuGroup, MenuItem, Breadcrumb } from 'ng-tools-ui';
 import { MenuService, RequestService, GlobalService } from './cores/services';
+import { AppConfig } from './configs/app.config';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 
@@ -17,6 +18,8 @@ export class AppComponent implements OnInit {
     avatars: [string, string, string];
 
     menuItems = new Array<MenuItem>();
+
+    menuConfig = AppConfig.MENU_CONFIG;
 
     breadcrumbs: Breadcrumb[];
 
@@ -381,6 +384,10 @@ export class AppComponent implements OnInit {
 
     changeTheme(color: string) {
         this.global.setValue('color', color);
+    }
+
+    signOut() {
+        this.router.navigateByUrl('/dashboard/login');
     }
 
     goPage(menu: MenuItem) {
