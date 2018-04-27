@@ -1,42 +1,65 @@
 import { Component, OnInit } from '@angular/core';
 import { GoodsTypeItem } from './../../classes/goods-type-item.class';
 import { GoodsType } from '../../interfaces/goods-type.interface';
-import { ConfirmService } from 'ng-tools-ui';
+import { ConfirmService, ToastService } from 'ng-tools-ui';
+import { GoodsTypeService } from '../../services/goods-type.service';
 
 @Component({
     selector: 'app-goods-types',
     templateUrl: './goods-types.component.html',
-    //   styleUrls: ['./goods-types.component.scss']
 })
 export class GoodsTypesComponent implements OnInit {
 
     list = new Array<GoodsTypeItem>();
 
     constructor(
-        private confirm: ConfirmService
+        private confirm: ConfirmService,
+        private toast: ToastService,
+        private goodsTypeService: GoodsTypeService,
     ) { }
 
     ngOnInit() {
+        this.loadDatas();
+    }
 
-        this.list.push(
-            new GoodsTypeItem({ id: 1, parentId: 0, goodsTypeTitle: '水果', createdAt: '2018-04-23' }),
-            new GoodsTypeItem({ id: 2, parentId: 0, goodsTypeTitle: '家具', createdAt: '2018-04-24' }),
-            new GoodsTypeItem({ id: 3, parentId: 0, goodsTypeTitle: '家用电器', createdAt: '2018-04-24' }),
-        );
+    loadDatas() {
+        this.list = [];
+        this.goodsTypeService.listGoodsType().subscribe(res => {
+            const groups: { parents: any[], children: any[] } = res.datas;
+            groups.parents.forEach(parent => {
+                const goodsTypeItem = new GoodsTypeItem({
+                    id: parent.id,
+                    parentId: 0,
+                    goodsTypeTitle: parent.goodsTypeTitle,
+                    createdAt: parent.createdAt
+                });
+                const children = groups.children.find(child => {
+                    return child.parentId === parent.id;
+                });
+                if (children !== undefined) {
+                    goodsTypeItem.append(...children.groups);
+                }
+                this.list.push(goodsTypeItem);
+            });
+        });
     }
 
     addChildType(typeItem: GoodsTypeItem) {
-        typeItem.append({ goodsTypeTitle: '新增类型' });
+        typeItem.append({ id: 0, goodsTypeTitle: '新增类型', level: 0 });
         typeItem.setEdit();
     }
 
     deleteChildType(typeItem: GoodsTypeItem, index: number) {
-        typeItem.childTypes.splice(index, 1);
-        typeItem.setEdit();
+        this.confirm.danger('确认删除', `确认删除分类：'${typeItem.childTypes[index].goodsTypeTitle}'`)
+            .subscribe(() => {
+                this.goodsTypeService.deleteGoodsType(typeItem.childTypes[index].id)
+                    .subscribe(() => typeItem.childTypes.splice(index, 1));
+                this.toast.success('删除成功', `成功删除分类：'${typeItem.childTypes[index].goodsTypeTitle}'`);
+            });
     }
 
     addType() {
-        const typeItem = new GoodsTypeItem({ goodsTypeTitle: '新增上级分类', createdAt: '暂无创建时间' });
+        const typeItem = new GoodsTypeItem({ id: 0, level: 0, goodsTypeTitle: '新增上级分类', createdAt: '暂无创建时间' });
         typeItem.setEdit();
         this.list.push(typeItem);
     }
@@ -44,12 +67,17 @@ export class GoodsTypesComponent implements OnInit {
     deleteType(typeItem: GoodsTypeItem, index: number) {
         this.confirm.danger('确认删除', `确认删除分类：'${typeItem.mainType.goodsTypeTitle}',分类下的所有子分类都会被删除!`)
             .subscribe(() => {
-                this.list.splice(index, 1);
+                this.goodsTypeService.deleteGoodsType(typeItem.mainType.id)
+                    .subscribe(() => this.list.splice(index, 1));
+                this.toast.success('删除成功', `成功删除分类：'${typeItem.mainType.goodsTypeTitle}'`);
             });
     }
 
     confirmSave(typeItem: GoodsTypeItem) {
-        typeItem.setSave();
+        this.goodsTypeService.saveGoodsType(typeItem).subscribe(res => {
+            this.toast.success('保存成功', '成功保存商品类型');
+            typeItem.setSave();
+        });
     }
 
 }

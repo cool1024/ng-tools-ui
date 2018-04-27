@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Pagination, ConfirmService, ToastService } from 'ng-tools-ui';
 import { ApiData, SearchParams } from '../../../../cores/classes';
 import { GlobalService } from '../../../../cores/services';
-// import { CompanyService } from '../../services/company.service';
+// import { GoodsTypeService } from '../../services/goods-type.service';
 import { Goods } from './../../interfaces/goods.interface';
 import 'rxjs/add/operator/skipWhile';
 import 'rxjs/add/operator/switchMap';
+import { GoodsService } from '../../services/goods.service';
 
 @Component({
     selector: 'app-goods-table',
@@ -31,11 +32,12 @@ export class GoodsTableComponent implements OnInit {
         private confirm: ConfirmService,
         private toast: ToastService,
         public global: GlobalService,
+        private goodsService: GoodsService,
     ) { }
 
     ngOnInit() {
         this.activatedRoute.url
-            .skipWhile(() => this.router.url !== '/admin/company')
+            .skipWhile(() => this.router.url !== '/store/goods')
             .subscribe(() => this.loadDatas());
     }
 
@@ -51,23 +53,24 @@ export class GoodsTableComponent implements OnInit {
 
     loadDatas() {
         this.loading = true;
-        // this.companyService.searchCompany(this.pagination, this.search).subscribe({
-        //     next: res => {
-        //         this.pagination.total = res.datas.total;
-        //         this.list = res.datas.rows;
-        //     },
-        //     complete: () => this.loading = false
-        // });
+        this.goodsService.searchUser(this.pagination, this.search)
+            .subscribe({
+                next: res => {
+                    this.pagination.total = res.datas.total;
+                    this.list = res.datas.rows;
+                },
+                complete: () => this.loading = false
+            });
     }
 
     confirmDelete(goods: Goods) {
-        // this.confirm.danger('删除确认', `您确认删除商户'${company.companyName}'吗？`)
-        //     .switchMap<void, ApiData>(() => this.companyService.deleteCompany(company.id))
-        //     .subscribe(() => {
-        //         this.list.splice(this.list.indexOf(company), 1);
-        //         this.toast.success('删除成功', `成功删除商户'${company.companyName}`);
-        //         this.loadDatas();
-        //     });
+        this.confirm.danger('删除确认', `您确认删除商品'${goods.goodsName}'吗？`)
+            .switchMap<void, ApiData>(() => this.goodsService.deleteGoods(goods.id))
+            .subscribe(() => {
+                this.list.splice(this.list.indexOf(goods), 1);
+                this.toast.success('删除成功', `成功删除商品'${goods.goodsName}`);
+                this.loadDatas();
+            });
     }
 
 }

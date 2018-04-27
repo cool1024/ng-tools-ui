@@ -30,10 +30,8 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label text-right">会员等级</label>
                     <div class="col-sm-10">
-                        <select class="custom-select">
-                            <option value="1">Lv.1</option>
-                            <option value="2">Lv.2</option>
-                            <option value="3">Lv.3</option>
+                        <select class="custom-select" [(ngModel)]="user.vipLevel">
+                            <option *ngFor="let option of levelOptions" [ngValue]="option.value">{{option.text}}</option>
                         </select>
                     </div>
                 </div>
@@ -52,7 +50,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label text-right">余额</label>
                     <div class="col-sm-10">
-                       <input [value]="user.balance" readonly class="form-control-plaintext" type="text">
+                        <input [value]="user.balance" readonly class="form-control-plaintext" type="text">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -65,7 +63,7 @@
                     <label class="col-sm-2 col-form-label text-right"></label>
                     <div class="col-sm-10">
                         <button routerLink="/store/user" tsBtn color="white">返回列表</button>
-                        <button tsBtn color="primary">确认修改</button>
+                        <button tsBtn loading (submit)="updateUser($event)" color="primary">确认修改</button>
                     </div>
 
                 </div>

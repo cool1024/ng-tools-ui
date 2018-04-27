@@ -1,39 +1,11 @@
 <div class="card rounded-0">
-    <div class="card-header bg-white">
-        <i class="fa fa-search fa-fw" aria-hidden="true"></i>条件筛选</div>
+    <div class="card-header bg-white">商品分类管理</div>
     <div class="card-body">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text bg-white">分类名称</span>
-            </div>
-            <input type="text" class="form-control" placeholder="请输入分类的关键词">
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-6">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white">共查询到</span>
-                    </div>
-                    <input [value]="list.length" type="text" value="" class="form-control text-center bg-white" readonly placeholder="0">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-white">条/结果</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-right">
-                <button (click)="addType()" tsBtn color="success">新增分类</button>
-                <button tsBtn color="warning">确认排序</button>
-                <button class="btn btn-white">
-                    <i class="fa fa-refresh fa-fw"></i>
-                    <span>重置</span>
-                </button>
-                <button class="btn btn-white">
-                    <i class="fa fa-search fa-fw"></i>
-                    <span>搜索</span>
-                </button>
-            </div>
-        </div>
+        <button (click)="addType()" tsBtn color="success">新增分类</button>
+        <button tsBtn color="warning">确认排序</button>
+        <button (click)="loadDatas()" class="btn btn-white">
+            <i class="fa fa-refresh fa-fw"></i>刷新列表
+        </button>
     </div>
 </div>
 <div class="card mt-2" tsCollapses>

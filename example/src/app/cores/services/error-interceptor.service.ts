@@ -81,7 +81,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     errorTitle = 'TimeOut';
                 }
 
-                this.toast.danger(error.statusText, errorMessage, HttpConfig.TOAST_ERROR_TIME);
+                this.toast.danger(errorTitle, errorMessage, HttpConfig.TOAST_ERROR_TIME);
                 return Observable.of<HttpResponse<any>>();
 
             })

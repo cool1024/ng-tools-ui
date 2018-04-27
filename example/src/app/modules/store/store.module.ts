@@ -15,6 +15,9 @@ import {
 
 import { StoreRoutingModule, declarationComponents } from './store.routing';
 import { UserService } from './services/user.service';
+import { GoodsTypeService } from './services/goods-type.service';
+import { GoodsService } from './services/goods.service';
+import { OrderService } from './services/order.service';
 
 @NgModule({
     imports: [
@@ -33,7 +36,10 @@ import { UserService } from './services/user.service';
     ],
     declarations: [declarationComponents],
     providers: [
-        UserService
+        UserService,
+        GoodsTypeService,
+        GoodsService,
+        OrderService,
     ]
 })
 export class StoreModule { }

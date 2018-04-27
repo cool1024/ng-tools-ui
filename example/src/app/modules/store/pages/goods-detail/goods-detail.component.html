@@ -1,16 +1,17 @@
-<ts-tabs [tabs]="['基本信息','商品规格']" [color]="global.getValue('color')" [target]="tsTabs" activeTab="商品规格">
+<ts-tabs [tabs]="['基本信息','商品规格']" [color]="global.getValue('color')" [target]="tsTabs" activeTab="基本信息">
 </ts-tabs>
 <div #tsTabs='tsTabs' tsTabs class="card border-top-0">
     <div class="card-body">
         <div tsTab tab='基本信息'>
             <div class="card">
                 <div class="card-body">
+                    <pre>{{goods|json}}</pre>
                     <div class="container m-0">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label label-required text-right">商品名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="请输入商品的名称">
-                                <div class="invalid-feedback">商户名称是必填的</div>
+                                <input [(ngModel)]="goods.goodsName" type="text" class="form-control" placeholder="请输入商品的名称">
+                                <div class="invalid-feedback">商品名称是必填的</div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -18,17 +19,13 @@
                             <div class="col-sm-10">
                                 <div class="row">
                                     <div class="col">
-                                        <select class="custom-select" placeholder="请选择一级分类">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select [(ngModel)]="goods.goodsParentType" class="custom-select" placeholder="请选择一级分类">
+                                            <option *ngFor="let type of parentTypes" [ngValue]="type.value">{{type.text}}</option>
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <select class="custom-select" placeholder="请选择二级分类">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select [(ngModel)]="goods.goodsType" class="custom-select" placeholder="请选择二级分类">
+                                            <option *ngFor="let type of getChildTypes" [ngValue]="type.value">{{type.text}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -39,14 +36,14 @@
                             <div class="col-sm-10">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control" placeholder="请输入商品的名称">
+                                        <input [(ngModel)]="goods.goodsPrice" type="text" class="form-control" placeholder="请输入商品的价格">
+                                        <div class="invalid-feedback">商品价格是必填的</div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-center">库存</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="不填代表库存充足">
-                                                <div class="invalid-feedback">商户名称是必填的</div>
+                                                <input [(ngModel)]="goods.goodsStocks" type="text" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +65,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label label-required text-right">商品缩略图</label>
                             <div class="col-sm-10">
-                                <ts-image-card [(src)]="goods.goodsThumb" [config]="options" title="点击选择"></ts-image-card>
+                                <ts-image-card #tsUp [(src)]="goods.goodsThumb" [config]="options" title="点击选择"></ts-image-card>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -79,6 +76,20 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="card mt-2">
+                <div class="card-header">商品详情</div>
+                <div class="card-body">
+                    <div class="container m-0">
+                        <textarea [(ngModel)]="goods.goodsDetail" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2">
+                <button routerLink="/store/goods" tsBtn color="white">返回列表</button>
+                <button *ngIf="goods.id===0" tsBtn loading color="success" (submit)="confirmInsert($event)">确认添加</button>
+                <button tsBtn color="success" (click)="resetForm()">添加新商品</button>
+                <button *ngIf="goods.id>0" tsBtn loading color="primary" (submit)="confirmUpdate($event)">确认修改</button>
             </div>
         </div>
         <div tsTab tab='商品规格'>
@@ -111,7 +122,7 @@
                     </div>
                     <div class="mt-2">
                         <button (click)="addSpecification()" tsBtn color="success">新增规格分类</button>
-                        <button tsBtn color="info">刷新规格列表</button>
+                        <!-- <button tsBtn color="info">刷新规格列表</button> -->
                     </div>
                 </div>
             </div>
@@ -129,24 +140,23 @@
                             <tr *ngFor="let tr of getSpecificationTr()">
                                 <td *ngFor="let td of getSpecificationTd(tr)" [attr.rowspan]="td.rowspan">{{td.name}}</td>
                                 <td>
-                                    <input class="form-control" type="text">
+                                    <input [(ngModel)]="goodsSpecificationDetails[tr].goodsPrice" class="form-control" type="text">
                                 </td>
                                 <td>
-                                    <input class="form-control" type="text">
+                                    <input [(ngModel)]="goodsSpecificationDetails[tr].goodsStocks" class="form-control" type="text">
                                 </td>
                                 <td>
-                                    <ts-switch [color]="global.getValue('color')" [values]="{open:1,close:0}"></ts-switch>
+                                    <ts-switch [color]="global.getValue('color')" [values]="{open:1,close:0}" [(value)]="goodsSpecificationDetails[tr].isActive"></ts-switch>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
-        <div class="mt-2">
-            <button tsBtn color="white">返回列表</button>
-            <button tsBtn color="success">确认添加</button>
-            <button tsBtn color="primary">确认修改</button>
+            <div class="mt-2">
+                <button routerLink="/store/goods" tsBtn color="white">返回列表</button>
+                <button tsBtn loading color="primary" (submit)="confirmSave($event)">保存规格</button>
+            </div>
         </div>
     </div>
 </div>

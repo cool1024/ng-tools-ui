@@ -14,10 +14,10 @@
                     <span class="input-group-text bg-white">商品名称</span>
                 </div>
                 <input [(ngModel)]="search.params.name" type="text" class="form-control" placeholder="请输入商品名称关键词">
-                <div class="input-group-prepend input-group-append">
+                <!-- <div class="input-group-prepend input-group-append">
                     <span class="input-group-text bg-white">分类</span>
                 </div>
-                <input [(ngModel)]="search.params.type" type="text" class="form-control" placeholder="请输入关键词">
+                <input [(ngModel)]="search.params.type" type="text" class="form-control" placeholder="请输入关键词"> -->
             </div>
             <br>
             <div class="input-group">
@@ -73,20 +73,20 @@
                         <tr *ngFor="let td of list">
                             <td>{{td.id}}</td>
                             <td>
-                                <img tsImg [src]="td.companyLogo" dataSrc="assets/images/404.jpg" class="rounded-circle" width="40" height="40" alt="Logo">
+                                <img tsImg [src]="td.goodsThumb" dataSrc="assets/images/404.jpg" class="rounded-circle" width="40" height="40" alt="Logo">
                             </td>
-                            <td>{{td.companyName}}</td>
-                            <td>{{td.companyManagerAccount}}</td>
-                            <td>{{td.companyManagerMobile}}</td>
+                            <td>{{td.goodsName}}</td>
+                            <td>{{td.goodsPrice}}</td>
+                            <td>{{td.goodsStocks}}</td>
                             <td>{{td.createdAt|date:'yyyy/MM/dd'}}</td>
                             <td>
                                 <span *ngIf="td.isActive===1" class="badge badge-success badge-pill">启用</span>
                                 <span *ngIf="td.isActive!==1" class="badge badge-secondary badge-pill">停用</span>
                             </td>
                             <td>
-                                <a class="btn-icon btn-icon-primary">
+                                <!-- <a class="btn-icon btn-icon-primary">
                                     <i class="fa fa-lg fa-fw fa-ellipsis-h align-middle"></i>
-                                </a>
+                                </a> -->
                                 <a (click)="confirmDelete(td)" class="btn-icon btn-icon-danger">
                                     <i class="fa fa-lg fa-fw fa-trash-o align-middle"></i>
                                 </a>

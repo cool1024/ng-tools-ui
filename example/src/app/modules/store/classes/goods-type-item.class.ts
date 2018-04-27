@@ -10,9 +10,12 @@ export class GoodsTypeItem {
         this.childTypes = new Array<GoodsType>();
     }
 
-    append(goodType: GoodsType) {
-        goodType.parentId = this.mainType.id;
-        this.childTypes.push(goodType);
+    append(...goodsType: GoodsType[]) {
+        goodsType = goodsType.map(type => {
+            type.parentId = this.mainType.id;
+            return type;
+        });
+        this.childTypes.push(...goodsType);
     }
 
     setEdit() {
@@ -23,4 +26,11 @@ export class GoodsTypeItem {
         this.isSaved = true;
     }
 
+    getDataParams(): { id: number, goodsTypeTitle: string, children: GoodsType[] } {
+        return {
+            id: this.mainType.id,
+            goodsTypeTitle: this.mainType.goodsTypeTitle,
+            children: this.childTypes
+        };
+    }
 }

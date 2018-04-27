@@ -5,22 +5,22 @@
                 <div class="d-table">
                     <div class="d-table-row">
                         <div class="d-table-cell">订单编号：</div>
-                        <div class="d-table-cell">SH20180228154748664486</div>
+                        <div class="d-table-cell">{{order.orderSn}}</div>
                     </div>
                     <br>
                     <div class="d-table-row">
                         <div class="d-table-cell">付款方式：</div>
-                        <div class="d-table-cell">未支付</div>
+                        <div class="d-table-cell">微信支付</div>
                     </div>
                     <br>
                     <div class="d-table-row">
                         <div class="d-table-cell">买家：</div>
-                        <div routerLink="/store/user/detail/1" class="d-table-cell text-info pointer">安纳斯-廖亮</div>
+                        <div routerLink="/store/user/detail/{{order.user.id}}" class="d-table-cell text-info pointer">{{order.user.nick}}</div>
                     </div>
                     <br>
                     <div class="d-table-row">
                         <div class="d-table-cell">收货人：</div>
-                        <div class="d-table-cell">北京 北京市 东城区 测试, 测试, 15178963695</div>
+                        <div class="d-table-cell">{{order.address}}&nbsp;{{order.phone}}&nbsp;{{order.consignee}}</div>
                     </div>
                 </div>
             </div>
@@ -28,9 +28,13 @@
                 <div class="d-table">
                     <div class="d-table-row">
                         <div class="d-table-cell">订单状态：</div>
-                        <div class="d-table-cell">
-                            <span class="text-danger">待付款</span> （ 等待买家付款）
-                        </div>
+                        <h4 class="d-table-cell">
+                            <span *ngIf="order.orderStatus===0" class="badge badge-danger badge-pill">已取消</span>
+                            <span *ngIf="order.orderStatus===1" class="badge badge-secondary badge-pill">待付款</span>
+                            <span *ngIf="order.orderStatus===2" class="badge badge-info badge-pill">待发货</span>
+                            <span *ngIf="order.orderStatus===3" class="badge badge-primary badge-pill">已发货</span>
+                            <span *ngIf="order.orderStatus===4" class="badge badge-success badge-pill">已完成</span>
+                        </h4>
                     </div>
 
                 </div>
@@ -48,40 +52,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let goods of order.goodsList">
                     <td>
-                        <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-1.jpg"
-                            height="60" width="60">
-                        <span>测试商品</span>
+                        <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" [src]="goods.goodsThumb" height="60"
+                            width="60">
+                        <span>{{goods.goodsName}}</span>
                     </td>
-                    <td>红色，4+64G，官方标配</td>
-                    <td>100.00</td>
-                    <td>1</td>
-                    <td>100.00</td>
-                </tr>
-                <tr>
-                    <td>
-                        <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-2.jpg"
-                            height="60" width="60">
-                        <span>测试商品</span>
-                    </td>
-                    <td>红色，4+64G，官方标配</td>
-                    <td>100.00</td>
-                    <td>1</td>
-                    <td>100.00</td>
+                    <td>{{goods.goodsSpecification}}</td>
+                    <td>{{goods.goodsPrice}}</td>
+                    <td>{{goods.goodsQuantity}}</td>
+                    <td>{{goods.goodsPrice*goods.goodsQuantity}}</td>
                 </tr>
             </tbody>
         </table>
         <div class="row">
             <div class="col-6">
-                <button tsBtn color="white">订单列表</button>
+                <button routerLink="/store/order" tsBtn color="white">订单列表</button>
             </div>
             <div class="col-6 text-right">
-                <p>商品小计：
+                <!-- <p>商品小计：
                     <span class="font-weight-bold">￥124.00</span>
-                </p>
+                </p> -->
                 <p>实付款：
-                    <span class="font-weight-bold text-danger">￥124.00</span>
+                    <span class="font-weight-bold text-danger">￥{{order.orderTotalPrice}}</span>
                 </p>
             </div>
         </div>

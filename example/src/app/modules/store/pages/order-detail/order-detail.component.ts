@@ -1,15 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { OrderService } from '../../services/order.service';
+import { ApiData } from '../../../../cores/classes';
+import { Order } from '../../interfaces/order.interface';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-order-detail',
-  templateUrl: './order-detail.component.html',
-  styleUrls: ['./order-detail.component.scss']
+    selector: 'app-order-detail',
+    templateUrl: './order-detail.component.html',
+    styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
 
-  constructor() { }
+    order: any = { user: {} };
 
-  ngOnInit() {
-  }
+    constructor(
+        private active: ActivatedRoute,
+        private orderService: OrderService,
+    ) {
+        this.active.paramMap
+            .switchMap<ParamMap, ApiData>(params => this.orderService.getOrder(parseInt(params.get('id'), 10)))
+            .subscribe(res => this.order = res.datas);
+    }
+
+    ngOnInit() {
+    }
 
 }

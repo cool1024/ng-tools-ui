@@ -3,8 +3,10 @@ import { GlobalService } from '../../../../cores/services';
 import { User } from '../../interfaces/user.interface';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { ToastService } from 'ng-tools-ui';
+import { ToastService, Item, DomLoad } from 'ng-tools-ui';
 import { ApiData } from '../../../../cores/classes';
+import 'rxjs/add/operator/skipWhile';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'app-user-detail',
@@ -14,6 +16,8 @@ import { ApiData } from '../../../../cores/classes';
 export class UserDetailComponent implements OnInit {
 
     user: User;
+
+    levelOptions = new Array<Item>();
 
     constructor(
         public global: GlobalService,
@@ -31,5 +35,15 @@ export class UserDetailComponent implements OnInit {
             .subscribe(res => this.user = res.datas);
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.userService.userLevelOptions()
+            .subscribe(res => this.levelOptions = res.datas);
+    }
+
+    updateUser(btn: DomLoad) {
+        this.userService.updateUser(this.user).subscribe({
+            next: () => this.toast.success('成功', '修改成功～'),
+            complete: () => btn.dismiss()
+        });
+    }
 }

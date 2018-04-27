@@ -1,121 +1,110 @@
 <ng-container *ngIf="!outlet.isActivated">
-    <ts-tabs [tabs]="['全部订单','待发货','已完成']" [color]="global.getValue('color')" activeTab="全部订单">
+    <ts-datepicker #datepickerOne="tsDatepicker" [(value)]="search.params.start" [color]="global.getValue('color')" [weekTitles]="['一', '二', '三', '四', '五', '六', '日']"
+        [monthTitles]="['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']">
+    </ts-datepicker>
+    <ts-datepicker #datepickerTwo="tsDatepicker" [(value)]="search.params.end" [color]="global.getValue('color')" [weekTitles]="['一', '二', '三', '四', '五', '六', '日']"
+        [monthTitles]="['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']">
+    </ts-datepicker>
+    <ts-tabs [tabs]="['全部订单','待发货','已发货','已完成']" [color]="global.getValue('color')" activeTab="全部订单" (tabChange)="changeSearchStatus($event)">
     </ts-tabs>
     <div class="card border-top-0">
         <div class="card-body">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">订单号</span>
+                </div>
+                <input [(ngModel)]="search.params.sn" type="text" class="form-control" placeholder="请输入商品名称关键词">
+                <div class="input-group-prepend input-group-append">
+                    <span class="input-group-text bg-white">收货人</span>
+                </div>
+                <input [(ngModel)]="search.params.consignee" type="text" class="form-control" placeholder="请输入关键词">
+            </div>
+            <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">下单时间</span>
+                </div>
+                <input tsToggle [value]="search.params.start|date :'yyyy-MM-dd'" [target]="datepickerOne" [bind]="datepickerOne" type="text"
+                    class="form-control bg-white pointer" placeholder="开始时间" readonly>
+                <div class="input-group-prepend input-group-append">
+                    <span class="input-group-text bg-white">到</span>
+                </div>
+                <input tsToggle [value]="search.params.end|date :'yyyy-MM-dd'" [target]="datepickerTwo" [bind]="datepickerTwo" type="text"
+                    class="form-control bg-white pointer" placeholder="结束时间" readonly>
+            </div>
+            <div class="row mt-2 mb-2">
+                <div class="col-6">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white">共查询到</span>
+                        </div>
+                        <input type="text" value="{{pagination.total}}" class="form-control text-center bg-white" readonly placeholder="0">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-white">条/结果</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 text-right">
+                    <button (click)="doReset()" class="btn btn-white">
+                        <i class="fa fa-refresh fa-fw"></i>
+                        <span>重置</span>
+                    </button>
+                    <button (click)="doSearch()" class="btn btn-white">
+                        <i class="fa fa-search fa-fw"></i>
+                        <span>搜索</span>
+                    </button>
+                </div>
+            </div>
             <table class="table table-bordered border-0">
                 <thead>
                     <tr class="bg-light">
                         <th class="border-0" scope="col">商品</th>
                         <th class="border-0" scope="col">买家</th>
-                        <th class="border-0" scope="col">状态/配送</th>
+                        <th class="border-0" scope="col">配送信息</th>
                         <th class="border-0" scope="col">价格</th>
                         <th class="border-0" scope="col">操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-top-space"></tr>
-                    <tr class="card-header table-light">
-                        <td colspan="5">
-                            <span class="badge badge-success badge-pill">待发货</span>
-                            <span>2018-02-28 15:47:48</span>
-                            <span class="text-muted">订单编号: SH20180228154748664486</span>
-                        </td>
-                    </tr>
-                    <tr class="card-body">
-                        <td>
-                            <div class="media">
-                                <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-1.jpg"
-                                    height="60" width="60">
-                                <div class="media-body">
-                                    <p class="m-0">测试商品001</p>
-                                    <p class="m-0 text-muted">
-                                        <small>
-                                            ￥100.00
-                                            <br> x1
-                                        </small>
-                                    </p>
+                    <ng-container *ngFor="let item of list">
+                        <tr class="border-top-space"></tr>
+                        <tr class="card-header table-light">
+                            <td colspan="5">
+                                <span *ngIf="item.orderStatus===0" class="badge badge-danger badge-pill">已取消</span>
+                                <span *ngIf="item.orderStatus===1" class="badge badge-secondary badge-pill">待付款</span>
+                                <span *ngIf="item.orderStatus===2" class="badge badge-info badge-pill">待发货</span>
+                                <span *ngIf="item.orderStatus===3" class="badge badge-primary badge-pill">已发货</span>
+                                <span *ngIf="item.orderStatus===4" class="badge badge-success badge-pill">已完成</span>
+                                <span>{{item.createdAt}}</span>
+                                <span class="text-muted">订单编号: {{item.orderSn}}</span>
+                            </td>
+                        </tr>
+                        <tr class="card-body">
+                            <td>
+                                <div class="media" *ngFor="let goods of item.goodsList">
+                                    <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" [src]="goods.goodsThumb" height="60"
+                                        width="60">
+                                    <div class="media-body">
+                                        <p class="m-0">{{goods.goodsName}}</p>
+                                        <p class="m-0 text-muted">
+                                            <small>
+                                                ￥{{goods.goodsPrice}}
+                                                <br> x{{goods.goodsQuantity}}
+                                            </small>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="media">
-                                <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-2.jpg"
-                                    height="60" width="60">
-                                <div class="media-body">
-                                    <p class="m-0">测试商品002</p>
-                                    <p class="m-0 text-muted">
-                                        <small>
-                                            ￥100.00
-                                            <br> x1
-                                        </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            梦想的(ˇˍˇ) 想～
-                        </td>
-                        <td>
-                            江西省南昌市高新区紫阳大道1000号
-                            <br> 18270881855
-                        </td>
-                        <td>
-                            200.00
-                        </td>
-                        <td>
-                            <button routerLink="detail/1" class="btn btn-link">查看详情</button>
-                        </td>
-                    </tr>
-                    <tr class="border-top-space"></tr>
-                    <tr class="card-header table-lightable-light table-light">
-                        <td colspan="5">
-                            <span class="badge badge-success badge-pill">待发货</span>
-                            <span>2018-02-28 15:47:48</span>
-                            <span class="text-muted">订单编号: SH20180228154748664486</span>
-                        </td>
-                    </tr>
-                    <tr class="card-body">
-                        <td>
-                            <div class="media">
-                                <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-1.jpg"
-                                    height="60" width="60">
-                                <div class="media-body">
-                                    <p class="m-0">测试商品001</p>
-                                    <p class="m-0 text-muted">
-                                        <small>
-                                            ￥100.00
-                                            <br> x1
-                                        </small>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <img tsImg alt="Avatar" class="align-self-center mr-3" dataSrc="assets/images/404.jpg" src="assets/images/material-2.jpg"
-                                    height="60" width="60">
-                                <div class="media-body">
-                                    <p class="m-0">测试商品002</p>
-                                    <p class="m-0 text-muted">
-                                        <small>
-                                            ￥100.00
-                                            <br> x1
-                                        </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            梦想的(ˇˍˇ) 想～
-                        </td>
-                        <td>
-                            江西省南昌市高新区紫阳大道1000号
-                            <br> 18270881855
-                        </td>
-                        <td>
-                            200.00
-                        </td>
-                        <td>
-                            <button class="btn btn-link">查看详情</button>
-                        </td>
-                    </tr>
+                            </td>
+                            <td>{{item.user.nick}}</td>
+                            <td>
+                                {{item.address}}
+                                <br> {{item.phone}}&nbsp;{{item.consignee}}
+                            </td>
+                            <td>{{item.orderTotalPrice}}</td>
+                            <td>
+                                <button routerLink="detail/{{item.id}}" class="btn btn-link">查看详情</button>
+                            </td>
+                        </tr>
+                    </ng-container>
                 </tbody>
             </table>
             <div class="text-right">

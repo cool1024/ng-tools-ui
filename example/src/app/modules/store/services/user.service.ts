@@ -22,7 +22,7 @@ export class UserService {
      * 查询平台管理员，分页
      */
     searchUser(pagination: Pagination, search: SearchParams): Observable<ApiData> {
-        return this.request.get('/store/user/search', pagination.getpageDataWith(search.params));
+        return this.request.get('/store/user/search', pagination.getpageDataWith(search.values));
     }
 
     /**
@@ -30,5 +30,19 @@ export class UserService {
      */
     getUser(userId: number): Observable<ApiData> {
         return this.request.get('/store/user/get', { userId });
+    }
+
+    /**
+     * 更新用户信息
+     */
+    updateUser(user: User): Observable<ApiData> {
+        return this.request.put('/store/user/update', user);
+    }
+
+    /**
+     * 获取会员等级下拉
+     */
+    userLevelOptions(): Observable<ApiData> {
+        return this.request.url('/store/user/level/options');
     }
 }

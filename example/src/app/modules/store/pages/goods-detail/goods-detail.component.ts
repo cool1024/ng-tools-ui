@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastService, UploadConfig } from 'ng-tools-ui';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ToastService, UploadConfig, Item, ConfirmService } from 'ng-tools-ui';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { GlobalService } from '../../../../cores/services';
-import { GoodsSpecifications, GoodsSpecification, Goods } from '../../interfaces/goods.interface';
+import { GoodsSpecificationDetail, GoodsSpecification, Goods } from '../../interfaces/goods.interface';
 import { ApiData } from '../../../../cores/classes';
 import 'rxjs/add/operator/skipWhile';
 import 'rxjs/add/operator/switchMap';
+import { GoodsService } from '../../services/goods.service';
 
 @Component({
     selector: 'app-goods-detail',
@@ -15,39 +16,60 @@ export class GoodsDetailComponent implements OnInit {
 
     defaultTh = ['单价', '库存', '是否使用'];
 
+    parentTypes = new Array<Item>();
+
+    childTypes = new Array<any>();
+
     goods: Goods = { id: 0, isActive: 1, goodsName: '' };
 
     goodsSpecifications = new Array<GoodsSpecification>();
 
+    goodsSpecificationDetails = new Array<any>();
+
     options: UploadConfig;
 
+    get getChildTypes(): Item[] {
+        return this.childTypes.filter(type => type.parentId === this.goods.goodsParentType);
+    }
+
     constructor(
+        private router: Router,
         public global: GlobalService,
         private active: ActivatedRoute,
         private toast: ToastService,
+        private goodsService: GoodsService,
+        private confirm: ConfirmService,
     ) {
         this.options = {
             queryString: '?x-oss-process=image/resize,h_130,w_130',
-            // uploader: (file: File) => this.companyService.uploadCompayLogo(file)
+            uploader: (file: File) => this.goodsService.uploadGoodsImage(file)
         };
-        this.goods.goodsSpecifications = [
-            { colorName: '红色', specificationName: '500ML', price: 10.85 }
-        ];
-        // this.active.paramMap
-        //     .skipWhile(params => !params.has('id'))
-        //     .switchMap<ParamMap, ApiData>(params => {
-        //         this.goods.id = parseInt(params.get('id'), 10);
-        //         return this.companyService.getCompany(this.company.id);
-        //     })
-        //     .subscribe(res => this.company = res.datas);
+        this.active.paramMap
+            .skipWhile(params => !params.has('id'))
+            .switchMap<ParamMap, ApiData>(params => {
+                this.goods.id = parseInt(params.get('id'), 10);
+                return this.goodsService.getGoods(this.goods.id);
+            })
+            .subscribe(res => {
+                this.goods = res.datas.goods;
+                // this.parentTypes = res.datas.parentTypes;
+                // this.childTypes = res.datas.childTypes;
+                this.goodsSpecifications = res.datas.goodsSpecifications;
+                this.goodsSpecificationDetails = res.datas.goodsSpecificationsDetail;
+            });
     }
 
     ngOnInit() {
-        this.goodsSpecifications.push(
-            { specificationTitle: '商品颜色', specificationNames: ['红色', '黑色'] },
-            { specificationTitle: '内存', specificationNames: ['3+32GB', '4+64GB', '8+123GB'] },
-            { specificationTitle: '套餐', specificationNames: ['官方标配', '带耳机', '豪华礼包'] },
-        );
+        this.goodsService.getGoodsTypeOptions().subscribe(res => {
+            this.parentTypes = res.datas.parentTypes;
+            this.childTypes = res.datas.childTypes;
+        });
+        // this.goodsSpecifications.push(
+        //     { specificationTitle: '商品颜色', specificationNames: ['红色', '黑色'] },
+        //     { specificationTitle: '内存', specificationNames: ['3+32GB', '4+64GB', '8+123GB'] },
+        //     { specificationTitle: '套餐', specificationNames: ['官方标配', '带耳机', '豪华礼包'] },
+        // );
+        // this.resetSpecificationDetail();
     }
 
 
@@ -56,49 +78,112 @@ export class GoodsDetailComponent implements OnInit {
             specificationTitle: '新分类',
             specificationNames: ['规格一', '规格二']
         });
+        this.resetSpecificationDetail();
     }
 
     removeSpecification(index: number) {
         this.goodsSpecifications.splice(index, 1);
+        this.resetSpecificationDetail();
     }
 
     addSpecificationChild(goodsSpecification: GoodsSpecification) {
         goodsSpecification.specificationNames.push('新增规格');
+        this.resetSpecificationDetail();
     }
 
     removeSpecificationChild(goodsSpecification: GoodsSpecification, index: number) {
         goodsSpecification.specificationNames.splice(index, 1);
+        this.resetSpecificationDetail();
     }
 
     /**
      * 确认添加
      */
     confirmInsert(btn: any) {
-        // this.companyService.insertCompany(this.company).subscribe({
-        //     next: res => {
-        //         this.toast.success('添加成功', `成功添加商户${this.company.companyName}`);
-        //     },
-        //     complete: () => {
-        //         btn.dismiss();
-        //     }
-        // });
+        this.goodsService.insertGoods(this.goods).subscribe({
+            next: res => {
+                this.toast.success('添加成功', `成功添加商品${this.goods.goodsName}`);
+                this.goods.id = res.datas.id;
+            },
+            complete: () => {
+                btn.dismiss();
+            }
+        });
     }
 
     /**
      * 确认修改
      */
     confirmUpdate(btn: any) {
-        // this.companyService.updateCompany(this.company).subscribe({
-        //     next: res => {
-        //         this.toast.success('修改成功', `成功修改商户${this.company.companyName}的信息`);
-        //     },
-        //     complete: () => {
-        //         btn.dismiss();
-        //     }
-        // });
+        this.goodsService.updateGoods(this.goods).subscribe({
+            next: res => {
+                this.toast.success('修改成功', `成功修改商品${this.goods.goodsName}的信息`);
+            },
+            complete: () => {
+                btn.dismiss();
+            }
+        });
+    }
+
+    /**
+     * 保存规格
+     */
+    confirmSave(btn: any) {
+        if (this.goods.id <= 0) {
+            this.confirm.info('无法保存', '您还没有确认添加商品，不能保存商品的规格');
+            btn.dismiss();
+            return;
+        }
+        const specificationDetails = this.goodsSpecificationDetails.map(detail => {
+            detail.specificationTitles = detail.specificationTitleIndexs.map((j, i) => this.goodsSpecifications[i].specificationNames[j]);
+            return detail;
+        });
+        this.goodsService.updateGoodsSpecification(this.goods.id, this.goodsSpecifications, specificationDetails)
+            .subscribe({
+                next: res => {
+                    this.toast.success('保存成功', `成功保存商品的规格`);
+                },
+                complete: () => {
+                    btn.dismiss();
+                }
+            });
+    }
+
+    /**
+     * 清空表单数据
+     */
+    resetForm() {
+        this.router.navigateByUrl('/store/goods');
+        setTimeout(() => this.router.navigateByUrl('/store/goods/detail'), 100);
+    }
+
+    resetSpecificationDetail() {
+        const temp = this.goodsSpecificationDetails;
+        this.goodsSpecificationDetails = [];
+        const trs = this.getSpecificationTr();
+        trs.forEach((tr) => {
+            const detail = {
+                specificationTitleIndexs: new Array<number>(),
+                goodsPrice: 0,
+                goodsStocks: 0,
+                isActive: 0,
+            };
+            const tds = this.goodsSpecifications.map(item => tr % item.specificationNames.length);
+            detail.specificationTitleIndexs.push(...tds);
+            const oldData = temp.find(item => item.specificationTitleIndexs.toString() === detail.specificationTitleIndexs.toString());
+            if (oldData !== undefined) {
+                detail.goodsPrice = oldData.goodsPrice;
+                detail.goodsStocks = oldData.goodsStocks;
+                detail.isActive = oldData.isActive;
+            }
+            this.goodsSpecificationDetails.push(detail);
+        });
     }
 
     getSpecificationTr(): number[] {
+        if (this.goodsSpecifications.length === 0) {
+            return [];
+        }
         let count = 1;
         const trs = new Array<number>();
         let j = 0;
