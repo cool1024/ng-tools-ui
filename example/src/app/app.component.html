@@ -33,37 +33,9 @@
             <img height="30" src="https://png.icons8.com/ios-glyphs/50/ffffff/paint-palette.png">
         </button>
         <div tsDropMenu [offsetX]="-90" [offsetY]="10">
-            <button (click)="changeTheme('primary')" class="dropdown-item text-primary">
+            <button *ngFor="let theme of themes" (click)="changeTheme(theme.CLASS)" class="dropdown-item text-{{theme.CLASS}}">
                 <i class="fa fa-fw fa-square"></i>
-                <span>Primary</span>
-            </button>
-            <button (click)="changeTheme('secondary')" class="dropdown-item text-secondary">
-                <i class="fa fa-fw fa-square"></i>
-                <span>Secondary</span>
-            </button>
-            <button (click)="changeTheme('success')" class="dropdown-item text-success">
-                <i class="fa fa-fw fa-square"></i>
-                <span>Success</span>
-            </button>
-            <button (click)="changeTheme('danger')" class="dropdown-item text-danger">
-                <i class="fa fa-fw fa-square"></i>
-                <span>Danger</span>
-            </button>
-            <button (click)="changeTheme('warning')" class="dropdown-item text-warning">
-                <i class="fa fa-fw fa-square"></i>
-                <span>Warning</span>
-            </button>
-            <button (click)="changeTheme('dark')" class="dropdown-item text-dark">
-                <i class="fa fa-fw fa-square"></i>
-                <span>Dark</span>
-            </button>
-            <button (click)="changeTheme('light')" class="dropdown-item text-light">
-                <i class="fa fa-fw fa-square"></i>
-                <span>Light</span>
-            </button>
-            <button (click)="changeTheme('info')" class="dropdown-item text-info">
-                <i class="fa fa-fw fa-square"></i>
-                <span>Info</span>
+                <span>{{theme.NAME}}</span>
             </button>
         </div>
     </div>

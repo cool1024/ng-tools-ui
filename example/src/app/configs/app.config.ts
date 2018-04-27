@@ -17,5 +17,17 @@ export const AppConfig = {
         BACKGROUND_COLOR: 'rgba(255,255,255,0.9)',
         DEFAULT_TEXT_COLOR: 'black',
         LINE_COLOR: 'rgb(0, 0, 0,.1)'
-    }
+    },
+
+    THEME_COLORS: [
+        { NAME: 'Pink', CLASS: 'pink' },
+        { NAME: 'Purple', CLASS: 'purple' },
+        { NAME: 'Primary', CLASS: 'primary' },
+        { NAME: 'Secondary', CLASS: 'secondary' },
+        { NAME: 'Success', CLASS: 'success' },
+        { NAME: 'Info', CLASS: 'info' },
+        { NAME: 'Warning', CLASS: 'warning' },
+        { NAME: 'Danger', CLASS: 'danger' },
+        { NAME: 'Dark', CLASS: 'dark' },
+    ]
 };

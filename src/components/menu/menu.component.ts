@@ -7,48 +7,50 @@ import { DomAttr } from '../../commons/extends/attr.class';
     selector: `ts-menu`,
     exportAs: 'tsMenu',
     template: `
-    <div class="h-100 pt-2 menu-bg">
-        <div class="media pl-3 mb-3 pt-3" *ngIf="avatars">
-            <img class="mr-2 rounded-circle" [src]="avatars[0]" height="40" width="40" alt="Avatar ">
-            <div class="media-body">
-                <h6 class="mt-0 mb-0 d-inline-block font-weight-bold">{{avatars[1]}}</h6>
-                <p class="mb-0 d-inline-block">{{avatars[2]}}</p>
-            </div>
-        </div>
-        <!--<hr *ngIf="avatars" class="mt-0 mb-2 ml-3 mr-3">-->
-        <ng-container *ngFor="let model of items;">
-            <!--<h5 class="model-title mb-1 pt-2 mt-1 pl-3">{{model.modelTitle | titlecase}}</h5>-->
-            <hr class="mt-0 mb-2 ml-1 mr-1">
-            <div class="menu-block {{group.active?activeMainClass:''}}" *ngFor="let group of model.menuGroups">
-                <div class="menu-main pointer pl-2 pr-3 {{group.active?activeParentClass:''}}" (click)="toggleGroup(group)">
-                    <div class="d-table w-100 pb-1">
-                        <div class="d-table-cell text-center ts-icon">
-                            <i [class]="group.icon" aria-hidden="true"></i>
-                        </div>
-                        <div class="d-table-cell pl-3">
-                            <span>{{group.groupTitle | titlecase}}</span>
-                        </div>
-                        <div class="d-table-cell text-right pr-2">
-                            <i class="fa fa-caret-down ts-icon-sm" aria-hidden="true"
-                            [class.icon-up]="group.active" [class.icon-down]="!group.active"></i>
-                        </div>
-                    </div>
+    <div class="h-100 menu-bg" [ngStyle]="{backgroundImage:config.BACKGROUND_IMAGE_SRC}">
+        <div class="h-100 w-100 pt-2" [ngStyle]="{backgroundColor:config.BACKGROUND_COLOR,color:config.DEFAULT_TEXT_COLOR}">
+            <div class="media pl-3 mb-3 pt-3" *ngIf="avatars">
+                <img class="mr-2 rounded-circle" [src]="avatars[0]" height="40" width="40" alt="Avatar ">
+                <div class="media-body">
+                    <h6 class="mt-0 mb-0 d-inline-block font-weight-bold">{{avatars[1]}}</h6>
+                    <p class="mb-0 d-inline-block">{{avatars[2]}}</p>
                 </div>
-                <div class="menu-child-block" [class.child-open]="group.active" [class.child-close]="!group.active">
-                    <div class="menu-child-item" *ngFor="let item of group.menuItems;index as i">
-                        <div class="d-table w-100 pl-2 pointer {{item.active?activeChildClass:''}}" (click)="toggleMenu(group,i)">
+            </div>
+            <!--<hr *ngIf="avatars" class="mt-0 mb-2 ml-3 mr-3">-->
+            <ng-container *ngFor="let model of items;">
+                <!--<h5 class="model-title mb-1 pt-2 mt-1 pl-3">{{model.modelTitle | titlecase}}</h5>-->
+                <hr class="mt-0 mb-2 ml-1 mr-1" [ngStyle]="{borderColor:config.LINE_COLOR}">
+                <div class="menu-block {{group.active?activeMainClass:''}}" *ngFor="let group of model.menuGroups">
+                    <div class="menu-main pointer pl-2 pr-3 {{group.active?activeParentClass:''}}" (click)="toggleGroup(group)">
+                        <div class="d-table w-100 pb-1">
                             <div class="d-table-cell text-center ts-icon">
-                                <i class="fa fa-angle-right"></i>
+                                <i [class]="group.icon" aria-hidden="true"></i>
                             </div>
                             <div class="d-table-cell pl-3">
-                                <span>{{item.title}}</span>
+                                <span>{{group.groupTitle | titlecase}}</span>
+                            </div>
+                            <div class="d-table-cell text-right pr-2">
+                                <i class="fa fa-caret-down ts-icon-sm" aria-hidden="true"
+                                [class.icon-up]="group.active" [class.icon-down]="!group.active"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-child-block" [class.child-open]="group.active" [class.child-close]="!group.active">
+                        <div class="menu-child-item" *ngFor="let item of group.menuItems;index as i">
+                            <div class="d-table w-100 pl-2 pointer {{item.active?activeChildClass:''}}" (click)="toggleMenu(group,i)">
+                                <div class="d-table-cell text-center ts-icon">
+                                    <i class="fa fa-angle-right"></i>
+                                </div>
+                                <div class="d-table-cell pl-3">
+                                    <span>{{item.title}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </ng-container>
-        <div class="menu-temp-bar"></div>
+            </ng-container>
+            <div class="menu-temp-bar"></div>
+        </div>
     </div>`,
     styles: [
         `
@@ -154,6 +156,8 @@ export class MenuComponent extends DomAttr {
 
     @Input() avatars: [string, string, string];
 
+    @Input() config: any;
+
     @Output() menuActiveChange = new EventEmitter<MenuItem>();
 
     get activeMainClass(): string {
@@ -171,6 +175,7 @@ export class MenuComponent extends DomAttr {
     constructor() {
         super();
         this.items = new Array<MenuModel>();
+        this.config = { BACKGROUND_IMAGE_SRC: '' };
     }
 
     toggleGroup(group: MenuGroup) {

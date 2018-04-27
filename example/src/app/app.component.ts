@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
 
     menuConfig = AppConfig.MENU_CONFIG;
 
+    themes = AppConfig.THEME_COLORS;
+
     breadcrumbs: Breadcrumb[];
 
     constructor(
