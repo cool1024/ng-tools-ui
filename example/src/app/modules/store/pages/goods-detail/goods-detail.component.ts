@@ -55,7 +55,7 @@ export class GoodsDetailComponent implements OnInit {
                 // this.parentTypes = res.datas.parentTypes;
                 // this.childTypes = res.datas.childTypes;
                 this.goodsSpecifications = res.datas.goodsSpecifications;
-                this.goodsSpecificationDetails = res.datas.goodsSpecificationsDetail;
+                this.goodsSpecificationDetails = res.datas.goodsSpecificationsDetails;
             });
     }
 

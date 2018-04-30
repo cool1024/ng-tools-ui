@@ -1,4 +1,46 @@
-/*bootstrap4 样式调整*/
+
+/** 
+ * 引入bootstrap
+ */
+@import "~bootstrap/scss/functions";
+// 参数配置
+@import "variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/jumbotron";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/media";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/alert";
+
+/**
+ * bootstrap 样式BUG修复
+ */
+ .dropup .dropdown-menu{
+     bottom: auto !important;
+ } 
+
+/**
+ * bootstrap4 样式调整
+ */
 
 * {
     font-family: Helvetica Neue For Number, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -41,17 +83,6 @@ a:visited {
     text-decoration: none;
 }
 
-.btn:focus {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-}
-
-.btn {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    cursor: pointer;
-}
-
 .btn:disabled {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -85,30 +116,18 @@ $value in $theme-colors {
 }
 
 .btn-white,
-.btn-outline-white {
-    background-color: white;
-    border-color: #ced4da !important;
+.btn-outline-white{
+    border-color:$gray-400;
 }
-
-.btn-white:hover .bt-outline-white:hover {
-    background-color: rgb(240, 240, 240) !important;
-}
-
-.btn-white:active,
-.btn-outline-white:active {
-    background-color: rgb(230, 230, 230) !important;
-}
-
-.btn-white:not(:disabled):not(.disabled).active,
-.btn-white:not(:disabled):not(.disabled):active,
-.btn-outline-white:not(:disabled):not(.disabled).active,
-.btn-outline-white:not(:disabled):not(.disabled):active {
-    background-color: rgb(206, 206, 206);
+.bt-outline-white:hover,
+.btn-outline-white:active
+{
+    color:$dark;
 }
 
 .label-required::before {
     content: '* ';
-    color: red;
+    color: $red;
 }
 
 .hr-light {

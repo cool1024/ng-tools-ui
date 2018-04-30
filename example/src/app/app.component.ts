@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
         private menuCtrl: MenuService,
         public global: GlobalService,
     ) {
-        this.global.setValue('color', 'primary');
+        this.global.loadStrFromStorage('color', 'primary');
         this.global.setValue('lazyload', false);
         this.avatars = ['assets/images/avatar/5.jpg', '系统管理员', 'www.cool1024.com'];
         this.breadcrumbs = [
@@ -59,7 +59,6 @@ export class AppComponent implements OnInit {
 
         // 获取登入状态
         this.global.setValue('loginStatus', false);
-
 
         this.loadMenu();
     }
@@ -386,6 +385,7 @@ export class AppComponent implements OnInit {
 
     changeTheme(color: string) {
         this.global.setValue('color', color);
+        this.global.setValueToStorage('color', color);
     }
 
     signOut() {

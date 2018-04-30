@@ -8,15 +8,15 @@ const routes: Routes = [
 
     // 懒加载子模块
     { path: 'dashboard', loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule' },
-    // { path: 'form', loadChildren: 'app/modules/form/form.module#FormModule' },
-    // { path: 'upload', loadChildren: 'app/modules/upload/upload.module#UploadModule' },
-    // { path: 'pad', loadChildren: 'app/modules/pad/pad.module#PadModule' },
-    // { path: 'table', loadChildren: 'app/modules/table/table.module#TableModule' },
-    // { path: 'message', loadChildren: 'app/modules/message/message.module#MessageModule' },
+    { path: 'form', loadChildren: 'app/modules/form/form.module#FormModule' },
+    { path: 'upload', loadChildren: 'app/modules/upload/upload.module#UploadModule' },
+    { path: 'pad', loadChildren: 'app/modules/pad/pad.module#PadModule' },
+    { path: 'table', loadChildren: 'app/modules/table/table.module#TableModule' },
+    { path: 'message', loadChildren: 'app/modules/message/message.module#MessageModule' },
     // { path: 'demo', loadChildren: 'app/modules/demo/demo.module#DemoModule' },
-    // { path: 'buttons', loadChildren: 'app/modules/buttons/buttons.module#ButtonsModule' },
+    { path: 'buttons', loadChildren: 'app/modules/buttons/buttons.module#ButtonsModule' },
     // { path: 'admin', loadChildren: 'app/modules/admin/admin.module#AdminModule' },
-    { path: 'store', loadChildren: 'app/modules/store/store.module#StoreModule' },
+    // { path: 'store', loadChildren: 'app/modules/store/store.module#StoreModule' },
 
     // 最后全局匹配其他链接
     { path: '**', redirectTo: 'dashboard/error', pathMatch: 'full' },
