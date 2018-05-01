@@ -50,6 +50,11 @@ import { DropdownDirective } from '../dropdown/dropdown.directive';
             max-height: 270px;
             overflow-y: auto;
         }
+        .dropdown-item.active,
+        .dropdown-item:active{
+            color: #343a40 !important;
+            background: #f8f9fa !important;
+        }
         .dropdown-item:after{
             text-align:center;
         }`
@@ -92,7 +97,13 @@ export class SelectsComponent extends DomAttr implements OnChanges, AfterViewIni
     }
 
     ngOnChanges() {
-        this.activeItems = this.items.filter(item => this.values.indexOf(item.value) >= 0);
+        this.activeItems = [];
+        this.values.forEach(value => {
+            const temp = this.items.find(item => item.value === value);
+            if (temp !== undefined) {
+                this.activeItems.push(temp);
+            }
+        });
     }
 
     ngAfterViewInit() {

@@ -1,7 +1,7 @@
-
 /** 
  * 引入bootstrap
  */
+
 @import "~bootstrap/scss/functions";
 // 参数配置
 @import "variables";
@@ -30,13 +30,13 @@
 @import "~bootstrap/scss/close";
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/alert";
-
 /**
  * bootstrap 样式BUG修复
  */
- .dropup .dropdown-menu{
-     bottom: auto !important;
- } 
+
+.dropup .dropdown-menu {
+    bottom: auto !important;
+}
 
 /**
  * bootstrap4 样式调整
@@ -116,13 +116,28 @@ $value in $theme-colors {
 }
 
 .btn-white,
-.btn-outline-white{
-    border-color:$gray-400;
+.btn-outline-white {
+    color: $dark;
+    border-color: $gray-400;
 }
-.bt-outline-white:hover,
-.btn-outline-white:active
-{
-    color:$dark;
+
+.btn-outline-white:hover,
+.btn-outline-white:active {
+    color: $dark;
+    border-color: $gray-400;
+}
+
+.btn-outline-white:not(:disabled):not(.disabled):active,
+.btn-outline-white:not(:disabled):not(.disabled).active,
+.show>.btn-outline-white.dropdown-toggle {
+    color: $dark;
+    border-color: $gray-400;
+    background-color: $gray-300;
+}
+
+.btn-outline-white.disabled,
+.btn-outline-white:disabled {
+    color: $gray-500;
 }
 
 .label-required::before {

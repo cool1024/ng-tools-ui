@@ -34,9 +34,15 @@ import { DomAttr, Color } from '../../commons/extends/attr.class';
             max-height: 270px;
             overflow-y: auto;
         }
+        .dropdown-item:hover,
+        .dropdown-item:focus{
+            color: #343a40 !important;
+            background: #f8f9fa !important;
+        }
+        .dropdown-item.active,
         .dropdown-item:active{
-            color: black;
-            background-color: #f8f9fa !important;
+            color: #343a40 !important;
+            background: #f8f9fa !important;
         }`
     ]
 })
