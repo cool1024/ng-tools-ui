@@ -20,7 +20,7 @@ export const AppConfig = {
     },
 
     THEME_COLORS: [
-        { NAME: 'Pink', CLASS: 'white' },
+        { NAME: 'Pink', CLASS: 'pink' },
         { NAME: 'Purple', CLASS: 'purple' },
         { NAME: 'Primary', CLASS: 'primary' },
         { NAME: 'Secondary', CLASS: 'secondary' },

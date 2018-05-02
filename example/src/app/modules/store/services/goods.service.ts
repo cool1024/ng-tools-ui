@@ -58,10 +58,10 @@ export class GoodsService {
      */
     updateGoodsSpecification(
         goodsId: number,
-        specifications: GoodsSpecification[],
-        specificationDetails: GoodsSpecificationDetail[]
+        goodsSpecifications: GoodsSpecification[],
+        goodsSpecificationDetails: GoodsSpecificationDetail[]
     ): Observable<ApiData> {
-        return this.request.put('/store/goods/specification/update', { goodsId, specifications, specificationDetails });
+        return this.request.put('/store/goods/specification/update', { goodsId, goodsSpecifications, goodsSpecificationDetails });
     }
 
     /**

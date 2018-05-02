@@ -20,6 +20,25 @@ export class ScriptService {
         this.src = src;
         const body = document.querySelector('body');
         this.useScript = new Subject<void>();
+
+        // filter loaded scripts (use script service loaed)
+        const scripts = document.querySelectorAll('script');
+        for (let i = 0; i < scripts.length; i++) {
+            if (scripts[i].getAttribute('src') === src) {
+                if (scripts[i].getAttribute('complete') === 'complete') {
+                    this.isReady = true;
+                    this.useScript.complete();
+                } else {
+                    scripts[i].addEventListener('load', () => {
+                        this.isReady = true;
+                        this.useScript.complete();
+                    });
+                }
+                return;
+            }
+        }
+
+        // is loaded from other
         if (target) {
             this.isReady = true;
             this.useScript.complete();
@@ -33,6 +52,7 @@ export class ScriptService {
             node.addEventListener('load', () => {
                 this.isReady = true;
                 this.useScript.complete();
+                node.setAttribute('complete', 'complete');
             });
         }
         return this.useScript;

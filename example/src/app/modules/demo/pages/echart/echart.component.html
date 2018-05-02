@@ -1,2 +1,13 @@
-<div baseEchart (chartLoad)="onChartLoad($event)" src="assets/echart/echarts.common.min.js" [option]="optionOne" style="width: 100％;height:400px;"></div>
-<div baseEchart (chartLoad)="onChartLoad($event)" src="assets/echart/echarts.common.min.js" [option]="optionTwo" style="width: 100%;height:400px;"></div>
+<div class="card">
+    <div class="card-header bg-white">条形图</div>
+    <div class="card-body">
+        <div baseEchart (chartLoad)="onChartLoad($event)" [resize]="true" [option]="optionOne" style="width:100%;height:400px;"></div>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header bg-white">饼图</div>
+    <div class="card-body">
+        <div baseEchart (chartLoad)="onChartLoad($event)" [resize]="true" [option]="optionTwo" style="width:100%;height:400px;"></div>
+    </div>
+</div>

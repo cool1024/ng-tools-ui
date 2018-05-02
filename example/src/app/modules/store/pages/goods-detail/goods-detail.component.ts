@@ -52,10 +52,8 @@ export class GoodsDetailComponent implements OnInit {
             })
             .subscribe(res => {
                 this.goods = res.datas.goods;
-                // this.parentTypes = res.datas.parentTypes;
-                // this.childTypes = res.datas.childTypes;
                 this.goodsSpecifications = res.datas.goodsSpecifications;
-                this.goodsSpecificationDetails = res.datas.goodsSpecificationsDetails;
+                this.goodsSpecificationDetails = res.datas.goodsSpecificationDetails;
             });
     }
 

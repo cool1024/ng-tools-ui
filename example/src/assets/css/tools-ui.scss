@@ -193,6 +193,7 @@ $value in $theme-colors {
         color: #{$value} !important;
     }
     .btn-icon-#{$color}:hover {
-        background-color: #{$value} !important;
+        // background-color: #{$value} !important;
+        @include gradient-bg($value);
     }
 }

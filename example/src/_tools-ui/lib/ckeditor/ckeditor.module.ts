@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CkeditorComponent } from './ckeditor.component';
 import { ScriptService } from './../../commons/services/script.service';
@@ -19,5 +19,12 @@ import { ScriptService } from './../../commons/services/script.service';
     ]
 })
 export class CkeditorModule {
-    constructor() { }
+    static forRoot(srcs: string[]): ModuleWithProviders {
+        return {
+            ngModule: CkeditorModule,
+            providers: [
+                { provide: 'CKEDITOR_SCRIPT_SRCS', useValue: srcs }
+            ]
+        };
+    }
 }

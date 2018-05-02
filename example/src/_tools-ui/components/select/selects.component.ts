@@ -76,6 +76,7 @@ export class SelectsComponent extends DomAttr implements OnChanges, AfterViewIni
     title: string;
     searchKey: string;
     activeItems: Array<Item>;
+    private changeInside: boolean;
 
     constructor(private elementRef: ElementRef) {
         super();
@@ -86,6 +87,7 @@ export class SelectsComponent extends DomAttr implements OnChanges, AfterViewIni
         this.activeItems = [];
         this.emptyLabel = 'No results found.';
         this.searchLabel = 'Search...';
+        this.changeInside = false;
     }
 
     get searchItems(): Item[] {
@@ -97,6 +99,9 @@ export class SelectsComponent extends DomAttr implements OnChanges, AfterViewIni
     }
 
     ngOnChanges() {
+        if (this.changeInside) {
+            this.changeInside = false;
+        }
         this.activeItems = [];
         this.values.forEach(value => {
             const temp = this.items.find(item => item.value === value);

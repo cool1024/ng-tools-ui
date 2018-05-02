@@ -1,6 +1,7 @@
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Inject } from '@angular/core';
 import { Toast } from './toast.class';
+import { ToastConfig } from './toast.interface';
 
 @Component({
     template: `
@@ -51,9 +52,11 @@ export class ToastComponent implements OnDestroy {
 
     private timer: any;
 
-    constructor() {
+    constructor(
+        @Inject('DEFAULT_CONFIG') private config: ToastConfig,
+    ) {
         this.toasts = new Array<Toast>();
-        this.position = 'ts-bottom ts-right';
+        this.position = this.config.position;
         this.timer = null;
     }
 
