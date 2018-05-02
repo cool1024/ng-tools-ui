@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import {
     DatePickerModule,
     DropdownModule,
-    CheckboxModule,
+    // CheckboxModule,
     SelectModule,
     PrismModule,
     LoopCardModule,
@@ -13,6 +13,7 @@ import {
     CollapseModule,
 } from 'ng-tools-ui';
 
+import { CheckboxModule } from './../../../_tools-ui';
 
 /*路由模块*/
 import { FormRoutingModule } from './form.routing';

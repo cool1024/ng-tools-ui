@@ -6,7 +6,7 @@
                 <button tsBtn sm [color]="global.getValue('color')" (click)="addRadio()" class="ml-3">添加选项</button>
                 <button tsBtn sm [color]="global.getValue('color')" (click)="removeRadio()">移除选项</button>
             </div>
-            <div tsRadioGroup [(value)]="radioValue" #radioGroup="tsRadioGroup" class="card-body">
+            <div tsRadioGroup [(ngModel)]="radioValue" #radioGroup="tsRadioGroup" class="card-body">
                 <form class="form-inline">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -14,7 +14,7 @@
                                 数值
                             </button>
                         </div>
-                        <input [value]="radioValue" type="text" class="form-control bg-white" readonly>
+                        <input name="radioValue" [(ngModel)]="radioValue" type="number" class="form-control bg-white">
                     </div>
                 </form>
                 <ts-radio *ngFor="let radio of radios" [color]="global.getValue('color')" [label]="radio.label" [value]="radio.value" (groupHandle)="radioGroup.applyRadioChange($event)"></ts-radio>
@@ -88,8 +88,8 @@
                         <input [value]="switchValue" type="text" class="form-control bg-white" readonly>
                     </div>
                 </form>
-                <ts-switch [color]="global.getValue('color')" [(value)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
-                <ts-switch [color]="global.getValue('color')" [(value)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
+                <ts-switch [color]="global.getValue('color')" [(ngModel)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
+                <ts-switch [color]="global.getValue('color')" [(ngModel)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
             </div>
             <div tsToggle [target]='codePadThree' class="text-primary card-footer bg-white pointer">
                 <i class="fa fa-fw fa-code"></i>查看代码

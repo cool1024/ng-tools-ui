@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { DomAttr } from '../../commons/extends/attr.class';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
     selector: 'ts-switch',
@@ -29,15 +30,25 @@ import { DomAttr } from '../../commons/extends/attr.class';
             transition: all 0.3s linear;
             margin-left: 0px;
         }`
-    ]
+    ],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => SwitchComponent),
+        multi: true
+    }]
 })
-export class SwitchComponent extends DomAttr {
+export class SwitchComponent extends DomAttr implements ControlValueAccessor {
 
     @Input() values: { open: any, close: any };
 
-    @Input() value: any;
+    // @Input() value: any;
 
-    @Output() valueChange = new EventEmitter<any>(false);
+    // @Output() valueChange = new EventEmitter<any>(false);
+
+    private value: any;
+
+    applyChange: (value: any) => void;
+
 
     constructor() {
         super();
@@ -45,13 +56,18 @@ export class SwitchComponent extends DomAttr {
         this.value = false;
     }
 
-    get isOpen(): boolean {
-        return this.value === this.values.open;
-    }
+    writeValue(value: any) { this.value = value; }
+
+    registerOnChange(fn: any): void { this.applyChange = fn; }
+
+    registerOnTouched(fn: any): void { }
+
+    get isOpen(): boolean { return this.value === this.values.open; }
 
     toggle() {
         this.value = this.isOpen ? this.values.close : this.values.open;
-        this.valueChange.emit(this.value);
+        this.applyChange(this.value);
+        // this.valueChange.emit(this.value);
     }
 
 }

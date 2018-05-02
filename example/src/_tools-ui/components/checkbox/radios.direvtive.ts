@@ -13,27 +13,33 @@ import {
     ChangeDetectorRef
 } from '@angular/core';
 import { RadioComponent } from './radio.component';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Directive({
     selector: '*[tsRadioGroup]',
     exportAs: 'tsRadioGroup',
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => RadiosDirective),
+        multi: true
+    }]
 })
-export class RadiosDirective implements AfterContentInit, OnChanges {
+export class RadiosDirective implements AfterContentInit, ControlValueAccessor {
 
-    @Input() value: any;
-    @Output() valueChange = new EventEmitter<any>(false);
+    // @Input() value: any;
+    // @Output() valueChange = new EventEmitter<any>(false);
     @ContentChildren(forwardRef(() => RadioComponent)) radioList: QueryList<RadioComponent>;
 
-    constructor(private cdRef: ChangeDetectorRef) { }
+    applyChange: (value: any) => void;
+    private value: any;
+    private isReady: boolean;
+    constructor(private cdRef: ChangeDetectorRef) {
+        this.isReady = false;
+    }
 
     ngAfterContentInit() {
         this.replyValue();
-    }
-
-    ngOnChanges(simpleChanges: SimpleChanges) {
-        if (simpleChanges.hasOwnProperty('value') && !simpleChanges.value.isFirstChange()) {
-            this.replyValue();
-        }
+        this.isReady = true;
     }
 
     replyValue() {
@@ -48,6 +54,17 @@ export class RadiosDirective implements AfterContentInit, OnChanges {
         this.cdRef.detectChanges();
     }
 
+    writeValue(value: any) {
+        this.value = value;
+        if (this.isReady) {
+            this.replyValue();
+        }
+    }
+
+    registerOnChange(fn: any): void { this.applyChange = fn; }
+
+    registerOnTouched(fn: any): void { }
+
     applyRadioValue() {
         const radioList = this.radioList.toArray();
         radioList.forEach(radio => {
@@ -59,10 +76,10 @@ export class RadiosDirective implements AfterContentInit, OnChanges {
     applyRadioChange(handle: { checked: boolean, value: any }) {
         if (handle.value !== undefined) {
             this.value = handle.checked === true ? handle.value : null;
-            this.valueChange.emit(this.value);
+            this.applyChange(this.value);
         } else if (handle.checked === true) {
             this.value = null;
-            this.valueChange.emit(this.value);
+            this.applyChange(this.value);
         }
         this.applyRadioValue();
     }
