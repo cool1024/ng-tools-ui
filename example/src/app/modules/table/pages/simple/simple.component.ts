@@ -32,7 +32,7 @@ export class SimpleComponent implements OnInit {
 
     pageChanged() {
         const apiUrl = `https://randomuser.me/api/?page=${this.pagination.page}&results=${this.pagination.limit}`;
-        this.reqeust.wihtoutHost().text(apiUrl).subscribe(res => {
+        this.reqeust.withoutHost().text(apiUrl).subscribe(res => {
             const response = JSON.parse(res);
             this.list = new Array<any>();
             response.results.forEach(user => {

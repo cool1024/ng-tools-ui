@@ -3,7 +3,6 @@ import { CoreModule } from './cores/cores.module';
 import { AppRoutingModule } from './app.routing';
 import {
     NavbarModule,
-    MenuModule,
     CssloadModule,
     DropdownModule,
     ConfirmModule,
@@ -12,6 +11,7 @@ import {
     EChartModule,
     ButtonModule,
 } from 'ng-tools-ui';
+import { MenuModule } from './../_tools-ui';
 
 import { AppComponent } from './app.component';
 

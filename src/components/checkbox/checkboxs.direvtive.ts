@@ -1,40 +1,53 @@
 import {
     Directive,
-    Input,
-    Output,
-    EventEmitter,
     QueryList,
     ContentChildren,
     forwardRef,
-    AfterContentInit,
-    OnChanges,
-    SimpleChanges,
+    AfterViewInit,
     ChangeDetectorRef,
-    DoCheck
 } from '@angular/core';
 import { CheckboxComponent } from './checkbox.component';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+
 
 @Directive({
     selector: '*[tsCheckboxGroup]',
-    exportAs: 'tsCheckboxGroup'
+    exportAs: 'tsCheckboxGroup',
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => CheckboxDirective),
+        multi: true
+    }]
 })
-export class CheckboxDirective implements AfterContentInit, OnChanges {
+export class CheckboxDirective implements AfterViewInit, ControlValueAccessor {
 
-    @Input() values: Array<any>;
-    @Output() valuesChange = new EventEmitter<any>();
+    private values: Array<any>;
+
+    private isReady: boolean;
+
     @ContentChildren(forwardRef(() => CheckboxComponent)) checkboxList: QueryList<CheckboxComponent>;
 
-    constructor(private cdRef: ChangeDetectorRef) { }
+    applyChange = (value: any) => { };
 
-    ngAfterContentInit() {
-        this.replyValue();
+    constructor(private cdRef: ChangeDetectorRef) {
+        this.values = [];
+        this.isReady = false;
     }
 
-    ngOnChanges(simpleChanges: SimpleChanges) {
-        if (simpleChanges.values && !simpleChanges.values.isFirstChange()) {
+    ngAfterViewInit() {
+        this.isReady = true;
+    }
+
+    writeValue(value: any) {
+        this.values = value;
+        if (this.isReady) {
             this.replyValue();
         }
     }
+
+    registerOnChange(fn: any): void { this.applyChange = fn; }
+
+    registerOnTouched(fn: any): void { }
 
     replyValue() {
         const checkboxList = this.checkboxList.toArray();
@@ -56,7 +69,7 @@ export class CheckboxDirective implements AfterContentInit, OnChanges {
                 this.values.push(checkbox.value);
             }
         });
-        this.valuesChange.emit(this.values);
+        this.applyChange(this.values);
         this.cdRef.detectChanges();
     }
 }

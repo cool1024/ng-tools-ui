@@ -7,10 +7,12 @@ import {
     OnChanges,
     AfterViewInit,
     ElementRef,
+    forwardRef,
 } from '@angular/core';
 import { Item } from './../../commons/interfaces/item.interface';
 import { DomAttr } from '../../commons/extends/attr.class';
 import { DropdownDirective } from '../dropdown/dropdown.directive';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
     selector: '*[tsSelects]',
@@ -58,17 +60,22 @@ import { DropdownDirective } from '../dropdown/dropdown.directive';
         .dropdown-item:after{
             text-align:center;
         }`
-    ]
+    ],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => SelectsComponent),
+        multi: true
+    }]
 })
-export class SelectsComponent extends DomAttr implements OnChanges, AfterViewInit {
+export class SelectsComponent extends DomAttr implements AfterViewInit, ControlValueAccessor {
 
     @Input() items: Array<Item>;
     @Input() placeholder: string;
-    @Input() values: any[];
+    // @Input() values: any[];
     @Input() emptyLabel: string;
     @Input() searchLabel: string;
 
-    @Output() valuesChange = new EventEmitter<any>(false);
+    // @Output() valuesChange = new EventEmitter<any>(false);
     @Output() optionChange = new EventEmitter<any>(false);
 
     @ViewChild('tsDropdown') dropdown: DropdownDirective;
@@ -77,6 +84,8 @@ export class SelectsComponent extends DomAttr implements OnChanges, AfterViewIni
     searchKey: string;
     activeItems: Array<Item>;
     private changeInside: boolean;
+    private values: any[];
+    applyChange = (value: any) => { };
 
     constructor(private elementRef: ElementRef) {
         super();
@@ -98,7 +107,36 @@ export class SelectsComponent extends DomAttr implements OnChanges, AfterViewIni
         return items;
     }
 
-    ngOnChanges() {
+    // ngOnChanges() {
+    //     if (this.changeInside) {
+    //         this.changeInside = false;
+    //     }
+    //     this.activeItems = [];
+    //     this.values.forEach(value => {
+    //         const temp = this.items.find(item => item.value === value);
+    //         if (temp !== undefined) {
+    //             this.activeItems.push(temp);
+    //         }
+    //     });
+    // }
+
+    ngAfterViewInit() {
+        const dom: HTMLElement = this.elementRef.nativeElement;
+        dom.classList.add('form-control', 'p-0');
+        if (this.sm !== null) {
+            dom.classList.add('form-control-sm');
+        }
+        if (this.lg !== null) {
+            dom.classList.add('form-control-lg');
+        }
+    }
+
+
+    writeValue(values: any) {
+        if (values === null || values === undefined) {
+            values = [];
+        }
+        this.values = values;
         if (this.changeInside) {
             this.changeInside = false;
         }
@@ -111,16 +149,9 @@ export class SelectsComponent extends DomAttr implements OnChanges, AfterViewIni
         });
     }
 
-    ngAfterViewInit() {
-        const dom: HTMLElement = this.elementRef.nativeElement;
-        dom.classList.add('form-control', 'p-0');
-        if (this.sm !== null) {
-            dom.classList.add('form-control-sm');
-        }
-        if (this.lg !== null) {
-            dom.classList.add('form-control-lg');
-        }
-    }
+    registerOnChange(fn: any): void { this.applyChange = fn; }
+
+    registerOnTouched(fn: any): void { }
 
     cleanSearch() {
         this.searchKey = '';
@@ -134,7 +165,8 @@ export class SelectsComponent extends DomAttr implements OnChanges, AfterViewIni
             this.activeItems.splice(index, 1);
         }
         this.values = this.activeItems.map<Item>(element => element.value);
-        this.valuesChange.emit(this.values);
+        // this.valuesChange.emit(this.values);
+        this.applyChange(this.values);
         this.optionChange.emit(this.activeItems);
         setTimeout(() => {
             if (!this.dropdown.isClose()) {

@@ -12,26 +12,43 @@ export class RequestService {
 
     private serverUlr: string;
     private appendHeaders: { [key: string]: string };
+    private useHeader: boolean;
 
     constructor(
         private http: HttpClient,
     ) {
         this.serverUlr = HttpConfig.SERVER_URL;
         this.appendHeaders = {};
+        this.useHeader = true;
     }
 
-    // 发送一个get请求（获取文本文件内容）
+    /**
+     * 发送一个get请求（获取文本文件内容)
+     *
+     * @param {string} url 请求地址
+     */
     text(url: string): Observable<string> {
         return this.http.request('get', this.serverUlr + url, { responseType: 'text' });
     }
 
-    // 发送一个get请求不带参数)
+    /**
+     * 发送一个get请求(不带参数)
+     *
+     * @param {string} url 接口地址
+     * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     */
     url(url: string, check = true): Observable<ApiData> {
         const observable = this.http.get<ApiData>(this.serverUlr + url, { headers: this.getHeaders() });
         return check ? observable.skipWhile(res => res.result === false) : observable;
     }
 
-    // 发送一个get请求(可带参数)
+    /**
+     * 发送一个get请求(可带参数)
+     *
+     * @param {string} url 接口地址
+     * @param {json|boolean} params 接口参数，如果这个参数是boolean类型的那么它会认为是check参数
+     * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     */
     get(url: string, params: { [key: string]: any } | boolean, check = true): Observable<ApiData> {
         if (typeof params === 'boolean') {
             check = <boolean>params;
@@ -41,7 +58,13 @@ export class RequestService {
         return check ? observable.skipWhile(res => res.result === false) : observable;
     }
 
-    // 发送一个post请求(可带参数)
+    /**
+     * 发送一个post请求(可带参数)
+     *
+     * @param {string} url 接口地址
+     * @param {json|boolean} params 接口参数，如果这个参数是boolean类型的那么它会认为是check参数
+     * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     */
     post(url: string, params?: { [key: string]: any } | boolean, check = true): Observable<ApiData> {
         if (typeof params === 'boolean') {
             check = <boolean>params;
@@ -51,8 +74,14 @@ export class RequestService {
         return check ? observable.skipWhile(res => res.result === false) : observable;
     }
 
-    // 发送一个put请求(可带参数)
-    put(url: string, params?: { [key: string]: any } | boolean, check = true, final?: () => void): Observable<ApiData> {
+    /**
+     * 发送一个put请求(可带参数)
+     *
+     * @param {string} url 接口地址
+     * @param {json|boolean} params 接口参数，如果这个参数是boolean类型的那么它会认为是check参数
+     * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     */
+    put(url: string, params?: { [key: string]: any } | boolean, check = true): Observable<ApiData> {
         if (typeof params === 'boolean') {
             check = <boolean>params;
             params = {};
@@ -61,7 +90,13 @@ export class RequestService {
         return check ? observable.skipWhile(res => res.result === false) : observable;
     }
 
-    // 发送一个delete请求(可带参数)
+    /**
+     * 发送一个delete请求(可带参数)
+     *
+     * @param {string} url 接口地址
+     * @param {json|boolean} params 接口参数，如果这个参数是boolean类型的那么它会认为是check参数
+     * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     */
     delete(url: string, params?: { [key: string]: any } | boolean, check = true): Observable<ApiData> {
         if (typeof params === 'boolean') {
             check = <boolean>params;
@@ -71,7 +106,14 @@ export class RequestService {
         return check ? observable.skipWhile(res => res.result === false) : observable;
     }
 
-    // 发送一个post请求，可附带文件（用于文件上传）
+    /**
+     * 发送一个post请求，可附带文件（用于文件上传）
+     *
+     * @param {string} url 接口地址
+     * @param {json} params 接口参数
+     * @param {Array<{ name: string, files: Array<File> }} files 上传的文件数组name为文件对应的上传参数名称，files为这个名称对应的文件数组
+     * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     */
     files(url: string, params: { [key: string]: any },
         files: Array<{ name: string, files: Array<File> }>, check = true): Observable<ApiData> {
         const observable = this.http.post<ApiData>(
@@ -79,7 +121,12 @@ export class RequestService {
         return check ? observable.skipWhile(res => res.result === false) : observable;
     }
 
-    // 发送一个post请求，可附带文件（用于文件上传，提供上传进度）
+    /**
+     * 发送一个post请求，可附带文件（用于文件上传，提供上传进度）
+     *
+     * @param {string} url 接口地址
+     * @param {Array<{ name: string, files: Array<File> }} files 上传的文件数组name为文件对应的上传参数名称，files为这个名称对应的文件数组
+     */
     upload(url: string, files: Array<{ name: string, files: Array<File> }>,
         onprogress: (value: number) => void, final: (value: ApiData) => void) {
         const req = new HttpRequest('POST', this.serverUlr + url, this.getFormdata({}, files), {
@@ -96,6 +143,12 @@ export class RequestService {
         });
     }
 
+    /**
+     * oss文件上传
+     *
+     * @param {string} url 请求接口地址
+     * @param {File} file 要上传的文件对象
+     */
     ossUpload(url: string, file: File) {
         const subject = new Subject<string>();
         this.url(url).subscribe(res => {
@@ -131,15 +184,38 @@ export class RequestService {
         return subject.asObservable();
     }
 
+    /**
+     * 设置额外的请求头
+     *
+     * @param headers 请求附带的头部参数
+     */
     withHeader(headers: { [key: string]: string }): RequestService {
         const request = new RequestService(this.http);
+        request.serverUlr = this.serverUlr;
         request.appendHeaders = headers;
+        request.useHeader = this.useHeader;
         return request;
     }
 
-    wihtoutHost() {
+    /**
+     * 不要添加统一前缀
+     */
+    withoutHost() {
         const request = new RequestService(this.http);
         request.serverUlr = '';
+        request.appendHeaders = this.appendHeaders;
+        request.useHeader = this.useHeader;
+        return request;
+    }
+
+    /**
+     * 不用添加头部数据
+     */
+    withoutHeader() {
+        const request = new RequestService(this.http);
+        request.serverUlr = this.serverUlr;
+        request.appendHeaders = this.appendHeaders;
+        request.useHeader = false;
         return request;
     }
 

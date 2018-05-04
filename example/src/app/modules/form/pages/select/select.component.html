@@ -90,7 +90,7 @@
             <div class="card-header bg-white">下拉选择</div>
             <div class="card-body">
                 <input class="form-control mb-2" type="text" [(ngModel)]="selectValue">
-                <ts-select class="form-control p-0" [color]="global.getValue('color')" [(value)]="selectValue" [items]="['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
+                <ts-select class="form-control p-0" [color]="global.getValue('color')" [(ngModel)]="selectValue" [items]="['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
                 'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
                 'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin',
                 'Düsseldorf', 'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg',
@@ -143,19 +143,19 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text">Options</label>
                     </div>
-                    <ts-select class="form-control p-0" sm [(value)]="dropdownValue" [items]="dropdowns"></ts-select>
+                    <ts-select class="form-control p-0" sm [(ngModel)]="dropdownValue" [items]="dropdowns"></ts-select>
                 </div>
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <label class="input-group-text">Options</label>
                     </div>
-                    <ts-select class="form-control p-0" [(value)]="dropdownValue" [items]="dropdowns"></ts-select>
+                    <ts-select class="form-control p-0" [(ngModel)]="dropdownValue" [items]="dropdowns"></ts-select>
                 </div>
                 <div class="input-group input-group-lg mb-2">
                     <div class="input-group-prepend">
                         <label class="input-group-text">Options</label>
                     </div>
-                    <ts-select class="form-control p-0" lg [(value)]="dropdownValue" [items]="dropdowns"></ts-select>
+                    <ts-select class="form-control p-0" lg [(ngModel)]="dropdownValue" [items]="dropdowns"></ts-select>
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@
         <div class="card">
             <div class="card-header bg-white">多选下拉</div>
             <div class="card-body">
-                <div tsSelects [items]="diySelects" [(values)]="selectValues" [color]="global.getValue('color')"></div>
+                <div tsSelects [items]="diySelects" [(ngModel)]="selectValues" [color]="global.getValue('color')"></div>
             </div>
             <div class="card-footer bg-white" tsCollapses>
                 <div tsToggle class="text-info pointer">

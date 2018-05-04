@@ -5,7 +5,7 @@ import { DomAttr } from '../../commons/extends/attr.class';
 @Component({
     selector: `ts-menu-push`,
     exportAs: 'tsMenuPush',
-    template: `<h3>
+    template: `<h3 class="mb-0">
         <button (click)="goItem(item)"
              *ngFor="let item of _items;index as i" class="{{btnClass}} btn-sm badge-pill ml-1" [class.active]="item.active">
             <span>{{item.title}}</span>

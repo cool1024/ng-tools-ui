@@ -1,8 +1,9 @@
-import { Component, Input, Output, EventEmitter, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, ViewChild, OnDestroy, forwardRef } from '@angular/core';
 import { HtmlDomService } from '../../commons/services/htmldom.service';
 import { DomAttr } from '../../commons/extends/attr.class';
 import { Toggle } from '../../commons/interfaces/toggle.interface';
 import { ToggleDirective } from '../../commons/directives/toggle.directives';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 const WEEK_DAY_NUM = 7;
 const MIN_YEAR = 1000;
@@ -107,22 +108,26 @@ const MAX_MONTH = 12;
             cursor: pointer;
         }`
     ],
-    exportAs: 'tsDatepicker'
+    exportAs: 'tsDatepicker',
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => DatepickerComponent),
+        multi: true
+    }]
 })
-export class DatepickerComponent extends DomAttr implements OnDestroy, Toggle {
+export class DatepickerComponent extends DomAttr implements OnDestroy, Toggle, ControlValueAccessor {
 
     @Input() weekTitles: string[];
 
     @Input() monthTitles: string[];
 
-
-    @Input() value: string;
+    // @Input() value: string;
 
     @Input() activeClass: string;
 
     @Input() toggleTarget: ToggleDirective;
 
-    @Output() valueChange = new EventEmitter<string>();
+    // @Output() valueChange = new EventEmitter<string>();
 
     @ViewChild('pad') pad: ElementRef;
 
@@ -140,9 +145,13 @@ export class DatepickerComponent extends DomAttr implements OnDestroy, Toggle {
 
     ticking = false;
 
+    datepickerStyle = { top: '0', left: '0', display: 'none', position: 'absolute' };
+
+    private value: string;
+
     autoHandle: () => void;
 
-    datepickerStyle = { top: '0', left: '0', display: 'none', position: 'absolute' };
+    applyChange = (value: any) => { };
 
     get days(): number[] {
         let date = new Date(this.year, this.month, 0);
@@ -205,6 +214,15 @@ export class DatepickerComponent extends DomAttr implements OnDestroy, Toggle {
         window.removeEventListener('resize', this.autoHandle);
     }
 
+
+    writeValue(value: any) {
+        this.value = value;
+    }
+
+    registerOnChange(fn: any): void { this.applyChange = fn; }
+
+    registerOnTouched(fn: any): void { }
+
     getMonth(month: number): string {
         return this.monthTitles[month - 1];
     }
@@ -213,7 +231,8 @@ export class DatepickerComponent extends DomAttr implements OnDestroy, Toggle {
         if (day <= 0) { return; }
         this.day = day;
         this.setValue();
-        this.valueChange.emit(this.value);
+        // this.valueChange.emit(this.value);
+        this.applyChange(this.value);
         this.toggle();
     }
 

@@ -49,8 +49,10 @@
         <main class="ts-content-main bg-light h-100 p-2">
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
             <div [class.d-none]="global.getValue('lazyload')">
-                <!-- <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuItems" [color]="global.getValue('color')"
-                    outline></ts-menu-push> -->
+                <div class="bg-white p-2 mb-2 border">
+                    <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuItems" [color]="global.getValue('color')"
+                        outline></ts-menu-push>
+                </div>
                 <router-outlet></router-outlet>
                 <div class="ts-footer"></div>
             </div>

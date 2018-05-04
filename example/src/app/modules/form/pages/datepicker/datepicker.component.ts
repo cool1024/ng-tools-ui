@@ -16,13 +16,13 @@ export class DatepickerComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.request.wihtoutHost().text('/assets/codes/datepicker-module.txt').subscribe(code => {
+        this.request.withoutHost().text('/assets/codes/datepicker-module.txt').subscribe(code => {
             this.codes[0] = code;
         });
-        this.request.wihtoutHost().text('/assets/codes/datepicker-html.txt').subscribe(code => {
+        this.request.withoutHost().text('/assets/codes/datepicker-html.txt').subscribe(code => {
             this.codes[1] = code;
         });
-        this.request.wihtoutHost().text('/assets/codes/datepicker-component.txt').subscribe(code => {
+        this.request.withoutHost().text('/assets/codes/datepicker-component.txt').subscribe(code => {
             this.codes[2] = code;
         });
     }

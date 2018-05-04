@@ -4,9 +4,11 @@ import {
     Output,
     EventEmitter,
     OnChanges,
+    forwardRef,
 } from '@angular/core';
 import { Item } from './../../commons/interfaces/item.interface';
 import { DomAttr, Color } from '../../commons/extends/attr.class';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
     selector: 'ts-select',
@@ -36,17 +38,20 @@ import { DomAttr, Color } from '../../commons/extends/attr.class';
         }
         .dropdown-item:hover,
         .dropdown-item:focus{
-            color: #343a40 !important;
-            background: #f8f9fa !important;
+            background: #f8f9fa;
         }
         .dropdown-item.active,
         .dropdown-item:active{
-            color: #343a40 !important;
-            background: #f8f9fa !important;
+            background: #eaeaea;
         }`
-    ]
+    ],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => SelectComponent),
+        multi: true
+    }]
 })
-export class SelectComponent extends DomAttr implements OnChanges {
+export class SelectComponent extends DomAttr implements ControlValueAccessor {
 
     title: string;
 
@@ -57,11 +62,13 @@ export class SelectComponent extends DomAttr implements OnChanges {
     @Input() disabled: boolean;
     @Input() items: Array<string | number | { value: any, text: string }>;
     @Input() placeholder: string;
-    @Input() value: any;
+    // @Input() value: any;
     @Input() emptyLabel: string;
 
-    @Output() valueChange = new EventEmitter<any>(false);
+    // @Output() valueChange = new EventEmitter<any>(false);
     @Output() optionChange = new EventEmitter<any>(false);
+    private value: any[];
+    applyChange = (value: any) => { };
 
     constructor() {
         super();
@@ -93,9 +100,18 @@ export class SelectComponent extends DomAttr implements OnChanges {
         return items;
     }
 
-    ngOnChanges() {
+    // ngOnChanges() {
+    //     this.setTitle();
+    // }
+
+    writeValue(value: any) {
+        this.value = value;
         this.setTitle();
     }
+
+    registerOnChange(fn: any): void { this.applyChange = fn; }
+
+    registerOnTouched(fn: any): void { }
 
     showActiveClass(item: Item): string {
         return item.value === this.value ? `text-${this.inLightOrDark} ${this.bgClass}` : '';
@@ -116,7 +132,8 @@ export class SelectComponent extends DomAttr implements OnChanges {
         this.title = item.text;
         this.searchKey = '';
         this.optionChange.emit(item);
-        this.valueChange.emit(item.value);
+        this.applyChange(this.value);
+        // this.valueChange.emit(item.value);
     }
 
     setSearchKey(value: string) {

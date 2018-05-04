@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.request.wihtoutHost().text('https://randomuser.me/api?results=4').subscribe(res => {
+        this.request.withoutHost().text('https://randomuser.me/api?results=4').subscribe(res => {
             const response = JSON.parse(res);
             response.results.forEach(user => {
                 this.mediaList.push({ avatar: user.picture.thumbnail, nick: user.name.first, email: user.email });

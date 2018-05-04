@@ -42,7 +42,7 @@
                 <button tsBtn sm [color]="global.getValue('color')" (click)="addCheckbox()" class="ml-3">添加选项</button>
                 <button tsBtn sm [color]="global.getValue('color')" (click)="removeCheckbox()">移除选项</button>
             </div>
-            <div tsCheckboxGroup [(values)]="checkboxValues" #checkboxGroup="tsCheckboxGroup" class="card-body">
+            <div tsCheckboxGroup [(ngModel)]="checkboxValues" #checkboxGroup="tsCheckboxGroup" class="card-body">
                 <form class="form-inline">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -120,7 +120,7 @@
                         数值
                     </button>
                 </div>
-                <input [value]="buttonValue" type="text" class="form-control bg-white" readonly>
+                <input name="buttonValue" [(ngModel)]="buttonValue" type="number" class="form-control bg-white">
             </div>
             <div class="input-group mb-3 ml-2">
                 <div class="input-group-prepend">
@@ -131,8 +131,8 @@
                 <input [value]="buttonValues" type="text" class="form-control bg-white" readonly>
             </div>
         </form>
-        <ts-btns outline [color]="global.getValue('color')" [(value)]="buttonValue" [items]="buttons"></ts-btns>
-        <ts-btns outline [multi]="true" [color]="global.getValue('color')" [(value)]="buttonValues" [items]="buttons"></ts-btns>
+        <ts-btns outline [color]="global.getValue('color')" [(ngModel)]="buttonValue" [items]="buttons"></ts-btns>
+        <ts-btns outline [multi]="true" [color]="global.getValue('color')" [(ngModel)]="buttonValues" [items]="buttons"></ts-btns>
     </div>
     <div tsToggle [target]='codePadFour' class="text-primary card-footer bg-white pointer">
         <i class="fa fa-fw fa-code"></i>查看代码

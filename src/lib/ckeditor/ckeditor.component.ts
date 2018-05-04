@@ -10,7 +10,8 @@ import {
     ViewEncapsulation,
     Output,
     EventEmitter,
-    OnInit
+    OnInit,
+    Inject,
 } from '@angular/core';
 import { ScriptService } from './../../commons/services/script.service';
 declare const window: any;
@@ -27,8 +28,6 @@ export class CkeditorComponent implements AfterViewInit, OnInit, OnChanges {
 
     @ViewChild('editor') editor: ElementRef;
 
-    @Input() srcs: string[];
-
     @Input() content: string;
 
     @Input() options: any;
@@ -43,7 +42,10 @@ export class CkeditorComponent implements AfterViewInit, OnInit, OnChanges {
 
     private ready: boolean;
 
-    constructor(private script: ScriptService) {
+    constructor(
+        private script: ScriptService,
+        @Inject('CKEDITOR_SCRIPT_SRCS') private srcs: string[]
+    ) {
         this.content = '';
         this.options = {};
     }

@@ -41,13 +41,9 @@ export class SwitchComponent extends DomAttr implements ControlValueAccessor {
 
     @Input() values: { open: any, close: any };
 
-    // @Input() value: any;
-
-    // @Output() valueChange = new EventEmitter<any>(false);
-
     private value: any;
 
-    applyChange: (value: any) => void;
+    applyChange = (value: any) => { };
 
 
     constructor() {
@@ -67,7 +63,6 @@ export class SwitchComponent extends DomAttr implements ControlValueAccessor {
     toggle() {
         this.value = this.isOpen ? this.values.close : this.values.open;
         this.applyChange(this.value);
-        // this.valueChange.emit(this.value);
     }
 
 }

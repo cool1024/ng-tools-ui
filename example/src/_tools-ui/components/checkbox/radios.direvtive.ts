@@ -1,15 +1,10 @@
 import {
     Directive,
-    Input,
-    Output,
-    EventEmitter,
     HostListener,
     QueryList,
     ContentChildren,
     forwardRef,
-    AfterContentInit,
-    OnChanges,
-    SimpleChanges,
+    AfterViewInit,
     ChangeDetectorRef
 } from '@angular/core';
 import { RadioComponent } from './radio.component';
@@ -24,21 +19,21 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
         multi: true
     }]
 })
-export class RadiosDirective implements AfterContentInit, ControlValueAccessor {
+export class RadiosDirective implements AfterViewInit, ControlValueAccessor {
 
-    // @Input() value: any;
-    // @Output() valueChange = new EventEmitter<any>(false);
+    private value: any;
+
+    private isReady: boolean;
+
     @ContentChildren(forwardRef(() => RadioComponent)) radioList: QueryList<RadioComponent>;
 
-    applyChange: (value: any) => void;
-    private value: any;
-    private isReady: boolean;
+    applyChange = (value: any) => { };
+
     constructor(private cdRef: ChangeDetectorRef) {
         this.isReady = false;
     }
 
-    ngAfterContentInit() {
-        this.replyValue();
+    ngAfterViewInit() {
         this.isReady = true;
     }
 

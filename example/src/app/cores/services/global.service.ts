@@ -5,7 +5,7 @@ export class GlobalService {
 
     private events = new Array<{ event: string, handle: (values: { [key: string]: any }) => void }>();
 
-    values: { [key: string]: any } = {};
+    private values: { [key: string]: any } = {};
 
     getValue(key: string, defaultValue: any = ''): any {
         return this.values[key] || defaultValue;
@@ -29,6 +29,13 @@ export class GlobalService {
             params[key] = this.getValueFromStorage(key);
         });
         return params;
+    }
+
+    checkValuesFromStorage(...keys: string[]): boolean {
+        return keys.findIndex(key => {
+            const value = this.getValueFromStorage(key);
+            return value === null || value === undefined;
+        }) < 0;
     }
 
     setValueToStorage(key: string, value: string) {

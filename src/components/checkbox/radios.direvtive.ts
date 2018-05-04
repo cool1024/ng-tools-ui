@@ -1,39 +1,40 @@
 import {
     Directive,
-    Input,
-    Output,
-    EventEmitter,
     HostListener,
     QueryList,
     ContentChildren,
     forwardRef,
-    AfterContentInit,
-    OnChanges,
-    SimpleChanges,
+    AfterViewInit,
     ChangeDetectorRef
 } from '@angular/core';
 import { RadioComponent } from './radio.component';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Directive({
     selector: '*[tsRadioGroup]',
     exportAs: 'tsRadioGroup',
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => RadiosDirective),
+        multi: true
+    }]
 })
-export class RadiosDirective implements AfterContentInit, OnChanges {
+export class RadiosDirective implements AfterViewInit, ControlValueAccessor {
 
-    @Input() value: any;
-    @Output() valueChange = new EventEmitter<any>(false);
+    private value: any;
+
+    private isReady: boolean;
+
     @ContentChildren(forwardRef(() => RadioComponent)) radioList: QueryList<RadioComponent>;
 
-    constructor(private cdRef: ChangeDetectorRef) { }
+    applyChange = (value: any) => { };
 
-    ngAfterContentInit() {
-        this.replyValue();
+    constructor(private cdRef: ChangeDetectorRef) {
+        this.isReady = false;
     }
 
-    ngOnChanges(simpleChanges: SimpleChanges) {
-        if (simpleChanges.hasOwnProperty('value') && !simpleChanges.value.isFirstChange()) {
-            this.replyValue();
-        }
+    ngAfterViewInit() {
+        this.isReady = true;
     }
 
     replyValue() {
@@ -48,6 +49,17 @@ export class RadiosDirective implements AfterContentInit, OnChanges {
         this.cdRef.detectChanges();
     }
 
+    writeValue(value: any) {
+        this.value = value;
+        if (this.isReady) {
+            this.replyValue();
+        }
+    }
+
+    registerOnChange(fn: any): void { this.applyChange = fn; }
+
+    registerOnTouched(fn: any): void { }
+
     applyRadioValue() {
         const radioList = this.radioList.toArray();
         radioList.forEach(radio => {
@@ -59,10 +71,10 @@ export class RadiosDirective implements AfterContentInit, OnChanges {
     applyRadioChange(handle: { checked: boolean, value: any }) {
         if (handle.value !== undefined) {
             this.value = handle.checked === true ? handle.value : null;
-            this.valueChange.emit(this.value);
+            this.applyChange(this.value);
         } else if (handle.checked === true) {
             this.value = null;
-            this.valueChange.emit(this.value);
+            this.applyChange(this.value);
         }
         this.applyRadioValue();
     }

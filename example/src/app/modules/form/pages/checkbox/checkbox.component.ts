@@ -101,7 +101,7 @@ export class ExampleComponent {
     ];
 
 }`,
-        `<ts-switch [(value)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>`,
+        `<ts-switch [(ngModel)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>`,
         `import { Component } from '@angular/core';
 
         @Component({
