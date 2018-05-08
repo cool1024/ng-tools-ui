@@ -10,10 +10,10 @@ import { Item } from '../../commons/interfaces/item.interface';
         <button (click)="page.invalid||sendChange(page.value)" [class]="btnClass">{{goTitle}}</button>
         <input ngModel #page="ngModel" [min]="1" [class.form-control-sm]="!(sm===null||sm==='false')"
         [class.form-control-lg]="!(lg===null||lg==='false')"
-            class="form-control pagination-input form-sm-control border-muted" type="number">
+            class="form-control pagination-input form-sm-control border-muted ml-1 mr-1" type="number">
     </ng-container>
     <ts-dropdown *ngIf="items" dropup [page]="outline" [lg]="lg" [sm]="sm" [color]="color" [outline]="outline"
-    [value]="pagination.limit" [items]="items" (valueChange)="changeLimit($event)"></ts-dropdown>
+    [value]="pagination.limit" [items]="items" (valueChange)="changeLimit($event)" class="mr-1"></ts-dropdown>
     <div class="btn-group mr-2" role="group">
         <button type="button" [class]="btnClass" *ngIf="!!startTitle" [class.disabled]="!pagination.hasPrev()"
         [disabled]="!pagination.hasPrev()"
@@ -119,8 +119,8 @@ export class PaginationComponent extends DomAttr implements DoCheck {
 
     ngDoCheck() { this.setPages(); }
 
-    changeLimit(limit:number){
-        this.pagination.limit=limit;
+    changeLimit(limit: number) {
+        this.pagination.limit = limit;
         this.setPages();
         this.pageChange.emit(this.pagination);
     }

@@ -193,8 +193,17 @@ export class MenuComponent extends DomAttr {
 
     setActive(menu: MenuItem) {
         this.setAllInActive();
-        menu.active = true;
-        menu.targetGroup.active = true;
+        for (let i = 0; i < this.items.length; i++) {
+            for (let j = 0; j < this.items[i].menuGroups.length; j++) {
+                for (let k = 0; k < this.items[i].menuGroups[j].menuItems.length; k++) {
+                    const temp = this.items[i].menuGroups[j].menuItems[k];
+                    if (temp.title === menu.title && temp.url === menu.url) {
+                        temp.active = true;
+                        temp.targetGroup.active = true;
+                    }
+                }
+            }
+        }
     }
 
     setAllInActive() {

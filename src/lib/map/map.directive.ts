@@ -1,8 +1,7 @@
 import { Directive, Input, ElementRef, AfterViewInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { MapService } from './map.service';
 import { DefaultConfig } from './default.config';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable ,  Subject } from 'rxjs';
 
 @Directive({
     selector: 'div[ts-map]',
