@@ -5,8 +5,7 @@ import { ApiData, SearchParams } from '../../../../cores/classes';
 import { GlobalService } from '../../../../cores/services';
 import { UserService } from '../../services/user.service';
 import { User } from './../../interfaces/user.interface';
-import 'rxjs/add/operator/skipWhile';
-import 'rxjs/add/operator/switchMap';
+import { skipWhile } from 'rxjs/operators';
 
 @Component({
     selector: 'app-user-table',
@@ -36,7 +35,7 @@ export class UserTableComponent implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.url
-            .skipWhile(() => this.router.url !== '/store/user')
+            .pipe(skipWhile(() => this.router.url !== '/store/user'))
             .subscribe(() => this.loadDatas());
     }
 

@@ -2,7 +2,7 @@ import { Injectable, Injector, ApplicationRef, ComponentFactoryResolver, Compone
 import { ConfirmComponent } from './confirm.component';
 import { ConfirmOptions } from './confirm.interface';
 import { ConfirmConfig } from './confirm.data';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ConfirmService {

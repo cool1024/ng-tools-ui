@@ -1,3 +1,9 @@
+.login-pad {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .login-pad input {
     padding: 10px;
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../../cores/services';
 import { UploadConfig } from 'ng-tools-ui';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/delay';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+
+
 // import 'rxjs/add/operator/map';
 
 @Component({
@@ -27,8 +28,7 @@ export class SimpleComponent implements OnInit {
 
     config: UploadConfig = {
         host: '',
-        uploader: file => Observable.of('https://picsum.photos/300/300/?random').delay(2000)
-
+        uploader: file => of('https://picsum.photos/300/300/?random').pipe(delay(2000))
     };
 
     imageUrl = 'https://picsum.photos/300/300?random';

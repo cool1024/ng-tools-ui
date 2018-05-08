@@ -1,7 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormService } from './../../../../cores/services/form.service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
+import { interval } from 'rxjs';
 
 @Component({
     templateUrl: './chart.component.html',
@@ -153,7 +152,7 @@ export class ChartComponent implements OnInit {
     }
 
     ngOnInit() {
-        Observable.interval(1000).subscribe(res => {
+        interval(1000).subscribe(res => {
             this.flashData.datasets[0].data.push(Math.random());
             this.flashData.labels.push(res.toString());
             if (this.flashData.labels.length > 100) {

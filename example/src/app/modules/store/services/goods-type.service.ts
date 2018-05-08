@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 import { RequestService } from '../../../cores/services/request.service';
 import { ApiData } from '../../../cores/classes/api-data.class';
 import { SearchParams } from '../../../cores/classes/search-params';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Pagination } from 'ng-tools-ui';
 import { GoodsTypeItem } from './../classes/goods-type-item.class';
 

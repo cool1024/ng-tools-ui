@@ -5,8 +5,7 @@ import { UserService } from '../../services/user.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastService, Item, DomLoad } from 'ng-tools-ui';
 import { ApiData } from '../../../../cores/classes';
-import 'rxjs/add/operator/skipWhile';
-import 'rxjs/add/operator/switchMap';
+import { switchMap, skipWhile } from 'rxjs/operators';
 
 @Component({
     selector: 'app-user-detail',
@@ -27,12 +26,10 @@ export class UserDetailComponent implements OnInit {
     ) {
         this.user = { id: 0, avatar: 'assets/images/404.jpg' };
         this.active.paramMap
-            .skipWhile(params => !params.has('id'))
-            .switchMap<ParamMap, ApiData>(params => {
+            .pipe(skipWhile(params => !params.has('id')), switchMap<ParamMap, ApiData>(params => {
                 this.user.id = parseInt(params.get('id'), 10);
                 return this.userService.getUser(this.user.id);
-            })
-            .subscribe(res => this.user = res.datas);
+            })).subscribe(res => this.user = res.datas);
     }
 
     ngOnInit() {

@@ -5,8 +5,7 @@ import { GlobalService } from '../../../../cores/services';
 import { PlatformService } from '../../services/platform.service';
 import { PlatformManager } from '../../interfaces/platform.interfaces';
 import { ApiData } from '../../../../cores/classes';
-import 'rxjs/add/operator/skipWhile';
-import 'rxjs/add/operator/switchMap';
+import { skipWhile, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-platform-detail',
@@ -26,11 +25,10 @@ export class PlatformDetailComponent implements OnInit {
         private platformService: PlatformService,
     ) {
         this.active.paramMap
-            .skipWhile(params => !params.has('id'))
-            .switchMap<ParamMap, ApiData>(params => {
+            .pipe(skipWhile(params => !params.has('id')), switchMap<ParamMap, ApiData>(params => {
                 this.platformManager.id = parseInt(params.get('id'), 10);
                 return this.platformService.getPlatformManager(this.platformManager.id);
-            })
+            }))
             .subscribe(res => this.platformManager = res.datas);
     }
 

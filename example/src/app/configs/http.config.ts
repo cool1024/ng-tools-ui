@@ -17,7 +17,8 @@ export const HttpConfig = {
         AUTH_ERROR: '权限校验失败，请提供正确的令牌',
         NETWORK_ERROR: '网络好像出问题了',
         TIMEOUT_ERROR: '服务器很久没有响应了',
-        OTHER_ERROR: '接收到一个错误的响应',
-        CHECK_ERROR: '未授权的令牌~'
+        RESPONSE_CONTENT_ERROR: '接收到一个错误的响应',
+        CHECK_ERROR: '未授权的令牌~',
+        OTHER_ERROR: '其他错误，异常的请求'
     }
 };

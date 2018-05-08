@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { OrderService } from '../../services/order.service';
 import { ApiData } from '../../../../cores/classes';
 import { Order } from '../../interfaces/order.interface';
-import 'rxjs/add/operator/switchMap';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-order-detail',
@@ -19,7 +19,7 @@ export class OrderDetailComponent implements OnInit {
         private orderService: OrderService,
     ) {
         this.active.paramMap
-            .switchMap<ParamMap, ApiData>(params => this.orderService.getOrder(parseInt(params.get('id'), 10)))
+            .pipe(switchMap<ParamMap, ApiData>(params => this.orderService.getOrder(parseInt(params.get('id'), 10))))
             .subscribe(res => this.order = res.datas);
     }
 

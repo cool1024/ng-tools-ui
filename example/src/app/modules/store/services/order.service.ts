@@ -10,7 +10,7 @@ import { RequestService } from '../../../cores/services/request.service';
 import { ApiData } from '../../../cores/classes/api-data.class';
 import { SearchParams } from '../../../cores/classes/search-params';
 // import { Goods } from '../interfaces/goods.interface';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Pagination } from 'ng-tools-ui';
 
 @Injectable()

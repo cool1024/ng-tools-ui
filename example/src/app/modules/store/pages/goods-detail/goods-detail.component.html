@@ -85,10 +85,10 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-2">
+            <div class="mt-2 m-btn">
                 <button routerLink="/store/goods" tsBtn color="white">返回列表</button>
                 <button *ngIf="goods.id===0" tsBtn loading color="success" (submit)="confirmInsert($event)">确认添加</button>
-                <button tsBtn color="success" (click)="resetForm()">添加新商品</button>
+                <button tsBtn color="warning" (click)="resetForm()">添加新商品</button>
                 <button *ngIf="goods.id>0" tsBtn loading color="primary" (submit)="confirmUpdate($event)">确认修改</button>
             </div>
         </div>
@@ -153,7 +153,7 @@
                     </table>
                 </div>
             </div>
-            <div class="mt-2">
+            <div class="mt-2 m-btn">
                 <button routerLink="/store/goods" tsBtn color="white">返回列表</button>
                 <button tsBtn loading color="primary" (submit)="confirmSave($event)">保存规格</button>
             </div>

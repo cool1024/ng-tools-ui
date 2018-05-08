@@ -2,8 +2,8 @@ export interface MenuItem {
     title: string;
     icon?: string;
     url?: string;
-    targetGroup: MenuGroup;
-    active: boolean;
+    targetGroup?: MenuGroup;
+    active?: boolean;
 }
 
 export interface MenuGroup {

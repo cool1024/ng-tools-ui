@@ -8,11 +8,10 @@ import {
     HttpErrorResponse,
     HttpParams,
 } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/timeout';
-import 'rxjs/add/operator/map';
+import { Observable, of, TimeoutError } from 'rxjs';
+import { timeout, catchError, map } from 'rxjs/operators';
+
+
 import { ToastService } from 'ng-tools-ui';
 import { HttpConfig } from '../../configs/http.config';
 import { ApiData } from '../classes/api-data.class';
@@ -40,13 +39,12 @@ export class ErrorInterceptor implements HttpInterceptor {
         request = request.clone({ params: httpParams });
 
         let handle = next.handle(request);
-
         // 后置错误拦截
-        handle = handle
-            // 请求超时
-            .timeout(timeOut)
-            // 异常处理
-            .catch(error => {
+        handle = handle.pipe(
+            // 超时处理
+            timeout(timeOut),
+            // 异常捕获
+            catchError(error => {
 
                 let errorMessage = '';
 
@@ -69,23 +67,26 @@ export class ErrorInterceptor implements HttpInterceptor {
                             break;
                         }
                         default: {
-                            errorMessage = HttpConfig.HTTP_ERRORS.OTHER_ERROR;
+                            errorMessage = HttpConfig.HTTP_ERRORS.RESPONSE_CONTENT_ERROR;
                             break;
                         }
                     }
                     errorTitle = `${error.statusText}-${error.status}`;
-                } else {
+                } else if (error instanceof TimeoutError) {
 
                     // 非服务器响应错误－－默认为timeout错误
                     errorMessage = HttpConfig.HTTP_ERRORS.TIMEOUT_ERROR;
                     errorTitle = 'TimeOut';
+                } else {
+                    errorMessage = HttpConfig.HTTP_ERRORS.OTHER_ERROR;
+                    errorTitle = 'RequestError';
                 }
 
                 this.toast.danger(errorTitle, errorMessage, HttpConfig.TOAST_ERROR_TIME);
-                return Observable.of<HttpResponse<any>>();
+                return of<HttpResponse<any>>();
 
-            })
-            .map(res => {
+            }),
+            map(res => {
 
                 if (res instanceof HttpResponse) {
 
@@ -104,7 +105,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
 
                 return res;
-            });
+            })
+        );
 
         return handle;
     }

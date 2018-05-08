@@ -115,6 +115,15 @@ $value in $theme-colors {
     }
 }
 
+.m-btn .btn{
+    margin-left: $spacer * .25;
+}
+
+.m-btn .btn:first-child{
+    margin-left: 0;
+}
+
+
 .btn-white,
 .btn-outline-white {
     color: $dark;

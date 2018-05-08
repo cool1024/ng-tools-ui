@@ -8,7 +8,8 @@
     </button>
     <div tsNavList>
         <div class="app-breadcrumb">
-            <ts-nav-breadcrumb [breadcrumbs]="breadcrumbs" (breadcrumbActiveChange)="goPage($event)"></ts-nav-breadcrumb>
+            <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuPush.items" color="light" outline></ts-menu-push>
+            <!-- <ts-nav-breadcrumb [breadcrumbs]="breadcrumbs" (breadcrumbActiveChange)="goPage($event)"></ts-nav-breadcrumb> -->
         </div>
     </div>
     <button class="badge-message mr-3" data-badge="17" src="https://png.icons8.com/ios/40/ffffff/message-group-filled.png">
@@ -48,11 +49,11 @@
         </nav>
         <main class="ts-content-main bg-light h-100 p-2">
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
+            <!-- <div class="bg-white w-100 p-2 mb-2 border">
+                <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuPush.items" [color]="global.getValue('color')"
+                    outline></ts-menu-push>
+            </div> -->
             <div [class.d-none]="global.getValue('lazyload')">
-                <div class="bg-white p-2 mb-2 border">
-                    <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuItems" [color]="global.getValue('color')"
-                        outline></ts-menu-push>
-                </div>
                 <router-outlet></router-outlet>
                 <div class="ts-footer"></div>
             </div>

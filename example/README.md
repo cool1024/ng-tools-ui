@@ -9,6 +9,9 @@
 ## Run
 ```cmd
 // default
+npm run serve
+
+// aot
 ng serve --aot
 
 // public

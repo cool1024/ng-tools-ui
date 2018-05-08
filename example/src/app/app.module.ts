@@ -10,8 +10,9 @@ import {
     MapModule,
     EChartModule,
     ButtonModule,
+    MenuModule,
 } from 'ng-tools-ui';
-import { MenuModule } from './../_tools-ui';
+// import { MenuModule } from './../_tools-ui';
 
 import { AppComponent } from './app.component';
 
@@ -25,10 +26,10 @@ import { AppComponent } from './app.component';
         ConfirmModule.forRoot({ okTitle: '确认', cancelTitle: '取消' }),
         MapModule.forRoot('bea16ad29a10b04e05e0624362d504dc'),
         EChartModule.forRoot('assets/echart/echarts.common.min.js'),
-        ToastModule.forRoot({ position: 'ts-bottom ts-right', timeout: 10000 }),
+        ToastModule.forRoot({ position: 'ts-bottom ts-right', timeout: 2000 }),
+        MenuModule.forRoot(),
         ButtonModule,
         NavbarModule,
-        MenuModule,
         CssloadModule,
         DropdownModule,
         AppRoutingModule,

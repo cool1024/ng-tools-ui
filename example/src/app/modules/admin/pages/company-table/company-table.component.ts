@@ -5,9 +5,7 @@ import { ApiData, SearchParams } from '../../../../cores/classes';
 import { GlobalService } from '../../../../cores/services';
 import { CompanyService } from '../../services/company.service';
 import { Company } from './../../interfaces/company.interfaces';
-import 'rxjs/add/operator/skipWhile';
-import 'rxjs/add/operator/switchMap';
-
+import { skipWhile, switchMap } from 'rxjs/operators';
 
 @Component({
     templateUrl: './company-table.component.html',
@@ -36,7 +34,7 @@ export class CompanyTableComponent implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.url
-            .skipWhile(() => this.router.url !== '/admin/company')
+            .pipe(skipWhile(() => this.router.url !== '/admin/company'))
             .subscribe(() => this.loadDatas());
     }
 
@@ -63,7 +61,7 @@ export class CompanyTableComponent implements OnInit {
 
     confirmDelete(company: Company) {
         this.confirm.danger('删除确认', `您确认删除商户'${company.companyName}'吗？`)
-            .switchMap<void, ApiData>(() => this.companyService.deleteCompany(company.id))
+            .pipe(switchMap<void, ApiData>(() => this.companyService.deleteCompany(company.id)))
             .subscribe(() => {
                 this.list.splice(this.list.indexOf(company), 1);
                 this.toast.success('删除成功', `成功删除商户'${company.companyName}`);

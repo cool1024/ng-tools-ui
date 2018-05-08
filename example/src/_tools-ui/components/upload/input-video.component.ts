@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { UploadConfig } from './upload.interface';
 import { DomAttr } from '../../commons/extends/attr.class';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'ts-video',

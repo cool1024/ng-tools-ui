@@ -1,7 +1,6 @@
 
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable ,  Subject } from 'rxjs';
 import { ConfirmOptions } from './confirm.interface';
 import { ConfirmConfig } from './confirm.data';
 

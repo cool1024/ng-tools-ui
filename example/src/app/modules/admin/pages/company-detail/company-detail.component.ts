@@ -5,8 +5,7 @@ import { GlobalService } from '../../../../cores/services';
 import { CompanyService } from '../../services/company.service';
 import { Company } from '../../interfaces/company.interfaces';
 import { ApiData } from '../../../../cores/classes';
-import 'rxjs/add/operator/skipWhile';
-import 'rxjs/add/operator/switchMap';
+import { skipWhile, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-company-detail',
@@ -30,11 +29,10 @@ export class CompanyDetailComponent implements OnInit {
             uploader: (file: File) => this.companyService.uploadCompayLogo(file)
         };
         this.active.paramMap
-            .skipWhile(params => !params.has('id'))
-            .switchMap<ParamMap, ApiData>(params => {
+            .pipe(skipWhile(params => !params.has('id')), switchMap<ParamMap, ApiData>(params => {
                 this.company.id = parseInt(params.get('id'), 10);
                 return this.companyService.getCompany(this.company.id);
-            })
+            }))
             .subscribe(res => this.company = res.datas);
     }
 

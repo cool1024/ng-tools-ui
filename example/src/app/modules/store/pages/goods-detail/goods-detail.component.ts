@@ -4,8 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { GlobalService } from '../../../../cores/services';
 import { GoodsSpecificationDetail, GoodsSpecification, Goods } from '../../interfaces/goods.interface';
 import { ApiData } from '../../../../cores/classes';
-import 'rxjs/add/operator/skipWhile';
-import 'rxjs/add/operator/switchMap';
+import { skipWhile, switchMap } from 'rxjs/operators';
 import { GoodsService } from '../../services/goods.service';
 
 @Component({
@@ -44,12 +43,11 @@ export class GoodsDetailComponent implements OnInit {
             queryString: '?x-oss-process=image/resize,h_130,w_130',
             uploader: (file: File) => this.goodsService.uploadGoodsImage(file)
         };
-        this.active.paramMap
-            .skipWhile(params => !params.has('id'))
-            .switchMap<ParamMap, ApiData>(params => {
+        this.active.paramMap.
+            pipe(skipWhile(params => !params.has('id')), switchMap<ParamMap, ApiData>(params => {
                 this.goods.id = parseInt(params.get('id'), 10);
                 return this.goodsService.getGoods(this.goods.id);
-            })
+            }))
             .subscribe(res => {
                 this.goods = res.datas.goods;
                 this.goodsSpecifications = res.datas.goodsSpecifications;

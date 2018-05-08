@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
-import { Pagination, MenuModel, MenuModule, MenuGroup, MenuItem, Breadcrumb } from 'ng-tools-ui';
+import { Pagination, MenuModel, MenuModule, MenuGroup, MenuItem, Breadcrumb, MenuPushService } from 'ng-tools-ui';
 import { MenuService, RequestService, GlobalService } from './cores/services';
 import { AppConfig } from './configs/app.config';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
+import { interval } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -19,6 +18,8 @@ export class AppComponent implements OnInit {
 
     menuItems = new Array<MenuItem>();
 
+    homeItem: MenuItem;
+
     menuConfig = AppConfig.MENU_CONFIG;
 
     themes = AppConfig.THEME_COLORS;
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
         private router: Router,
         private menuCtrl: MenuService,
         public global: GlobalService,
+        public menuPush: MenuPushService
     ) {
         this.global.loadStrFromStorage('color', 'primary');
         this.global.setValue('lazyload', false);
@@ -38,6 +40,10 @@ export class AppComponent implements OnInit {
             { title: '列表页面', icon: 'fa fa-fw fa-list-ul', url: '/home' },
             { title: '文件夹', icon: 'fa fa-fw fa-folder', url: '/home' },
         ];
+        this.menuPush.setDefaultItem({
+            title: '首页',
+            url: '/',
+        });
     }
 
     ngOnInit() {
@@ -52,7 +58,7 @@ export class AppComponent implements OnInit {
 
             } else if (event instanceof RouteConfigLoadEnd) {
                 // 惰性加载结束，关闭加载动画
-                Observable.interval(2000)
+                interval(2000)
                     .subscribe(() => this.global.setValue('lazyload', false));
             }
         });
@@ -394,7 +400,7 @@ export class AppComponent implements OnInit {
 
     goPage(menu: MenuItem) {
         this.router.navigateByUrl(menu.url);
-        this.menuItems.push(menu);
+        this.menuPush.setActive(menu);
     }
 
     setPage(menu: MenuItem) {

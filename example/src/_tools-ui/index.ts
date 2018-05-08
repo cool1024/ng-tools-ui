@@ -1,4 +1,3 @@
-
 /**
  * Component modules export
  */
@@ -58,6 +57,7 @@ export { ConfirmService } from './components/confirm/confirm.service';
 export { ToastService } from './components/toast/toast.service';
 export { MapService } from './lib/map/map.service';
 export { ModalService } from './components/modal/modal.service';
+export { MenuPushService } from './components/menu/menu-push.service';
 
 
 

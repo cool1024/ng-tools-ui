@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subject } from 'rxjs';
+import { skipWhile } from 'rxjs/operators';
 import { HttpConfig } from './../../configs/http.config';
 import { ApiData } from './../classes/api-data.class';
-import 'rxjs/add/operator/skipWhile';
-import { Subject } from 'rxjs/Subject';
 
 
 @Injectable()
@@ -39,7 +38,7 @@ export class RequestService {
      */
     url(url: string, check = true): Observable<ApiData> {
         const observable = this.http.get<ApiData>(this.serverUlr + url, { headers: this.getHeaders() });
-        return check ? observable.skipWhile(res => res.result === false) : observable;
+        return check ? observable.pipe(skipWhile(res => res.result === false)) : observable;
     }
 
     /**
@@ -55,7 +54,7 @@ export class RequestService {
             params = {};
         }
         const observable = this.http.get<ApiData>(this.serverUlr + url, { headers: this.getHeaders(), params: this.getParams(params) });
-        return check ? observable.skipWhile(res => res.result === false) : observable;
+        return check ? observable.pipe(skipWhile(res => res.result === false)) : observable;
     }
 
     /**
@@ -71,7 +70,7 @@ export class RequestService {
             params = {};
         }
         const observable = this.http.post<ApiData>(this.serverUlr + url, params, { headers: this.getHeaders() });
-        return check ? observable.skipWhile(res => res.result === false) : observable;
+        return check ? observable.pipe(skipWhile(res => res.result === false)) : observable;
     }
 
     /**
@@ -87,7 +86,7 @@ export class RequestService {
             params = {};
         }
         const observable = this.http.put<ApiData>(this.serverUlr + url, params, { headers: this.getHeaders() });
-        return check ? observable.skipWhile(res => res.result === false) : observable;
+        return check ? observable.pipe(skipWhile(res => res.result === false)) : observable;
     }
 
     /**
@@ -103,7 +102,7 @@ export class RequestService {
             params = {};
         }
         const observable = this.http.delete<ApiData>(this.serverUlr + url, { headers: this.getHeaders(), params: this.getParams(params) });
-        return check ? observable.skipWhile(res => res.result === false) : observable;
+        return check ? observable.pipe(skipWhile(res => res.result === false)) : observable;
     }
 
     /**
@@ -118,7 +117,7 @@ export class RequestService {
         files: Array<{ name: string, files: Array<File> }>, check = true): Observable<ApiData> {
         const observable = this.http.post<ApiData>(
             this.serverUlr + url, this.getFormdata(params, files), { headers: this.getHeaders() });
-        return check ? observable.skipWhile(res => res.result === false) : observable;
+        return check ? observable.pipe(skipWhile(res => res.result === false)) : observable;
     }
 
     /**

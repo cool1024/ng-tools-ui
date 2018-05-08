@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../../cores/services';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/timer';
-
+import { timer } from 'rxjs';
 
 @Component({
     templateUrl: './simple.component.html',
@@ -69,7 +67,7 @@ export class MyModule { }`];
     }
 
     doSubmit(btn: any) {
-        Observable.timer(2000).subscribe(() => {
+        timer(2000).subscribe(() => {
             btn.dismiss();
         });
     }

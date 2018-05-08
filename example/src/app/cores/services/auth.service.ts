@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from './request.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { GlobalService } from './global.service';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
 import { ApiData } from '../classes';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -42,13 +41,13 @@ export class AuthService {
         if (!this.global.checkValuesFromStorage('ng-params-one', 'ng-params-two', 'ng-params-three')) {
             return false;
         }
-        const params = this.global.getValuesFromStorage('ng-params-one', 'ng-params-two', 'ng-params-three')
+        const params = this.global.getValuesFromStorage('ng-params-one', 'ng-params-two', 'ng-params-three');
         return this.request
             .withoutHeader()
             .post('', params)
-            .map<ApiData, boolean>(res => {
+            .pipe(map<ApiData, boolean>(res => {
                 res.result ? this.setIn() : this.setOut();
                 return res.result;
-            });
+            }));
     }
 }

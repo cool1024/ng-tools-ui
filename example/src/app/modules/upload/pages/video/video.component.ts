@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../../cores/services';
 import { UploadConfig } from 'ng-tools-ui';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/map';
+import { interval } from 'rxjs';
+import { take, map } from 'rxjs/operators';
+
+
+
 
 @Component({
     templateUrl: './video.component.html',
@@ -29,9 +30,10 @@ export class VideoComponent implements OnInit {
     config: UploadConfig = {
         host: '',
         progresser: file => {
-            return Observable.interval(100)
-                .take(101)
-                .map<number, number | string>(res => res < 100 ? res : 'https://cool1024.com/upload/47e0b428f30fde9a0395b18e6db62ddd.mp4');
+            return interval(100).pipe(
+                take(101),
+                map<number, number | string>((res) => res < 100 ? res : 'https://cool1024.com/upload/47e0b428f30fde9a0395b18e6db62ddd.mp4')
+            );
         }
     };
 

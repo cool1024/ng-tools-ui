@@ -5,9 +5,7 @@ import { ApiData, SearchParams } from '../../../../cores/classes';
 import { GlobalService } from '../../../../cores/services';
 import { PlatformService } from '../../services/platform.service';
 import { PlatformManager } from './../../interfaces/platform.interfaces';
-import 'rxjs/add/operator/skipWhile';
-import 'rxjs/add/operator/switchMap';
-
+import { skipWhile, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-platform-table',
@@ -37,7 +35,7 @@ export class PlatformTableComponent implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.url
-            .skipWhile(() => this.router.url !== '/admin/platform')
+            .pipe(skipWhile(() => this.router.url !== '/admin/platform'))
             .subscribe(() => this.loadDatas());
     }
 
@@ -64,7 +62,7 @@ export class PlatformTableComponent implements OnInit {
 
     confirmDelete(platformManager: PlatformManager) {
         this.confirm.danger('删除确认', `您确认删除管理员'${platformManager.platformManagerName}'吗？`)
-            .switchMap<void, ApiData>(() => this.platformService.deletePlatformManager(platformManager.id))
+            .pipe(switchMap<void, ApiData>(() => this.platformService.deletePlatformManager(platformManager.id)))
             .subscribe(() => {
                 this.list.splice(this.list.indexOf(platformManager), 1);
                 this.toast.success('删除成功', `成功删除管理员'${platformManager.platformManagerName}`);
