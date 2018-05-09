@@ -8,19 +8,21 @@ import {
     HttpErrorResponse,
     HttpParams,
 } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable, of, TimeoutError } from 'rxjs';
 import { timeout, catchError, map } from 'rxjs/operators';
-
-
 import { ToastService } from 'ng-tools-ui';
 import { HttpConfig } from '../../configs/http.config';
-import { ApiData } from '../classes/api-data.class';
+import { ApiData, ApiResponse } from '../classes/api-data.class';
+import { GlobalService } from './global.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
     constructor(
         private toast: ToastService,
+        private global: GlobalService,
+        private router: Router,
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -56,6 +58,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     switch (error.status) {
                         case 401: {
                             errorMessage = HttpConfig.HTTP_ERRORS.AUTH_ERROR;
+                            this.router.navigateByUrl(HttpConfig.AUTH_ERROR_URL);
                             break;
                         }
                         case 404: {
@@ -73,8 +76,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                     }
                     errorTitle = `${error.statusText}-${error.status}`;
                 } else if (error instanceof TimeoutError) {
-
-                    // 非服务器响应错误－－默认为timeout错误
                     errorMessage = HttpConfig.HTTP_ERRORS.TIMEOUT_ERROR;
                     errorTitle = 'TimeOut';
                 } else {
@@ -83,18 +84,22 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
 
                 this.toast.danger(errorTitle, errorMessage, HttpConfig.TOAST_ERROR_TIME);
-                return of<HttpResponse<any>>();
+                return of<HttpResponse<string>>(new HttpResponse<string>({
+                    status: 200,
+                    body: (new ApiData(false, errorMessage).toJsonString())
+                }));
 
             }),
             map(res => {
 
                 if (res instanceof HttpResponse) {
-
-                    if (res.body != null && res.body.result != null) {
+                    if (res.body !== null && ApiResponse.isApiResponse(res.body)) {
                         const apiData = new ApiData(res.body.result, res.body.message, res.body.datas);
                         if (apiData.result === false) {
                             if (apiData.messageStr !== HttpConfig.HTTP_ERRORS.CHECK_ERROR) {
                                 this.toast.warning('操作失败', apiData.messageStr, HttpConfig.TOAST_ERROR_TIME);
+                            } else {
+                                this.toast.info('登入过期', '您的登入已经过期，请登入～', HttpConfig.TOAST_ERROR_TIME);
                             }
                         }
                         res = res.clone<ApiData>({ body: apiData });

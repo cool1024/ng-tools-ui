@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
+import { GuardService } from './cores/services';
 
 const routes: Routes = [
 
@@ -8,7 +9,7 @@ const routes: Routes = [
 
     // 懒加载子模块
     { path: 'dashboard', loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule' },
-    { path: 'form', loadChildren: 'app/modules/form/form.module#FormModule' },
+    { path: 'form', loadChildren: 'app/modules/form/form.module#FormModule', canActivate: [GuardService] },
     { path: 'upload', loadChildren: 'app/modules/upload/upload.module#UploadModule' },
     { path: 'pad', loadChildren: 'app/modules/pad/pad.module#PadModule' },
     { path: 'table', loadChildren: 'app/modules/table/table.module#TableModule' },
@@ -27,7 +28,7 @@ const routes: Routes = [
         RouterModule.forRoot(routes, {
             enableTracing: false,
             // preloadingStrategy: PreloadAllModules,
-            useHash: false
+            useHash: true
         })
     ],
     exports: [

@@ -4,7 +4,7 @@
 [https://www/cool1024.com/ng](https://www/cool1024.com/ng)
 
 ## Build
-`ng build -bh /ng/ -d //www.cool1024.com/ng/ --prod`
+`ng build --base-href /ng/ --deploy-url //www.cool1024.com/ng/ --prod`
 
 ## Run
 ```cmd

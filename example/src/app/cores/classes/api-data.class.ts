@@ -28,3 +28,12 @@ export class ApiData {
         return message;
     }
 }
+export class ApiResponse {
+
+    static isApiResponse(resBody: any): boolean {
+        return typeof resBody === 'object'
+            && resBody.hasOwnProperty('result')
+            && resBody.hasOwnProperty('message')
+            && typeof resBody.result === 'boolean';
+    }
+}

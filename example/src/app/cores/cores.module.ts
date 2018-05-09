@@ -9,6 +9,8 @@ import {
     RequestService,
     ErrorInterceptor,
     GlobalService,
+    GuardService,
+    AuthService,
 } from './services';
 
 @NgModule({
@@ -23,15 +25,17 @@ export class CoreModule {
         return {
             ngModule: CoreModule,
             providers: [
+                FormService,
                 MenuService,
                 GlobalService,
-                FormService,
                 RequestService,
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: ErrorInterceptor,
                     multi: true,
-                }
+                },
+                AuthService,
+                GuardService,
             ]
         };
     }
