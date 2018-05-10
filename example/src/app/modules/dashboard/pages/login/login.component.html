@@ -38,7 +38,7 @@
                     <span class="pull-right text-muted ">忘记密码？</span>
                 </div>
                 <div class="p-4"></div>
-                <button (click)="confirmLogin()" type="button " class="btn btn-lg btn-{{global.getValue('color')}} btn-block">登入</button>
+                <button tsBtn lg loading [color]="global.getValue('color')" (submit)="confirmLogin($event)" class="btn-block">登入</button>
             </div>
             <div class="card-footer bg-white text-center">
                 <p class="mt-1 mb-0">Copyright © 2016 XiaoJian. All Rights Reserved.

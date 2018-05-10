@@ -26,6 +26,7 @@ export class AuthService {
 
     setOut() {
         this.loginState = false;
+        this.global.cleanAllStorage();
         this.router.navigateByUrl('/dashboard/login');
     }
 

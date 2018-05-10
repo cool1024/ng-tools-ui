@@ -59,6 +59,10 @@ export class GlobalService {
         this.setValue(key, parseInt(temp, 10));
     }
 
+    cleanAllStorage() {
+        localStorage.clear();
+    }
+
     private applyEvent(key: string) {
         this.events.forEach(event => {
             if (event.event === key) {

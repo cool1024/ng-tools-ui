@@ -9,12 +9,12 @@ import {
     ToastModule,
     MapModule,
     EChartModule,
-    ButtonModule,
     MenuModule,
 } from 'ng-tools-ui';
 // import { MenuModule } from './../_tools-ui';
 
 import { AppComponent } from './app.component';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 
 @NgModule({
@@ -28,11 +28,11 @@ import { AppComponent } from './app.component';
         EChartModule.forRoot('assets/echart/echarts.common.min.js'),
         ToastModule.forRoot({ position: 'ts-bottom ts-right', timeout: 2000 }),
         MenuModule.forRoot(),
-        ButtonModule,
         NavbarModule,
         CssloadModule,
         DropdownModule,
         AppRoutingModule,
+        DashboardModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
