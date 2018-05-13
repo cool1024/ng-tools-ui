@@ -1,5 +1,11 @@
 # ng-tools-ui
-A bootstrap4.0 UI for angular4.0+
+
+A bootstrap4.0 UI for angular 6.0
+
+## example
+
+example usage :[https://www.cool1024.com/ng](https://www.cool1024.com/ng)<br>
+![preview](https://github.com/BeauitfullXiaoJian/cool1024/blob/master/public/home/preview.png?raw=true)
 
 ## Install
 
@@ -11,16 +17,13 @@ npm install ng-tools-ui --save
 
 ### Include bootstrap4.0 css , tools-ui.css and font-awesome
 
-
 ```
 npm install bootstrap --save
 
 npm install font-awesome --save
 ```
 
-
 If you're using the Angular CLI, you can add this to your styles.css:
-
 
 ```css
 @import "~bootstrap/dist/css/bootstrap.min.css";
@@ -28,7 +31,7 @@ If you're using the Angular CLI, you can add this to your styles.css:
 @import "~font-awesome/css/font-awesome.min.css";
 ```
 
-or add the follow code in your `.angular-cli.json` file.
+or add the follow code in your `angular.json` file.
 
 ```json
 ...
@@ -40,7 +43,6 @@ or add the follow code in your `.angular-cli.json` file.
         "styles.css"
       ],
 ...
-
 ```
 
 Usage
