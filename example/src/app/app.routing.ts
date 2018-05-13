@@ -8,7 +8,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'dashboard/home', pathMatch: 'full' },
 
     // 懒加载子模块
-    // { path: 'dashboard', loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule' },
+    { path: 'dashboard', loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule' },
     { path: 'form', loadChildren: 'app/modules/form/form.module#FormModule', canActivate: [GuardService] },
     { path: 'upload', loadChildren: 'app/modules/upload/upload.module#UploadModule' },
     { path: 'pad', loadChildren: 'app/modules/pad/pad.module#PadModule' },
@@ -28,7 +28,7 @@ const routes: Routes = [
         RouterModule.forRoot(routes, {
             enableTracing: false,
             // preloadingStrategy: PreloadAllModules,
-            useHash: true
+            useHash: false
         })
     ],
     exports: [

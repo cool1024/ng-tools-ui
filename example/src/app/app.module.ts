@@ -11,10 +11,8 @@ import {
     EChartModule,
     MenuModule,
 } from 'ng-tools-ui';
-// import { MenuModule } from './../_tools-ui';
 
 import { AppComponent } from './app.component';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 
 @NgModule({
@@ -32,7 +30,6 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
         CssloadModule,
         DropdownModule,
         AppRoutingModule,
-        DashboardModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
