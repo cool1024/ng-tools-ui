@@ -34,7 +34,7 @@ export class GlobalService {
     checkValuesFromStorage(...keys: string[]): boolean {
         return keys.findIndex(key => {
             const value = this.getValueFromStorage(key);
-            return value === null || value === undefined;
+            return value === '';
         }) < 0;
     }
 

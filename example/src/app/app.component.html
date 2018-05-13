@@ -12,11 +12,10 @@
             <!-- <ts-nav-breadcrumb [breadcrumbs]="breadcrumbs" (breadcrumbActiveChange)="goPage($event)"></ts-nav-breadcrumb> -->
         </div>
     </div>
-    <button class="badge-message mr-3" data-badge="17" src="https://png.icons8.com/ios/40/ffffff/message-group-filled.png">
-    </button>
+    <button class="badge-message mr-3" data-badge="17"></button>
     <div tsDropdown diy>
-        <button tsToggle class="btn btn-link">
-            <img height="30" src="https://png.icons8.com/ios/40/ffffff/name-filled.png">
+        <button tsToggle class="btn btn-link rounded-0">
+            <img height="30" src="assets/images/icon/name-filled.png">
         </button>
         <div tsDropMenu [offsetX]="-50" [offsetY]="10">
             <button (click)="signOut()" class="dropdown-item">
@@ -30,7 +29,7 @@
         </div>
     </div>
     <div tsDropdown>
-        <button tsToggle class="btn btn-link">
+        <button tsToggle class="btn btn-link rounded-0">
             <img height="30" src="https://png.icons8.com/ios-glyphs/50/ffffff/paint-palette.png">
         </button>
         <div tsDropMenu [offsetX]="-90" [offsetY]="10">

@@ -13,7 +13,7 @@ import {
   Breadcrumb,
   MenuPushService
 } from "ng-tools-ui";
-import { MenuService, RequestService, GlobalService } from "./cores/services";
+import { MenuService, RequestService, GlobalService, AuthService } from "./cores/services";
 import { AppConfig } from "./configs/app.config";
 import { interval } from "rxjs";
 
@@ -41,7 +41,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private menuCtrl: MenuService,
     public global: GlobalService,
-    public menuPush: MenuPushService
+    public menuPush: MenuPushService,
+    private auth: AuthService,
   ) {
     this.global.loadStrFromStorage("color", "primary");
     this.global.setValue("lazyload", false);
@@ -406,7 +407,7 @@ export class AppComponent implements OnInit {
   }
 
   signOut() {
-    this.router.navigateByUrl("/dashboard/login");
+    this.auth.setOut();
   }
 
   goPage(menu: MenuItem) {

@@ -40,6 +40,7 @@ export class AuthService {
 
     checkToken(): Observable<boolean> | boolean {
         if (!this.global.checkValuesFromStorage(...HttpConfig.AUTH_HEADER_PARAMS)) {
+            this.router.navigateByUrl('/dashboard/login');
             return false;
         }
         const params = this.global.getValuesFromStorage(...HttpConfig.AUTH_HEADER_PARAMS);
