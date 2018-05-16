@@ -9,6 +9,7 @@ const routes: Routes = [
 
     // 懒加载子模块
     { path: 'dashboard', loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule' },
+    { path: 'system', loadChildren: 'app/modules/system/system.module#SystemModule' },
     { path: 'form', loadChildren: 'app/modules/form/form.module#FormModule' },
     { path: 'upload', loadChildren: 'app/modules/upload/upload.module#UploadModule', canActivate: [GuardService] },
     { path: 'pad', loadChildren: 'app/modules/pad/pad.module#PadModule', canActivate: [GuardService] },

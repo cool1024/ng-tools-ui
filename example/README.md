@@ -6,6 +6,9 @@
 ## Build
 `ng build --base-href /ng/ --deploy-url //www.cool1024.com/ng/ --prod`
 
+## Analyse
+`ng build --stats-json`
+
 ## Run
 ```cmd
 // default
