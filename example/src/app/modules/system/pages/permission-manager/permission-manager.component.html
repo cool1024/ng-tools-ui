@@ -1,0 +1,61 @@
+<div class="card rounded-0 m-btn">
+    <div class="card-header bg-white">系统权限管理</div>
+    <div class="card-body">
+        <button (click)="editPermissionGroup()" tsBtn color="success">新增权限组</button>
+        <button (click)="loadDatas()" class="btn btn-white">
+            <i class="fa fa-refresh fa-fw"></i>刷新数据
+        </button>
+    </div>
+</div>
+<div class="card mt-2" tsCollapses>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr class="bg-light">
+                    <th scope="col">#</th>
+                    <th scope="col">分类名称</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let permissionGroup of permissionGroups;index as i">
+                    <tr class="border-0">
+                        <td>{{i+1}}</td>
+                        <td>
+                            {{permissionGroup.permissionGroupName}}
+                        </td>
+                        <td>
+                            <a (click)="editPermission(itpermissionGroupm)" class="btn-icon btn-icon-primary">
+                                <i class="fa fa-lg fa-fw fa-plus-square-o align-middle"></i>
+                            </a>
+                            <a (click)="deletePermissionGroup(permissionGroup)" class="btn-icon btn-icon-danger">
+                                <i class="fa fa-lg fa-fw fa-trash-o align-middle"></i>
+                            </a>
+                            <a (click)="editPermissionGroup(permissionGroup)" class="btn-icon btn-icon-info">
+                                <i class="fa fa-lg fa-fw fa-edit align-middle"></i>
+                            </a>
+                            <a tsToggle class="btn-icon btn-icon-dark">
+                                <i class="fa fa-lg fa-fw fa-bars align-middle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="border-0">
+                        <td class="pt-0 pb-0 border-0"></td>
+                        <td colspan="3" class="pt-0 pb-0 border-0 pl-2">
+                            <div tsCollapse class="form-inline">
+                                <div *ngFor="let permission of permissions;" class="input-group ml-1 mb-3" style="width:10rem;">
+                                    <input type="text" class="form-control" [(ngModel)]="permission.permissionName">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-white" type="button">
+                                            <i class="fa fa-fw fa-trash-o"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+</div>

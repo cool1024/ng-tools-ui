@@ -12,6 +12,7 @@ import {
     CheckboxModule,
     ImageModule,
     CssloadModule,
+    CollapseModule,
 } from 'ng-tools-ui';
 
 /*路由模块*/
@@ -28,10 +29,7 @@ import { SystemRoutingModule, declarationComponents, entryComponents } from './s
         DatePickerModule,
         PaginationModule,
         ConfirmModule,
-        UploadModule,
-        CheckboxModule,
-        CssloadModule,
-        ImageModule,
+        CollapseModule,
         SystemRoutingModule,
     ],
     declarations: [
