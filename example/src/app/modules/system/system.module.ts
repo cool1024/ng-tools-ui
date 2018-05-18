@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-/*tool-ui*/
+/**
+ * tool-ui
+ */
 import {
     ButtonModule,
     ModalModule,
@@ -15,11 +17,15 @@ import {
     CollapseModule,
 } from 'ng-tools-ui';
 
-/*路由模块*/
+/**
+ * 路由模块
+ */
 import { SystemRoutingModule, declarationComponents, entryComponents } from './system.routing';
 
-/*服务列表*/
-
+/**
+ * 服务列表
+ */
+import { PermissionService } from './services/permission.service';
 
 @NgModule({
     imports: [
@@ -36,10 +42,10 @@ import { SystemRoutingModule, declarationComponents, entryComponents } from './s
         declarationComponents,
     ],
     entryComponents: [
-        entryComponents
+        entryComponents,
     ],
     providers: [
-
+        PermissionService,
     ]
 
 })

@@ -6,5 +6,12 @@ export interface PermissionGroup {
 export interface Permission {
     id: number;
     permissionName: string;
+    permissionKey: string;
     permissionGroupId: number;
+}
+
+export interface PermissionGroupItem {
+    permissionGroup: PermissionGroup;
+    permissions: Permission[];
+    open: boolean;
 }

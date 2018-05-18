@@ -66,4 +66,11 @@ export class FormService {
         });
         return attrs;
     }
+
+    /**
+     * 默认trackFunc
+     */
+    trackById(item): number {
+        return item.id;
+    }
 }

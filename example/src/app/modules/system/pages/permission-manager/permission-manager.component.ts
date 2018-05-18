@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PermissionGroup, Permission } from '../../interfaces/permission.interface';
+import { FormService } from './../../../../cores/services';
+import { PermissionGroupItem, PermissionGroup } from '../../interfaces/permission.interface';
 import { ModalService, ConfirmService } from 'ng-tools-ui';
 import { PermissionModalComponent } from './permission-modal.component';
+import { PermissionService } from '../../services/permission.service';
 
 @Component({
     templateUrl: './permission-manager.component.html',
@@ -9,26 +11,24 @@ import { PermissionModalComponent } from './permission-modal.component';
 })
 export class PermissionManagerComponent implements OnInit {
 
-    permissionGroups = new Array<PermissionGroup>();
-
-    permissions = new Array<Permission>();
+    permissionGroupItems = new Array<PermissionGroupItem>();
 
     constructor(
         private modal: ModalService,
         private confirm: ConfirmService,
+        private permissionService: PermissionService,
+        public form: FormService,
     ) { }
 
     ngOnInit() {
-        this.permissionGroups.push({ id: 1, permissionGroupName: '上班，不存在的' });
-        this.permissions.push({ id: 2, permissionGroupId: 1, permissionName: '新权限1' });
-        this.permissions.push({ id: 2, permissionGroupId: 1, permissionName: '新权限2' });
+        this.loadDatas();
     }
 
     /**
      * 重新载入数据
      */
     loadDatas() {
-
+        this.permissionService.getAllPermission().subscribe(items => this.permissionGroupItems = items);
     }
 
     /**

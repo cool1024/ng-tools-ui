@@ -18,7 +18,7 @@ import { ModalService } from 'ng-tools-ui';
     </div>
     <div class="modal-footer">
         <button (click)="modal.dismiss()" type="button" class="btn btn-white">取消</button>
-        <button tsBtn loading color="primary" (submit)="confirmSave($event)" [disabled]="!!permissionGroup">确认保存</button>
+        <button tsBtn loading color="primary" (submit)="confirmSave($event)" [disabled]="!permissionGroup.permissionGroupName">确认保存</button>
     </div>`,
 })
 export class PermissionModalComponent {
