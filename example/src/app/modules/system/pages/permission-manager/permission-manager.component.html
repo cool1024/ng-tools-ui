@@ -43,13 +43,11 @@
                         <td class="pt-0 pb-0 border-0"></td>
                         <td colspan="3" class="pt-0 pb-0 border-0 pl-2">
                             <div tsCollapse [open]="permissionGroupItem.open" class="form-inline">
-                                <div *ngFor="let permission of permissionGroupItem.permissions" class="input-group ml-1 mb-3" style="width:10rem;">
-                                    <input type="text" class="form-control" [(ngModel)]="permission.permissionName">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-white" type="button">
-                                            <i class="fa fa-fw fa-trash-o"></i>
-                                        </button>
-                                    </div>
+                                <div *ngFor="let permission of permissionGroupItem.permissions" class="btn-group ml-1 mb-3" style="width:10rem;">
+                                    <button tsBtn (click)="editPermission(permissionGroupItem.permissionGroup,permission)">{{permission.permissionName}}</button>
+                                    <button tsBtn (click)="deletePermission(permission)">
+                                        <i class="fa fa-fw fa-trash-o"></i>
+                                    </button>
                                 </div>
                             </div>
                         </td>

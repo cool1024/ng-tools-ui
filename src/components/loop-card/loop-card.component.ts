@@ -21,7 +21,7 @@ import { LoopCard, LoopCardConfig } from './loop-card.interface';
             <span [class.d-none]="loopCard.active !== true" class="pull-left badge badge-success">{{config.successTitle}}</span>
             <button (click)="save()" type="button" class="btn btn-sm btn-info">
                 <i class="fa fa-check fa-fw"></i>{{config.saveTitle}}</button>
-            <button (click)="remove()" type="button" class="btn btn-sm btn-danger">
+            <button (click)="remove()" type="button" class="btn ml-1 btn-sm btn-danger">
                 <i class="fa fa-close fa-fw"></i>{{config.removeTitle}}</button>
         </div>
     </div>`

@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
             <video class="m-0 p-0 rounded-0 border border-muted w-100 h-100" [src]="realSrc" controls="true"></video>
         </div>
         <div *ngIf="showVideo&&!showLoading&&type==='audio'"
-            [style.width]="videoSize[0]" [style.height]="videoSize[1]" class="border border-muted d-inline-block">
+            [style.width]="videoSize[0]" [style.height]="videoSize[1]" class="d-inline-block">
             <audio class="m-0 p-0 rounded-0 w-100" [src]="realSrc" controls="true"></audio>
         </div>
         <div *ngIf="showLoading"
