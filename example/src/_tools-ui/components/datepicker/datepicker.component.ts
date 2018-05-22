@@ -121,13 +121,9 @@ export class DatepickerComponent extends DomAttr implements OnDestroy, Toggle, C
 
     @Input() monthTitles: string[];
 
-    // @Input() value: string;
-
     @Input() activeClass: string;
 
     @Input() toggleTarget: ToggleDirective;
-
-    // @Output() valueChange = new EventEmitter<string>();
 
     @ViewChild('pad') pad: ElementRef;
 
@@ -217,6 +213,14 @@ export class DatepickerComponent extends DomAttr implements OnDestroy, Toggle, C
 
     writeValue(value: any) {
         this.value = value;
+        let date = new Date(this.value);
+        if (!date.getFullYear()) {
+            date = new Date();
+        }
+        this.year = date.getFullYear();
+        this.month = date.getMonth() + 1;
+        this.day = date.getDate();
+        this.setValue();
     }
 
     registerOnChange(fn: any): void { this.applyChange = fn; }
@@ -231,7 +235,6 @@ export class DatepickerComponent extends DomAttr implements OnDestroy, Toggle, C
         if (day <= 0) { return; }
         this.day = day;
         this.setValue();
-        // this.valueChange.emit(this.value);
         this.applyChange(this.value);
         this.toggle();
     }
