@@ -7,14 +7,11 @@ import { FormsModule } from '@angular/forms';
 import {
     ButtonModule,
     ModalModule,
-    DatePickerModule,
     PaginationModule,
     ConfirmModule,
-    UploadModule,
     CheckboxModule,
-    ImageModule,
-    CssloadModule,
     CollapseModule,
+    TabModule,
 } from 'ng-tools-ui';
 
 /**
@@ -26,16 +23,17 @@ import { SystemRoutingModule, declarationComponents, entryComponents } from './s
  * 服务列表
  */
 import { PermissionService } from './services/permission.service';
+import { MenuService } from './services/menu.service';
 
 @NgModule({
     imports: [
         FormsModule,
         ButtonModule,
         ModalModule,
-        DatePickerModule,
         PaginationModule,
         ConfirmModule,
         CollapseModule,
+        TabModule,
         SystemRoutingModule,
     ],
     declarations: [
@@ -46,6 +44,7 @@ import { PermissionService } from './services/permission.service';
     ],
     providers: [
         PermissionService,
+        MenuService,
     ]
 
 })

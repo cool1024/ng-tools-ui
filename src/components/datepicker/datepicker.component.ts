@@ -54,7 +54,7 @@ const MAX_MONTH = 12;
                                         <i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>
                                     </button>
                                 </div>
-                                <div class="btn-group mr-1">
+                                <div class="btn-group ml-1">
                                     <button (click)="prevMonth()" class="{{btnClass}} btn-sm">
                                         <i class="fa fa-angle-left fa-fw" aria-hidden="true"></i>
                                     </button>

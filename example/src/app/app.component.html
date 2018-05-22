@@ -30,7 +30,7 @@
     </div>
     <div tsDropdown>
         <button tsToggle class="btn btn-link rounded-0">
-            <img height="30" src="https://png.icons8.com/ios-glyphs/50/ffffff/paint-palette.png">
+            <img height="30" src="assets/images/icon/paint-palette.png">
         </button>
         <div tsDropMenu [offsetX]="-90" [offsetY]="10">
             <button *ngFor="let theme of themes" (click)="changeTheme(theme.CLASS)" class="dropdown-item text-{{theme.CLASS}}">
