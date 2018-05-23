@@ -63,7 +63,7 @@ export class MyModule { }
 
 >use sass,you will not need include bootstrap.css,use the follow file replace
 
-```
+```scss
 /**
  * tools-ui.scss
  */
