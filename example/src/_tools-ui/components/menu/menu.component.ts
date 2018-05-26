@@ -7,8 +7,8 @@ import { DomAttr } from '../../commons/extends/attr.class';
     selector: `ts-menu`,
     exportAs: 'tsMenu',
     template: `
-    <div class="h-100 menu-bg" [ngStyle]="{backgroundImage:config.BACKGROUND_IMAGE_SRC}">
-        <div class="h-100 w-100 pt-2" [ngStyle]="{backgroundColor:config.BACKGROUND_COLOR,color:config.DEFAULT_TEXT_COLOR}">
+    <div class="h-100 tsmenu-bg" [ngStyle]="{backgroundImage:config.BACKGROUND_IMAGE_SRC}">
+        <div class="h-100 w-100 pt-2 ts-menu-fill" [ngStyle]="{backgroundColor:config.BACKGROUND_COLOR,color:config.DEFAULT_TEXT_COLOR}">
             <div class="media pl-3 mb-3 pt-3" *ngIf="avatars">
                 <img class="mr-2 rounded-circle" [src]="avatars[0]" height="40" width="40" alt="Avatar ">
                 <div class="media-body">
@@ -53,7 +53,10 @@ import { DomAttr } from '../../commons/extends/attr.class';
     </div>`,
     styles: [
         `
-        .menu-bg{
+        .ts-menu-fill{
+            overflow-y:auto;
+        }
+        .ts-menu-bg{
             background-size:cover;
         }
         .ts-icon-sm{

@@ -10,11 +10,12 @@ import {
     MenuModel,
     MenuGroup,
     MenuItem,
-    MenuPushService
+    // MenuPushService
 } from 'ng-tools-ui';
 import { MenuService, RequestService, GlobalService, AuthService } from './cores/services';
 import { AppConfig } from './configs/app.config';
 import { interval } from 'rxjs';
+import { MenuPushService } from './../_tools-ui';
 
 @Component({
     selector: 'app-root',
