@@ -50,6 +50,10 @@ export class GoodsTypesComponent implements OnInit {
     }
 
     deleteChildType(typeItem: GoodsTypeItem, index: number) {
+        if (typeItem.childTypes[index].id === 0) {
+            typeItem.childTypes.splice(index, 1);
+            return;
+        }
         this.confirm.danger('确认删除', `确认删除分类：'${typeItem.childTypes[index].goodsTypeTitle}'`)
             .subscribe(() => {
                 this.goodsTypeService.deleteGoodsType(typeItem.childTypes[index].id)
@@ -67,6 +71,10 @@ export class GoodsTypesComponent implements OnInit {
     }
 
     deleteType(typeItem: GoodsTypeItem, index: number) {
+        if (typeItem.mainType.id === 0) {
+            this.list.splice(index, 1);
+            return;
+        }
         this.confirm.danger('确认删除', `确认删除分类：'${typeItem.mainType.goodsTypeTitle}',分类下的所有子分类都会被删除!`)
             .subscribe(() => {
                 this.goodsTypeService.deleteGoodsType(typeItem.mainType.id)

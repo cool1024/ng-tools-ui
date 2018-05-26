@@ -98,7 +98,7 @@
                                 <span class="text-success">{{td.balance}}</span>
                             </td>
                             <td>{{td.mobile||'未设置'}}</td>
-                            <td>{{td.createdAt|date:'yyyy/MM/dd'}}</td>
+                            <td>{{td.createdAt.substring(0,10)|date:'yyyy/MM/dd'}}</td>
                             <td>
                                 <!-- <a class="btn-icon btn-icon-primary">
                                     <i class="fa fa-lg fa-fw fa-ellipsis-h align-middle"></i>

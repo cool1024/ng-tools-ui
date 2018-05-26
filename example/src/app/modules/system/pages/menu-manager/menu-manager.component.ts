@@ -109,7 +109,8 @@ export class MenuManagerComponent implements OnInit {
             id: 0,
             menuGroupId: mainMenu.menuGroupId,
             menuParentId: mainMenu.id,
-            menuTitle: '新子菜单'
+            menuTitle: '新子菜单',
+            permissionId: 0,
         };
         modal.open().subscribe(() => {
             this.loadDatas();

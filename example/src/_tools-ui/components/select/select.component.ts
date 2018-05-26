@@ -51,7 +51,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
         multi: true
     }]
 })
-export class SelectComponent extends DomAttr implements ControlValueAccessor {
+export class SelectComponent extends DomAttr implements ControlValueAccessor, OnChanges {
 
     title: string;
 
@@ -62,12 +62,11 @@ export class SelectComponent extends DomAttr implements ControlValueAccessor {
     @Input() disabled: boolean;
     @Input() items: Array<string | number | { value: any, text: string }>;
     @Input() placeholder: string;
-    // @Input() value: any;
     @Input() emptyLabel: string;
-
-    // @Output() valueChange = new EventEmitter<any>(false);
     @Output() optionChange = new EventEmitter<any>(false);
+
     private value: any[];
+
     applyChange = (value: any) => { };
 
     constructor() {
@@ -100,9 +99,9 @@ export class SelectComponent extends DomAttr implements ControlValueAccessor {
         return items;
     }
 
-    // ngOnChanges() {
-    //     this.setTitle();
-    // }
+    ngOnChanges() {
+        this.setTitle();
+    }
 
     writeValue(value: any) {
         this.value = value;

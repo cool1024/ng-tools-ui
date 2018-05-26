@@ -1,8 +1,8 @@
 export const HttpConfig = {
 
     // 服务器接口地址
-    // SERVER_URL: 'https://www.cool1024.com',
-    SERVER_URL: 'http://127.0.0.1',
+    SERVER_URL: 'https://www.cool1024.com',
+    // SERVER_URL: 'http://127.0.0.1',
 
     // 请求超时时间
     TIME_OUT: 10000,
@@ -20,7 +20,8 @@ export const HttpConfig = {
         TIMEOUT_ERROR: '服务器很久没有响应了',
         RESPONSE_CONTENT_ERROR: '接收到一个错误的响应',
         CHECK_ERROR: '未授权的令牌~',
-        OTHER_ERROR: '其他错误，异常的请求'
+        OTHER_ERROR: '其他错误，异常的请求',
+        PARAMS_ERROR: '参数错误'
     },
 
     // 权限头部参数配置

@@ -41,8 +41,8 @@
 <div class="ts-content">
     <div class="h-100">
         <nav class="ts-content-sidebar h-100">
-            <ts-menu #menuPad="tsMenu" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels" [avatars]="avatars"
-                [color]="global.getValue('color')"></ts-menu>
+            <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
+                [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
         </nav>
         <main class="ts-content-main bg-light h-100 p-2">
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>

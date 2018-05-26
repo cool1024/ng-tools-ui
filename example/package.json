@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "serve": "npx ng serve --host 0.0.0.0 --aot",
-        "build": "ng build --base-href /ng/ --deploy-url https://www.cool1024.com/ng/ --prod"
+        "build": "ng build --base-href /ng/ --deploy-url https://www.cool1024.com/ng/ --prod --build-optimizer"
     },
     "private": true,
     "dependencies": {
@@ -22,7 +22,7 @@
         "classlist.js": "^1.1.20150312",
         "core-js": "^2.4.1",
         "font-awesome": "^4.7.0",
-        "ng-tools-ui": "^1.4.5",
+        "ng-tools-ui": "^1.4.9",
         "rxjs": "^6.1.0",
         "zone.js": "^0.8.26"
     },

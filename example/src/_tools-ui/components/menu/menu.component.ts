@@ -16,15 +16,14 @@ import { DomAttr } from '../../commons/extends/attr.class';
                     <p class="mb-0 d-inline-block">{{avatars[2]}}</p>
                 </div>
             </div>
-            <!--<hr *ngIf="avatars" class="mt-0 mb-2 ml-3 mr-3">-->
             <ng-container *ngFor="let model of items;">
-                <!--<h5 class="model-title mb-1 pt-2 mt-1 pl-3">{{model.modelTitle | titlecase}}</h5>-->
                 <hr class="mt-0 mb-2 ml-1 mr-1" [ngStyle]="{borderColor:config.LINE_COLOR}">
                 <div class="menu-block {{group.active?activeMainClass:''}}" *ngFor="let group of model.menuGroups">
                     <div class="menu-main pointer pl-2 pr-3 {{group.active?activeParentClass:''}}" (click)="toggleGroup(group)">
                         <div class="d-table w-100 pb-1">
                             <div class="d-table-cell text-center ts-icon">
-                                <i [class]="group.icon" aria-hidden="true"></i>
+                                <img class="mb-1" *ngIf="group.image&&useImage" width="20" height="20" [src]="group.image">
+                                <i *ngIf="!(group.image&&useImage)" [class]="group.icon" aria-hidden="true"></i>
                             </div>
                             <div class="d-table-cell pl-3">
                                 <span>{{group.groupTitle | titlecase}}</span>
@@ -158,6 +157,8 @@ export class MenuComponent extends DomAttr {
 
     @Input() config: any;
 
+    @Input() useImage: boolean;
+
     @Output() menuActiveChange = new EventEmitter<MenuItem>();
 
     get activeMainClass(): string {
@@ -176,6 +177,7 @@ export class MenuComponent extends DomAttr {
         super();
         this.items = new Array<MenuModel>();
         this.config = { BACKGROUND_IMAGE_SRC: '' };
+        this.useImage = false;
     }
 
     toggleGroup(group: MenuGroup) {

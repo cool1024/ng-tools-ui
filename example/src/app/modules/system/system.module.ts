@@ -12,6 +12,8 @@ import {
     CheckboxModule,
     CollapseModule,
     TabModule,
+    ImageModule,
+    SelectModule,
 } from 'ng-tools-ui';
 
 /**
@@ -34,6 +36,8 @@ import { MenuService } from './services/menu.service';
         ConfirmModule,
         CollapseModule,
         TabModule,
+        ImageModule,
+        SelectModule,
         SystemRoutingModule,
     ],
     declarations: [

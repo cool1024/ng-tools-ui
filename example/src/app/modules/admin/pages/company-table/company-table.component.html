@@ -78,7 +78,7 @@
                             <td>{{td.companyName}}</td>
                             <td>{{td.companyManagerAccount}}</td>
                             <td>{{td.companyManagerMobile}}</td>
-                            <td>{{td.createdAt|date:'yyyy/MM/dd'}}</td>
+                            <td>{{td.createdAt.substring(0,10)|date:'yyyy/MM/dd'}}</td>
                             <td>
                                 <span *ngIf="td.isActive===1" class="badge badge-success badge-pill">启用</span>
                                 <span *ngIf="td.isActive!==1" class="badge badge-secondary badge-pill">停用</span>

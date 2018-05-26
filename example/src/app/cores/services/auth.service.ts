@@ -28,6 +28,8 @@ export class AuthService {
 
     setOut() {
         this.loginState = false;
+        this.request.post('/managerapi/signout', this.global.getValuesFromStorage(...HttpConfig.AUTH_HEADER_PARAMS))
+            .subscribe();
         this.global.cleanAllStorage();
         this.router.navigateByUrl('/dashboard/login');
     }
@@ -48,7 +50,7 @@ export class AuthService {
         const params = this.global.getValuesFromStorage(...HttpConfig.AUTH_HEADER_PARAMS);
         return this.request
             .withoutHeader()
-            .post('/check', params, false)
+            .post('/managerapi/check', params, false)
             .pipe(map<ApiData, boolean>(res => {
                 res.result ? (this.setIn(), this.user = res.datas) : this.setOut();
                 return res.result;

@@ -65,7 +65,7 @@ export class SelectComponent implements OnInit {
     { text: 'Card', value: 3 },
 ];
 dropdownValue = 2;`,
-        `<ts-select class="form-control p-0" [items]="diySelects" [(value)]="selectValue"></ts-select>`,
+        `<ts-select class="form-control p-0" [items]="diySelects" [(ngModel)]="selectValue"></ts-select>`,
         `diySelects = [
         {
             content: \`< img class= "rounded-circle" src = "https://randomuser.me/api/portraits/thumb/women/71.jpg"> Jane\`,
@@ -89,7 +89,7 @@ dropdownValue = 2;`,
         }
     ];
     selectValue = 1`,
-        `<div tsSelects [items]="diySelects" [(values)]="selectValues"></div>`,
+        `<div tsSelects [items]="diySelects" [(ngModel)]="selectValues"></div>`,
         `diySelects = [
             {
                 content: \`< img class= "rounded-circle" src = "https://randomuser.me/api/portraits/thumb/women/71.jpg"> Jane\`,

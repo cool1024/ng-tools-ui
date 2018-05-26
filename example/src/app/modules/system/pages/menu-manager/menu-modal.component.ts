@@ -23,10 +23,8 @@ import { Permission } from '../../interfaces/permission.interface';
             <label *ngIf="menu.menuParentId!==0" class="col-form-label">菜单链接:</label>
             <input *ngIf="menu.menuParentId!==0"  [(ngModel)]="menu.menuUrl" type="text" class="form-control">
             <label *ngIf="menu.menuParentId!==0" class="col-form-label">菜单权限:</label>
-            <select *ngIf="menu.menuParentId!==0"  [(ngModel)]="menu.menuUrl" type="text" class="form-control">
-                <option [ngValue]="1">无需权限</option>
-                <option *ngFor="let permission of permissions" [ngValue]="permission.id">{{permission.permissionName}}</option>
-            </select>
+            <ts-select *ngIf="menu.menuParentId!==0"
+             class="form-control p-0" [(ngModel)]="menu.permissionId" [items]="permissions"></ts-select>
         </div>
     </div>
     <div class="modal-footer">
@@ -47,7 +45,11 @@ export class MenuModalComponent {
     ) {
         this.menuService.getPermissionOptions()
             .subscribe(res => {
-                // this.permissions = res.datas.map
+                console.log(res.datas);
+                this.permissions = res.datas.map(item => {
+                    return { value: item.id, text: item.permissionName };
+                });
+                this.permissions.unshift({ value: 0, text: '无需权限' });
             });
     }
 

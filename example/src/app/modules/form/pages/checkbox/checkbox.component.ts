@@ -48,7 +48,7 @@ import { CheckboxModule } from 'ng-tools-ui';
     ...
 })
 export class MyModule { }`,
-        `<div tsRadioGroup #radioGroup="tsRadioGroup" [(value)]="radioValue">
+        `<div tsRadioGroup #radioGroup="tsRadioGroup" [(ngModel)]="radioValue">
     <ts-radio
         *ngFor="let radio of radios"
         [label]="radio.label"
@@ -75,7 +75,7 @@ export class ExampleComponent {
     ];
 
 }`,
-        `<div tsCheckboxGroup #checkboxGroup="tsCheckboxGroup" [(values)]="checkboxValues">
+        `<div tsCheckboxGroup #checkboxGroup="tsCheckboxGroup" [(ngModel)]="checkboxValues">
     <ts-checkbox
         *ngFor="let checkbox of checkboxs"
         [label]="checkbox.label" [value]="checkbox.value"

@@ -58,7 +58,9 @@
                         <td>
                             <i [ngClass]="mainMenu.menuIcon"></i>
                         </td>
-                        <td>{{mainMenu.menuImage}}</td>
+                        <td>
+                            <img tsImg dataSrc="assets/images/404.jpg" [src]="mainMenu.menuImage" width="20" height="20">
+                        </td>
                         <td>
                             <a class="btn-icon btn-icon-danger" title="删除">
                                 <i class="fa fa-lg fa-fw fa-trash-o align-middle"></i>
@@ -86,7 +88,7 @@
                         <td>链接</td>
                         <td>操作</td>
                     </tr>
-                    <tr *ngFor="let childMenu of childMenus;index as i">
+                    <tr *ngFor="let childMenu of activeChildMenus;index as i">
                         <td>{{i+1}}</td>
                         <td>{{childMenu.menuTitle}}</td>
                         <td>
@@ -96,11 +98,8 @@
                             <a class="btn-icon btn-icon-danger" title="删除">
                                 <i class="fa fa-lg fa-fw fa-trash-o align-middle"></i>
                             </a>
-                            <a class="btn-icon btn-icon-info" title="编辑">
+                            <a (click)="editChildMenu(activeMenu,childMenu)" class="btn-icon btn-icon-info" title="编辑">
                                 <i class="fa fa-lg fa-fw fa-edit align-middle"></i>
-                            </a>
-                            <a class="btn-icon btn-icon-dark" title="主菜单列表">
-                                <i class="fa fa-lg fa-fw fa-bars align-middle"></i>
                             </a>
                         </td>
                     </tr>

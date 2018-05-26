@@ -13,8 +13,6 @@ import {
     CollapseModule,
 } from 'ng-tools-ui';
 
-// import { CheckboxModule } from './../../../_tools-ui';
-
 /*路由模块*/
 import { FormRoutingModule } from './form.routing';
 

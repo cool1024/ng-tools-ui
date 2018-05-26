@@ -65,6 +65,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                             errorMessage = HttpConfig.HTTP_ERRORS.NOTFOUND_ERROR;
                             break;
                         }
+                        case 422: {
+                            const apiData = new ApiData(error.error.error, error.error.message, error.error.datas);
+                            errorMessage = apiData.messageStr;
+                            break;
+                        }
                         case 500: {
                             errorMessage = HttpConfig.HTTP_ERRORS.SERVER_ERROR;
                             break;

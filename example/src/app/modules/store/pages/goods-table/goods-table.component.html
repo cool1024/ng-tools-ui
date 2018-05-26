@@ -14,10 +14,6 @@
                     <span class="input-group-text bg-white">商品名称</span>
                 </div>
                 <input [(ngModel)]="search.params.name" type="text" class="form-control" placeholder="请输入商品名称关键词">
-                <!-- <div class="input-group-prepend input-group-append">
-                    <span class="input-group-text bg-white">分类</span>
-                </div>
-                <input [(ngModel)]="search.params.type" type="text" class="form-control" placeholder="请输入关键词"> -->
             </div>
             <br>
             <div class="input-group">
@@ -78,7 +74,7 @@
                             <td>{{td.goodsName}}</td>
                             <td>{{td.goodsPrice}}</td>
                             <td>{{td.goodsStocks}}</td>
-                            <td>{{td.createdAt|date:'yyyy/MM/dd'}}</td>
+                            <td>{{td.createdAt.substring(0,10)|date:'yyyy/MM/dd'}}</td>
                             <td>
                                 <span *ngIf="td.isActive===1" class="badge badge-success badge-pill">启用</span>
                                 <span *ngIf="td.isActive!==1" class="badge badge-secondary badge-pill">停用</span>
