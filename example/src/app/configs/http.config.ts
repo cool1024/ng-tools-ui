@@ -1,8 +1,8 @@
 export const HttpConfig = {
 
     // 服务器接口地址
-    SERVER_URL: 'https://cool1024.com',
-    // SERVER_URL: 'http://127.0.0.1',
+    // SERVER_URL: 'https://www.cool1024.com',
+    SERVER_URL: 'http://127.0.0.1',
 
     // 请求超时时间
     TIME_OUT: 10000,

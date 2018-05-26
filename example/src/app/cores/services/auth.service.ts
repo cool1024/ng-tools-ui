@@ -10,6 +10,8 @@ import { HttpConfig } from '../../configs/http.config';
 @Injectable()
 export class AuthService {
 
+    user: any = {};
+
     constructor(
         private request: RequestService,
         private router: Router,
@@ -48,7 +50,7 @@ export class AuthService {
             .withoutHeader()
             .post('/check', params, false)
             .pipe(map<ApiData, boolean>(res => {
-                res.result ? this.setIn() : this.setOut();
+                res.result ? (this.setIn(), this.user = res.datas) : this.setOut();
                 return res.result;
             }));
     }

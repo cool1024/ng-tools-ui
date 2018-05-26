@@ -1,6 +1,5 @@
 <nav tsNavbar [color]="global.getValue('color')">
     <a tsNavBrand class="app-head-title pr-5">
-        <!-- <h5 class="m-0">管理系统模板</h5> -->
         <img height="35" src="http://echarts.baidu.com/images/logo.png" alt="管理系统模板">
     </a>
     <button class="navbar-toggler" type="button">
@@ -9,7 +8,6 @@
     <div tsNavList>
         <div class="app-breadcrumb">
             <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuPush.items" color="light" outline></ts-menu-push>
-            <!-- <ts-nav-breadcrumb [breadcrumbs]="breadcrumbs" (breadcrumbActiveChange)="goPage($event)"></ts-nav-breadcrumb> -->
         </div>
     </div>
     <button class="badge-message mr-3" data-badge="17"></button>
@@ -48,10 +46,6 @@
         </nav>
         <main class="ts-content-main bg-light h-100 p-2">
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
-            <!-- <div class="bg-white w-100 p-2 mb-2 border">
-                <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuPush.items" [color]="global.getValue('color')"
-                    outline></ts-menu-push>
-            </div> -->
             <div [class.d-none]="global.getValue('lazyload')">
                 <router-outlet></router-outlet>
                 <div class="ts-footer"></div>

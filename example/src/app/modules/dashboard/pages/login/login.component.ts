@@ -26,11 +26,11 @@ export class LoginComponent {
     ) { }
 
     confirmLogin(btn: any) {
-        this.request.withoutHeader().post('/signin', this.account).subscribe({
+        this.request.withoutHeader().post('/managerapi/signin', this.account).subscribe({
             next: res => {
                 const datas = res.datas;
                 this.global.setValuesToStorage({
-                    'ng-params-one': datas.secret,
+                    'ng-params-one': datas.id,
                     'ng-params-two': datas.token,
                     'ng-params-three': datas.platform,
                 });
