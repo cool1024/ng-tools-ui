@@ -22,10 +22,6 @@ export class MenuService {
         return this.request.put('/managerapi/menu/group/update', menuGroup);
     }
 
-    // deletePermissionGroup(permissionGroupId: number): Observable<ApiData> {
-    //     return this.request.delete('/managerapi/permission/group/delete', { permissionGroupId });
-    // }
-
     insertMenu(menu: Menu): Observable<ApiData> {
         return this.request.post('/managerapi/menu/insert', menu);
     }
@@ -34,10 +30,6 @@ export class MenuService {
         menu.permissionId = menu.permissionId || 0;
         return this.request.put('/managerapi/menu/update', menu);
     }
-
-    // deletePermission(permissionId: number): Observable<ApiData> {
-    //     return this.request.delete('/managerapi/permission/delete', { permissionId });
-    // }
 
     getPermissionOptions(): Observable<ApiData> {
         return this.request.url('/managerapi/menu/permission/options');

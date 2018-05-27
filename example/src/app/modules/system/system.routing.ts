@@ -6,11 +6,14 @@ import { PermissionModalComponent } from './pages/permission-manager/permission-
 import { PermissionGroupModalComponent } from './pages/permission-manager/permission-group-modal.component';
 import { MenuGroupModalComponent } from './pages/menu-manager/menu-group-modal.component';
 import { MenuModalComponent } from './pages/menu-manager/menu-modal.component';
-
+import { RoleManagerComponent } from './pages/role-manager/role-manager.component';
+import { RoleUlComponent } from './pages/role-manager/role-ul.component';
+import { RoleModalComponent } from './pages/role-manager/role-modal.component';
 
 const routes: Routes = [
     { path: 'menu', component: MenuManagerComponent },
     { path: 'permission', component: PermissionManagerComponent },
+    { path: 'role', component: RoleManagerComponent },
 ];
 
 export const declarationComponents = [
@@ -20,6 +23,9 @@ export const declarationComponents = [
     PermissionModalComponent,
     MenuGroupModalComponent,
     MenuModalComponent,
+    RoleManagerComponent,
+    RoleUlComponent,
+    RoleModalComponent,
 ];
 
 export const entryComponents = [
@@ -27,6 +33,7 @@ export const entryComponents = [
     PermissionGroupModalComponent,
     MenuGroupModalComponent,
     MenuModalComponent,
+    RoleModalComponent,
 ];
 
 @NgModule({

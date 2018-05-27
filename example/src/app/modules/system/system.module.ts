@@ -26,6 +26,7 @@ import { SystemRoutingModule, declarationComponents, entryComponents } from './s
  */
 import { PermissionService } from './services/permission.service';
 import { MenuService } from './services/menu.service';
+import { RoleService } from './services/role.service';
 
 @NgModule({
     imports: [
@@ -49,6 +50,7 @@ import { MenuService } from './services/menu.service';
     providers: [
         PermissionService,
         MenuService,
+        RoleService,
     ]
 
 })

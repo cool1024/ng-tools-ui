@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from './../../commons/common.module';
-import { NavbarDirective, NavListDirective, NavbarMenuDirective, NavBrandDirective } from './navbar.directive';
+import { NavbarDirective, NavListDirective, NavBrandDirective } from './navbar.directive';
 import { NavBreadcrumbComponent } from './nav-breadcrumb.component';
 
 @NgModule({
@@ -11,13 +11,11 @@ import { NavBreadcrumbComponent } from './nav-breadcrumb.component';
         NavbarDirective,
         NavBrandDirective,
         NavListDirective,
-        NavbarMenuDirective,
         NavBreadcrumbComponent
     ],
     exports: [
         CommonModule,
         NavbarDirective,
-        NavbarMenuDirective,
         NavBrandDirective,
         NavListDirective,
         NavBreadcrumbComponent

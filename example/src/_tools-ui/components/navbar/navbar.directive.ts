@@ -9,7 +9,7 @@ export class NavbarDirective extends DomAttr implements AfterViewInit {
     @Input() class: string;
 
     @HostBinding('class') get _class() {
-        return `navbar text-${this.inLightOrDark} ${this.bgClass} ${this.class || ''}`;
+        return `navbar flex-nowrap text-${this.inLightOrDark} ${this.bgClass} ${this.class || ''}`;
     }
 
     constructor(private elementRef: ElementRef) {
@@ -17,7 +17,7 @@ export class NavbarDirective extends DomAttr implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-
+        const dom: HTMLDivElement = this.elementRef.nativeElement;
     }
 
 }
@@ -40,27 +40,15 @@ export class NavBrandDirective extends DomAttr {
 }
 
 @Directive({
-    selector: '*[tsNavList]',
+    selector: 'div[tsNavList]',
     exportAs: 'tsNavList',
 })
 export class NavListDirective implements AfterContentInit {
 
-    constructor() {
-
-    }
+    constructor(private elementRef: ElementRef) { }
 
     ngAfterContentInit() {
-
+        const dom: HTMLDivElement = this.elementRef.nativeElement;
+        dom.style.flexGrow = '1';
     }
-}
-
-@Directive({
-    selector: '*[tsNavbarMenu]',
-})
-export class NavbarMenuDirective implements AfterViewInit {
-
-    constructor(private elementRef: ElementRef) {
-    }
-
-    ngAfterViewInit() { }
 }

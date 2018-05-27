@@ -36,24 +36,19 @@
 }
 
 .navbar {
-    /* box-shadow: 0px 1px 1px black; */
+   box-shadow: 0px 1px 4px #ccc;
 }
 
 .badge-message {
     position: relative;
-    background-image: url("assets/images/icon/message-group-filled.png");
-    background-size: cover;
-    background-color: transparent;
     border: none;
-    height: 30px;
-    width: 30px;
 }
 
 .badge-message[data-badge]:after {
     content: attr(data-badge);
     position: absolute;
-    top: -8px;
-    right: -8px;
+    top: -1px;
+    right: -1px;
     font-size: .7em;
     background: red;
     color: white;
@@ -62,7 +57,7 @@
     text-align: center;
     line-height: 18px;
     border-radius: 50%;
-    box-shadow: 0 0 1px #333;
+    box-shadow: 0 0 1px rgb(179, 179, 179);
 }
 
 .ts-footer {
