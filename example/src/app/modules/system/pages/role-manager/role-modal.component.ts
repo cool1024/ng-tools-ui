@@ -29,7 +29,7 @@ import { GlobalService } from '../../../../cores/services';
                     <ts-switch [color]="global.getValue('color')"></ts-switch>
                     <span>全部权限</span>
                     <ts-switch [color]="global.getValue('color')"></ts-switch>
-                    <span>新增权限</span>
+                    <span class="">新增权限</span>
                 </div>
             <div>
         </div>
