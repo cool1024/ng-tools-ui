@@ -39,6 +39,7 @@ import { RoleService } from './services/role.service';
         TabModule,
         ImageModule,
         SelectModule,
+        CheckboxModule,
         SystemRoutingModule,
     ],
     declarations: [

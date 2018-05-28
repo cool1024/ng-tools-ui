@@ -10,12 +10,11 @@ import {
     MenuModel,
     MenuGroup,
     MenuItem,
-    // MenuPushService
+    MenuPushService
 } from 'ng-tools-ui';
 import { MenuService, RequestService, GlobalService, AuthService } from './cores/services';
 import { AppConfig } from './configs/app.config';
 import { interval } from 'rxjs';
-import { MenuPushService } from './../_tools-ui';
 
 @Component({
     selector: 'app-root',
@@ -84,9 +83,7 @@ export class AppComponent implements OnInit {
     loadMenu() {
         // let menus: any[] = [];
         this.request.url('/managerapi/menu')
-            // this.request.withoutHost().text('/assets/json/menu.json')
             .subscribe(res => {
-                // menus = JSON.parse(res);
                 const menus = res.datas;
                 menus.forEach(model => {
                     const menuModel = {

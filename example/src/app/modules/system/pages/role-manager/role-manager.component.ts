@@ -4,6 +4,9 @@ import { ModalService, ConfirmService } from 'ng-tools-ui';
 import { RoleModalComponent } from './role-modal.component';
 import { RoleService } from '../../services/role.service';
 import { ThrowStmt } from '@angular/compiler';
+import { FormService } from '../../../../cores/services';
+import { switchMap } from 'rxjs/operators';
+import { ApiData } from '../../../../cores/classes';
 
 @Component({
     selector: 'app-role-manager',
@@ -25,6 +28,7 @@ export class RoleManagerComponent implements OnInit {
         private modal: ModalService,
         private confirm: ConfirmService,
         private roleService: RoleService,
+        private form: FormService,
     ) { }
 
     ngOnInit() {
@@ -37,12 +41,12 @@ export class RoleManagerComponent implements OnInit {
     }
 
     showEditModal(roleGroup: RoleGroup) {
-        const modal = this.modal.create(RoleModalComponent);
+        const modal = this.modal.create(RoleModalComponent, { size: 'lg' });
         modal.instance.parentRole = roleGroup.parentGroup.role || {
             id: 0,
             roleName: '无上级角色',
         };
-        modal.instance.role = roleGroup;
+        modal.instance.role = this.form.jsonCopy(roleGroup.role);
         modal.open().subscribe((role: Role) => {
             roleGroup.role = role;
         });
@@ -75,11 +79,12 @@ export class RoleManagerComponent implements OnInit {
         if (roleGroup.roleChildren.length > 0) {
             this.confirm.warning('拒绝操作', '此角色含有下级角色，不能直接删除！');
         } else {
-            this.confirm.danger('确认删除', `确认删除角色‘${roleGroup.role.roleName}’`).subscribe(() => {
-
-            });
+            this.confirm.danger('确认删除', `确认删除角色‘${roleGroup.role.roleName}’`)
+                .pipe(switchMap<void, ApiData>(() => this.roleService.deleteRole(roleGroup.role.id)))
+                .subscribe(() => {
+                    const index = roleGroup.parentGroup.roleChildren.indexOf(roleGroup);
+                    roleGroup.parentGroup.roleChildren.splice(index, 1);
+                });
         }
-
-
     }
 }

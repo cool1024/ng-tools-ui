@@ -18,6 +18,10 @@ export class RoleService {
     getRoleGroups(rootNode: RoleGroup): Observable<RoleGroup[]> {
         return this.request.url('/managerapi/role/all').pipe(map<ApiData, RoleGroup[]>(res => {
             const roleGroups = new Array<RoleGroup>();
+            res.datas = res.datas.map(item => {
+                item.permissionIds = JSON.parse(item.permissionIds);
+                return item;
+            });
             res.datas.filter((role: Role) => role.roleParentId === 0)
                 .forEach(role => {
                     roleGroups.push(this.getChildGroups(role, rootNode, res.datas));
@@ -64,6 +68,6 @@ export class RoleService {
      * @param {number} roleId 角色数据
      */
     deleteRole(roleId: number): Observable<ApiData> {
-        return this.request.put('/managerapi/role/delete', { roleId });
+        return this.request.delete('/managerapi/role/delete', { roleId });
     }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalService, ToastService } from 'ng-tools-ui';
 import { Role } from '../../interfaces/role.interface';
 import { RoleService } from '../../services/role.service';
+import { GlobalService } from '../../../../cores/services';
 
 @Component({
     template: `<div class="modal-header">
@@ -19,6 +20,20 @@ import { RoleService } from '../../services/role.service';
         <label class="col-form-label">角色名称:</label>
         <input [(ngModel)]="role.roleName" type="text" class="form-control">
     </div>
+    <div class="form-group">
+        <label class="col-form-label">权限列表:</label>
+        <div>
+            <div class="border border-muted p-2 permission-pad">
+                <p>系统设置</p>
+                <div>
+                    <ts-switch [color]="global.getValue('color')"></ts-switch>
+                    <span>全部权限</span>
+                    <ts-switch [color]="global.getValue('color')"></ts-switch>
+                    <span>新增权限</span>
+                </div>
+            <div>
+        </div>
+    </div>
 </div>
 <div class="modal-footer">
     <button (click)="modal.dismiss()" type="button" class="btn btn-white">取消</button>
@@ -35,6 +50,7 @@ export class RoleModalComponent {
         public modal: ModalService,
         private toast: ToastService,
         private roleService: RoleService,
+        public global: GlobalService,
     ) { }
 
     /**
