@@ -37,7 +37,15 @@ export class RoleManagerComponent implements OnInit {
     }
 
     showEditModal(roleGroup: RoleGroup) {
-
+        const modal = this.modal.create(RoleModalComponent);
+        modal.instance.parentRole = roleGroup.parentGroup.role || {
+            id: 0,
+            roleName: '无上级角色',
+        };
+        modal.instance.role = roleGroup;
+        modal.open().subscribe((role: Role) => {
+            roleGroup.role = role;
+        });
     }
 
     showAddModal(parentGroup: RoleGroup) {
