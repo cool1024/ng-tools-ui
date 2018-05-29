@@ -88,7 +88,6 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
             this.src = { blobUrl: window.URL.createObjectURL(files[0]) };
             this.showImage = true;
             if (!!this.config) {
-                console.log(111);
                 if (this.config.uploader) { this.uploadFile(); }
             }
         }

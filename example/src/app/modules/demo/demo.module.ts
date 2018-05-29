@@ -7,6 +7,7 @@ import {
     MapModule,
     PrismModule,
     EChartModule,
+    CkeditorModule,
 } from 'ng-tools-ui';
 
 /*路由模块*/
@@ -20,7 +21,8 @@ import { DemoRoutingModule, declarationComponents } from './demo.routing';
         DemoRoutingModule,
         MapModule,
         PrismModule,
-        EChartModule
+        EChartModule,
+        CkeditorModule,
     ],
     declarations: [
         declarationComponents

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AppConfig } from '../../../../configs/app.config';
 import { Account } from '../../interfaces/account.interface';
 import { Router } from '@angular/router';
-import { GlobalService, RequestService } from '../../../../cores/services';
+import { GlobalService, RequestService, MenuService } from '../../../../cores/services';
+import { HttpConfig } from '../../../../configs/http.config';
 
 @Component({
     selector: 'app-login',
@@ -16,13 +17,14 @@ export class LoginComponent {
     account: Account = {
         account: '',
         password: '',
-        platform: 'admin',
+        platform: HttpConfig.PLATFORM_NAMWE,
     };
 
     constructor(
         private router: Router,
         public global: GlobalService,
         private request: RequestService,
+        private menu: MenuService,
     ) { }
 
     confirmLogin(btn: any) {
@@ -34,6 +36,7 @@ export class LoginComponent {
                     'ng-params-two': datas.token,
                     'ng-params-three': datas.platform,
                 });
+                this.menu.loadMenu();
                 this.router.navigateByUrl('/');
             },
             complete: () => btn.dismiss()

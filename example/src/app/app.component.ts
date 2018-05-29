@@ -5,7 +5,6 @@ import {
     RouteConfigLoadEnd
 } from '@angular/router';
 import {
-    Pagination,
     MenuModel,
     MenuGroup,
     MenuItem,
@@ -23,7 +22,6 @@ import { MenuPushService } from './../_tools-ui';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    menuModels = new Array<MenuModel>();
 
     menuItems = new Array<MenuItem>();
 
@@ -32,6 +30,10 @@ export class AppComponent implements OnInit {
     menuConfig = AppConfig.MENU_CONFIG;
 
     themes = AppConfig.THEME_COLORS;
+
+    get menuModels(): Array<MenuModel> {
+        return this.menu.menuModels;
+    }
 
     get avatars(): [string, string, string] {
         return [
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
         public auth: AuthService,
         private request: RequestService,
         private confirm: ConfirmService,
+        private menu: MenuService,
     ) {
         this.global.loadStrFromStorage('color', 'primary');
         this.global.setValue('lazyload', false);
@@ -70,43 +73,7 @@ export class AppComponent implements OnInit {
         this.global.setValue('loginStatus', false);
 
         // 载入菜单数据
-        this.loadMenu();
-    }
-
-    loadMenu() {
-        this.request.url('/managerapi/menu')
-            .subscribe(res => {
-                const menus = res.datas;
-                menus.forEach(model => {
-                    const menuModel = {
-                        modelTitle: model.title,
-                        menuGroups: new Array<MenuGroup>(),
-                        active: false
-                    };
-                    model.menus.forEach(menu => {
-                        const menuGroup: MenuGroup = {
-                            groupTitle: menu.title,
-                            icon: menu.icon,
-                            image: menu.image,
-                            menuItems: new Array<MenuItem>(),
-                            targetModel: menuModel,
-                            active: false
-                        };
-                        menu.children.forEach(child => {
-                            const menuItem: MenuItem = {
-                                title: child.title,
-                                url: child.url,
-                                targetGroup: menuGroup,
-                                active: false
-                            };
-
-                            menuGroup.menuItems.push(menuItem);
-                        });
-                        menuModel.menuGroups.push(menuGroup);
-                    });
-                    this.menuModels.push(menuModel);
-                });
-            });
+        this.menu.loadMenu();
     }
 
     changeTheme(color: string) {

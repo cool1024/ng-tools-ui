@@ -57,38 +57,48 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                     switch (error.status) {
                         case 401: {
+                            errorMessage = HttpConfig.HTTP_ERRORS.TOKEN_ERROR;
+                            this.router.navigateByUrl(HttpConfig.TOKEN_ERROR_URL);
+                            this.toast.info('401', errorMessage, HttpConfig.TOAST_ERROR_TIME);
+                            break;
+                        }
+                        case 403: {
                             errorMessage = HttpConfig.HTTP_ERRORS.AUTH_ERROR;
                             this.router.navigateByUrl(HttpConfig.AUTH_ERROR_URL);
+                            this.toast.danger('403', errorMessage, HttpConfig.TOAST_ERROR_TIME);
                             break;
                         }
                         case 404: {
                             errorMessage = HttpConfig.HTTP_ERRORS.NOTFOUND_ERROR;
+                            this.toast.warning('404', errorMessage, HttpConfig.TOAST_ERROR_TIME);
                             break;
                         }
                         case 422: {
                             const apiData = new ApiData(error.error.error, error.error.message, error.error.datas);
                             errorMessage = apiData.messageStr;
+                            this.toast.warning('422', errorMessage, HttpConfig.TOAST_ERROR_TIME);
                             break;
                         }
                         case 500: {
                             errorMessage = HttpConfig.HTTP_ERRORS.SERVER_ERROR;
+                            this.toast.danger('500', errorMessage, HttpConfig.TOAST_ERROR_TIME);
                             break;
                         }
                         default: {
                             errorMessage = HttpConfig.HTTP_ERRORS.RESPONSE_CONTENT_ERROR;
+                            this.toast.danger('500', errorMessage, HttpConfig.TOAST_ERROR_TIME);
                             break;
                         }
                     }
-                    errorTitle = `${error.statusText}-${error.status}`;
                 } else if (error instanceof TimeoutError) {
                     errorMessage = HttpConfig.HTTP_ERRORS.TIMEOUT_ERROR;
-                    errorTitle = 'TimeOut';
+                    errorTitle = '通信异常';
+                    this.toast.danger(errorTitle, errorMessage, HttpConfig.TOAST_ERROR_TIME);
                 } else {
                     errorMessage = HttpConfig.HTTP_ERRORS.OTHER_ERROR;
-                    errorTitle = 'RequestError';
+                    errorTitle = '请求发送失败';
+                    this.toast.danger(errorTitle, errorMessage, HttpConfig.TOAST_ERROR_TIME);
                 }
-
-                this.toast.danger(errorTitle, errorMessage, HttpConfig.TOAST_ERROR_TIME);
                 return of<HttpResponse<string>>(new HttpResponse<string>({
                     status: 200,
                     body: (new ApiData(false, errorMessage).toJsonString())

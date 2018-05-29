@@ -9,6 +9,7 @@ import {
     ToastModule,
     MapModule,
     EChartModule,
+    CkeditorModule,
     // MenuModule,
 } from 'ng-tools-ui';
 
@@ -25,6 +26,11 @@ import { MenuModule } from './../_tools-ui';
         ConfirmModule.forRoot({ okTitle: '确认', cancelTitle: '取消' }),
         MapModule.forRoot('bea16ad29a10b04e05e0624362d504dc'),
         EChartModule.forRoot('assets/echart/echarts.common.min.js'),
+        CkeditorModule.forRoot([
+            'https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js',
+            // 'https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/translations/de.js'
+            'assets/ckeditor5/zh_cn.js'
+        ]),
         ToastModule.forRoot({ position: 'ts-bottom ts-right', timeout: 2000 }),
         MenuModule.forRoot(),
         NavbarModule,
