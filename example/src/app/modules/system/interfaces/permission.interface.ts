@@ -13,5 +13,5 @@ export interface Permission {
 export interface PermissionGroupItem {
     permissionGroup: PermissionGroup;
     permissions: Permission[];
-    open: boolean;
+    open?: boolean;
 }

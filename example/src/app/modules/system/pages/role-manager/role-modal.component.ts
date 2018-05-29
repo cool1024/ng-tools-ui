@@ -3,9 +3,11 @@ import { ModalService, ToastService } from 'ng-tools-ui';
 import { Role } from '../../interfaces/role.interface';
 import { RoleService } from '../../services/role.service';
 import { GlobalService } from '../../../../cores/services';
+import { PermissionGroup, PermissionGroupItem } from '../../interfaces/permission.interface';
 
 @Component({
-    template: `<div class="modal-header">
+    template: `
+<div class="modal-header">
     <h5 class="modal-title">角色面板</h5>
         <button (click)="modal.dismiss()" type="button" class="close">
         <span aria-hidden="true">&times;</span>
@@ -22,16 +24,19 @@ import { GlobalService } from '../../../../cores/services';
     </div>
     <div class="form-group">
         <label class="col-form-label">权限列表:</label>
-        <div>
-            <div class="border border-muted p-2 permission-pad">
-                <p>系统设置</p>
-                <div>
-                    <ts-switch [color]="global.getValue('color')"></ts-switch>
-                    <span>全部权限</span>
-                    <ts-switch [color]="global.getValue('color')"></ts-switch>
-                    <span class="">新增权限</span>
-                </div>
+        <div *ngFor="let permissionGroupItem of permissionGroupItems" class="border border-muted p-2 mb-1">
+            <p>{{permissionGroupItem.permissionGroup.permissionGroupName}}</p>
             <div>
+                <ng-container *ngFor="let permission of permissionGroupItem.permissions">
+                    <ts-switch
+                        [ngModel]="hasPermission(permission.id)!==false"
+                        (ngModelChange)="changePermission(permission.id, $event)"
+                        [color]="global.getValue('color')"></ts-switch>
+                    <span class="ml-1 mr-1 {{hasPermission(permission.id)!==false?'text-'+global.getValue('color'):''}}">
+                        {{permission.permissionName}}
+                    </span>
+                </ng-container>
+            </div>
         </div>
     </div>
 </div>
@@ -46,12 +51,17 @@ export class RoleModalComponent {
 
     parentRole: any;
 
+    permissionGroupItems = new Array<PermissionGroupItem>();
+
     constructor(
         public modal: ModalService,
         private toast: ToastService,
         private roleService: RoleService,
         public global: GlobalService,
-    ) { }
+    ) {
+        this.roleService.getPermissionOptions()
+            .subscribe(permissionGroups => this.permissionGroupItems = permissionGroups);
+    }
 
     /**
      * 确认保存
@@ -77,6 +87,26 @@ export class RoleModalComponent {
                     },
                     complete: () => btn.dismiss()
                 });
+        }
+    }
+
+    /**
+     * 判断是否有权限
+     */
+    hasPermission(permissionId: number): boolean | number {
+        const index = this.role.permissionIds.indexOf(permissionId);
+        return index >= 0 ? index : false;
+    }
+
+    /**
+     * 添加/移除权限
+     */
+    changePermission(permissionId: number, isAdd: boolean) {
+        const index = this.hasPermission(permissionId);
+        if (isAdd && index === false) {
+            this.role.permissionIds.push(permissionId);
+        } else if ((!isAdd) && index !== false) {
+            this.role.permissionIds.splice(<number>index, 1);
         }
     }
 }

@@ -4,6 +4,7 @@ import { ApiData } from '../../../cores/classes';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Role, RoleGroup } from '../interfaces/role.interface';
+import { PermissionGroupItem, PermissionGroup, Permission } from '../interfaces/permission.interface';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class RoleService {
 
     /**
      * 获取角色组树
-     * @return {Observable<RoleGroup[]> }
+     * @return {Observable<RoleGroup[]>}
      */
     getRoleGroups(rootNode: RoleGroup): Observable<RoleGroup[]> {
         return this.request.url('/managerapi/role/all').pipe(map<ApiData, RoleGroup[]>(res => {
@@ -69,5 +70,24 @@ export class RoleService {
      */
     deleteRole(roleId: number): Observable<ApiData> {
         return this.request.delete('/managerapi/role/delete', { roleId });
+    }
+
+    /**
+     * 获取角色权限选项
+     */
+    getPermissionOptions(): Observable<PermissionGroupItem[]> {
+        return this.request.url('/managerapi/role/permission/options')
+            .pipe(map(res => {
+                const items = new Array<PermissionGroupItem>();
+                const groups: PermissionGroup[] = res.datas.groups;
+                const permissions: Permission[] = res.datas.permissions;
+                groups.forEach(group => {
+                    items.push({
+                        permissionGroup: group,
+                        permissions: permissions.filter(permission => permission.permissionGroupId === group.id)
+                    });
+                });
+                return items;
+            }));
     }
 }

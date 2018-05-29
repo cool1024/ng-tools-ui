@@ -30,7 +30,7 @@ export class AuthService {
         this.loginState = false;
         this.request.post('/managerapi/signout', this.global.getValuesFromStorage(...HttpConfig.AUTH_HEADER_PARAMS))
             .subscribe();
-        this.global.cleanAllStorage();
+        // this.global.cleanAllStorage();
         this.router.navigateByUrl('/dashboard/login');
     }
 
