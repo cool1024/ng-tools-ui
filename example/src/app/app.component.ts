@@ -6,15 +6,16 @@ import {
 } from '@angular/router';
 import {
     Pagination,
-    Breadcrumb,
     MenuModel,
     MenuGroup,
     MenuItem,
-    MenuPushService
+    ConfirmService,
+    // MenuPushService
 } from 'ng-tools-ui';
 import { MenuService, RequestService, GlobalService, AuthService } from './cores/services';
 import { AppConfig } from './configs/app.config';
 import { interval } from 'rxjs';
+import { MenuPushService } from './../_tools-ui';
 
 @Component({
     selector: 'app-root',
@@ -24,8 +25,6 @@ import { interval } from 'rxjs';
 export class AppComponent implements OnInit {
     menuModels = new Array<MenuModel>();
 
-    avatars: [string, string, string];
-
     menuItems = new Array<MenuItem>();
 
     homeItem: MenuItem;
@@ -34,7 +33,13 @@ export class AppComponent implements OnInit {
 
     themes = AppConfig.THEME_COLORS;
 
-    breadcrumbs: Breadcrumb[];
+    get avatars(): [string, string, string] {
+        return [
+            this.auth.user.avatar || 'assets/images/avatar/5.jpg',
+            this.auth.user.role.roleName || '系统管理员',
+            this.auth.user.account || 'www.cool1024.com'
+        ];
+    }
 
     constructor(
         private router: Router,
@@ -43,23 +48,10 @@ export class AppComponent implements OnInit {
         public menuPush: MenuPushService,
         public auth: AuthService,
         private request: RequestService,
+        private confirm: ConfirmService,
     ) {
         this.global.loadStrFromStorage('color', 'primary');
         this.global.setValue('lazyload', false);
-        this.avatars = [
-            'assets/images/avatar/5.jpg',
-            '系统管理员',
-            'www.cool1024.com'
-        ];
-        this.breadcrumbs = [
-            { title: '首页', icon: 'fa fa-fw fa-home', url: '/home' },
-            { title: '列表页面', icon: 'fa fa-fw fa-list-ul', url: '/home' },
-            { title: '文件夹', icon: 'fa fa-fw fa-folder', url: '/home' }
-        ];
-        this.menuPush.setDefaultItem({
-            title: '首页',
-            url: '/'
-        });
     }
 
     ngOnInit() {
@@ -74,14 +66,14 @@ export class AppComponent implements OnInit {
             }
         });
 
-        // 获取登入状态
+        // 设置登入状态
         this.global.setValue('loginStatus', false);
 
+        // 载入菜单数据
         this.loadMenu();
     }
 
     loadMenu() {
-        // let menus: any[] = [];
         this.request.url('/managerapi/menu')
             .subscribe(res => {
                 const menus = res.datas;
@@ -123,7 +115,8 @@ export class AppComponent implements OnInit {
     }
 
     signOut() {
-        this.auth.setOut();
+        this.confirm.warning('退出登入', '您确认要退出当前的账户吗？')
+            .subscribe(() => this.auth.setOut());
     }
 
     goPage(menu: MenuItem) {

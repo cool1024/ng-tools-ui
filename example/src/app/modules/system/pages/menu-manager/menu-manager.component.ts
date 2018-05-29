@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { GlobalService } from '../../../../cores/services';
 import { MenuService } from '../../services/menu.service';
 import { MenuGroup, Menu } from '../../interfaces/menu.interface';
-import { ModalService } from 'ng-tools-ui';
+import { ModalService, ConfirmService, ToastService } from 'ng-tools-ui';
 import { MenuGroupModalComponent } from './menu-group-modal.component';
 import { MenuModalComponent } from './menu-modal.component';
+import { switchMap } from 'rxjs/operators';
+import { ApiData } from '../../../../cores/classes';
 
 @Component({
     templateUrl: './menu-manager.component.html',
@@ -32,6 +34,8 @@ export class MenuManagerComponent implements OnInit {
         public global: GlobalService,
         private modal: ModalService,
         private menuService: MenuService,
+        private confirm: ConfirmService,
+        private toast: ToastService,
     ) { }
 
     ngOnInit() {
@@ -115,5 +119,17 @@ export class MenuManagerComponent implements OnInit {
         modal.open().subscribe(() => {
             this.loadDatas();
         });
+    }
+
+    /**
+     * 删除菜单
+     */
+    deleteMenu(menu: Menu) {
+        this.confirm.danger('确认删除', `确认删除菜单‘${menu.menuTitle}’,相关子菜单也会被删除！`)
+            .pipe(switchMap<void, ApiData>(() => this.menuService.deleteMenu(menu.id)))
+            .subscribe(() => {
+                this.toast.success('删除成功', `成功删除菜单‘${menu.menuTitle}’！`)
+                this.loadDatas();
+            });
     }
 }

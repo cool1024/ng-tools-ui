@@ -10,7 +10,10 @@ import { HttpConfig } from '../../configs/http.config';
 @Injectable()
 export class AuthService {
 
-    user: any = {};
+    user: any = {
+        account: '登入账户',
+        role: { roleName: '角色名称' }
+    };
 
     constructor(
         private request: RequestService,

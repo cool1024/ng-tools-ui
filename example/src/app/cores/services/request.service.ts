@@ -223,7 +223,7 @@ export class RequestService {
         return startIndex !== -1 ? filePath.substring(startIndex + 1, filePath.length).toLowerCase() : 'unknow';
     }
 
-    private getParams(params: { [key: string]: number | string }): HttpParams {
+    private getParams(params: { [key: string]: number | string } = {}): HttpParams {
         params = JSON.parse(JSON.stringify(params));
         let httpParams = new HttpParams();
         for (const key in params) {
@@ -244,6 +244,9 @@ export class RequestService {
                 header = header.append(key, this.appendHeaders[key]);
             }
         }
+        HttpConfig.AUTH_HEADER_PARAMS.forEach(key => {
+            header = header.append(key, localStorage.getItem(key) || '');
+        });
         return header;
     }
 

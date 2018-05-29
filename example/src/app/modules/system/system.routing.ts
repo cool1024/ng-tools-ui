@@ -9,11 +9,13 @@ import { MenuModalComponent } from './pages/menu-manager/menu-modal.component';
 import { RoleManagerComponent } from './pages/role-manager/role-manager.component';
 import { RoleUlComponent } from './pages/role-manager/role-ul.component';
 import { RoleModalComponent } from './pages/role-manager/role-modal.component';
+import { ManagerDetailComponent } from './pages/manager-detail/manager-detail.component';
 
 const routes: Routes = [
     { path: 'menu', component: MenuManagerComponent },
     { path: 'permission', component: PermissionManagerComponent },
     { path: 'role', component: RoleManagerComponent },
+    { path: 'detail', component: ManagerDetailComponent },
 ];
 
 export const declarationComponents = [
@@ -26,6 +28,7 @@ export const declarationComponents = [
     RoleManagerComponent,
     RoleUlComponent,
     RoleModalComponent,
+    ManagerDetailComponent,
 ];
 
 export const entryComponents = [

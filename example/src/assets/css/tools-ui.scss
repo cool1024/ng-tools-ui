@@ -30,6 +30,7 @@
 @import "~bootstrap/scss/close";
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/alert";
+
 /**
  * bootstrap 样式BUG修复
  */
@@ -38,13 +39,16 @@
     bottom: auto !important;
 }
 
+.dropdown-menu{
+    box-shadow: rgb(185, 185, 185) 1px 2px 3px;
+}
+
 /**
  * bootstrap4 样式调整
  */
 
 * {
     font-family: Helvetica Neue For Number, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
-    /* font-size: 15px; */
 }
 
 a,

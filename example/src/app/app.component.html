@@ -7,21 +7,21 @@
             <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuPush.items" color="light" outline></ts-menu-push>
         </div>
     </div>
-    <div style="width:135px;">
-        <button class="btn btn-link badge-message mr-l" data-badge="17">
+    <div style="width:100px;" class="text-right">
+        <!-- <button class="btn btn-link badge-message mr-l" data-badge="17">
             <img height="30" src="assets/images/icon/message-group-filled.png">
-        </button>
+        </button> -->
         <div tsDropdown>
-            <button tsToggle class="btn btn-link rounded-0 p-1">
+            <button tsToggle class="btn btn-link rounded-0 p-1 mr-2">
                 <img height="30" src="assets/images/icon/name-filled.png">
             </button>
-            <div tsDropMenu [offsetX]="-75" [offsetY]="10">
-                <button (click)="signOut()" class="dropdown-item">
-                    <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
-                    <span>退出当前账户</span>
+            <div tsDropMenu [offsetX]="-62" [offsetY]="10">
+                <button (click)="signOut()" class="dropdown-item pointer">
+                    <i class="fa fa-fw fa-power-off text-danger" aria-hidden="true"></i>
+                    <span>退出账户</span>
                 </button>
-                <button class="dropdown-item">
-                    <i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>
+                <button routerLink="/system/detail" class="dropdown-item pointer">
+                    <i class="fa fa-fw fa-pencil-square-o text-info" aria-hidden="true"></i>
                     <span>修改资料</span>
                 </button>
             </div>
@@ -30,7 +30,7 @@
             <button tsToggle class="btn btn-link rounded-0 p-1">
                 <img height="30" src="assets/images/icon/paint-palette.png">
             </button>
-            <div tsDropMenu [offsetX]="-105" [offsetY]="10">
+            <div tsDropMenu [offsetX]="-110" [offsetY]="10">
                 <button *ngFor="let theme of themes" (click)="changeTheme(theme.CLASS)" class="dropdown-item text-{{theme.CLASS}}">
                     <i class="fa fa-fw fa-square"></i>
                     <span>{{theme.NAME}}</span>

@@ -34,4 +34,8 @@ export class MenuService {
     getPermissionOptions(): Observable<ApiData> {
         return this.request.url('/managerapi/menu/permission/options');
     }
+
+    deleteMenu(menuId: number) {
+        return this.request.delete('/managerapi/menu/delete', { menuId });
+    }
 }

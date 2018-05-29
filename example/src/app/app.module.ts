@@ -9,12 +9,12 @@ import {
     ToastModule,
     MapModule,
     EChartModule,
-    MenuModule,
+    // MenuModule,
 } from 'ng-tools-ui';
 
 import { AppComponent } from './app.component';
 
-// import { MenuModule, NavbarModule } from './../_tools-ui';
+import { MenuModule } from './../_tools-ui';
 
 @NgModule({
     declarations: [

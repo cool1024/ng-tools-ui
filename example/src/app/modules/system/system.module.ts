@@ -14,6 +14,7 @@ import {
     TabModule,
     ImageModule,
     SelectModule,
+    UploadModule,
 } from 'ng-tools-ui';
 
 /**
@@ -27,6 +28,7 @@ import { SystemRoutingModule, declarationComponents, entryComponents } from './s
 import { PermissionService } from './services/permission.service';
 import { MenuService } from './services/menu.service';
 import { RoleService } from './services/role.service';
+import { ManagerService } from './services/manager.service';
 
 @NgModule({
     imports: [
@@ -41,6 +43,7 @@ import { RoleService } from './services/role.service';
         SelectModule,
         CheckboxModule,
         SystemRoutingModule,
+        UploadModule,
     ],
     declarations: [
         declarationComponents,
@@ -52,6 +55,7 @@ import { RoleService } from './services/role.service';
         PermissionService,
         MenuService,
         RoleService,
+        ManagerService,
     ]
 
 })

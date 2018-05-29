@@ -9,7 +9,7 @@
         </button>
     </div>
 </div>
-<ts-tabs #tsTabs [tabs]="['菜单组','主菜单','子菜单','预览']" [target]="tsTabPads" [color]="global.getValue('color')" activeTab="菜单组"></ts-tabs>
+<ts-tabs #tsTabs [tabs]="['菜单组','主菜单','子菜单']" [target]="tsTabPads" [color]="global.getValue('color')" activeTab="菜单组"></ts-tabs>
 <div #tsTabPads='tsTabs' tsTabs class="card rounded-0 border-top-0">
     <!-- 菜单组 -->
     <div tsTab tab='菜单组' class="card-body">
@@ -62,7 +62,7 @@
                             <img tsImg dataSrc="assets/images/404.jpg" [src]="mainMenu.menuImage" width="20" height="20">
                         </td>
                         <td>
-                            <a class="btn-icon btn-icon-danger" title="删除">
+                            <a (click)="deleteMenu(mainMenu)" class="btn-icon btn-icon-danger" title="删除">
                                 <i class="fa fa-lg fa-fw fa-trash-o align-middle"></i>
                             </a>
                             <a (click)="editMainMenu(activeGroup,mainMenu)" class="btn-icon btn-icon-info" title="编辑">
@@ -95,7 +95,7 @@
                             <a [routerLink]="childMenu.menuUrl">{{childMenu.menuUrl}}</a>
                         </td>
                         <td>
-                            <a class="btn-icon btn-icon-danger" title="删除">
+                            <a (click)="deleteMenu(childMenu)" class="btn-icon btn-icon-danger" title="删除">
                                 <i class="fa fa-lg fa-fw fa-trash-o align-middle"></i>
                             </a>
                             <a (click)="editChildMenu(activeMenu,childMenu)" class="btn-icon btn-icon-info" title="编辑">
@@ -106,9 +106,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    <!-- 预览 -->
-    <div tsTab tab='预览' class="card-body">
-
     </div>
 </div>
