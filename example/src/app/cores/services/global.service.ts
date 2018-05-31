@@ -3,20 +3,22 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class GlobalService {
 
-    private events = new Array<{ event: string, handle: (values: { [key: string]: any }) => void }>();
-
     private values: { [key: string]: any } = {};
 
     getValue(key: string, defaultValue: any = ''): any {
-        return this.values[key] || defaultValue;
+        return this.values.hasOwnProperty(key) ? this.values[key] : defaultValue;
     }
 
     setValue(key: string, value: any) {
         this.values[key] = value;
     }
 
-    addEvent(event: string, handle: (values: { [key: string]: any }) => void) {
-        this.events.push({ event, handle });
+    setValues(params: { [key: string]: any }) {
+        for (const key in params) {
+            if (params.hasOwnProperty(key)) {
+                this.values[key] = params[key];
+            }
+        }
     }
 
     getValueFromStorage(key: string, defaultValue = ''): string {
@@ -61,13 +63,5 @@ export class GlobalService {
 
     cleanAllStorage() {
         localStorage.clear();
-    }
-
-    private applyEvent(key: string) {
-        this.events.forEach(event => {
-            if (event.event === key) {
-                event.handle(this.values);
-            }
-        });
     }
 }

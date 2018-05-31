@@ -1,56 +1,61 @@
-<div tsNavbar [color]="global.getValue('color')" style="height:60px;">
-    <a tsNavBrand class="app-head-title pr-5 text-center">
-        <img height="35" src="assets/images/title.png" alt="管理系统模板">
-    </a>
-    <div tsNavList>
-        <div class="app-breadcrumb">
-            <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuPush.items" color="light" outline></ts-menu-push>
-        </div>
-    </div>
-    <div style="width:100px;" class="text-right">
-        <!-- <button class="btn btn-link badge-message mr-l" data-badge="17">
-            <img height="30" src="assets/images/icon/message-group-filled.png">
-        </button> -->
-        <div tsDropdown>
-            <button tsToggle class="btn btn-link rounded-0 p-1 mr-2">
-                <img height="30" src="assets/images/icon/name-filled.png">
-            </button>
-            <div tsDropMenu [offsetX]="-62" [offsetY]="10">
-                <button (click)="signOut()" class="dropdown-item pointer">
-                    <i class="fa fa-fw fa-power-off text-danger" aria-hidden="true"></i>
-                    <span>退出账户</span>
-                </button>
-                <button routerLink="/system/detail" class="dropdown-item pointer">
-                    <i class="fa fa-fw fa-pencil-square-o text-info" aria-hidden="true"></i>
-                    <span>修改资料</span>
-                </button>
-            </div>
-        </div>
-        <div tsDropdown>
-            <button tsToggle class="btn btn-link rounded-0 p-1">
-                <img height="30" src="assets/images/icon/paint-palette.png">
-            </button>
-            <div tsDropMenu [offsetX]="-110" [offsetY]="10">
-                <button *ngFor="let theme of themes" (click)="changeTheme(theme.CLASS)" class="dropdown-item text-{{theme.CLASS}}">
-                    <i class="fa fa-fw fa-square"></i>
-                    <span>{{theme.NAME}}</span>
-                </button>
-            </div>
-        </div>
-    </div>
+<div class="h-100 w-100 fixed-top" *ngIf="this.global.getValue('tokencheck'); else content;">
+    <ts-cssload [color]="global.getValue('color')"></ts-cssload>
 </div>
-<div class="ts-content">
-    <div class="h-100">
-        <nav class="ts-content-sidebar h-100">
-            <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
-                [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
-        </nav>
-        <main class="ts-content-main bg-light h-100 p-2">
-            <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
-            <div [class.d-none]="global.getValue('lazyload')">
-                <router-outlet></router-outlet>
-                <div class="ts-footer"></div>
+<ng-template #content>
+    <div tsNavbar [color]="global.getValue('color')" style="height:60px;">
+        <a tsNavBrand class="app-head-title pr-5 text-center">
+            <img height="35" src="assets/images/title.png" alt="管理系统模板">
+        </a>
+        <div tsNavList>
+            <div class="app-breadcrumb">
+                <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuPush.items" color="light" outline></ts-menu-push>
             </div>
-        </main>
+        </div>
+        <div style="width:100px;" class="text-right">
+            <!-- <button class="btn btn-link badge-message mr-l" data-badge="17">
+                <img height="30" src="assets/images/icon/message-group-filled.png">
+            </button> -->
+            <div tsDropdown>
+                <button tsToggle class="btn btn-link rounded-0 p-1 mr-2">
+                    <img height="30" src="assets/images/icon/name-filled.png">
+                </button>
+                <div tsDropMenu [offsetX]="-62" [offsetY]="10">
+                    <button (click)="signOut()" class="dropdown-item pointer">
+                        <i class="fa fa-fw fa-power-off text-danger" aria-hidden="true"></i>
+                        <span>退出账户</span>
+                    </button>
+                    <button routerLink="/system/detail" class="dropdown-item pointer">
+                        <i class="fa fa-fw fa-pencil-square-o text-info" aria-hidden="true"></i>
+                        <span>修改资料</span>
+                    </button>
+                </div>
+            </div>
+            <div tsDropdown>
+                <button tsToggle class="btn btn-link rounded-0 p-1">
+                    <img height="30" src="assets/images/icon/paint-palette.png">
+                </button>
+                <div tsDropMenu [offsetX]="-110" [offsetY]="10">
+                    <button *ngFor="let theme of themes" (click)="changeTheme(theme.CLASS)" class="dropdown-item text-{{theme.CLASS}}">
+                        <i class="fa fa-fw fa-square"></i>
+                        <span>{{theme.NAME}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    <div class="ts-content">
+        <div class="h-100">
+            <div *ngIf="global.getValue('showmenu')" class="ts-content-sidebar h-100">
+                <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
+                    [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
+            </div>
+            <main class="ts-content-main bg-light h-100 p-2">
+                <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
+                <div [class.d-none]="global.getValue('lazyload')">
+                    <router-outlet></router-outlet>
+                    <div class="ts-footer"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+</ng-template>

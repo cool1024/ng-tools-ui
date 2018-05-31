@@ -29,11 +29,21 @@ export class AuthService {
         this.global.setValue('loginState', value);
     }
 
+
+    loadUserDeail() {
+        this.request.url('/managerapi/info')
+            .subscribe(res => this.user = res.datas);
+    }
+
+    setOutAndClean() {
+        this.setOut();
+        this.global.cleanAllStorage();
+    }
+
     setOut() {
         this.loginState = false;
         this.request.post('/managerapi/signout', this.global.getValuesFromStorage(...HttpConfig.AUTH_HEADER_PARAMS))
             .subscribe();
-        // this.global.cleanAllStorage();
         this.router.navigateByUrl('/dashboard/login');
     }
 

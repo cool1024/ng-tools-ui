@@ -54,7 +54,11 @@ export class AppComponent implements OnInit {
         private menu: MenuService,
     ) {
         this.global.loadStrFromStorage('color', 'primary');
-        this.global.setValue('lazyload', false);
+        this.global.setValues({
+            'lazyload': true,
+            'tokencheck': true,
+            'showmenu': false,
+        });
     }
 
     ngOnInit() {
@@ -73,7 +77,12 @@ export class AppComponent implements OnInit {
         this.global.setValue('loginStatus', false);
 
         // 载入菜单数据
-        this.menu.loadMenu();
+        this.menu.loadMenu().subscribe(() => {
+            this.global.setValue('tokencheck', false);
+        });
+
+        // 载入用户信息
+        this.auth.loadUserDeail();
     }
 
     changeTheme(color: string) {
@@ -83,7 +92,7 @@ export class AppComponent implements OnInit {
 
     signOut() {
         this.confirm.warning('退出登入', '您确认要退出当前的账户吗？')
-            .subscribe(() => this.auth.setOut());
+            .subscribe(() => this.auth.setOutAndClean());
     }
 
     goPage(menu: MenuItem) {
