@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
         this.global.setValues({
             'lazyload': true,
             'tokencheck': true,
-            'showmenu': false,
+            'showmenu': true,
         });
     }
 

@@ -9,7 +9,7 @@ export class NavbarDirective extends DomAttr implements AfterViewInit {
     @Input() class: string;
 
     @HostBinding('class') get _class() {
-        return `navbar flex-nowrap text-${this.inLightOrDark} ${this.bgClass} ${this.class || ''}`;
+        return `fixed-top w-100 navbar position-fixed flex-nowrap text-${this.inLightOrDark} ${this.bgClass} ${this.class || ''}`;
     }
 
     constructor(private elementRef: ElementRef) {

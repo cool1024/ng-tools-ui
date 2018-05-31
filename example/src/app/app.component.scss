@@ -1,23 +1,18 @@
 // 内容主体，包含菜单和视图显示面板
-.ts-content {
-    top: 61px;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    position: fixed;
+.main-content {
+    padding-top: 60px;
+    height: 100vh;
 }
 
 // 左侧菜单
-.ts-content-sidebar {
-    width: 250px;
-    float: left;
+.main-content-menu{
+    min-width: 250px;
     box-shadow: 0px 1px 3px #aaa;
 }
 
 // 视图面板
-.ts-content-main {
-    width: calc(100% - 252px);
-    float: right;
+.main-content-view {
+    flex-grow:1;
     overflow: auto;
 }
 
@@ -27,7 +22,6 @@
 
 .dropdown-item:active {
     background-color: #eee;
-    color: black;
 }
 
 .navbar {

@@ -2,7 +2,7 @@
     <ts-cssload [color]="global.getValue('color')"></ts-cssload>
 </div>
 <ng-template #content>
-    <div tsNavbar [color]="global.getValue('color')" style="height:60px;">
+    <div class="p-fixed w-100" tsNavbar [color]="global.getValue('color')">
         <a tsNavBrand class="app-head-title pr-5 text-center">
             <img height="35" src="assets/images/title.png" alt="管理系统模板">
         </a>
@@ -43,8 +43,19 @@
             </div>
         </div>
     </div>
-    <div class="ts-content">
-        <div class="h-100">
+    <div class="main-content d-flex flex-nowrap">
+        <div *ngIf="global.getValue('showmenu')" class="main-content-menu">
+            <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
+                [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
+        </div>
+        <div class="main-content-view">
+            <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
+            <div [class.d-none]="global.getValue('lazyload')">
+                <router-outlet></router-outlet>
+                <div class="ts-footer"></div>
+            </div>
+        </div>
+        <!-- <div class="h-100">
             <div *ngIf="global.getValue('showmenu')" class="ts-content-sidebar h-100">
                 <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
                     [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
@@ -56,6 +67,6 @@
                     <div class="ts-footer"></div>
                 </div>
             </main>
-        </div>
+        </div> -->
     </div>
 </ng-template>
