@@ -52,21 +52,8 @@
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
             <div [class.d-none]="global.getValue('lazyload')">
                 <router-outlet></router-outlet>
-                <div class="ts-footer"></div>
+                <div class="main-content-bottom"></div>
             </div>
         </div>
-        <!-- <div class="h-100">
-            <div *ngIf="global.getValue('showmenu')" class="ts-content-sidebar h-100">
-                <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
-                    [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
-            </div>
-            <main class="ts-content-main bg-light h-100 p-2">
-                <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
-                <div [class.d-none]="global.getValue('lazyload')">
-                    <router-outlet></router-outlet>
-                    <div class="ts-footer"></div>
-                </div>
-            </main>
-        </div> -->
     </div>
 </ng-template>
