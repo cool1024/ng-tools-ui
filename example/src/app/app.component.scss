@@ -14,6 +14,13 @@
 .main-content-view {
     flex-grow:1;
     overflow: auto;
+    padding:15px;
+}
+
+// 底部填充
+.main-content-bottom{
+    height: 15px;
+    width: 100%;
 }
 
 .app-head-title {
