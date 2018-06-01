@@ -6,8 +6,10 @@
 ## Build
 `ng build --base-href /ng/ --deploy-url //www.cool1024.com/ng/ --prod`
 
-## Analyse
+## Module Analyse --has some error
 `ng build --stats-json`
+
+## Map Analyse
 
 ## Run
 ```cmd

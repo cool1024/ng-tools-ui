@@ -1,5 +1,4 @@
 import {
-    Component,
     ElementRef,
     Directive,
     AfterViewInit,
@@ -12,9 +11,7 @@ import {
     HostListener,
     EventEmitter
 } from '@angular/core';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { ToggleDirective } from '../../commons/directives/toggle.directives';
-import { ElementDef } from '@angular/core/src/view';
 import { DomLoad } from '../../commons/interfaces/load.interface';
 
 @Directive({

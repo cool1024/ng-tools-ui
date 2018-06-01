@@ -1,7 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable ,  Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { MapConfig } from './map.config';
 import { GeometryUtil } from './map';
+import { ScriptService } from '../../commons/services/script.service';
 declare const window: any;
 declare const document: any;
 
@@ -12,7 +13,10 @@ export class MapService {
     private ready = false;
     private amap: any;
 
-    constructor(private mapConfig: MapConfig) {
+    constructor(
+        private mapConfig: MapConfig,
+        private script: ScriptService,
+    ) {
         const sub = new Subject<any>();
         this.loadHandle = sub.asObservable();
         if (!window.AMap) {
@@ -22,12 +26,13 @@ export class MapService {
                 sub.next(window.AMap);
                 sub.complete();
             };
-            const node: any = document.createElement('script');
-            node.async = true;
-            node.type = 'text/javascript';
-            node.src = `https://webapi.amap.com/maps?v=1.4.3&key=${mapConfig.appKey}&callback=aMapLoadCallBack`;
-            node.charset = 'utf-8';
-            document.getElementsByTagName('head')[0].appendChild(node);
+            this.script.load(`https://webapi.amap.com/maps?v=1.4.3&key=${mapConfig.appKey}&callback=aMapLoadCallBack`);
+            // const node: any = document.createElement('script');
+            // node.async = true;
+            // node.type = 'text/javascript';
+            // node.src = `https://webapi.amap.com/maps?v=1.4.3&key=${mapConfig.appKey}&callback=aMapLoadCallBack`;
+            // node.charset = 'utf-8';
+            // document.getElementsByTagName('head')[0].appendChild(node);
         } else {
             this.ready = true;
         }

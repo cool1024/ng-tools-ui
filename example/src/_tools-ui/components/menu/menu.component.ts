@@ -153,6 +153,12 @@ import { DomAttr } from '../../commons/extends/attr.class';
         .bg-light-fill{
             background-color:#ffffff22;
         }
+        .bg-pink-fill{
+            background-color:#e83e8c11;
+        }
+        .bg-purple-fill{
+            background-color:#6f42c111;
+        }
         `,
     ]
 })

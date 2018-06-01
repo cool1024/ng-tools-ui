@@ -59,6 +59,7 @@ export class AppComponent implements OnInit {
             'tokencheck': true,
             'showmenu': true,
         });
+        this.menuPush.setDefaultItem({ title: '首页', url: '/' });
     }
 
     ngOnInit() {

@@ -1,10 +1,10 @@
 import { Directive, Input, ElementRef, AfterViewInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { MapService } from './map.service';
 import { DefaultConfig } from './default.config';
-import { Observable ,  Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Directive({
-    selector: 'div[ts-map]',
+    selector: 'div[tsMap]',
     exportAs: 'tsMap',
 })
 export class MapDirective implements AfterViewInit, OnDestroy {

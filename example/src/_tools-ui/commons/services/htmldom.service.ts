@@ -19,15 +19,15 @@ export class HtmlDomService {
         return dom.clientHeight;
     }
 
-    overflowBottom(dom: HTMLElement, offset = 0): boolean {
-        const height = dom.clientHeight + offset;
-        const position = this.getPosition(dom);
-        return window.innerHeight > position.y + height + offset;
-    }
+    // overflowBottom(dom: HTMLElement, offset = 0): boolean {
+    //     const height = dom.clientHeight + offset;
+    //     const position = this.getPosition(dom);
+    //     return window.innerHeight > position.y + height + offset;
+    // }
 
-    overflowTop(dom: HTMLElement, offset = 0): boolean {
-        const height = dom.clientHeight + offset;
-        const position = this.getPosition(dom);
-        return (position.y - height - offset) > 0;
-    }
+    // overflowTop(dom: HTMLElement, offset = 0): boolean {
+    //     const height = dom.clientHeight + offset;
+    //     const position = this.getPosition(dom);
+    //     return (position.y - height - offset) > 0;
+    // }
 }
