@@ -7,13 +7,13 @@ import { DomAttr } from '../../commons/extends/attr.class';
     selector: `ts-menu`,
     exportAs: 'tsMenu',
     template: `
-    <div class="h-100 menu-bg" [ngStyle]="{backgroundImage:config.BACKGROUND_IMAGE_SRC}">
-        <div class="h-100 w-100 pt-2" [ngStyle]="{backgroundColor:config.BACKGROUND_COLOR,color:config.DEFAULT_TEXT_COLOR}">
+    <div class="h-100 tsmenu-bg" [ngStyle]="{backgroundImage:config.BACKGROUND_IMAGE_SRC}">
+        <div class="h-100 w-100 pt-2 ts-menu-fill" [ngStyle]="{backgroundColor:config.BACKGROUND_COLOR,color:config.DEFAULT_TEXT_COLOR}">
             <div class="media pl-3 mb-3 pt-3" *ngIf="avatars">
-                <img class="mr-2 rounded-circle" [src]="avatars[0]" height="40" width="40" alt="Avatar ">
+                <img class="mr-2 rounded-circle" [src]="avatars[0]" height="45" width="45" alt="Avatar">
                 <div class="media-body">
-                    <h6 class="mt-0 mb-0 d-inline-block font-weight-bold">{{avatars[1]}}</h6>
-                    <p class="mb-0 d-inline-block">{{avatars[2]}}</p>
+                    <h6 class="mt-0 mb-0 d-inline-block text-truncate font-weight-bold">{{avatars[1]}}</h6>
+                    <p class="mb-0">{{avatars[2]}}</p>
                 </div>
             </div>
             <ng-container *ngFor="let model of items;">
@@ -53,7 +53,15 @@ import { DomAttr } from '../../commons/extends/attr.class';
     </div>`,
     styles: [
         `
-        .menu-bg{
+        .text-truncate{
+            text-overflow: ellipsis;
+            max-width: 180px;
+        }
+        .ts-menu-fill{
+            overflow-y:auto;
+            overflow-x:hidden;
+        }
+        .ts-menu-bg{
             background-size:cover;
         }
         .ts-icon-sm{
@@ -145,6 +153,12 @@ import { DomAttr } from '../../commons/extends/attr.class';
         }
         .bg-light-fill{
             background-color:#ffffff22;
+        }
+        .bg-pink-fill{
+            background-color:#e83e8c11;
+        }
+        .bg-purple-fill{
+            background-color:#6f42c111;
         }
         `,
     ]

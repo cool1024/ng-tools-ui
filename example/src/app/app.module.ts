@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from './cores/cores.module';
 import { AppRoutingModule } from './app.routing';
 import {
-    // NavbarModule,
+    NavbarModule,
     CssloadModule,
     DropdownModule,
     ConfirmModule,
@@ -10,12 +10,10 @@ import {
     MapModule,
     EChartModule,
     CkeditorModule,
-    // MenuModule,
+    MenuModule,
 } from 'ng-tools-ui';
 
 import { AppComponent } from './app.component';
-
-import { MenuModule, NavbarModule } from './../_tools-ui';
 
 @NgModule({
     declarations: [

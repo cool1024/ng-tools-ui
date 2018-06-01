@@ -5,14 +5,12 @@ import { DomAttr } from '../../commons/extends/attr.class';
 @Component({
     selector: `ts-menu-push`,
     exportAs: 'tsMenuPush',
-    template: `<h3 class="mb-0">
+    template: `<div class="mb-0">
         <button  *ngFor="let item of items;index as i"
             (click)="goItem(item,index)"
-            class="{{btnClass}} btn-sm badge-pill ml-1 {{item.active?activeClass:''}}">
-            <span>{{item.title}}</span>
-            <!--<span (click)="removeItem(i)">x</span>-->
+            class="{{btnClass}} btn-sm badge-pill ml-1 {{item.active?activeClass:''}}">{{item.title}}
         </button>
-    </h3>`,
+    </div>`,
 })
 export class MenuPushComponent extends DomAttr {
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject ,  Observable ,  Observer ,  concat } from 'rxjs';
+import { Subject, Observable, Observer, concat } from 'rxjs';
 
 declare const window: any;
 
