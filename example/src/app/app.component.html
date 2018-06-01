@@ -3,7 +3,8 @@
 </div>
 <ng-template #content>
     <div class="p-fixed w-100" tsNavbar [color]="global.getValue('color')">
-        <a tsNavBrand class="app-head-title pr-5 text-center">
+        <i (click)="toggleMenu()" class="fa fa-fw fa-bars"></i>
+        <a tsNavBrand class="app-head-title pl-3">
             <img height="35" src="assets/images/title.png" alt="管理系统模板">
         </a>
         <div tsNavList>
@@ -44,9 +45,11 @@
         </div>
     </div>
     <div class="main-content d-flex flex-nowrap">
-        <div *ngIf="global.getValue('showmenu')" class="main-content-menu">
-            <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
-                [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
+        <div [class.menu-close]="!global.getValue('showmenu')" class="main-content-menu">
+            <div class="main-content-menu-static h-100">
+                <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
+                    [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
+            </div>
         </div>
         <div class="main-content-view">
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>

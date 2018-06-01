@@ -86,6 +86,10 @@ export class AppComponent implements OnInit {
         this.auth.loadUserDeail();
     }
 
+    toggleMenu() {
+        this.global.setValue('showmenu', !this.global.getValue('showmenu', false));
+    }
+
     changeTheme(color: string) {
         this.global.setValue('color', color);
         this.global.setValueToStorage('color', color);

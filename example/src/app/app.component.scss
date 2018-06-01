@@ -9,6 +9,21 @@
     min-width: 250px;
     box-shadow: 0px 1px 3px #aaa;
 }
+.main-content-menu-static{
+    width: 250px;
+}
+
+.menu-close{
+    overflow: hidden;
+    transition: min-width 0.5s;
+    min-width: 1px;
+    width: 1px;
+}
+.menu-close:hover{
+    transition: min-width 0.5s;
+    min-width: 250px;
+    width: 250px;
+}
 
 // 视图面板
 .main-content-view {

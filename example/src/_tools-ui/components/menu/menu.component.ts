@@ -59,6 +59,7 @@ import { DomAttr } from '../../commons/extends/attr.class';
         }
         .ts-menu-fill{
             overflow-y:auto;
+            overflow-x:hidden;
         }
         .ts-menu-bg{
             background-size:cover;
