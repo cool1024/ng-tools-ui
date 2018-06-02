@@ -1,6 +1,5 @@
 
 import {
-    Component,
     ViewChild,
     ElementRef,
     AfterViewInit,
@@ -12,22 +11,19 @@ import {
     EventEmitter,
     OnInit,
     Inject,
+    Directive,
 } from '@angular/core';
 import { ScriptService } from './../../commons/services/script.service';
 import { QuillOptions } from './quill.interface';
 declare const window: any;
 
-@Component({
-    selector: 'ts-quill',
+@Directive({
+    selector: '*[tsQuill]',
     exportAs: 'tsQuill',
-    template: `<div #editor></div>`,
-    styles: [],
-    encapsulation: ViewEncapsulation.Emulated,
 })
 
-export class QuillComponent implements AfterViewInit, OnInit, OnChanges {
+export class QuillDirective implements AfterViewInit, OnInit, OnChanges {
 
-    @ViewChild('editor') editor: ElementRef;
 
     @Input() content: string;
 
@@ -37,6 +33,8 @@ export class QuillComponent implements AfterViewInit, OnInit, OnChanges {
 
     @Output() contentChange = new EventEmitter<string>();
 
+    private noUpdateContent = false;
+
     private quill: any;
 
     private textarea: HTMLTextAreaElement;
@@ -44,6 +42,7 @@ export class QuillComponent implements AfterViewInit, OnInit, OnChanges {
     private ready: boolean;
 
     constructor(
+        private elementRef: ElementRef,
         private script: ScriptService,
         @Inject('QUILL_SCRIPT_SRCS') private srcs: string[]
     ) {
@@ -52,7 +51,12 @@ export class QuillComponent implements AfterViewInit, OnInit, OnChanges {
     }
 
     ngOnChanges(change: SimpleChanges) {
-        this.updateContent();
+        if (change.content
+            && !change.content.firstChange
+            && change.content.previousValue !== change.content.currentValue) {
+            this.updateContent();
+            console.log(111);
+        }
     }
 
     ngOnInit() {
@@ -60,27 +64,22 @@ export class QuillComponent implements AfterViewInit, OnInit, OnChanges {
     }
 
     ngAfterViewInit() {
-        this.textarea = this.editor.nativeElement;
+        this.textarea = this.elementRef.nativeElement;
         this.script.complete(() => {
-
             this.quill = new window.Quill(this.textarea, this.options);
-            // window.ClassicEditor
-            //     .create(this.textarea, this.options)
-            //     .then((editor: any) => {
-            //         this.editroHandle = editor;
-            //         this.ready = true;
-            //         this.load.emit(this.editroHandle);
-            //         this.updateContent();
-            //     })
-            //     .catch((error: any) => {
-            //         console.error(error);
-            //     });
+            this.ready = true;
+            this.updateContent();
+            this.quill.on('text-change', () => {
+                this.noUpdateContent = true;
+                this.contentChange.emit(this.quill.root.innerHTML);
+            });
         });
     }
 
     updateContent() {
-        // if (this.ready) {
-        //     this.editroHandle.setData(this.content);
-        // }
+        if (this.ready && !this.noUpdateContent) {
+            this.quill.clipboard.dangerouslyPasteHTML(this.content);
+        }
+        this.noUpdateContent = false;
     }
 }

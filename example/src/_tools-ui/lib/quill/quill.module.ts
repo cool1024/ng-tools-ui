@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { QuillComponent } from './quill.component';
+import { QuillDirective } from './quill.directive';
 import { ScriptService } from './../../commons/services/script.service';
 
 @NgModule({
@@ -8,11 +8,11 @@ import { ScriptService } from './../../commons/services/script.service';
         CommonModule
     ],
     declarations: [
-        QuillComponent,
+        QuillDirective,
     ],
     exports: [
         CommonModule,
-        QuillComponent
+        QuillDirective
     ],
     providers: [
         ScriptService
