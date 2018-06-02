@@ -29,4 +29,12 @@ export class EChartModule {
             ]
         };
     }
+    static forChild(src: string): ModuleWithProviders {
+        return {
+            ngModule: EChartModule,
+            providers: [
+                { provide: 'ECHART_SCRIPT_SRC', useValue: src }
+            ]
+        };
+    }
 }

@@ -1,23 +1,20 @@
 import { Component } from '@angular/core';
 import { QuillOptions } from '../../../../../_tools-ui';
+import { RequestService } from '../../../../cores/services';
 
 @Component({
     templateUrl: './edit.component.html',
 })
 export class EditComponent {
 
-    content = `
-    <h4>这个是h4的标题</h4>
-    <hr>
-    <img src="assets/images/material-3.jpg"></img>
-    `;
+    content = '';
 
-    options = { language: 'zh_cn' };
+    options: QuillOptions;
 
-    quillOptions: QuillOptions;
-
-    constructor() {
-        this.quillOptions = {
+    constructor(
+        private request: RequestService
+    ) {
+        this.options = {
             theme: 'snow',
             placeholder: '请输入文本内容',
             modules: {
@@ -36,6 +33,21 @@ export class EditComponent {
                 ]
             },
         };
+        this.loadText();
     }
 
+    loadText() {
+        this.request.withoutHost().withoutHeader().
+            text('https://hello1024.oss-cn-beijing.aliyuncs.com/upload/goods201806020404365b12c01485e25.txt')
+            .subscribe(content => this.content = content);
+    }
+
+    confirmSave() {
+        const blob = new Blob([this.content]);
+        const file = new File([blob], 'temp.txt', { type: 'text/plain' });
+        this.request.ossUpload('/store/goods/image/access', file)
+            .subscribe(res => {
+                console.log(res);
+            });
+    }
 }

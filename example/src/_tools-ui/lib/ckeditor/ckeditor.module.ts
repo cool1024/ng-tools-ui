@@ -27,4 +27,12 @@ export class CkeditorModule {
             ]
         };
     }
+    static forChild(srcs: string[]): ModuleWithProviders {
+        return {
+            ngModule: CkeditorModule,
+            providers: [
+                { provide: 'CKEDITOR_SCRIPT_SRCS', useValue: srcs }
+            ]
+        };
+    }
 }

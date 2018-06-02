@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CkeditorComponent } from './ckeditor.component';
+import { QuillDirective } from './quill.directive';
 import { ScriptService } from './../../commons/services/script.service';
 
 @NgModule({
@@ -8,30 +8,32 @@ import { ScriptService } from './../../commons/services/script.service';
         CommonModule
     ],
     declarations: [
-        CkeditorComponent,
+        QuillDirective,
     ],
     exports: [
         CommonModule,
-        CkeditorComponent
+        QuillDirective
     ],
     providers: [
         ScriptService
     ]
 })
-export class CkeditorModule {
-    static forRoot(srcs: string[]): ModuleWithProviders {
+export class QuillModule {
+
+    static forChild(srcs: string[]): ModuleWithProviders {
         return {
-            ngModule: CkeditorModule,
+            ngModule: QuillModule,
             providers: [
-                { provide: 'CKEDITOR_SCRIPT_SRCS', useValue: srcs }
+                { provide: 'QUILL_SCRIPT_SRCS', useValue: srcs }
             ]
         };
     }
-    static forChild(srcs: string[]): ModuleWithProviders {
+
+    static forRoot(srcs: string[]): ModuleWithProviders {
         return {
-            ngModule: CkeditorModule,
+            ngModule: QuillModule,
             providers: [
-                { provide: 'CKEDITOR_SCRIPT_SRCS', useValue: srcs }
+                { provide: 'QUILL_SCRIPT_SRCS', useValue: srcs }
             ]
         };
     }

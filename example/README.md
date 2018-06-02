@@ -10,6 +10,9 @@
 `ng build --stats-json`
 
 ## Map Analyse
+`ng build --prod --sourcemaps`
+`ls dist/*.bundle.js`
+`node_modules/.bin/source-map-explorer dist/main.*.bundle.js`
 
 ## Run
 ```cmd

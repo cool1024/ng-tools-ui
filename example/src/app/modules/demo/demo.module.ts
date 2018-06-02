@@ -9,22 +9,19 @@ import {
     EChartModule,
     CkeditorModule,
 } from 'ng-tools-ui';
-
+import { QuillModule } from './../../../_tools-ui';
 /*路由模块*/
 import { DemoRoutingModule, declarationComponents } from './demo.routing';
-import { QuillModule } from '../../../_tools-ui';
-
 
 @NgModule({
     imports: [
         FormsModule,
         ChartModule,
         DemoRoutingModule,
-        MapModule,
         PrismModule,
-        EChartModule,
-        CkeditorModule,
-        QuillModule.forChild([]),
+        MapModule.forChild('bea16ad29a10b04e05e0624362d504dc'),
+        EChartModule.forChild('assets/echart/echarts.common.min.js'),
+        QuillModule.forChild(['assets/quill/quill.min.js']),
     ],
     declarations: [
         declarationComponents

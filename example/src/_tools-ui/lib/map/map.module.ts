@@ -20,7 +20,6 @@ import { ScriptService } from '../../commons/services/script.service';
     ]
 })
 export class MapModule {
-
     public static forRoot(appKey: string): ModuleWithProviders {
         return {
             ngModule: MapModule,
@@ -30,5 +29,13 @@ export class MapModule {
             ]
         };
     }
-
+    public static forChild(appKey: string): ModuleWithProviders {
+        return {
+            ngModule: MapModule,
+            providers: [
+                { provide: MapConfig, useValue: { appKey } },
+                MapService,
+            ]
+        };
+    }
 }
