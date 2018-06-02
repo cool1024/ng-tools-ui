@@ -28,6 +28,7 @@ export { PrismModule } from './lib/prism/prism.module';
 export { ChartModule } from './lib/chart-pad/chart.module';
 export { MapModule } from './lib/map/map.module';
 export { EChartModule } from './lib/echart/echart.module';
+export { QuillModule } from './lib/quill/quill.module';
 
 /**
  * Class export
@@ -48,6 +49,7 @@ export { DomLoad } from './commons/interfaces/load.interface';
 export { Toggle } from './commons/interfaces/toggle.interface';
 export { MenuModel, MenuGroup, MenuItem } from './components/menu/menu.interface';
 export { LoopCard, LoopCardConfig } from './components/loop-card/loop-card.interface';
+export { QuillOptions } from './lib/quill/quill.interface';
 
 /**
  * Service export

@@ -12,6 +12,7 @@ import {
 
 /*路由模块*/
 import { DemoRoutingModule, declarationComponents } from './demo.routing';
+import { QuillModule } from '../../../_tools-ui';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { DemoRoutingModule, declarationComponents } from './demo.routing';
         PrismModule,
         EChartModule,
         CkeditorModule,
+        QuillModule.forChild([]),
     ],
     declarations: [
         declarationComponents

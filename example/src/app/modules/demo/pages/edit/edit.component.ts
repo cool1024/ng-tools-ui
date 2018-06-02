@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { QuillOptions } from '../../../../../_tools-ui';
 
 @Component({
     templateUrl: './edit.component.html',
@@ -12,5 +13,21 @@ export class EditComponent {
     `;
 
     options = { language: 'zh_cn' };
+
+    quillOptions: QuillOptions;
+
+    constructor() {
+        this.quillOptions = {
+            theme: 'snow',
+            placeholder: '请输入文本内容',
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['image']
+                ]
+            },
+        };
+    }
 
 }
