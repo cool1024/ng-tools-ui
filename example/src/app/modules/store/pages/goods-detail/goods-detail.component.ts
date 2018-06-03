@@ -107,9 +107,6 @@ export class GoodsDetailComponent implements OnInit {
         });
     }
 
-    /**
-     * 确认修改
-     */
     confirmUpdate(btn: any) {
         this.goodsService.updateGoods(this.goods).subscribe({
             next: res => {
@@ -121,9 +118,6 @@ export class GoodsDetailComponent implements OnInit {
         });
     }
 
-    /**
-     * 保存规格
-     */
     confirmSave(btn: any) {
         if (this.goods.id <= 0) {
             this.confirm.info('无法保存', '您还没有确认添加商品，不能保存商品的规格');
@@ -145,9 +139,6 @@ export class GoodsDetailComponent implements OnInit {
             });
     }
 
-    /**
-     * 清空表单数据
-     */
     resetForm() {
         this.router.navigateByUrl('/store/goods');
         setTimeout(() => this.router.navigateByUrl('/store/goods/detail'), 100);

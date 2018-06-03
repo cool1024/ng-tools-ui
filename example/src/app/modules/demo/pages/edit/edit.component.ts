@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { QuillOptions } from '../../../../../_tools-ui';
 import { RequestService } from '../../../../cores/services';
+import { ToastService } from 'ng-tools-ui';
+import { QuillOptions } from '../../../../configs/quill.config';
 
 @Component({
     templateUrl: './edit.component.html',
@@ -9,45 +10,42 @@ export class EditComponent {
 
     content = '';
 
-    options: QuillOptions;
+    options = QuillOptions;
 
     constructor(
-        private request: RequestService
+        private request: RequestService,
+        private toast: ToastService,
     ) {
-        this.options = {
-            theme: 'snow',
-            placeholder: '请输入文本内容',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ 'indent': '-1' }, { 'indent': '+1' }],
-                    ['blockquote', 'code-block'],
-                    [{ header: [1, 2, 3, 4, false] }],
-                    [{ 'align': [] }],
-                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                    [{ 'color': [] }, { 'background': [] }],
-                    [{ 'font': [] }],
-                    [{ 'direction': 'rtl' }],
-                    ['link', 'image'],
-                    ['clean']
-                ]
-            },
-        };
         this.loadText();
     }
 
+    /**
+     * 主动获取富文本内容
+     * @return {void}
+     */
     loadText() {
         this.request.withoutHost().withoutHeader().
-            text('https://hello1024.oss-cn-beijing.aliyuncs.com/upload/goods201806020404365b12c01485e25.txt')
+            text('https://hello1024.oss-cn-beijing.aliyuncs.com/upload/temp.txt')
             .subscribe(content => this.content = content);
     }
 
-    confirmSave() {
+    /**
+     * 富文本内容需要单独上传，不再是图片单独上传，数据库不再保存富文本的内容；
+     * 数据只保存富文本的访问地址，前端使用时需要自行请求获取文档内容（获取一个txt文件）
+     * @param {any} btn 加载按钮对象，用于关闭加载状态
+     * @return {void}
+     */
+    confirmSave(btn: any) {
         const blob = new Blob([this.content]);
         const file = new File([blob], 'temp.txt', { type: 'text/plain' });
-        this.request.ossUpload('/store/goods/image/access', file)
+        this.request.ossUpload('/managerapi/quill', file)
             .subscribe(res => {
-                console.log(res);
+                if (res !== 'upload error') {
+                    this.toast.success('保存成功', '成功保存富文本内容～');
+                } else {
+                    this.toast.warning('保存失败', '无法上传文件到云端～');
+                }
+                btn.dismiss();
             });
     }
 }

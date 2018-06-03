@@ -12,20 +12,7 @@ import { delay } from 'rxjs/operators';
 })
 export class SimpleComponent implements OnInit {
 
-    // config: UploadConfig = {
-    //     host: 'http://127.0.0.1/',
-    //     uploader: file => {
-    //         const formData = new FormData();
-    //         formData.append('file', file);
-    //         return this.http.post('http://127.0.0.1/webblog/tools-ui/upload', formData)
-    //             // watting 1 seconds
-    //             .delay(1000)
-    //             .map<any, string>(res => {
-    //                 return res.datas;
-    //             });
-    //     }
-    // };
-
+    // 上传配置只需要提供一个方法，这个方法需要返回一个可观察对象，传递的内容为字符串
     config: UploadConfig = {
         host: '',
         uploader: file => of('https://picsum.photos/300/300/?random').pipe(delay(2000))

@@ -8,14 +8,16 @@ import {
     PrismModule,
     EChartModule,
     CkeditorModule,
+    ButtonModule,
+    QuillModule,
 } from 'ng-tools-ui';
-import { QuillModule } from './../../../_tools-ui';
 /*路由模块*/
 import { DemoRoutingModule, declarationComponents } from './demo.routing';
 
 @NgModule({
     imports: [
         FormsModule,
+        ButtonModule,
         ChartModule,
         DemoRoutingModule,
         PrismModule,
