@@ -118,6 +118,7 @@ dropdownValue = 2;`,
     constructor(public global: GlobalService) { }
 
     ngOnInit() {
+
     }
 
 }

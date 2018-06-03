@@ -20,7 +20,7 @@ export { ConfirmModule } from './components/confirm/confirm.module';
 export { ToastModule } from './components/toast/toast.module';
 export { ModalModule } from './components/modal/modal.module';
 export { CkeditorModule } from './lib/ckeditor/ckeditor.module';
-
+export { SearchModule } from './components/search/select.module';
 /**
  * Lib modules export
  */

@@ -47,8 +47,7 @@ export const declarationComponents = [
     UserDetailComponent,
 ];
 
-export const entryComponents = [
-];
+export const entryComponents = [];
 
 @NgModule({
     imports: [
