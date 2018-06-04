@@ -7,6 +7,8 @@ import { OrderTableComponent } from './pages/order-table/order-table.component';
 import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 import { UserTableComponent } from './pages/user-table/user-table.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { BannerManagerComponent } from './pages/banner-manager/banner-manager.component';
+import { BannerDetailComponent } from './pages/banner-manager/banner-detail.component';
 
 const routes: Routes = [
     {
@@ -35,6 +37,10 @@ const routes: Routes = [
             { path: 'detail/:id', component: UserDetailComponent },
         ]
     },
+    {
+        path: 'banner',
+        component: BannerManagerComponent,
+    }
 ];
 
 export const declarationComponents = [
@@ -45,9 +51,13 @@ export const declarationComponents = [
     OrderDetailComponent,
     UserTableComponent,
     UserDetailComponent,
+    BannerManagerComponent,
+    BannerDetailComponent,
 ];
 
-export const entryComponents = [];
+export const entryComponents = [
+    BannerDetailComponent,
+];
 
 @NgModule({
     imports: [

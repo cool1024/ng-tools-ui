@@ -128,8 +128,31 @@ export class MenuManagerComponent implements OnInit {
         this.confirm.danger('确认删除', `确认删除菜单‘${menu.menuTitle}’,相关子菜单也会被删除！`)
             .pipe(switchMap<void, ApiData>(() => this.menuService.deleteMenu(menu.id)))
             .subscribe(() => {
-                this.toast.success('删除成功', `成功删除菜单‘${menu.menuTitle}’！`)
+                this.toast.success('删除成功', `成功删除菜单‘${menu.menuTitle}’！`);
                 this.loadDatas();
+            });
+    }
+
+    /**
+     * 确认菜单分组排序
+     * @param {any} btn 加载按钮
+     */
+    confirmGroupSort(btn: any) {
+        this.menuService.sortMenuGroup(this.menuGroups.map(item => item.id))
+            .subscribe({
+                next: res => this.toast.success('排序成功', `成功排序菜单组！`),
+                complete: btn.dismiss(),
+            });
+    }
+
+    /**
+     * 确认排序菜单
+     */
+    confirmSort(btn: any, menus: Menu[]) {
+        this.menuService.sortMenu(menus.map(item => item.id))
+            .subscribe({
+                next: res => this.toast.success('排序成功', `成功排序菜单！`),
+                complete: btn.dismiss(),
             });
     }
 }

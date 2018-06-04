@@ -22,6 +22,10 @@ export class MenuService {
         return this.request.put('/managerapi/menu/group/update', menuGroup);
     }
 
+    sortMenuGroup(ids: number[]) {
+        return this.request.put('/managerapi/menu/group/sort', { ids });
+    }
+
     insertMenu(menu: Menu): Observable<ApiData> {
         return this.request.post('/managerapi/menu/insert', menu);
     }
@@ -37,5 +41,9 @@ export class MenuService {
 
     deleteMenu(menuId: number) {
         return this.request.delete('/managerapi/menu/delete', { menuId });
+    }
+
+    sortMenu(ids: number[]) {
+        return this.request.put('/managerapi/menu/sort', { ids });
     }
 }

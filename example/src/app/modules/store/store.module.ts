@@ -11,9 +11,10 @@ import {
     CheckboxModule,
     TabModule,
     ImageModule,
+    ModalModule,
 } from 'ng-tools-ui';
 
-import { StoreRoutingModule, declarationComponents } from './store.routing';
+import { StoreRoutingModule, declarationComponents, entryComponents } from './store.routing';
 import { UserService } from './services/user.service';
 import { GoodsTypeService } from './services/goods-type.service';
 import { GoodsService } from './services/goods.service';
@@ -32,9 +33,11 @@ import { OrderService } from './services/order.service';
         CheckboxModule,
         TabModule,
         ImageModule,
+        ModalModule,
         StoreRoutingModule,
     ],
     declarations: [declarationComponents],
+    entryComponents: [entryComponents],
     providers: [
         UserService,
         GoodsTypeService,

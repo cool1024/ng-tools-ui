@@ -40,13 +40,16 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <button tsBtn loading color="warning" (submit)="confirmGroupSort($event)">确认排序</button>
+            </div>
         </div>
     </div>
     <!-- 主菜单 -->
     <div tsTab tab='主菜单' class="card-body">
         <div class="table-responsive">
             <table class="table table-striped">
-                <tbody>
+                <thead>
                     <tr class="font-weight-bold bg-light">
                         <td>排序</td>
                         <td>菜单名称</td>
@@ -54,6 +57,8 @@
                         <td>图片</td>
                         <td>操作</td>
                     </tr>
+                </thead>
+                <tbody [sortablejs]='activeMainMenus'>
                     <tr *ngFor="let mainMenu of activeMainMenus;index as i">
                         <td>{{i+1}}</td>
                         <td>{{mainMenu.menuTitle}}</td>
@@ -77,19 +82,24 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <button tsBtn loading color="warning" (submit)="confirmSort($event,activeMainMenus)">确认排序</button>
+            </div>
         </div>
     </div>
     <!-- 子菜单 -->
     <div tsTab tab='子菜单' class="card-body">
         <div class="table-responsive">
             <table class="table table-striped">
-                <tbody>
+                <thead>
                     <tr class="font-weight-bold bg-light">
                         <td>排序</td>
                         <td>菜单名称</td>
                         <td>链接</td>
                         <td>操作</td>
                     </tr>
+                </thead>
+                <tbody [sortablejs]="activeChildMenus">
                     <tr *ngFor="let childMenu of activeChildMenus;index as i">
                         <td>{{i+1}}</td>
                         <td>{{childMenu.menuTitle}}</td>
@@ -107,6 +117,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <button tsBtn loading color="warning" (submit)="confirmSort($event,activeChildMenus)">确认排序</button>
+            </div>
         </div>
     </div>
 </div>
