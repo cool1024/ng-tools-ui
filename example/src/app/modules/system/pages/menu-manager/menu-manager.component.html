@@ -15,12 +15,14 @@
     <div tsTab tab='菜单组' class="card-body">
         <div class="table-responsive">
             <table class="table table-striped">
-                <tbody>
+                <thead>
                     <tr class="font-weight-bold bg-light">
                         <td>排序</td>
                         <td>组名</td>
                         <td>操作</td>
                     </tr>
+                </thead>
+                <tbody [sortablejs]="menuGroups">
                     <tr *ngFor="let menuGroup of menuGroups;index as i">
                         <td>{{i+1}}</td>
                         <td>{{menuGroup.menuGroupName}}</td>

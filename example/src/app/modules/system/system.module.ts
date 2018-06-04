@@ -29,6 +29,7 @@ import { PermissionService } from './services/permission.service';
 import { MenuService } from './services/menu.service';
 import { RoleService } from './services/role.service';
 import { ManagerService } from './services/manager.service';
+import { SortablejsModule } from 'angular-sortablejs/dist';
 
 @NgModule({
     imports: [
@@ -44,6 +45,7 @@ import { ManagerService } from './services/manager.service';
         CheckboxModule,
         SystemRoutingModule,
         UploadModule,
+        SortablejsModule,
     ],
     declarations: [
         declarationComponents,

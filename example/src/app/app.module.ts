@@ -12,6 +12,7 @@ import {
     CkeditorModule,
     MenuModule,
 } from 'ng-tools-ui';
+import { SortablejsModule } from 'angular-sortablejs';
 
 import { AppComponent } from './app.component';
 
@@ -27,6 +28,7 @@ import { AppComponent } from './app.component';
         NavbarModule,
         CssloadModule,
         DropdownModule,
+        SortablejsModule.forRoot({ animation: 150 }),
         AppRoutingModule,
     ],
     providers: [],

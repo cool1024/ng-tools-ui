@@ -18,6 +18,7 @@
         "@angular/platform-browser": "6.0.1",
         "@angular/platform-browser-dynamic": "6.0.1",
         "@angular/router": "6.0.1",
+        "angular-sortablejs": "^2.5.2",
         "animate.css": "^3.6.1",
         "bootstrap": "^4.1.1",
         "classlist.js": "^1.1.20150312",
@@ -25,6 +26,7 @@
         "font-awesome": "^4.7.0",
         "ng-tools-ui": "^1.4.12",
         "rxjs": "^6.1.0",
+        "sortablejs": "^1.7.0",
         "zone.js": "^0.8.26"
     },
     "devDependencies": {

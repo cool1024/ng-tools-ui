@@ -7,6 +7,12 @@ import { Company } from '../../interfaces/company.interfaces';
 import { ApiData } from '../../../../cores/classes';
 import { skipWhile, switchMap } from 'rxjs/operators';
 
+declare const $: any;
+// 或者
+declare const JQuery: any;
+// 或者 
+declare const window: any;
+
 @Component({
     selector: 'app-company-detail',
     templateUrl: './company-detail.component.html',
