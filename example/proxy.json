@@ -1,0 +1,6 @@
+{
+    "/managerapi": {
+        "target": "https://www.example.com",
+        "secure": false
+    }
+}

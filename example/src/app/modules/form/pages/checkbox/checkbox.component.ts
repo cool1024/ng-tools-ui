@@ -48,14 +48,12 @@ import { CheckboxModule } from 'ng-tools-ui';
     ...
 })
 export class MyModule { }`,
-        `<div tsRadioGroup #radioGroup="tsRadioGroup" [(ngModel)]="radioValue">
-    <ts-radio
-        *ngFor="let radio of radios"
-        [label]="radio.label"
-        [value]="radio.value"
-        (groupHandle)="radioGroup.applyRadioChange($event)">
-    </ts-radio>
-</div>`,
+        `<ts-radio 
+            *ngFor="let radio of radios" 
+            [(ngModel)]="radioValue"
+            [label]="radio.label"
+            [value]="radio.value">
+</ts-radio>`,
         `import { Component } from '@angular/core';
 
 @Component({
@@ -75,13 +73,12 @@ export class ExampleComponent {
     ];
 
 }`,
-        `<div tsCheckboxGroup #checkboxGroup="tsCheckboxGroup" [(ngModel)]="checkboxValues">
-    <ts-checkbox
-        *ngFor="let checkbox of checkboxs"
-        [label]="checkbox.label" [value]="checkbox.value"
-        (groupHandle)="checkboxGroup.applyCheckboxChange()">
-    </ts-checkbox>
-</div>`,
+        `<ts-checkbox 
+            *ngFor="let checkbox of checkboxs" 
+            [(ngModel)]="checkboxValues" 
+            [label]="checkbox.label"
+            [value]="checkbox.value">
+</ts-checkbox>`,
         `import { Component } from '@angular/core';
 
 @Component({

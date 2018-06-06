@@ -6,7 +6,7 @@
                 <button tsBtn sm [color]="global.getValue('color')" (click)="addRadio()" class="ml-3">添加选项</button>
                 <button tsBtn sm [color]="global.getValue('color')" (click)="removeRadio()">移除选项</button>
             </div>
-            <div tsRadioGroup [(ngModel)]="radioValue" #radioGroup="tsRadioGroup" class="card-body">
+            <div class="card-body">
                 <form class="form-inline">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -17,7 +17,8 @@
                         <input name="radioValue" [(ngModel)]="radioValue" type="number" class="form-control bg-white">
                     </div>
                 </form>
-                <ts-radio *ngFor="let radio of radios" [color]="global.getValue('color')" [label]="radio.label" [value]="radio.value" (groupHandle)="radioGroup.applyRadioChange($event)"></ts-radio>
+                <ts-radio *ngFor="let radio of radios" [(ngModel)]="radioValue" [color]="global.getValue('color')" [label]="radio.label"
+                    [value]="radio.value"></ts-radio>
             </div>
             <div tsToggle [target]='codePadOne' class="text-primary card-footer bg-white pointer">
                 <i class="fa fa-fw fa-code"></i>查看代码
@@ -42,7 +43,7 @@
                 <button tsBtn sm [color]="global.getValue('color')" (click)="addCheckbox()" class="ml-3">添加选项</button>
                 <button tsBtn sm [color]="global.getValue('color')" (click)="removeCheckbox()">移除选项</button>
             </div>
-            <div tsCheckboxGroup [(ngModel)]="checkboxValues" #checkboxGroup="tsCheckboxGroup" class="card-body">
+            <div class="card-body">
                 <form class="form-inline">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -53,8 +54,8 @@
                         <input [value]="checkboxValues" type="text" class="form-control bg-white" readonly>
                     </div>
                 </form>
-                <ts-checkbox *ngFor="let checkbox of checkboxs" [color]="global.getValue('color')" [label]="checkbox.label" [value]="checkbox.value"
-                    (groupHandle)="checkboxGroup.applyCheckboxChange()"></ts-checkbox>
+                <ts-checkbox *ngFor="let checkbox of checkboxs" [(ngModel)]="checkboxValues" [color]="global.getValue('color')" [label]="checkbox.label"
+                    [value]="checkbox.value"></ts-checkbox>
             </div>
             <div tsToggle [target]='codePadTwo' class="text-primary card-footer bg-white pointer">
                 <i class="fa fa-fw fa-code"></i>查看代码
@@ -88,7 +89,7 @@
                         <input [value]="switchValue" type="text" class="form-control bg-white" readonly>
                     </div>
                 </form>
-                <ts-switch [color]="global.getValue('color')" [(ngModel)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
+                <ts-switch [color]="global.getValue('color')" [(ngModel)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>&nbsp;
                 <ts-switch [color]="global.getValue('color')" [(ngModel)]="switchValue" [values]="{open:'开灯',close:'关灯'}"></ts-switch>
             </div>
             <div tsToggle [target]='codePadThree' class="text-primary card-footer bg-white pointer">
@@ -192,11 +193,18 @@
                     <td>选项的对应的值，当这个选项被选中时可以获取这个值</td>
                 </tr>
                 <tr>
-                    <th scope="row">checked</th>
+                    <th scope="row">disabled</th>
                     <td>
                         <code>boolean</code>
                     </td>
-                    <td>支持双向绑定，设置、获取当前选项是否被选中</td>
+                    <td>禁用</td>
+                </tr>
+                <tr>
+                    <th scope="row">ngModel</th>
+                    <td>
+                        <code>any</code>
+                    </td>
+                    <td>支持双向绑定，设置、获取当前选中的值</td>
                 </tr>
             </tbody>
         </table>
@@ -215,13 +223,6 @@
                         <code>boolean</code>
                     </td>
                     <td>每次选项状态改变时会触发，返回当前选中状态</td>
-                </tr>
-                <tr>
-                    <th scope="row">groupHandle</th>
-                    <td>
-                        <code>{{"{ checked: boolean, value?: any }"}}</code>
-                    </td>
-                    <td>每次选项状态改变时会触发，返回当前选中状态和选项值，一般用于选项组中的绑定</td>
                 </tr>
             </tbody>
         </table>
@@ -261,11 +262,18 @@
                     <td>选项的对应的值，当这个选项被选中时可以获取这个值</td>
                 </tr>
                 <tr>
-                    <th scope="row">checked</th>
+                    <th scope="row">disabled</th>
                     <td>
                         <code>boolean</code>
                     </td>
-                    <td>支持双向绑定，设置、获取当前选项是否被选中</td>
+                    <td>禁用</td>
+                </tr>
+                <tr>
+                    <th scope="row">ngModel</th>
+                    <td>
+                        <code>any[]</code>
+                    </td>
+                    <td>支持双向绑定，设置、获取表单的值（是一个数组）</td>
                 </tr>
             </tbody>
         </table>
@@ -284,109 +292,6 @@
                         <code>boolean</code>
                     </td>
                     <td>每次选项状态改变时会触发，返回当前选中状态</td>
-                </tr>
-                <tr>
-                    <th scope="row">groupHandle</th>
-                    <td>
-                        <code>{{"{ checked: boolean, value?: any }"}}</code>
-                    </td>
-                    <td>每次选项状态改变时会触发，返回当前选中状态和选项值，一般用于选项组中的绑定</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<br>
-<div class="card">
-    <div class="card-header bg-white">
-        单项选择群组 @Directive
-    </div>
-    <div class="card-body">
-        <p>选择器：
-            <code>*[tsRadioGroup] </code>
-        </p>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">属性名称</th>
-                    <th scope="col">类型</th>
-                    <th scope="col">说明</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">ngModel</th>
-                    <td>
-                        <code>any</code>
-                    </td>
-                    <td>支持双向绑定，可以获取/设置选项组的值</td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-striped mt-2">
-            <thead>
-                <tr>
-                    <th scope="col">事件名称</th>
-                    <th scope="col">事件类型</th>
-                    <th scope="col">说明</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">ngModelChange</th>
-                    <td>
-                        <code>any</code>
-                    </td>
-                    <td>每次选项群组中的状态改变时会触发，返回当前选中选项的值</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<br>
-<div class="card">
-    <div class="card-header bg-white">
-        多项选择群组 @Directive
-    </div>
-    <div class="card-body">
-        <p>选择器：
-            <code>*[tsCheckboxGroup] </code>
-        </p>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">属性名称</th>
-                    <th scope="col">类型</th>
-                    <th scope="col">说明</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">ngModel</th>
-                    <td>
-                        <code>any[]</code>
-                    </td>
-                    <td>支持双向绑定，可以获取/设置选项组的值,这是一个所有选中的值的数组</td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-striped mt-2">
-            <thead>
-                <tr>
-                    <th scope="col">事件名称</th>
-                    <th scope="col">事件类型</th>
-                    <th scope="col">说明</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">ngModelChange</th>
-                    <td>
-                        <code>any[]</code>
-                    </td>
-                    <td>每次选项群组中的状态改变时会触发，返回当前所有选中选项的值</td>
                 </tr>
             </tbody>
         </table>

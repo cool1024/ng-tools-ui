@@ -156,7 +156,6 @@ export class RequestService {
         const subject = new Subject<string | number>();
         this.url(url).subscribe(res => {
             const request = new XMLHttpRequest();
-            request.open('post', res.datas.host);
             const formData = this.getFormdata({
                 name: file.name,
                 key: `${res.datas.dir}.${this.getFileType(file.name)}`,
@@ -168,7 +167,7 @@ export class RequestService {
             });
 
             if (useProgress) {
-                request.onprogress = (event: ProgressEvent) => {
+                request.upload.onprogress = (event: ProgressEvent) => {
                     subject.next(Math.ceil(event.loaded / event.total * 100));
                 };
             }
@@ -188,6 +187,7 @@ export class RequestService {
                 subject.next('upload error');
                 subject.complete();
             };
+            request.open('post', res.datas.host);
             request.send(formData);
         });
         return subject.asObservable();

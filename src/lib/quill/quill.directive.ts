@@ -12,6 +12,7 @@ import {
     OnInit,
     Inject,
     Directive,
+    ChangeDetectorRef,
 } from '@angular/core';
 import { ScriptService } from './../../commons/services/script.service';
 import { QuillOptions } from './quill.interface';
@@ -44,6 +45,7 @@ export class QuillDirective implements AfterViewInit, OnInit, OnChanges {
     constructor(
         private elementRef: ElementRef,
         private script: ScriptService,
+        private cdRef: ChangeDetectorRef,
         @Inject('QUILL_SCRIPT_SRCS') private srcs: string[]
     ) {
         this.content = '';
@@ -55,7 +57,6 @@ export class QuillDirective implements AfterViewInit, OnInit, OnChanges {
             && !change.content.firstChange
             && change.content.previousValue !== change.content.currentValue) {
             this.updateContent();
-            console.log(111);
         }
     }
 
@@ -79,6 +80,7 @@ export class QuillDirective implements AfterViewInit, OnInit, OnChanges {
     updateContent() {
         if (this.ready && !this.noUpdateContent) {
             this.quill.clipboard.dangerouslyPasteHTML(this.content);
+            this.cdRef.detectChanges();
         }
         this.noUpdateContent = false;
     }

@@ -22,24 +22,52 @@
         </div>
     </div>
 </div>
-<div class="card mt-2">
-    <div class="card-header bg-white">
-        自定义选择文件
-    </div>
-    <div class="card-body m-btn">
-        <input tsFile #fileDomOne="tsFile" (fileChange)="file=$event" type="file" accept=".doc,.docx">
-        <button class="btn btn-white" (click)="fileDomOne.openFileDialog()">
-            <i class="fa fa-folder-o fa-fw"></i>选择Word文档
-        </button>
-        <input tsFile #fileDomTwo="tsFile" (fileChange)="files=$event" type="file" multiple="true">
-        <button class="btn btn-white" (click)="fileDomTwo.openFileDialog()">
-            <i class="fa fa-folder-o fa-fw"></i>多选文件
-        </button>
-        <div class="text-info">
-            <p class="m-0">{{file?.name}}</p>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mt-2">
+            <div class="card-header bg-white">
+                上传进度
+            </div>
+            <div class="card-body">
+                <ts-progress color="info" [value]="10"></ts-progress>
+                <br>
+                <ts-progress color="success" [value]="20"></ts-progress>
+                <br>
+                <ts-progress color="info" [value]="30"></ts-progress>
+                <br>
+                <ts-progress color="warning" [value]="40"></ts-progress>
+                <br>
+                <ts-progress color="danger" [value]="50"></ts-progress>
+                <br>
+                <ts-progress color="dark" [value]="60"></ts-progress>
+                <br>
+                <ts-progress color="pink" [value]="70"></ts-progress>
+                <br>
+                <ts-progress color="purple" [value]="80"></ts-progress>
+            </div>
         </div>
-        <div *ngFor="let file of files" class="text-info">
-            <p class="m-0">{{file.name}}</p>
+    </div>
+    <div class="col-md-6">
+        <div class="card mt-2">
+            <div class="card-header bg-white">
+                自定义选择文件
+            </div>
+            <div class="card-body m-btn">
+                <input tsFile #fileDomOne="tsFile" (fileChange)="file=$event" type="file" accept=".doc,.docx">
+                <button class="btn btn-white" (click)="fileDomOne.openFileDialog()">
+                    <i class="fa fa-folder-o fa-fw"></i>选择Word文档
+                </button>
+                <input tsFile #fileDomTwo="tsFile" (fileChange)="files=$event" type="file" multiple="true">
+                <button class="btn btn-white" (click)="fileDomTwo.openFileDialog()">
+                    <i class="fa fa-folder-o fa-fw"></i>多选文件
+                </button>
+                <div class="text-info">
+                    <p class="m-0">{{file?.name}}</p>
+                </div>
+                <div *ngFor="let file of files" class="text-info">
+                    <p class="m-0">{{file.name}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

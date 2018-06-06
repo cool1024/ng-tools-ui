@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import {
     DatePickerModule,
     DropdownModule,
+    SearchModule,
     CheckboxModule,
     SelectModule,
     PrismModule,
@@ -15,7 +16,6 @@ import {
 
 /*路由模块*/
 import { FormRoutingModule, declarationComponents } from './form.routing';
-import { SearchModule } from '../../../_tools-ui';
 
 @NgModule({
     imports: [

@@ -3,9 +3,9 @@ import { FormsModule } from '@angular/forms';
 
 /*tool-ui*/
 import {
-    UploadModule as TSUploadModule
+    UploadModule as TSUploadModule,
+    ProgressModule,
 } from 'ng-tools-ui';
-
 
 /*路由模块*/
 import { UploadRoutingModule } from './upload.routing';
@@ -14,10 +14,12 @@ import { UploadRoutingModule } from './upload.routing';
 import { SimpleComponent } from './pages/simple/simple.component';
 import { VideoComponent } from './pages/video/video.component';
 
+
 @NgModule({
     imports: [
         UploadRoutingModule,
         TSUploadModule,
+        ProgressModule,
     ],
     declarations: [
         SimpleComponent,
