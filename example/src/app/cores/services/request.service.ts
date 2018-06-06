@@ -142,14 +142,18 @@ export class RequestService {
         });
     }
 
+    ossUpload(url: string, file: File): Observable<string> {
+        return <Observable<string>>this.ossUploadRequest(url, file);
+    }
+
     /**
      * oss文件上传
-     *
      * @param {string} url 请求接口地址
      * @param {File} file 要上传的文件对象
+     * @param {bool} useProgress 是否需要获取上传进度
      */
-    ossUpload(url: string, file: File) {
-        const subject = new Subject<string>();
+    ossUploadRequest(url: string, file: File, useProgress = false): Observable<string | number> {
+        const subject = new Subject<string | number>();
         this.url(url).subscribe(res => {
             const request = new XMLHttpRequest();
             request.open('post', res.datas.host);
@@ -162,6 +166,12 @@ export class RequestService {
                 signature: res.datas.signature,
                 file: file,
             });
+
+            if (useProgress) {
+                request.onprogress = (event: ProgressEvent) => {
+                    subject.next(Math.ceil(event.loaded / event.total * 100));
+                };
+            }
 
             request.onload = (response: any) => {
                 if (response.target.status === 200) {
