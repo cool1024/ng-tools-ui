@@ -21,7 +21,7 @@ export class GoodsService {
     /**
      * 查询商品，分页
      */
-    searchUser(pagination: Pagination, search: SearchParams): Observable<ApiData> {
+    searchGoods(pagination: Pagination, search: SearchParams): Observable<ApiData> {
         return this.request.get('/store/goods/search', pagination.getpageDataWith(search.values));
     }
 

@@ -11,6 +11,7 @@
                         <button class="dropdown-item pointer">Item Three</button>
                     </div>
                 </div>
+                &nbsp;
                 <div tsDropdown dropup>
                     <button tsToggle tsBtn class="dropdown-toggle">Dropup</button>
                     <div tsDropMenu>
@@ -19,6 +20,7 @@
                         <button class="dropdown-item pointer">Item Three</button>
                     </div>
                 </div>
+                &nbsp;
                 <div tsDropdown>
                     <button tsToggle class="btn btn-link dropdown-toggle">Link</button>
                     <div tsDropMenu>
@@ -27,6 +29,7 @@
                         <button class="dropdown-item pointer">Item Three</button>
                     </div>
                 </div>
+                &nbsp;
                 <div tsDropdown>
                     <button tsToggle class="btn btn-link text-danger rounded-circle">
                         <i class="fa fa-fw fa-dropbox"></i>
@@ -37,6 +40,7 @@
                         <button class="dropdown-item pointer">Item Three</button>
                     </div>
                 </div>
+                &nbsp;
                 <div tsDropdown>
                     <button tsToggle tsBtn class="dropdown-toggle">Left</button>
                     <div tsDropMenu left>
@@ -59,10 +63,10 @@
         <div class="card">
             <div class="card-header bg-white">集成下拉</div>
             <div class="card-body">
-                <ts-dropdown [items]="dropdowns" [(value)]="dropdownValue" text="Select"></ts-dropdown>
-                <ts-dropdown [items]="dropdowns" [(value)]="dropdownValue" text="Up" dropup></ts-dropdown>
-                <ts-dropdown [items]="stringDropdowns" [(value)]="dropdownValue" [useNumber]="1" text="Number"></ts-dropdown>
-                <ts-dropdown [items]="stringDropdowns" text="String"></ts-dropdown>
+                <ts-dropdown [items]="dropdowns" [(value)]="dropdownValue" text="Select"></ts-dropdown>&nbsp;
+                <ts-dropdown [items]="dropdowns" [(value)]="dropdownValue" text="Up" dropup></ts-dropdown>&nbsp;
+                <ts-dropdown [items]="stringDropdowns" [(value)]="dropdownValue" [useNumber]="1" text="Number"></ts-dropdown>&nbsp;
+                <ts-dropdown [items]="stringDropdowns" text="String"></ts-dropdown>&nbsp;
             </div>
             <div class="card-footer bg-white" tsCollapses>
                 <div tsToggle class="text-info pointer">

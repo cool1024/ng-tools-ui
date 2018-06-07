@@ -19,6 +19,8 @@ import { UserService } from './services/user.service';
 import { GoodsTypeService } from './services/goods-type.service';
 import { GoodsService } from './services/goods.service';
 import { OrderService } from './services/order.service';
+import { BannerService } from './services/banner.service';
+import { SortablejsModule } from 'angular-sortablejs';
 
 @NgModule({
     imports: [
@@ -35,6 +37,7 @@ import { OrderService } from './services/order.service';
         ImageModule,
         ModalModule,
         StoreRoutingModule,
+        SortablejsModule,
     ],
     declarations: [declarationComponents],
     entryComponents: [entryComponents],
@@ -43,6 +46,7 @@ import { OrderService } from './services/order.service';
         GoodsTypeService,
         GoodsService,
         OrderService,
+        BannerService,
     ]
 })
 export class StoreModule { }

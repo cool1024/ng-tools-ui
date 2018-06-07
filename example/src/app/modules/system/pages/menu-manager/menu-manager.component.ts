@@ -60,7 +60,28 @@ export class MenuManagerComponent implements OnInit {
     }
 
     /**
+     * 显示主菜单
+     * @param {MenuGroup} menuGroup 主菜单的上级分组
+     */
+    showMainMenus(menuGroup: MenuGroup) {
+        this.tsTabs.changeTab('主菜单');
+        this.activeGroup = menuGroup;
+        this.activeMainMenus = this.mainMenus.filter(menu => menu.menuGroupId === menuGroup.id);
+    }
+
+    /**
+     * 显示子菜单
+     * @param {Menu} mainMenu 子菜单的上级主菜单
+     */
+    showChildMenus(mainMenu: Menu) {
+        this.tsTabs.changeTab('子菜单');
+        this.activeMenu = mainMenu;
+        this.activeChildMenus = this.childMenus.filter(menu => menu.menuParentId === mainMenu.id);
+    }
+
+    /**
      * 编辑菜单分组
+     * @param {MenuGroup} menuGroup 要编辑的菜单组
      */
     editMenuGroup(menuGroup?: MenuGroup) {
         const modal = this.modal.create(MenuGroupModalComponent, { center: true });
@@ -71,25 +92,9 @@ export class MenuManagerComponent implements OnInit {
     }
 
     /**
-     * 显示主菜单
-     */
-    showMainMenus(menuGroup: MenuGroup) {
-        this.tsTabs.changeTab('主菜单');
-        this.activeGroup = menuGroup;
-        this.activeMainMenus = this.mainMenus.filter(menu => menu.menuGroupId === menuGroup.id);
-    }
-
-    /**
-     * 显示子菜单
-     */
-    showChildMenus(mainMenu: Menu) {
-        this.tsTabs.changeTab('子菜单');
-        this.activeMenu = mainMenu;
-        this.activeChildMenus = this.childMenus.filter(menu => menu.menuParentId === mainMenu.id);
-    }
-
-    /**
      * 编辑主要菜单
+     * @param {MenuGroup} menuGroup 菜单组
+     * @param {Menu} mainMenu 要编辑的主菜单
      */
     editMainMenu(menuGroup: MenuGroup, mainMenu?: Menu) {
         const modal = this.modal.create(MenuModalComponent, { center: true });
@@ -106,6 +111,8 @@ export class MenuManagerComponent implements OnInit {
 
     /**
      * 编辑子菜单
+     * @param {Menu} maniMenu 主菜单
+     * @param {Menu} childMenu 要编辑的子菜单
      */
     editChildMenu(mainMenu: Menu, childMenu?: Menu) {
         const modal = this.modal.create(MenuModalComponent, { center: true });
@@ -122,7 +129,21 @@ export class MenuManagerComponent implements OnInit {
     }
 
     /**
+     * 删除菜单组
+     * @param {MenuGroup} menuGroup 菜单组
+     */
+    deleteMenuGroup(menuGroup: MenuGroup) {
+        this.confirm.danger('确认删除', `确认删除菜单组‘${menuGroup.menuGroupName}’,相关下级菜单也会被删除！`)
+            .pipe(switchMap<void, ApiData>(() => this.menuService.deleteMenuGroup(menuGroup.id)))
+            .subscribe(() => {
+                this.toast.success('删除成功', `成功删除菜单组‘${menuGroup.menuGroupName}’！`);
+                this.loadDatas();
+            });
+    }
+
+    /**
      * 删除菜单
+     * @param {Menu} 菜单
      */
     deleteMenu(menu: Menu) {
         this.confirm.danger('确认删除', `确认删除菜单‘${menu.menuTitle}’,相关子菜单也会被删除！`)
@@ -147,6 +168,8 @@ export class MenuManagerComponent implements OnInit {
 
     /**
      * 确认排序菜单
+     * @param {any} btn 按钮对象
+     * @param {Menu[]} 参与排序菜单列表
      */
     confirmSort(btn: any, menus: Menu[]) {
         this.menuService.sortMenu(menus.map(item => item.id))

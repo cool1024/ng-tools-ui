@@ -27,7 +27,7 @@
                         <td>{{i+1}}</td>
                         <td>{{menuGroup.menuGroupName}}</td>
                         <td>
-                            <a class="btn-icon btn-icon-danger" title="删除">
+                            <a (click)="deleteMenuGroup(menuGroup)" class="btn-icon btn-icon-danger" title="删除">
                                 <i class="fa fa-lg fa-fw fa-trash-o align-middle"></i>
                             </a>
                             <a (click)="editMenuGroup(menuGroup)" class="btn-icon btn-icon-info" title="编辑">

@@ -43,6 +43,10 @@ export class MenuService {
         return this.request.delete('/managerapi/menu/delete', { menuId });
     }
 
+    deleteMenuGroup(menuGroupId: number) {
+        return this.request.delete('/managerapi/menu/group/delete', { menuGroupId });
+    }
+
     sortMenu(ids: number[]) {
         return this.request.put('/managerapi/menu/sort', { ids });
     }

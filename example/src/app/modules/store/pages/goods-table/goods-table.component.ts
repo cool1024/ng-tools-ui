@@ -50,7 +50,7 @@ export class GoodsTableComponent implements OnInit {
 
     loadDatas() {
         this.loading = true;
-        this.goodsService.searchUser(this.pagination, this.search)
+        this.goodsService.searchGoods(this.pagination, this.search)
             .subscribe({
                 next: res => {
                     this.pagination.total = res.datas.total;
