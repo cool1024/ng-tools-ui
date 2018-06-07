@@ -20,7 +20,7 @@ import { ToastConfig } from './toast.interface';
     ]
 })
 export class ToastModule {
-    static forRoot(config: ToastConfig = { position: 'ts-bottom ts-right', timeout: 2000 }): ModuleWithProviders {
+    static forRoot(config: ToastConfig = { position: 'ts-bottom ts-right', timeout: 2000, maxLength: 6 }): ModuleWithProviders {
         return {
             ngModule: ToastModule,
             providers: [

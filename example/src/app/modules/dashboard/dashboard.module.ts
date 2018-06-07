@@ -8,8 +8,8 @@ import { ButtonModule } from 'ng-tools-ui';
     imports: [
         FormsModule,
         CommonModule,
-        DashboardRoutingModule,
         ButtonModule,
+        DashboardRoutingModule,
     ],
     declarations: [declarationComponents]
 })

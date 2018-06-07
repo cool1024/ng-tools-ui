@@ -57,6 +57,7 @@ export class ToastComponent implements OnDestroy {
     ) {
         this.toasts = new Array<Toast>();
         this.position = this.config.position;
+        this.maxLength = this.config.maxLength;
         this.timer = null;
     }
 
@@ -68,6 +69,11 @@ export class ToastComponent implements OnDestroy {
         }
         if (this.toasts.length > this.maxLength) {
             this.toasts.shift();
+        }
+        // 如果有重复的，那么移除之前的消息
+        const index = this.toasts.findIndex(e => e.message === toast.message && e.title === toast.title);
+        if (index >= 0) {
+            this.toasts.splice(index, 1);
         }
         this.toasts.push(toast);
         this.show = true;

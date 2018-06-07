@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
     Router,
     RouteConfigLoadStart,
-    RouteConfigLoadEnd
+    NavigationEnd
 } from '@angular/router';
 import {
     MenuModel,
@@ -65,11 +65,9 @@ export class AppComponent implements OnInit {
         // 监听路由惰性加载状态
         this.router.events.subscribe(event => {
             if (event instanceof RouteConfigLoadStart) {
-                // 惰性加载开始，显示加载动画
                 this.global.setValue('lazyload', true);
-            } else if (event instanceof RouteConfigLoadEnd) {
-                // 惰性加载结束，关闭加载动画
-                interval(2000).subscribe(() => this.global.setValue('lazyload', false));
+            } else if (event instanceof NavigationEnd) {
+                this.global.setValue('lazyload', false);
             }
         });
 

@@ -6,9 +6,9 @@ import { LoginComponent } from './pages/login/login.component';
 
 
 const routes: Routes = [
-    { path: 'home', component: HomeComponent },
-    { path: 'error', component: ErrorComponent },
-    { path: 'login', component: LoginComponent },
+    { path: 'dashboard/home', component: HomeComponent },
+    { path: 'dashboard/error', component: ErrorComponent },
+    { path: 'dashboard/login', component: LoginComponent },
 ];
 
 export const declarationComponents = [
