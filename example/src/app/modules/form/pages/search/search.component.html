@@ -2,7 +2,7 @@
     <div class="card-header">下拉搜索</div>
     <div class="card-body">
         <div tsSearch [search]="doSearch" placeholder="请选择用户" searchLabel="请输入要查询的用户昵称" [(ngModel)]="value" [color]="global.getValue('color')"></div>
-        <pre>{{value|json}}</pre>
+        <!-- <pre>{{value|json}}</pre> -->
     </div>
     <div tsToggle [target]='code' class="text-primary card-footer bg-white pointer">
         <i class="fa fa-fw fa-code"></i>查看代码

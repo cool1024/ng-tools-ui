@@ -64,7 +64,7 @@ export class CheckboxComponent extends DomAttr implements ControlValueAccessor {
     }
 
     private hasValue(): boolean {
-        return this.innerValue.indexOf(this.value) >= 0
+        return this.innerValue.indexOf(this.value) >= 0;
     }
 
     registerOnChange(fn: any) { this.changeHandle = fn; }

@@ -47,6 +47,7 @@
     <div class="main-content d-flex flex-nowrap">
         <div [class.menu-close]="!global.getValue('showmenu')" class="main-content-menu">
             <div class="main-content-menu-static h-100">
+                <!--系统菜单-->
                 <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
                     [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
             </div>
