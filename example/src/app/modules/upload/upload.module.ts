@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import {
     UploadModule as TSUploadModule,
     ProgressModule,
+    PrismModule,
+    TabModule,
+    CollapseModule,
 } from 'ng-tools-ui';
 
 /*路由模块*/
@@ -20,6 +23,9 @@ import { VideoComponent } from './pages/video/video.component';
         UploadRoutingModule,
         TSUploadModule,
         ProgressModule,
+        PrismModule,
+        TabModule,
+        CollapseModule,
     ],
     declarations: [
         SimpleComponent,

@@ -48,8 +48,8 @@ import { CheckboxModule } from 'ng-tools-ui';
     ...
 })
 export class MyModule { }`,
-        `<ts-radio 
-            *ngFor="let radio of radios" 
+        `<ts-radio
+            *ngFor="let radio of radios"
             [(ngModel)]="radioValue"
             [label]="radio.label"
             [value]="radio.value">
@@ -73,9 +73,9 @@ export class ExampleComponent {
     ];
 
 }`,
-        `<ts-checkbox 
-            *ngFor="let checkbox of checkboxs" 
-            [(ngModel)]="checkboxValues" 
+        `<ts-checkbox
+            *ngFor="let checkbox of checkboxs"
+            [(ngModel)]="checkboxValues"
             [label]="checkbox.label"
             [value]="checkbox.value">
 </ts-checkbox>`,

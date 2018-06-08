@@ -1,7 +1,103 @@
-<div class="card">
+<div class="card bg-white">
     <div class="card-header">下拉搜索</div>
     <div class="card-body">
         <div tsSearch [search]="doSearch" placeholder="请选择用户" searchLabel="请输入要查询的用户昵称" [(ngModel)]="value" [color]="global.getValue('color')"></div>
         <pre>{{value|json}}</pre>
+    </div>
+    <div tsToggle [target]='code' class="text-primary card-footer bg-white pointer">
+        <i class="fa fa-fw fa-code"></i>查看代码
+    </div>
+    <div #code='tsCollapse' tsCollapse>
+        <ts-tabs [tabs]="['example.html','example.component.ts']" [color]="global.getValue('color')" [target]="tsTabsThree" activeTab="example.html"></ts-tabs>
+        <div #tsTabsThree='tsTabs' tsTabs class="mt-1">
+            <div tsTab tab="example.html">
+                <ts-prism [code]="codes[1]"></ts-prism>
+            </div>
+            <div tsTab tab="example.component.ts">
+                <ts-prism [code]="codes[2]" language="typescript"></ts-prism>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mt-2">
+    <div class="card-header bg-white">
+        导入搜索模块
+    </div>
+    <div class="card-body">
+        <ts-prism [code]="codes[0]" language="typescript"></ts-prism>
+    </div>
+</div>
+<div class="card mt-2">
+    <div class="card-header bg-white">
+        搜索组件 @Component
+    </div>
+    <div class="card-body">
+        <p>选择器：
+            <code>ts-search</code>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">属性名称</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">color</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>颜色设置，bootstrap的基础颜色[danger,light,info...]</td>
+                </tr>
+                <tr>
+                    <th scope="row">placeholder</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>提示说明文字</td>
+                </tr>
+                <tr>
+                    <th scope="row">searchLabel</th>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>搜索框提示说明文字</td>
+                </tr>
+                <tr>
+                    <th scope="row">search</th>
+                    <td>
+                        <code>(key: string) => Observable&lt;Item[]&gt;</code>
+                    </td>
+                    <td>查询方法，提供了查询参数，需要返回一个可观察的对象</td>
+                </tr>
+                <tr>
+                    <th scope="row">ngModel</th>
+                    <td>
+                        <code>Item[]</code>
+                    </td>
+                    <td>支持双向绑定，设置、获取当前选中的选项(注意和这个是选项，不是值)</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">事件名称</th>
+                    <th scope="col">事件类型</th>
+                    <th scope="col">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">ngModelChange</th>
+                    <td>
+                        <code>Item[]</code>
+                    </td>
+                    <td>每次选项状态改变时会触发，返回当前所有选中的项目/td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
