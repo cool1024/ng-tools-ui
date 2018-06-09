@@ -6,14 +6,14 @@ import {
     ChartModule,
     MapModule,
     PrismModule,
-    EChartModule,
+    // EChartModule,
     CkeditorModule,
     ButtonModule,
     QuillModule,
 } from 'ng-tools-ui';
 /*路由模块*/
 import { DemoRoutingModule, declarationComponents } from './demo.routing';
-
+import { EChartModule } from './../../../_tools-ui';
 @NgModule({
     imports: [
         FormsModule,

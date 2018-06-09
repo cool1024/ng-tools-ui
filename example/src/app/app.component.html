@@ -47,7 +47,15 @@
     <div class="main-content d-flex flex-nowrap">
         <div [class.menu-close]="!global.getValue('showmenu')" class="main-content-menu">
             <div class="main-content-menu-static h-100">
-                <!--系统菜单-->
+                <!--
+                    系统菜单
+                    @param {boolean} useImage 是否使用图片图标，默认false
+                    @param {MenuConfig} config 菜单配置参数，详见configs/app.config.ts
+                    @param {MenuModel[]} items 菜单模块列表
+                    @param {[string,string,string]} avatars 菜单头部参数（头像，账户,名称）
+                    @param {string} color bootstrap主题颜色 
+                    @event {MenuItem} menuActiveChange 切换菜单时触发，提供当前选中的菜单
+                -->
                 <ts-menu #menuPad="tsMenu" [useImage]="true" [config]="menuConfig" (menuActiveChange)="goPage($event)" [items]="menuModels"
                     [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
             </div>

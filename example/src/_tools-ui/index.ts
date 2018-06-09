@@ -52,6 +52,7 @@ export { Toggle } from './commons/interfaces/toggle.interface';
 export { MenuModel, MenuGroup, MenuItem } from './components/menu/menu.interface';
 export { LoopCard, LoopCardConfig } from './components/loop-card/loop-card.interface';
 export { QuillOptions } from './lib/quill/quill.interface';
+export { EchartsInstance } from './lib/echart/echart.interface';
 
 /**
  * Service export
