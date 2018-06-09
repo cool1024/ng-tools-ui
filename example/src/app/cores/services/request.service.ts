@@ -154,7 +154,8 @@ export class RequestService {
      */
     ossUploadRequest(url: string, file: File, useProgress = false): Observable<string | number> {
         const subject = new Subject<string | number>();
-        this.url(url).subscribe(res => {
+        this.url(`${url}?file=${file.name}`).subscribe(res => {
+            console.log(res);
             const request = new XMLHttpRequest();
             const formData = this.getFormdata({
                 name: file.name,
