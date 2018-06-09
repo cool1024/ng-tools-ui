@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, interval } from 'rxjs';
 import { skipWhile } from 'rxjs/operators';
 import { HttpConfig } from './../../configs/http.config';
 import { ApiData } from './../classes/api-data.class';
@@ -19,6 +19,24 @@ export class RequestService {
         this.serverUlr = HttpConfig.SERVER_URL;
         this.appendHeaders = {};
         this.useHeader = true;
+    }
+
+    websocket(host: string, protocols: string | string[] = []): Observable<string> {
+        let reconnent = true;
+        let subject: Subject<string> = new Subject<string>();
+        interval(2000).subscribe(() => {
+            if (reconnent) {
+                this.initWebsocket(host, protocols, subject, () => reconnent = true);
+            }
+            reconnent = false;
+        });
+        return subject.asObservable();
+    }
+
+    initWebsocket(host: string, protocols: string | string[], subject: Subject<string>, reconnent: Function) {
+        const ws = new WebSocket(host, protocols);
+        ws.onmessage = (res: MessageEvent) => { subject.next(res.data); }
+        ws.onclose = () => { reconnent(); }
     }
 
     /**

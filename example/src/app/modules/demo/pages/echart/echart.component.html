@@ -10,7 +10,23 @@
     </div>
 </div>
 <br>
-<div class="card">
+<table class="table">
+    <thead>
+        <tr>
+            <td>空闲内存</td>
+            <td>CUP负荷</td>
+            <td>当前任务数</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{serveDatas.free}}</td>
+            <td>{{serveDatas.us}}</td>
+            <td>{{serveDatas.r}}</td>
+        </tr>
+    </tbody>
+</table>
+<!-- <div class="card">
     <div class="card-header bg-white">条形图</div>
     <div class="card-body">
         <div baseEchart [resize]="true" [option]="optionOne" style="width:100%;height:400px;"></div>
@@ -22,4 +38,4 @@
     <div class="card-body">
         <div baseEchart [resize]="true" [option]="optionTwo" style="width:100%;height:400px;"></div>
     </div>
-</div>
+</div> -->
