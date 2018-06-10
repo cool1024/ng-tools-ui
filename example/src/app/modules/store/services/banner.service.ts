@@ -60,6 +60,6 @@ export class BannerService {
      * @param {File} 文件对象
      */
     uploadBanner(file: File): Observable<string> {
-        return this.request.ossUpload('/store/goods/image/access', file);
+        return this.request.ossUpload('/store/banner/access', file);
     }
 }
