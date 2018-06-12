@@ -1,5 +1,4 @@
-<!--一个流程大节点-->
-<div class="flow-node-large-card">
+<!-- <div class="flow-node-large-card">
     <div class="position-relative">
         <div class="card">
             <div class="card-header flow-header-primary text-white d-flex justify-content-between">
@@ -16,7 +15,6 @@
     </div>
 </div>
 
-<!--一个分支块-->
 <div class="w-100">
     <div class="flow-node-circle-plus text-center">
         <button class="pointer text-center">
@@ -84,7 +82,6 @@
     </div>
 </div>
 
-<!--一个流程大节点-->
 <div class="flow-node-large-card">
     <div class="position-relative">
         <div class="card">
@@ -100,8 +97,13 @@
             </button>
         </div>
     </div>
-</div>
+</div> -->
 
+
+<ng-container *ngFor="let flowNode of flowNodes;index as i">
+    <app-flow-node *ngIf="nodeIs(flowNode,0)" (closeHandle)="removeNode(i)" [flowNode]="flowNode"></app-flow-node>
+    <app-flow-branch *ngIf="nodeIs(flowNode,1)" (closeHandle)="removeNode(i)" [flowNode]="flowNode"></app-flow-branch>
+</ng-container>
 <!--结束节点-->
 <div class="flow-node-end text-center">
     <button class="rounded-circle" type="button">结束</button>

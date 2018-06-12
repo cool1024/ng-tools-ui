@@ -88,7 +88,8 @@ export class GoodsTypesComponent implements OnInit {
     confirmSave(typeItem: GoodsTypeItem) {
         this.goodsTypeService.saveGoodsType(typeItem).subscribe(res => {
             this.toast.success('保存成功', '成功保存商品类型');
-            typeItem.setSave();
+            this.loadDatas();
+            // typeItem.setSave();
         });
     }
 

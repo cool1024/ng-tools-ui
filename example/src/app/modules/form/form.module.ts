@@ -16,6 +16,9 @@ import {
 
 /*路由模块*/
 import { FormRoutingModule, declarationComponents } from './form.routing';
+import { FlowNodeComponent } from './pages/flow/flow-node.component';
+import { FlowBranchComponent } from './pages/flow/flow-branch.component';
+import { FlowBranchNodeComponent } from './pages/flow/flow-branch-node.component';
 
 @NgModule({
     imports: [
@@ -31,6 +34,11 @@ import { FormRoutingModule, declarationComponents } from './form.routing';
         CollapseModule,
         SearchModule,
     ],
-    declarations: [declarationComponents],
+    declarations: [
+        declarationComponents,
+        FlowNodeComponent,
+        FlowBranchComponent,
+        FlowBranchNodeComponent,
+    ]
 })
 export class FormModule { }
