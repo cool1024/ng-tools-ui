@@ -5,6 +5,7 @@ import { CheckboxComponent } from './pages/checkbox/checkbox.component';
 import { SelectComponent } from './pages/select/select.component';
 import { LoopCardComponent } from './pages/loop-card/loop-card.component';
 import { SearchComponent } from './pages/search/search.component';
+import { FlowComponent } from './pages/flow/flow.component';
 
 const routes: Routes = [
     { path: 'datepicker', component: DatepickerComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
     { path: 'select', component: SelectComponent },
     { path: 'loopcard', component: LoopCardComponent },
     { path: 'search', component: SearchComponent },
+    { path: 'flow', component: FlowComponent },
 ];
 
 export const declarationComponents = [
@@ -20,6 +22,7 @@ export const declarationComponents = [
     SelectComponent,
     LoopCardComponent,
     SearchComponent,
+    FlowComponent,
 ];
 
 export const entryComponents = [];

@@ -1,0 +1,149 @@
+.card{
+    width: 300px;
+    margin: auto;
+    border: none !important;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    border-radius: 5px;
+}
+.card-header{
+    border-bottom-color: rgba(223, 223, 232, 0.35) !important;
+}
+.flow-node-card{
+    position: relative;
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-top: 2px solid #dfdfe8;;
+    border-bottom: 2px solid #dfdfe8;
+}
+.flow-node-card::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 2px;
+    height: 100%;
+    background-color: #dfdfe8;
+}
+.flow-node-line-hidden{
+    position: absolute;
+    height: 3px;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.flow-node-lb-hidden{
+    bottom: -2px;
+    left: -1px;
+}
+.flow-node-lt-hidden{
+    top: -2px;
+    left: -1px;
+}
+.flow-node-rb-hidden{
+    bottom: -2px;
+    right: -1px;
+}
+.flow-node-rt-hidden{
+    top: -2px;
+    right: -1px;
+}
+.flow-node-plus{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.flow-node-plus button{
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    outline: none;
+    border: none;
+    color: #f5bc21;
+}
+.flow-node-plus button:hover{
+    background-color: #f5bc21;
+    color: white;
+}
+.flow-node-circle-plus button{
+    width: 25px;
+    height: 25px;
+    background-color: #f5bc21;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    outline: none;
+    border: none;
+    color:white;
+}
+.flow-center-line{
+    position: relative;
+}
+.flow-center-line::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 2px;
+    height: 100%;
+    background-color: #dfdfe8;
+}
+
+/**
+ * 审批流程大节点
+ */ 
+ .flow-node-large-card{
+    position: relative;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.flow-node-large-card::before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 2px;
+    height: 100%;
+    background-color: #dfdfe8;
+}
+.flow-node-end button{
+    width: 60px;
+    height: 60px;
+    color: white;
+    background: linear-gradient(-120deg,#dfdfe8 1%,#afafb8);
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    outline: none;
+    border: none;
+}
+.flow-header-primary{
+    background: linear-gradient(90deg,#324963 3%,#828fa5 93%);
+}
+
+.flow-header-warning{
+    background: linear-gradient(90deg,#f69b31,#f7d44d 99%);
+}
+
+.flow-header-muted{
+    background: linear-gradient(120deg,#afafb8 1%,#dfdfe8);
+}
