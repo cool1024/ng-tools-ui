@@ -7,7 +7,6 @@ import {
     MapModule,
     PrismModule,
     // EChartModule,
-    CkeditorModule,
     ButtonModule,
     QuillModule,
 } from 'ng-tools-ui';

@@ -6,7 +6,7 @@ import { RequestService } from './../../../../cores/services/request.service';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
 
     mediaList: any[];
 
@@ -22,9 +22,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
             });
         });
     }
-
-    ngAfterViewInit() {
-
-    }
-
 }

@@ -1,6 +1,12 @@
+/**
+ * 请求服务，所有的http请求和其他请求都必须使用此服务提供的方法
+ * @file request.service.ts
+ * @author xiaojian
+ * @date 2018年06月12日
+ */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, interval } from 'rxjs';
 import { skipWhile } from 'rxjs/operators';
 import { HttpConfig } from './../../configs/http.config';
 import { ApiData } from './../classes/api-data.class';
@@ -20,11 +26,35 @@ export class RequestService {
         this.appendHeaders = {};
         this.useHeader = true;
     }
+    /**
+     * 开启一个websocket连接
+     * @param host socket服务器地址ws://www.example.com|wss://
+     * @param protocols 附加协议参数
+     * @return Observable<string>
+     */
+    websocket(host: string, protocols: string | string[] = []): Observable<string> {
+        let reconnent = true;
+        let subject: Subject<string> = new Subject<string>();
+        interval(2000).subscribe(() => {
+            if (reconnent) {
+                this.initWebsocket(host, protocols, subject, () => reconnent = true);
+            }
+            reconnent = false;
+        });
+        return subject.asObservable();
+    }
+
+    initWebsocket(host: string, protocols: string | string[], subject: Subject<string>, reconnent: Function) {
+        const ws = new WebSocket(host, protocols);
+        ws.onmessage = (res: MessageEvent) => { subject.next(res.data); }
+        ws.onclose = () => { reconnent(); }
+    }
 
     /**
      * 发送一个get请求（获取文本文件内容)
      *
      * @param {string} url 请求地址
+     * @return {Observable<string>}
      */
     text(url: string): Observable<string> {
         return this.http.request('get', this.serverUlr + url, { responseType: 'text' });
@@ -35,6 +65,7 @@ export class RequestService {
      *
      * @param {string} url 接口地址
      * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     * @return {Observable<ApiData>}
      */
     url(url: string, check = true): Observable<ApiData> {
         const observable = this.http.get<ApiData>(this.serverUlr + url, { headers: this.getHeaders() });
@@ -47,6 +78,7 @@ export class RequestService {
      * @param {string} url 接口地址
      * @param {json|boolean} params 接口参数，如果这个参数是boolean类型的那么它会认为是check参数
      * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     * @return {Observable<ApiData>}
      */
     get(url: string, params: { [key: string]: any } | boolean, check = true): Observable<ApiData> {
         if (typeof params === 'boolean') {
@@ -63,6 +95,7 @@ export class RequestService {
      * @param {string} url 接口地址
      * @param {json|boolean} params 接口参数，如果这个参数是boolean类型的那么它会认为是check参数
      * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     * @return {Observable<ApiData>}
      */
     post(url: string, params?: { [key: string]: any } | boolean, check = true): Observable<ApiData> {
         if (typeof params === 'boolean') {
@@ -79,6 +112,7 @@ export class RequestService {
      * @param {string} url 接口地址
      * @param {json|boolean} params 接口参数，如果这个参数是boolean类型的那么它会认为是check参数
      * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     * @return {Observable<ApiData>}
      */
     put(url: string, params?: { [key: string]: any } | boolean, check = true): Observable<ApiData> {
         if (typeof params === 'boolean') {
@@ -95,6 +129,7 @@ export class RequestService {
      * @param {string} url 接口地址
      * @param {json|boolean} params 接口参数，如果这个参数是boolean类型的那么它会认为是check参数
      * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     * @return {Observable<ApiData>}
      */
     delete(url: string, params?: { [key: string]: any } | boolean, check = true): Observable<ApiData> {
         if (typeof params === 'boolean') {
@@ -112,6 +147,7 @@ export class RequestService {
      * @param {json} params 接口参数
      * @param {Array<{ name: string, files: Array<File> }} files 上传的文件数组name为文件对应的上传参数名称，files为这个名称对应的文件数组
      * @param {boolean} check 是否校验接口调用结果，默认为true，开启校验时失败的接口调用会被跳过
+     * @return {Observable<ApiData>}
      */
     files(url: string, params: { [key: string]: any },
         files: Array<{ name: string, files: Array<File> }>, check = true): Observable<ApiData> {
@@ -125,6 +161,7 @@ export class RequestService {
      *
      * @param {string} url 接口地址
      * @param {Array<{ name: string, files: Array<File> }} files 上传的文件数组name为文件对应的上传参数名称，files为这个名称对应的文件数组
+     * @return {void}
      */
     upload(url: string, files: Array<{ name: string, files: Array<File> }>,
         onprogress: (value: number) => void, final: (value: ApiData) => void) {
@@ -142,15 +179,22 @@ export class RequestService {
         });
     }
 
+    /**
+     * oss文件上传，简单方法
+     * @param {string} url 请求接口地址
+     * @param {File} file 要上传的文件对象
+     * @return {Observable<string>}
+     */
     ossUpload(url: string, file: File): Observable<string> {
         return <Observable<string>>this.ossUploadRequest(url, file);
     }
 
     /**
-     * oss文件上传
+     * oss文件上传，基础方法可以获取上传进度
      * @param {string} url 请求接口地址
      * @param {File} file 要上传的文件对象
      * @param {bool} useProgress 是否需要获取上传进度
+     * @return {Observable<string|number>}
      */
     ossUploadRequest(url: string, file: File, useProgress = false): Observable<string | number> {
         const subject = new Subject<string | number>();
@@ -198,6 +242,7 @@ export class RequestService {
      * 设置额外的请求头
      *
      * @param headers 请求附带的头部参数
+     * @return {RequestService}
      */
     withHeader(headers: { [key: string]: string }): RequestService {
         const request = new RequestService(this.http);
@@ -209,6 +254,7 @@ export class RequestService {
 
     /**
      * 不要添加统一前缀
+     * @return {RequestService}
      */
     withoutHost() {
         const request = new RequestService(this.http);
@@ -220,6 +266,7 @@ export class RequestService {
 
     /**
      * 不用添加头部数据
+     * @return {RequestService}
      */
     withoutHeader() {
         const request = new RequestService(this.http);
