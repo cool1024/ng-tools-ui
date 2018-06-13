@@ -1,0 +1,22 @@
+.tapd-container{
+    // overflow: auto;
+}
+.tapd-task{
+    min-width: 300px;
+    max-width: 400px;
+}
+.tapd-task-footer span{
+    opacity: 0;
+}
+.tapd-task-footer:hover span{
+    transition: opacity 0.5s; 
+    opacity: 1;
+}
+.tapd-task-list{
+
+}
+
+.tapd-task-card{
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
+    word-break: break-all;
+}

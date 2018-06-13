@@ -62,7 +62,7 @@
         </div>
         <div class="main-content-view">
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
-            <div [class.d-none]="global.getValue('lazyload')">
+            <div class="h-100" [class.d-none]="global.getValue('lazyload')">
                 <router-outlet></router-outlet>
                 <div class="main-content-bottom"></div>
             </div>

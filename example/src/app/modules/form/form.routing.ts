@@ -6,6 +6,7 @@ import { SelectComponent } from './pages/select/select.component';
 import { LoopCardComponent } from './pages/loop-card/loop-card.component';
 import { SearchComponent } from './pages/search/search.component';
 import { FlowComponent } from './pages/flow/flow.component';
+import { TapdComponent } from './pages/tapd/tapd.component';
 
 const routes: Routes = [
     { path: 'datepicker', component: DatepickerComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'loopcard', component: LoopCardComponent },
     { path: 'search', component: SearchComponent },
     { path: 'flow', component: FlowComponent },
+    { path: 'tapd', component: TapdComponent },
 ];
 
 export const declarationComponents = [
@@ -23,6 +25,7 @@ export const declarationComponents = [
     LoopCardComponent,
     SearchComponent,
     FlowComponent,
+    TapdComponent,
 ];
 
 export const entryComponents = [];

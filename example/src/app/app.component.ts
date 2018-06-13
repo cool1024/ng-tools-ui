@@ -6,14 +6,12 @@ import {
 } from '@angular/router';
 import {
     MenuModel,
-    MenuGroup,
     MenuItem,
     ConfirmService,
     MenuPushService
 } from 'ng-tools-ui';
-import { MenuService, RequestService, GlobalService, AuthService } from './cores/services';
+import { MenuService, GlobalService, AuthService } from './cores/services';
 import { AppConfig } from './configs/app.config';
-import { interval } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -44,11 +42,9 @@ export class AppComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private menuCtrl: MenuService,
         public global: GlobalService,
         public menuPush: MenuPushService,
         public auth: AuthService,
-        private request: RequestService,
         private confirm: ConfirmService,
         private menu: MenuService,
     ) {
