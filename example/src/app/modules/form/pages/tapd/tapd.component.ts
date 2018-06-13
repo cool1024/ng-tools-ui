@@ -17,7 +17,7 @@ export class TapdComponent {
                 taskItems: [
                     { taskName: '看完线上的怎么可能是女生啊', taskFileNum: 1, taskMessageNum: 2, taskCloseTime: '今天截止' }
                 ],
-                isEditMode: false
+                isEditMode: true
             },
             {
                 taskId: 1,

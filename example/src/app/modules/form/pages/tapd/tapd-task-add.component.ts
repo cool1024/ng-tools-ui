@@ -14,21 +14,39 @@ import { TapdTaskItem } from './tapd.interface';
         </p>
         <div>
             <i class="fa fa-fw fa-user-o"></i>负责人
-            <div tsDropdown>
-                <span tsToggle class="pointer">待认领</span>
+            <div tsDropdown class="align-top">
+                <span tsToggle class="pointer">{{task.taskLeaderName||'待认领'}}</span>
                 <div tsDropMenu>
-                    <button class="dropdown-item pointer pl-3 pr-3 d-flex justify-content-between">
-                        <span>
-                            <img class="rounded-circle mr-2" height="40" width="40" src="assets/images/avatar/1.jpg">可儿
-                        </span>
-                        <i class="fa fa-fw fa-check"></i>
-                    </button>
-                    <button class="dropdown-item pointer pl-3 pr-3">
-                        <img class="rounded-circle mr-2" height="40" width="40" src="assets/images/avatar/2.jpg">凛
-                    </button>
-                    <button class="dropdown-item pointer pl-3 pr-3">
-                        <img class="rounded-circle mr-2" height="40" width="40" src="assets/images/avatar/3.jpg">纱雾
-                    </button>
+                    <div (click)="setLeader('可儿')" class="dropdown-item user-select-item pointer pl-3 pr-3">
+                        <div class="d-table w-100">
+                            <div class="d-table-cell">
+                                <img class="rounded-circle mr-2" height="40" width="40" src="assets/images/avatar/1.jpg">可儿
+                            </div>
+                            <div class="d-table-cell text-right">
+                                <i class="fa fa-fw fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div (click)="setLeader('凛')" class="dropdown-item user-select-item pointer pl-3 pr-3">
+                        <div class="d-table w-100">
+                            <div class="d-table-cell">
+                                <img class="rounded-circle mr-2" height="40" width="40" src="assets/images/avatar/2.jpg">凛
+                            </div>
+                            <div class="d-table-cell text-right">
+                                <i class="fa fa-fw fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div (click)="setLeader('砂舞')" class="dropdown-item user-select-item pointer pl-3 pr-3">
+                        <div class="d-table w-100">
+                            <div class="d-table-cell user-select-item-text text-truncate">
+                                <img class="rounded-circle mr-2" height="40" width="40" src="assets/images/avatar/3.jpg">砂舞
+                            </div>
+                            <div class="d-table-cell text-right">
+                                <i class="fa fa-fw fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,5 +98,9 @@ export class TapdTaskAddComponent {
     cancelData() {
         this.cancelHandle.emit();
         this.resetData();
+    }
+
+    setLeader(leaderName: string) {
+        this.task.taskLeaderName = leaderName;
     }
 }
