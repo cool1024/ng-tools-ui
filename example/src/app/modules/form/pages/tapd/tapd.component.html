@@ -1,101 +1,42 @@
 <div class="tapd-container d-flex flex-nowarp">
-    <div class="tapd-task bg-light mr-2 rounded">
+    <div *ngFor="let task of tasks" class="tapd-task bg-light mr-2 rounded">
         <div class="card-header border-0">
-            <span>商业计划准备</span>
+            <span>{{task.taskName}}</span>
             <i class="fa fa-bars fa-lg pull-right mt-1 pointer"></i>
         </div>
         <div class="tapd-task-list p-2">
-            <div class="tapd-task-card mb-1 p-2 rounded bg-white">
+            <div *ngFor="let item of task.taskItems" class="tapd-task-card mb-2 p-2 rounded bg-white">
                 <div class="media">
                     <ts-checkbox color="primary"></ts-checkbox>
                     <div class="media-body">
-                        看完如果线上的怎么可能是女生啊
+                        {{item.taskName}}
                     </div>
                 </div>
                 <div class="d-flex justify-content-between mt-2">
                     <div class="pl-2">
                         <span class="badge badge-primary">
-                            <i class="fa fa-fw fa-clock-o"></i>明天截止
+                            <i class="fa fa-fw fa-clock-o"></i>{{item.taskCloseTime}}
                         </span>
-                        <span class="text-muted">
-                            <i class="fa fa-paperclip fa-fw ml-2"></i>2
+                        <span *ngIf="item.taskFileNum > 0" class="text-muted">
+                            <i class="fa fa-paperclip fa-fw ml-2"></i>{{item.taskFileNum}}
                         </span>
-                        <span class="text-muted">
-                            <i class="fa fa-comments-o fa-fw ml-2"></i>3
-                        </span>
-                    </div>
-                    <img class="rounded-circle border border-ligth" width="40" height="40" src="assets/images/avatar/avatar.jpg">
-                </div>
-            </div>
-            <div class="tapd-task-card mb-1 p-2 rounded bg-white">
-                <div class="media">
-                    <ts-checkbox color="primary"></ts-checkbox>
-                    <div class="media-body">
-                        看完如果线上的怎么可能是女生啊
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between mt-2">
-                    <div class="pl-2">
-                        <span class="badge badge-primary">
-                            <i class="fa fa-fw fa-clock-o"></i>明天截止
-                        </span>
-                        <span class="text-muted">
-                            <i class="fa fa-paperclip fa-fw ml-2"></i>2
-                        </span>
-                        <span class="text-muted">
-                            <i class="fa fa-comments-o fa-fw ml-2"></i>3
-                        </span>
-                    </div>
-                    <img class="rounded-circle border border-ligth" width="40" height="40" src="assets/images/avatar/avatar.jpg">
-                </div>
-            </div>
-            <div class="tapd-task-card mb-1 p-2 rounded bg-white">
-                <div class="media">
-                    <ts-checkbox color="primary"></ts-checkbox>
-                    <div class="media-body">
-                        看完如果线上的怎么可能是女生啊
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between mt-2">
-                    <div class="pl-2">
-                        <span class="badge badge-primary">
-                            <i class="fa fa-fw fa-clock-o"></i>明天截止
-                        </span>
-                        <span class="text-muted">
-                            <i class="fa fa-paperclip fa-fw ml-2"></i>2
-                        </span>
-                        <span class="text-muted">
-                            <i class="fa fa-comments-o fa-fw ml-2"></i>3
+                        <span *ngIf="item.taskMessageNum > 0" class="text-muted">
+                            <i class="fa fa-comments-o fa-fw ml-2"></i>{{item.taskMessageNum}}
                         </span>
                     </div>
                     <img class="rounded-circle border border-ligth" width="40" height="40" src="assets/images/avatar/avatar.jpg">
                 </div>
             </div>
         </div>
-        <div class="tapd-task-card text-muted mb-2 ml-2 mr-2 p-2 rounded bg-white m-btn">
-            <textarea class="form-control" placeholder="任务标题"></textarea>
-            <p class="mt-1">
-                <i class="fa fa-fw fa-calendar-o"></i>截止期
-                <span class="pointer">2018年06月13日</span>
-            </p>
-            <p>
-                <i class="fa fa-fw fa-user-o"></i>负责人
-                <span class="pointer">如果有妹妹就好了</span>
-            </p>
-            <hr>
-            <div class="text-right">
-                <button class="btn btn-white">取消</button>
-                <button class="btn btn-primary">创建</button>
-            </div>
-        </div>
-        <div class="tapd-task-footer text-muted card-footer border-0 pointer">
+        <app-tapd-task-add *ngIf="task.isEditMode" (saveHandle)="addTaskItem($event,task)" (cancelHandle)="task.isEditMode=false"></app-tapd-task-add>
+        <div *ngIf="!task.isEditMode" (click)="task.isEditMode=true" class="tapd-task-footer text-muted card-footer border-0 pointer">
             <i class="fa fa-fw fa-plus"></i>
             <span>添加新任务...</span>
         </div>
     </div>
+    <!-- <div class="tapd-task bg-light mr-2 rounded"></div>
     <div class="tapd-task bg-light mr-2 rounded"></div>
     <div class="tapd-task bg-light mr-2 rounded"></div>
     <div class="tapd-task bg-light mr-2 rounded"></div>
-    <div class="tapd-task bg-light mr-2 rounded"></div>
-    <div class="tapd-task bg-light mr-2 rounded"></div>
+    <div class="tapd-task bg-light mr-2 rounded"></div> -->
 </div>

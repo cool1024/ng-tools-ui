@@ -34,7 +34,7 @@ export class RequestService {
      */
     websocket(host: string, protocols: string | string[] = []): Observable<string> {
         let reconnent = true;
-        let subject: Subject<string> = new Subject<string>();
+        const subject: Subject<string> = new Subject<string>();
         interval(2000).subscribe(() => {
             if (reconnent) {
                 this.initWebsocket(host, protocols, subject, () => reconnent = true);
@@ -46,8 +46,8 @@ export class RequestService {
 
     initWebsocket(host: string, protocols: string | string[], subject: Subject<string>, reconnent: Function) {
         const ws = new WebSocket(host, protocols);
-        ws.onmessage = (res: MessageEvent) => { subject.next(res.data); }
-        ws.onclose = () => { reconnent(); }
+        ws.onmessage = (res: MessageEvent) => { subject.next(res.data); };
+        ws.onclose = () => { reconnent(); };
     }
 
     /**

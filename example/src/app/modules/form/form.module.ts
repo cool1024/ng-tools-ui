@@ -19,6 +19,7 @@ import { FormRoutingModule, declarationComponents } from './form.routing';
 import { FlowNodeComponent } from './pages/flow/flow-node.component';
 import { FlowBranchComponent } from './pages/flow/flow-branch.component';
 import { FlowBranchNodeComponent } from './pages/flow/flow-branch-node.component';
+import { TapdTaskAddComponent } from './pages/tapd/tapd-task-add.component';
 
 @NgModule({
     imports: [
@@ -39,6 +40,7 @@ import { FlowBranchNodeComponent } from './pages/flow/flow-branch-node.component
         FlowNodeComponent,
         FlowBranchComponent,
         FlowBranchNodeComponent,
+        TapdTaskAddComponent,
     ]
 })
 export class FormModule { }
