@@ -5,8 +5,8 @@ import { ModalDirective } from './modal.directive';
     selector: 'ts-modal',
     template: `
     <div #pad class="modal fade" (click)="tryClose($event)" [ngClass]="{'show': show}"
-        [ngStyle]="{'display': show?'block':'none',overflow:'auto'}">
-        <div class="modal-dialog modal-{{size}}" [class.modal-dialog-centered]="center">
+        [ngStyle]="{display: show?'block':'none',overflow: overflow}">
+        <div class="modal-dialog modal-{{size}} d-block" [ngStyle]="{height: overflow==='hidden'?'90%':'auto',overflow:'auto'}" [class.modal-dialog-centered]="center">
             <div class="modal-content">
                 <ng-template tsModalHost></ng-template>
             </div>
@@ -17,6 +17,7 @@ import { ModalDirective } from './modal.directive';
 export class ModalComponent {
 
     @ViewChild('pad') pad: any;
+
     @ViewChild(ModalDirective) modalHost: ModalDirective;
 
     show: boolean;
@@ -24,6 +25,8 @@ export class ModalComponent {
     size: string;
 
     center: boolean;
+
+    overflow: string;
 
     closeHandle: () => void;
 

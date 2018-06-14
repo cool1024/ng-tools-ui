@@ -3,7 +3,21 @@
 }
 .tapd-task{
     min-width: 300px;
-    max-width: 400px;
+    max-width: 300px;
+    min-height: 100px;
+}
+.task-title-input{
+    width: 200px;
+}
+.task-plus{
+    border: 1px dashed #ccc;
+    height: 80px;
+    line-height: 80px;
+    margin: 10px;
+}
+.task-plus:hover{
+    color: #54a7ff;
+    transition: color 0.3s; 
 }
 .tapd-task-footer span{
     opacity: 0;
@@ -27,4 +41,23 @@
 }
 .user-select-item-text{
     max-width: 200px;
+}
+.modal-media-left{
+    width: 80px;
+}
+.media-file-item div{
+    line-height: 30px;
+}
+.media-file-item:hover{
+    background-color: rgb(240, 240, 240);
+}
+.badge-add-btn{
+    color: #ccc;
+}
+.badge-add-btn:hover{
+    color: #54a7ff;
+}
+.quill-content{
+    max-height: 300px;
+    overflow: hidden;
 }

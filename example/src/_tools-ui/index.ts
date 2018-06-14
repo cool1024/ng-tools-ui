@@ -22,6 +22,7 @@ export { ModalModule } from './components/modal/modal.module';
 export { CkeditorModule } from './lib/ckeditor/ckeditor.module';
 export { SearchModule } from './components/search/select.module';
 export { ProgressModule } from './components/progress/progress.module';
+export { BadgeModule } from './components/badge/badge.module';
 
 /**
  * Lib modules export

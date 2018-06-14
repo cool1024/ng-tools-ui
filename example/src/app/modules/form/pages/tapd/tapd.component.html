@@ -1,11 +1,25 @@
-<div class="tapd-container d-flex flex-nowarp">
-    <div *ngFor="let task of tasks" class="tapd-task bg-light mr-2 rounded">
+<div class="tapd-container d-flex flex-nowarp align-items-start justify-content-start">
+    <div *ngFor="let task of tasks;index as i" class="tapd-task bg-light mr-2 rounded">
         <div class="card-header border-0">
-            <span>{{task.taskName}}</span>
-            <i class="fa fa-bars fa-lg pull-right mt-1 pointer"></i>
+            <div *ngIf="task.isEditMode" class="input-group input-group-sm">
+                <input [(ngModel)]="task.taskName" type="text" class="form-control mr-2">
+                <button (click)="updateTask(task)" class="btn btn-primary btn-sm" type="button">保存</button>
+            </div>
+            <span *ngIf="!task.isEditMode">{{task.taskName}}</span>
+            <div *ngIf="!task.isEditMode" tsDropdown class="align-top pull-right">
+                <i tsToggle class="fa fa-bars fa-lg mt-1 pointer"></i>
+                <div tsDropMenu>
+                    <div (click)="task.isEditMode=true" class="dropdown-item pointer mb-2">
+                        <i class="fa fa-fw fa-edit"></i>编辑列表
+                    </div>
+                    <div (click)="removeTask(i)" class="dropdown-item pointer mb-2">
+                        <i class="fa fa-fw fa-trash"></i>删除列表
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="tapd-task-list p-2">
-            <div *ngFor="let item of task.taskItems" class="tapd-task-card mb-2 p-2 rounded bg-white">
+            <div *ngFor="let item of task.taskItems" (click)="showTaskItemModal(item)" class="tapd-task-card mb-2 p-2 rounded bg-white">
                 <div class="media">
                     <ts-checkbox color="primary"></ts-checkbox>
                     <div class="media-body">
@@ -28,15 +42,20 @@
                 </div>
             </div>
         </div>
-        <app-tapd-task-add *ngIf="task.isEditMode" (saveHandle)="addTaskItem($event,task)" (cancelHandle)="task.isEditMode=false"></app-tapd-task-add>
-        <div *ngIf="!task.isEditMode" (click)="task.isEditMode=true" class="tapd-task-footer text-muted card-footer border-0 pointer">
+        <app-tapd-task-add *ngIf="task.isAddMode" (saveHandle)="addTaskItem($event,task)" (cancelHandle)="task.isAddMode=false"></app-tapd-task-add>
+        <div *ngIf="!task.isAddMode" (click)="task.isAddMode=true" class="tapd-task-footer text-muted card-footer border-0 pointer">
             <i class="fa fa-fw fa-plus"></i>
             <span>添加新任务...</span>
         </div>
     </div>
-    <!-- <div class="tapd-task bg-light mr-2 rounded"></div>
-    <div class="tapd-task bg-light mr-2 rounded"></div>
-    <div class="tapd-task bg-light mr-2 rounded"></div>
-    <div class="tapd-task bg-light mr-2 rounded"></div>
-    <div class="tapd-task bg-light mr-2 rounded"></div> -->
+    <div class="tapd-task bg-light mr-2 rounded">
+        <div *ngIf="!showTaskAddForm" (click)="showTaskAddForm=true" class="task-plus text-center pointer">+ 新增任务列表...</div>
+        <div *ngIf="showTaskAddForm" class="p-2">
+            <input [(ngModel)]="addTaskTitle" class="form-control" type="text" placeholder="请输入列表的标题">
+            <div class="m-btn mt-2 text-right">
+                <button (click)="closeAddTaskForm()" class="btn btn-white">取消</button>
+                <button (click)="addTask()" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
 </div>

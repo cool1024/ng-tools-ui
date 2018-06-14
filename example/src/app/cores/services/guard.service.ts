@@ -11,6 +11,6 @@ export class GuardService implements CanActivate {
     ) { }
 
     canActivate(activeRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-        return this.auth.checkLogin();
+        return true;// this.auth.checkLogin();
     }
 }

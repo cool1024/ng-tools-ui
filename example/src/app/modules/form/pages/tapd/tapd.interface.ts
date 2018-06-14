@@ -3,7 +3,8 @@ export interface TapdTask {
     taskId: number;
     taskName: string;
     taskItems: TapdTaskItem[];
-    isEditMode: boolean;
+    isEditMode?: boolean;
+    isAddMode?: boolean;
 }
 export interface TapdTaskItem {
     taskName: string;
@@ -13,4 +14,9 @@ export interface TapdTaskItem {
     taskLeaderName?: string;
     taskFileNum?: number;
     taskMessageNum?: number;
+}
+export interface TaskBadge {
+    badgeId: number;
+    badgeLabel: string;
+    badgeType: string;
 }

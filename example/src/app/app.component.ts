@@ -50,9 +50,9 @@ export class AppComponent implements OnInit {
     ) {
         this.global.loadStrFromStorage('color', 'primary');
         this.global.setValues({
-            'lazyload': true,
-            'tokencheck': true,
-            'showmenu': true,
+            'lazyload': false,
+            'tokencheck': false,
+            'showmenu': false,
         });
         this.menuPush.setDefaultItem({ title: '首页', url: '/' });
     }

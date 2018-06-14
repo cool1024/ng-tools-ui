@@ -56,10 +56,10 @@ button,
 input,
 select,
 textarea {
-    // outline: 0 none !important;
-    // text-decoration: none !important;
-    // z-index: 0 !important;
-    // box-shadow: 0px 0px 0px white !important;
+    outline: 0 none !important;
+    text-decoration: none !important;
+    z-index: 0 !important;
+    box-shadow: 0px 0px 0px white !important;
 }
 
 textarea {
@@ -209,4 +209,16 @@ $value in $theme-colors {
         // background-color: #{$value} !important;
         @include gradient-bg($value);
     }
+    .text-#{$color}-hover:hover{
+        color: #{$value} !important;
+        transition: color 0.3s;
+    }
+}
+
+.hover{
+    opacity: 0.5;
+}
+.hover:hover{
+    transition: opacity 0.3s;
+    opacity: 1;
 }

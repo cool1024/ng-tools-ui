@@ -1,6 +1,6 @@
 import { Injectable, Injector, ApplicationRef, ComponentFactoryResolver, ComponentRef, ComponentFactory } from '@angular/core';
 import { ModalComponent } from './modal.component';
-import { Subject ,  Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable()
 export class ModalService {
@@ -30,13 +30,14 @@ export class ModalService {
         this.containerEl.appendChild(this.windowCmptRef.location.nativeElement);
     }
 
-    create(content: any, options?: { size?: string, center?: boolean }): ModalService {
+    create(content: any, options?: { size?: string, center?: boolean, overflow?: string }): ModalService {
         this.init();
         this.modalComponent = content;
         this.modal = this.windowCmptRef.instance.loadComponent(content);
         if (options !== undefined) {
             this.windowCmptRef.instance.size = options.size || '';
             this.windowCmptRef.instance.center = options.center || false;
+            this.windowCmptRef.instance.overflow = options.overflow || 'auto';
         }
         return this;
     }
