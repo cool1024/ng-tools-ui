@@ -9,6 +9,9 @@ import { DomAttr } from './../../commons/extends/attr.class';
             <span (click)="closeHandle.emit()" class="fa fa-trash-o fa-lg align-top pointer" aria-hidden="true"></span>
         </span>`,
     styles: [`
+        .badge{
+            opacity: 0.8;
+        }
         .ts-badge span{
             transition: all 0.2s;
             width: 0px;
