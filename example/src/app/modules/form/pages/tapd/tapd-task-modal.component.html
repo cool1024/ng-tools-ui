@@ -1,28 +1,36 @@
 <div class="modal-header">
     <h5 class="modal-title">
-        <span class="badge bg-light">番剧爱好百日计划/看番计划</span>
+        <span class="badge bg-light text-muted">番剧爱好百日计划/看番计划</span>
     </h5>
-    <button type="button" class="close">
+    <button (click)="modal.dismiss()" type="button" class="close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
     <div class="media">
-        <ts-checkbox color="primary"></ts-checkbox>
+        <h4>
+            <ts-checkbox color="primary"></ts-checkbox>
+        </h4>
         <div class="media-body">
-            {{taskItem.taskName}}
+            <h4 *ngIf="!canEditTitle" (click)="canEditTitle=true">{{taskItem.taskName}}</h4>
+            <div *ngIf="canEditTitle" class="input-group" style="margin-top:-5px;">
+                <input [(ngModel)]="taskItem.taskName" type="text" class="form-control" placeholder="请输入标题">
+                <div class="input-group-append">
+                    <button (click)="canEditTitle=false" class="btn btn-white" type="button">保存</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="d-flex justify-content-between mt-2">
         <div class="pl-2">
-            <span class="badge badge-primary">
-                <i class="fa fa-fw fa-clock-o"></i>{{taskItem.taskCloseTime}}
+            <span class="text-muted">
+                <i class="fa fa-fw fa-calendar-o mr-2"></i>{{taskItem.taskCloseTime}}
             </span>
             <span *ngIf="taskItem.taskFileNum > 0" class="text-muted">
-                <i class="fa fa-paperclip fa-fw ml-2"></i>{{taskItem.taskFileNum}}
+                <i class="fa fa-file-text-o fa-fw ml-2 mr-2"></i>{{taskItem.taskFileNum}}
             </span>
             <span *ngIf="taskItem.taskMessageNum > 0" class="text-muted">
-                <i class="fa fa-comments-o fa-fw ml-2"></i>{{taskItem.taskMessageNum}}
+                <i class="fa fa-comments-o fa-fw ml-2 mr-2"></i>{{taskItem.taskMessageNum}}
             </span>
         </div>
         <img class="rounded-circle border border-ligth" width="40" height="40" src="assets/images/avatar/avatar.jpg">
@@ -35,50 +43,78 @@
             <div *ngIf="isQuillEdit">
                 <div tsQuill [(content)]="taskItem.taskDescription" [options]="options" style="height:300px;"></div>
             </div>
-            <div *ngIf="!isQuillEdit" (click)="showQuillEdit()" [innerHTML]="taskItem.taskDescription" class="pointer quill-content"></div>
+            <div *ngIf="!isQuillEdit" (click)="showQuillEdit()" [innerHTML]="taskItem.taskDescription" class="pointer" [class.quill-content]="!showAllContent"></div>
             <div *ngIf="isQuillEdit" class="text-right mt-1 m-btn">
-                <button class="btn btn-sm btn-white border-0">取消</button>
+                <button class="btn btn-sm btn-white">取消</button>
                 <button (click)="saveQuillContent()" class="btn btn-sm btn-primary">保存</button>
             </div>
-            <button type="button" class="btn btn-link">显示全部</button>
+            <button *ngIf="!showAllContent" (click)="showAllContent=true" type="button" class="btn btn-link pl-0">显示全部</button>
+            <button *ngIf="showAllContent" (click)="showAllContent=false" type="button" class="btn btn-link pl-0">收起内容</button>
         </div>
     </div>
     <div class="media mt-4">
         <span class="text-muted modal-media-left">
             <i class="fa fa-fw fa-sort-amount-asc"></i>优先级</span>
-        <div class="media-body text-danger">
-            非常紧急
-        </div>
-    </div>
-    <div class="media mt-4">
-        <span class="text-muted modal-media-left">
-            <i class="fa fa-fw fa-bookmark-o"></i>标签</span>
         <div class="media-body">
-            <ts-badge *ngFor="let badge of badges" [label]="badge.badgeLabel" [color]="badge.badgeType"></ts-badge>
             <div tsDropdown class="align-top">
-                <i tsToggle class="text-muted text-primary-hover pt-2 pr-2 pb-2 fa fa-plus-circle fa-lg pointer" aria-hidden="true"></i>
+                <span tsToggle class="pointer btn btn-sm rounded btn-outline-{{taskLevelLabels[taskItem.taskLevel].color}}">{{taskLevelLabels[taskItem.taskLevel].label}}</span>
                 <div tsDropMenu>
-                    <div class="dropdown-item pointer mb-2">
-                        <i class="fa fa-fw fa-edit"></i>编辑列表
-                    </div>
-                    <div class="dropdown-item pointer mb-2">
-                        <i class="fa fa-fw fa-trash"></i>删除列表
+                    <div *ngFor="let taskLevel of taskLevelLabels;index as i" (click)="taskItem.taskLevel=i" class="dropdown-item pointer mb-2">
+                        <span style="vertical-align: 15%;" class="mr-2 badge badge-pill badge-{{taskLevel.color}}">&nbsp;</span>
+                        {{taskLevel.label}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="media mt-4">
+        <span class="text-muted modal-media-left pt-1">
+            <i class="fa fa-fw fa-bookmark-o"></i>标签</span>
+        <div class="media-body">
+            <ts-badges [badges]="badges"></ts-badges>
+            <ts-badge-select [badges]="badges"></ts-badge-select>
+        </div>
+    </div>
     <hr>
-    <div class="media text-muted mt-4">
+    <div class="media text-muted mt-4 mb-2">
         <span class="modal-media-left">
             <i class="fa fa-fw fa-paperclip"></i>附件</span>
-        <div class="media-body">共0个</div>
+        <div class="media-body">3/20</div>
     </div>
-    <div class="media media-file-item pointer pt-2 pb-2 text-muted mt-4">
-        <img height="30" width="30" src="/assets/images/icon/video.svg">
-        <div class="media-body pl-2">学习看番，第一讲</div>
+    <div class="media media-file-item pointer mb-2 pt-2 pb-2 pl-2 text-muted rounded">
+        <img height="35" src="assets/images/file/video.png">
+        <div class="media-body pl-2 d-flex justify-content-between">
+            <span style="max-width: 350px;" class="text-truncate">学习看番，第一讲.mp4</span>
+            <span>
+                <i (click)="showSource()" class="fa fa-fw fa-eye pointer text-primary-hover mr-2"></i>
+                <i class="fa fa-fw fa-download pointer text-dark-hover mr-2"></i>
+                <i class="fa fa-fw fa-trash pointer text-danger-hover mr-4"></i>
+            </span>
+        </div>
     </div>
-    <div class="pointer mt-2 pl-1 text-primary">
+    <div class="media media-file-item pointer mb-2 pt-2 pb-2 pl-2 text-muted rounded">
+        <img height="35" src="assets/images/file/word.png">
+        <div class="media-body pl-2 d-flex justify-content-between">
+            <span style="max-width: 350px;" class="text-truncate">最初的演讲稿.docs</span>
+            <span>
+                <i class="fa fa-fw fa-eye pointer text-primary-hover mr-2"></i>
+                <i class="fa fa-fw fa-download pointer text-dark-hover mr-2"></i>
+                <i class="fa fa-fw fa-trash pointer text-danger-hover mr-4"></i>
+            </span>
+        </div>
+    </div>
+    <div class="media media-file-item pointer mb-2 pt-2 pb-2 pl-2 text-muted rounded">
+        <img height="35" src="assets/images/file/pdf.png">
+        <div class="media-body pl-2 d-flex justify-content-between">
+            <span style="max-width: 350px;" class="text-truncate">相关文档-我们的最新资料,相关文档-我们的最新资料相关文档.pdf</span>
+            <span>
+                <i class="fa fa-fw fa-eye pointer text-primary-hover mr-2"></i>
+                <i class="fa fa-fw fa-download pointer text-dark-hover mr-2"></i>
+                <i class="fa fa-fw fa-trash pointer text-danger-hover mr-4"></i>
+            </span>
+        </div>
+    </div>
+    <div class="pointer mt-2 pl-2 text-primary">
         <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
         添加文件
     </div>

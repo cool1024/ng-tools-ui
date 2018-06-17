@@ -19,6 +19,10 @@ export class HtmlDomService {
         return dom.clientHeight;
     }
 
+    getWidth(dom: HTMLElement): number {
+        return dom.clientWidth;
+    }
+
     // overflowBottom(dom: HTMLElement, offset = 0): boolean {
     //     const height = dom.clientHeight + offset;
     //     const position = this.getPosition(dom);

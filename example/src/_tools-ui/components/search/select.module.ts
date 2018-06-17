@@ -12,7 +12,6 @@ import { SearchComponent } from './search.component';
         SearchComponent,
     ],
     exports: [
-        // DropdownModule,
         FormsModule,
         SearchComponent,
     ]

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { ModalService } from 'ng-tools-ui';
 import { TapdTask, TapdTaskItem } from './tapd.interface';
-import { ModalService } from './../../../../../_tools-ui';
 import { TapdTaskModalComponent } from './tapd-task-modal.component';
 
 @Component({
@@ -23,7 +23,14 @@ export class TapdComponent {
                 taskId: 0,
                 taskName: '看番计划',
                 taskItems: [
-                    { taskName: '看完线上的怎么可能是女生啊', taskFileNum: 1, taskMessageNum: 2, taskCloseTime: '今天截止', taskDescription: '这是一段描述信息' }
+                    {
+                        taskName: '看完线上的怎么可能是女生啊',
+                        taskFileNum: 1,
+                        taskMessageNum: 2,
+                        taskCloseTime: '今天截止',
+                        taskDescription: '这是一段描述信息',
+                        taskLevel: 2,
+                    }
                 ],
                 isEditMode: true,
                 isAddMode: true
@@ -60,7 +67,7 @@ export class TapdComponent {
     }
 
     showTaskItemModal(item: TapdTaskItem) {
-        const modal = this.modal.create(TapdTaskModalComponent, { center: true, overflow: 'hidden' });
+        const modal = this.modal.create(TapdTaskModalComponent, { center: true, scroll: 'in' });
         modal.instance.taskItem = item;
         modal.open();
     }

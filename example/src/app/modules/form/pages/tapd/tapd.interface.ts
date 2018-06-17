@@ -14,6 +14,7 @@ export interface TapdTaskItem {
     taskLeaderName?: string;
     taskFileNum?: number;
     taskMessageNum?: number;
+    taskLevel: number;
 }
 export interface TaskBadge {
     badgeId: number;

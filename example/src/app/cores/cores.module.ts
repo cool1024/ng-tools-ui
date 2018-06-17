@@ -26,9 +26,9 @@ export class CoreModule {
             ngModule: CoreModule,
             providers: [
                 FormService,
+                RequestService,
                 MenuService,
                 GlobalService,
-                RequestService,
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: ErrorInterceptor,

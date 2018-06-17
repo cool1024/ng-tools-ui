@@ -30,14 +30,14 @@ export class ModalService {
         this.containerEl.appendChild(this.windowCmptRef.location.nativeElement);
     }
 
-    create(content: any, options?: { size?: string, center?: boolean, overflow?: string }): ModalService {
+    create(content: any, options?: { size?: string, center?: boolean, scroll?: string }): ModalService {
         this.init();
         this.modalComponent = content;
         this.modal = this.windowCmptRef.instance.loadComponent(content);
         if (options !== undefined) {
             this.windowCmptRef.instance.size = options.size || '';
             this.windowCmptRef.instance.center = options.center || false;
-            this.windowCmptRef.instance.overflow = options.overflow || 'auto';
+            this.windowCmptRef.instance.scroll = options.scroll || 'out';
         }
         return this;
     }

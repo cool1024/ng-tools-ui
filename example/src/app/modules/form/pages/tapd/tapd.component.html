@@ -2,7 +2,7 @@
     <div *ngFor="let task of tasks;index as i" class="tapd-task bg-light mr-2 rounded">
         <div class="card-header border-0">
             <div *ngIf="task.isEditMode" class="input-group input-group-sm">
-                <input [(ngModel)]="task.taskName" type="text" class="form-control mr-2">
+                <input [(ngModel)]="task.taskName" type="text" class="form-control rounded mr-2">
                 <button (click)="updateTask(task)" class="btn btn-primary btn-sm" type="button">保存</button>
             </div>
             <span *ngIf="!task.isEditMode">{{task.taskName}}</span>

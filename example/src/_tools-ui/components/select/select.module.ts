@@ -14,7 +14,6 @@ import { SelectsComponent } from './selects.component';
         SelectsComponent,
     ],
     exports: [
-        DropdownModule,
         FormsModule,
         SelectComponent,
         SelectsComponent,

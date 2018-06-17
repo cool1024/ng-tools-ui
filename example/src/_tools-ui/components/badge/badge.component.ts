@@ -4,7 +4,7 @@ import { DomAttr } from './../../commons/extends/attr.class';
 @Component({
     selector: `ts-badge`,
     template: `
-        <span class="mr-2 badge badge-pill p-2 ts-badge" [ngClass]="badgeClass">
+        <span class="mr-2 mb-2 badge badge-pill p-2 ts-badge text-white" [ngClass]="badgeClass">
             {{label||''}}
             <span (click)="closeHandle.emit()" class="fa fa-trash-o fa-lg align-top pointer" aria-hidden="true"></span>
         </span>`,

@@ -12,9 +12,12 @@ import {
     LoopCardModule,
     TabModule,
     CollapseModule,
-    // QuillModule,
+    QuillModule,
+    ModalModule,
+    BadgeModule,
 } from 'ng-tools-ui';
-import { ModalModule, BadgeModule, QuillModule } from './../../../_tools-ui';
+import { WindowModule } from './../../../_tools-ui';
+
 /*路由模块*/
 import { FormRoutingModule, declarationComponents } from './form.routing';
 import { FlowNodeComponent } from './pages/flow/flow-node.component';
@@ -22,6 +25,8 @@ import { FlowBranchComponent } from './pages/flow/flow-branch.component';
 import { FlowBranchNodeComponent } from './pages/flow/flow-branch-node.component';
 import { TapdTaskAddComponent } from './pages/tapd/tapd-task-add.component';
 import { TapdTaskModalComponent } from './pages/tapd/tapd-task-modal.component';
+import { BadgeSelectComponent } from './pages/tapd/badge-select.component';
+import { SourceViewComponent } from './pages/tapd/source-view.component';
 
 @NgModule({
     imports: [
@@ -38,7 +43,8 @@ import { TapdTaskModalComponent } from './pages/tapd/tapd-task-modal.component';
         SearchModule,
         ModalModule,
         BadgeModule,
-        QuillModule.forChild(['assets/quill/quill.min.js'])
+        QuillModule.forChild(['assets/quill/quill.min.js']),
+        WindowModule,
     ],
     declarations: [
         declarationComponents,
@@ -47,9 +53,12 @@ import { TapdTaskModalComponent } from './pages/tapd/tapd-task-modal.component';
         FlowBranchNodeComponent,
         TapdTaskAddComponent,
         TapdTaskModalComponent,
+        BadgeSelectComponent,
+        SourceViewComponent,
     ],
     entryComponents: [
         TapdTaskModalComponent,
+        SourceViewComponent,
     ]
 })
 export class FormModule { }

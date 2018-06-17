@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { ToggleDirective } from '../../commons/directives/toggle.directives';
 import { DomLoad } from '../../commons/interfaces/load.interface';
+import { HtmlDomService } from '../../commons/services/htmldom.service';
 
 @Directive({
     selector: `[tsDropdown]`,
@@ -59,6 +60,7 @@ export class DropdownDirective implements AfterViewInit, OnInit, DomLoad {
                 this.toggle();
             }
         };
+        this.dropMenuDirective.bind(this.toggleDirective.dom);
     }
 
     toggle() {
@@ -88,6 +90,8 @@ export class DropdownDirective implements AfterViewInit, OnInit, DomLoad {
 })
 export class DropMenuDirective implements AfterViewInit {
 
+    @Input() modalSize: number;
+
     @Input() offsetX: number;
 
     @Input() offsetY: number;
@@ -100,12 +104,16 @@ export class DropMenuDirective implements AfterViewInit {
 
     dom: HTMLDivElement;
 
+    toggleDom: HTMLElement;
+
     constructor(
         public elementRef: ElementRef,
+        private html: HtmlDomService,
     ) {
         this.class = 'dropdown-menu';
         this.offsetX = 0;
         this.offsetY = 4;
+        this.modalSize = 0;
     }
 
     ngAfterViewInit() {
@@ -120,6 +128,26 @@ export class DropMenuDirective implements AfterViewInit {
         } else {
             this.dom.style.transform = `translate3d(${this.offsetX}px, ${btnSize[1] + this.offsetY}px, 0px)`;
         }
+        if (this.modalSize > 0) {
+            const overflowX = this.overflowX();
+            if (dropup !== null && dropup !== false) {
+                this.dom.style.transform = `translate3d(${this.offsetX}px, -${this.dom.clientHeight + this.offsetY}px, 0px)`;
+            } else {
+                this.dom.style.transform = `translate3d(${this.offsetX - overflowX}px, ${btnSize[1] + this.offsetY}px, 0px)`;
+            }
+        }
+    }
+
+    private overflowX(): number {
+        const point = this.html.getPosition(this.dom);
+        const w = this.html.getWidth(this.dom);
+        const compare = window.innerWidth < this.modalSize ? window.innerWidth : (window.innerWidth + this.modalSize) / 2;
+        const offset = (point.x + w) - compare;
+        return offset > 0 ? offset + 20 : 0;
+    }
+
+    bind(toggle: HTMLElement) {
+        this.toggleDom = toggle;
     }
 
     setShow(dropup = false, btnSize: [number, number]) {

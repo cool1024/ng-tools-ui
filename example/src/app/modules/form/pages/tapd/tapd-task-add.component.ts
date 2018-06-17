@@ -82,7 +82,8 @@ export class TapdTaskAddComponent {
         this.task = {
             taskName: '看完线上的怎么可能是女生啊',
             taskEndTime: '2018-06-01',
-            taskLeaderName: '未设置'
+            taskLeaderName: '未设置',
+            taskLevel: 0,
         };
     }
 
@@ -91,6 +92,7 @@ export class TapdTaskAddComponent {
             taskName: this.task.taskName,
             taskEndTime: this.task.taskEndTime,
             taskLeaderName: this.task.taskLeaderName,
+            taskLevel: 0,
         });
         this.resetData();
     }

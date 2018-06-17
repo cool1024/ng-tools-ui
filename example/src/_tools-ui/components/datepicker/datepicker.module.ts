@@ -12,7 +12,6 @@ import { ButtonModule } from './../button/button.module';
         DatepickerComponent
     ],
     exports: [
-        DropdownModule,
         ButtonModule,
         DatepickerComponent
     ]

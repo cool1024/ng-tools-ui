@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { TapdTaskItem, TaskBadge } from './tapd.interface';
+import { TapdTaskItem } from './tapd.interface';
 import { QuillOptions as defaultOptions } from '../../../../configs/quill.config';
-import { QuillOptions } from 'ng-tools-ui';
+import { QuillOptions, Badge, ModalService } from 'ng-tools-ui';
+import { TaskLevelLabels } from './tapd.data';
+import { WindowService } from '../../../../../_tools-ui';
+import { SourceViewComponent } from './source-view.component';
 
 @Component({
     templateUrl: './tapd-task-modal.component.html',
@@ -13,11 +16,22 @@ export class TapdTaskModalComponent {
 
     options: QuillOptions;
 
-    badges = new Array<TaskBadge>();
+    badges = new Array<Badge>();
+
+    badgeKey = '';
 
     isQuillEdit = false;
 
-    constructor() {
+    showAllContent = false;
+
+    canEditTitle = false;
+
+    taskLevelLabels = TaskLevelLabels;
+
+    constructor(
+        public modal: ModalService,
+        public window: WindowService,
+    ) {
         this.options = JSON.parse(JSON.stringify(defaultOptions));
         this.options.modules.toolbar = [
             [
@@ -30,8 +44,8 @@ export class TapdTaskModalComponent {
             ]
         ];
         this.badges.push(
-            { badgeId: 0, badgeLabel: '很重要', badgeType: 'danger' },
-            { badgeId: 1, badgeLabel: '快点做完', badgeType: 'primary' },
+            { badgeLabel: '很重要', badgeColor: 'danger' },
+            { badgeLabel: '快点做完', badgeColor: 'primary' },
         );
     }
 
@@ -41,5 +55,10 @@ export class TapdTaskModalComponent {
 
     saveQuillContent() {
         this.isQuillEdit = false;
+    }
+
+    showSource() {
+        const window = this.window.push(SourceViewComponent);
+        window.present();
     }
 }
