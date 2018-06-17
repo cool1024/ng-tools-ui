@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WindowViewService, WindowService } from '../../../../../_tools-ui';
+import { WindowViewService, WindowService } from 'ng-tools-ui';
 
 @Component({
     templateUrl: './source-view.component.html',

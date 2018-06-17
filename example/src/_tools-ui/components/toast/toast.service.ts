@@ -24,25 +24,35 @@ export class ToastService {
         containerEl.appendChild(this.windowCmptRef.location.nativeElement);
     }
 
-    create(title: string, message: string, options: { color: string, timeout?: number }) {
+    create(title: string, message: string, options: { color: string, icon: string, timeout?: number }) {
         this.init();
-        this.windowCmptRef.instance.addToast(new Toast(title, message, options.color, options.timeout || this.config.timeout));
+        this.windowCmptRef.instance.addToast(new Toast(
+            title, message, options.color, options.icon, options.timeout || this.config.timeout));
     }
 
     info(title: string, message: string, timer?: number) {
-        this.create(title, message, { color: 'bg-info text-white', timeout: timer || this.config.timeout });
+        this.create(title, message, { color: 'border-info', icon: 'text-info fa-info-circle', timeout: timer || this.config.timeout });
     }
 
     success(title: string, message: string, timer?: number) {
-        this.create(title, message, { color: 'bg-success text-white', timeout: timer || this.config.timeout });
+        this.create(title, message, {
+            color: 'border-success',
+            icon: 'text-success fa-check-circle', timeout: timer || this.config.timeout
+        });
     }
 
     danger(title: string, message: string, timer?: number) {
-        this.create(title, message, { color: 'bg-danger text-white', timeout: timer || this.config.timeout });
+        this.create(title, message, {
+            color: 'border-danger',
+            icon: 'text-danger fa-exclamation-circle', timeout: timer || this.config.timeout
+        });
     }
 
     warning(title: string, message: string, timer?: number) {
-        this.create(title, message, { color: 'bg-warning text-dark', timeout: timer || this.config.timeout });
+        this.create(title, message, {
+            color: 'border-warning',
+            icon: 'text-warning fa-exclamation-triangle', timeout: timer || this.config.timeout
+        });
     }
 
 }

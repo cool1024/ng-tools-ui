@@ -14,8 +14,6 @@ import {
     CssloadModule,
 } from 'ng-tools-ui';
 
-// import {PaginationModule} from './../../../_tools-ui';
-
 /*路由模块*/
 import { AdminRoutingModule, declarationComponents, entryComponents } from './admin.routing';
 

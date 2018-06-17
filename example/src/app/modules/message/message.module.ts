@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ng-tools-ui';
 
 /*路由模块*/
@@ -11,8 +10,8 @@ import { ModalComponent } from './pages/confirm/modal.component';
 
 @NgModule({
     imports: [
+        ModalModule,
         MessageRoutingModule,
-        ModalModule
     ],
     declarations: [
         ConfirmComponent,

@@ -3,7 +3,7 @@ import { TapdTaskItem } from './tapd.interface';
 import { QuillOptions as defaultOptions } from '../../../../configs/quill.config';
 import { QuillOptions, Badge, ModalService } from 'ng-tools-ui';
 import { TaskLevelLabels } from './tapd.data';
-import { WindowService } from '../../../../../_tools-ui';
+import { WindowService } from 'ng-tools-ui';
 import { SourceViewComponent } from './source-view.component';
 
 @Component({

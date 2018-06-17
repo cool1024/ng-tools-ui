@@ -13,6 +13,7 @@ import {
     Inject,
     Directive,
     ChangeDetectorRef,
+    OnDestroy,
 } from '@angular/core';
 import { ScriptService } from './../../commons/services/script.service';
 import { QuillOptions } from './quill.interface';
@@ -23,10 +24,12 @@ declare const window: any;
     exportAs: 'tsQuill',
 })
 
-export class QuillDirective implements AfterViewInit, OnInit, OnChanges {
+export class QuillDirective implements AfterViewInit, OnInit, OnChanges, OnDestroy {
 
 
     @Input() content: string;
+
+    @Input() enable: boolean;
 
     @Input() options: QuillOptions;
 
@@ -48,16 +51,13 @@ export class QuillDirective implements AfterViewInit, OnInit, OnChanges {
         private cdRef: ChangeDetectorRef,
         @Inject('QUILL_SCRIPT_SRCS') private srcs: string[]
     ) {
+        this.enable = true;
         this.content = '';
         this.options = { theme: 'snow', placeholder: 'Compose an epic...' };
     }
 
     ngOnChanges(change: SimpleChanges) {
-        if (change.content
-            && !change.content.firstChange
-            && change.content.previousValue !== change.content.currentValue) {
-            this.updateContent();
-        }
+        this.updateContent();
     }
 
     ngOnInit() {
@@ -74,14 +74,22 @@ export class QuillDirective implements AfterViewInit, OnInit, OnChanges {
                 this.noUpdateContent = true;
                 this.contentChange.emit(this.quill.root.innerHTML);
             });
+            this.quill.enable(this.enable);
         });
     }
 
     updateContent() {
         if (this.ready && !this.noUpdateContent) {
+            this.quill.enable(this.enable);
             this.quill.clipboard.dangerouslyPasteHTML(this.content);
             this.cdRef.detectChanges();
         }
         this.noUpdateContent = false;
+    }
+
+    ngOnDestroy() {
+        if (this.ready) {
+
+        }
     }
 }

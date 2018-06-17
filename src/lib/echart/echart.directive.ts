@@ -1,6 +1,7 @@
 
 import { Directive, ElementRef, Input, Output, OnInit, AfterViewInit, EventEmitter, Inject, OnDestroy } from '@angular/core';
 import { ScriptService } from './../../commons/services/script.service';
+import { EchartsInstance } from './echart.interface';
 declare const window: any;
 
 @Directive({
@@ -14,9 +15,9 @@ export class BaseEchartDirective implements OnInit, AfterViewInit, OnDestroy {
 
     @Input() resize: boolean;
 
-    @Output() chartLoad = new EventEmitter<any>();
+    @Output() chartLoad = new EventEmitter<{ echartsInstance: EchartsInstance, echarts: any }>();
 
-    private echart: any;
+    private echart: EchartsInstance;
 
     constructor(
         private script: ScriptService,
@@ -38,11 +39,14 @@ export class BaseEchartDirective implements OnInit, AfterViewInit, OnDestroy {
         this.script.complete(() => {
             this.echart = window.echarts.init(this.elementRef.nativeElement);
             this.echart.setOption(this.option);
-            this.chartLoad.emit(this.echart);
+            this.chartLoad.emit({
+                echartsInstance: this.echart,
+                echarts: window.echarts,
+            });
             if (this.resize) {
                 window.addEventListener('resize', this.resizeChart);
             }
-            setTimeout(() => this.echart.resize(), 2000);
+            setTimeout(() => this.echart.resize(), 1000);
         });
     }
 

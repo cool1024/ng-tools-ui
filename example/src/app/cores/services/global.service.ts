@@ -70,7 +70,7 @@ export class GlobalService {
     /**
      * 批量校验本地存储中的变量，一个不存在就会校验失败
      * @param {string[]} ...keys 变量名称
-     * @return {boolean} 
+     * @return {boolean}
      */
     checkValuesFromStorage(...keys: string[]): boolean {
         return keys.findIndex(key => {

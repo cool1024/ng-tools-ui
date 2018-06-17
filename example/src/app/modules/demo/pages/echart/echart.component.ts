@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EchartsInstance } from '../../../../../_tools-ui';
+import { EchartsInstance } from 'ng-tools-ui';
 import { RequestService } from '../../../../cores/services';
 
 @Component({
@@ -158,7 +158,8 @@ export class EchartComponent {
         ]
     };
 
-    serveDatas: any = { "r": "2", "b": "0", "swpd": "0", "free": "897184", "buff": "443756", "cache": "2945936", "si": "0", "so": "0", "bi": "13", "bo": "20", "in": "259", "cs": "239", "us": "5", "sy": "2", "id": "93", "wa": "0" };
+    serveDatas: any =
+        { "r": "2", "b": "0", "swpd": "0", "free": "897184", "buff": "443756", "cache": "2945936", "si": "0", "so": "0", "bi": "13", "bo": "20", "in": "259", "cs": "239", "us": "5", "sy": "2", "id": "93", "wa": "0" };
 
     constructor(private request: RequestService) {
         this.request.websocket('ws://192.168.1.166:8080').subscribe(message => {

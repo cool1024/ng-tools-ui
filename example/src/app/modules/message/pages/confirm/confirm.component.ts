@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ConfirmService, ToastService, ModalService } from 'ng-tools-ui';
+import { ConfirmService, ModalService, ToastService } from 'ng-tools-ui';
 import { ModalComponent } from './modal.component';
 
 @Component({

@@ -22,6 +22,8 @@ export { ModalModule } from './components/modal/modal.module';
 export { CkeditorModule } from './lib/ckeditor/ckeditor.module';
 export { SearchModule } from './components/search/select.module';
 export { ProgressModule } from './components/progress/progress.module';
+export { BadgeModule } from './components/badge/badge.module';
+export { WindowModule } from './components/window/window.module';
 
 /**
  * Lib modules export
@@ -52,6 +54,8 @@ export { Toggle } from './commons/interfaces/toggle.interface';
 export { MenuModel, MenuGroup, MenuItem } from './components/menu/menu.interface';
 export { LoopCard, LoopCardConfig } from './components/loop-card/loop-card.interface';
 export { QuillOptions } from './lib/quill/quill.interface';
+export { EchartsInstance } from './lib/echart/echart.interface';
+export { Badge } from './components/badge/badge.interface';
 
 /**
  * Service export
@@ -62,6 +66,8 @@ export { ToastService } from './components/toast/toast.service';
 export { MapService } from './lib/map/map.service';
 export { ModalService } from './components/modal/modal.service';
 export { MenuPushService } from './components/menu/menu-push.service';
+export { WindowService } from './components/window/window.service';
+export { WindowViewService } from './components/window/window-view.service';
 
 
 

@@ -12,7 +12,6 @@ import { FormsModule } from '@angular/forms';
         PaginationComponent,
     ],
     exports: [
-        DropdownModule,
         PaginationComponent,
     ]
 })

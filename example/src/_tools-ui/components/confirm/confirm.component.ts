@@ -1,13 +1,14 @@
 
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Observable ,  Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ConfirmOptions } from './confirm.interface';
 import { ConfirmConfig } from './confirm.data';
 
 
 @Component({
     template: `
-    <div #pad (click)="tryClose($event.target)" [class.show]="show" [class.d-block]="show" class="modal fade" tabindex="-1" role="dialog">
+    <div #pad (click)="tryClose($event.target)" [class.show]="show"
+        [class.d-block]="show" class="modal fade animated fadeInUp" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -30,7 +31,25 @@ import { ConfirmConfig } from './confirm.data';
         </div>
     </div>
     <div *ngIf="show" class="modal-backdrop fade show"></div>
-  `
+  `,
+    styles: [`
+  .animated {
+        animation-duration: 0.5s;
+        animation-fill-mode: both;
+    }
+    @keyframes fadeInUp {
+        from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+        }
+        to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        }
+    }
+    .fadeInUp {
+        animation-name: fadeInUp;
+    }`]
 })
 export class ConfirmComponent {
 

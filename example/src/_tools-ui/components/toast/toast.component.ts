@@ -6,8 +6,13 @@ import { ToastConfig } from './toast.interface';
 @Component({
     template: `
     <div *ngIf="show" class="{{position}} position-fixed alert m-2" style="width:20rem;z-index:9999">
-        <div *ngFor="let toast of toasts" class="alert {{toast.color}}" [class.ts-op-hidden]="(toast.timeout - toast.cx)<=1000">
-            <h6 class="alert-heading">{{toast.title}}
+        <div *ngFor="let toast of toasts"
+            class="ts-toast animated fadeInUp alert rounded-0 bg-white"
+            [class.ts-op-hidden]="(toast.timeout - toast.cx)<=1000"
+            [ngClass]="toast.color" >
+            <h6 class="alert-heading">
+                <i class="fa fa-fw" [ngClass]="toast.icon"></i>
+                {{toast.title}}
                 <span (click)="removeToast(toast)" class="pointer pull-right" style="opacity: 0.8;">&times;</span>
             </h6>
             <hr class="mb-2">
@@ -15,8 +20,30 @@ import { ToastConfig } from './toast.interface';
         </div>
     </div>
     `,
-    styles: [
-        `.close {
+    styles: [`
+        .animated {
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+        }
+        @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translate3d(0, 100%, 0);
+            }
+            to {
+              opacity: 1;
+              transform: translate3d(0, 0, 0);
+            }
+        }
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+        .ts-toast{
+            box-shadow: 1px 2px 3px #ccc;
+            border-width: 0;
+            border-left-width: 3px;
+        }
+        .close {
             cursor:pointer;
         }
         .ts-top {
@@ -87,7 +114,7 @@ export class ToastComponent implements OnDestroy {
         this.toasts.forEach(toast => {
             toast.cx += this.dValue;
         });
-        this.toasts = this.toasts.filter(toast => toast.timeout > toast.cx);
+        this.toasts = this.toasts.filter(toast => toast.timeout > toast.cx || toast.timeout === -1);
         if (this.toasts.length <= 0) {
             clearInterval(this.timer);
             this.timer = null;
