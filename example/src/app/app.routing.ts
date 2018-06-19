@@ -8,7 +8,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'dashboard/home', pathMatch: 'full' },
 
     // 懒加载子模块
-    { path: 'dashboard', loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule' },
+    // { path: 'dashboard', loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule' },
     { path: 'system', loadChildren: 'app/modules/system/system.module#SystemModule', canActivate: [GuardService] },
     { path: 'form', loadChildren: 'app/modules/form/form.module#FormModule', canActivate: [GuardService] },
     { path: 'upload', loadChildren: 'app/modules/upload/upload.module#UploadModule', canActivate: [GuardService] },

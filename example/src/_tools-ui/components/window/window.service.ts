@@ -30,11 +30,9 @@ export class WindowService {
 
     push(content: any): WindowHandle {
         const index = this.init();
-        console.log(111);
         const handle = new WindowHandle();
         const injector = Injector.create([{ provide: WindowViewService, useValue: handle }], this.injector);
         handle.instance = this.windowCmptRefs[index].instance.loadComponent(content, index, injector).instance;
-        console.log(333);
         handle.ref = this.windowCmptRefs[index];
         handle.index = index;
         this.windowhandles.push(handle);
