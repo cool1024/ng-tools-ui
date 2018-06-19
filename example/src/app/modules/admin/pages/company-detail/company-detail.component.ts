@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastService, UploadConfig } from 'ng-tools-ui';
+import { UploadConfig, ToastService } from 'ng-tools-ui';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { GlobalService } from '../../../../cores/services';
 import { CompanyService } from '../../services/company.service';
 import { Company } from '../../interfaces/company.interfaces';
 import { ApiData } from '../../../../cores/classes';
 import { skipWhile, switchMap } from 'rxjs/operators';
-
-declare const $: any;
-// 或者
-declare const JQuery: any;
-// 或者 
-declare const window: any;
 
 @Component({
     selector: 'app-company-detail',

@@ -30,7 +30,6 @@
 @import "~bootstrap/scss/close";
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/alert";
-
 /**
  * bootstrap 样式BUG修复
  */
@@ -39,7 +38,7 @@
     bottom: auto !important;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     // box-shadow: rgb(185, 185, 185) 1px 2px 3px;
 }
 
@@ -58,8 +57,10 @@ select,
 textarea {
     outline: 0 none !important;
     text-decoration: none !important;
-    z-index: 0 !important;
-    box-shadow: 0px 0px 0px white !important;
+}
+
+input {
+    box-shadow: none !important;
 }
 
 textarea {
@@ -93,9 +94,18 @@ a:visited {
     cursor: not-allowed !important;
 }
 
+.btn-link:not(:disabled):not(.disabled):active,
+.btn:not(:disabled):not(.disabled).active {
+    box-shadow: none !important;
+}
+
 .table td,
 .table th {
     vertical-align: middle !important;
+}
+
+.card {
+    box-shadow: 1px 2px 3px #ededed;
 }
 
 /*bootstrap4 样式拓展*/
@@ -119,14 +129,13 @@ $value in $theme-colors {
     }
 }
 
-.m-btn .btn{
+.m-btn .btn {
     margin-left: $spacer * .25;
 }
 
-.m-btn .btn:first-child{
+.m-btn .btn:first-child {
     margin-left: 0;
 }
-
 
 .btn-white,
 .btn-outline-white {
@@ -156,10 +165,6 @@ $value in $theme-colors {
 .label-required::before {
     content: '* ';
     color: $red;
-}
-
-.hr-light {
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .rounded-top-0 {
@@ -209,16 +214,17 @@ $value in $theme-colors {
         // background-color: #{$value} !important;
         @include gradient-bg($value);
     }
-    .text-#{$color}-hover:hover{
+    .text-#{$color}-hover:hover {
         color: #{$value} !important;
         transition: color 0.3s;
     }
 }
 
-.hover{
+.hover {
     opacity: 0.5;
 }
-.hover:hover{
+
+.hover:hover {
     transition: opacity 0.3s;
     opacity: 1;
 }

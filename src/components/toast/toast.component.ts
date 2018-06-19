@@ -7,16 +7,15 @@ import { ToastConfig } from './toast.interface';
     template: `
     <div *ngIf="show" class="{{position}} position-fixed alert m-2" style="width:20rem;z-index:9999">
         <div *ngFor="let toast of toasts"
-            class="ts-toast animated fadeInUp alert rounded-0 bg-white"
-            [class.ts-op-hidden]="(toast.timeout - toast.cx)<=1000"
-            [ngClass]="toast.color" >
+            class="ts-toast animated fadeInUp alert rounded-0 bg-white {{toast.color}}"
+            [class.ts-op-hidden]="(toast.timeout - toast.cx)<=1000">
             <h6 class="alert-heading">
-                <i class="fa fa-fw" [ngClass]="toast.icon"></i>
-                {{toast.title}}
+                <i class="fa fa-fw {{toast.icon}}"></i>
+                <span class="text-dark">{{toast.title}}</span>
                 <span (click)="removeToast(toast)" class="pointer pull-right" style="opacity: 0.8;">&times;</span>
             </h6>
             <hr class="mb-2">
-            <p class="mb-0 mt-0">{{toast.message}}</p>
+            <p class="mb-0 mt-0 text-dark">{{toast.message}}</p>
         </div>
     </div>
     `,

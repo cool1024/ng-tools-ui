@@ -65,7 +65,8 @@ export class AuthService {
             .withoutHeader()
             .post('/managerapi/check', params, false)
             .pipe(map<ApiData, boolean>(res => {
-                res.result ? (this.setIn(), this.user = res.datas) : (this.loginState = false, this.router.navigateByUrl('/dashboard/login'));
+                res.result ? (this.setIn(), this.user = res.datas)
+                    : (this.loginState = false, this.router.navigateByUrl('/dashboard/login'));
                 return res.result;
             }));
     }

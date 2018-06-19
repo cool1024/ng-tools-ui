@@ -27,7 +27,8 @@ import { GlobalService } from '../../../../cores/services';
         </div>
         <div class="modal-footer">
             <input tsFile accept="image/*" #inputFile="tsFile" (fileChange)="uploadBanner($event)">
-            <button (click)="inputFile.openFileDialog()" type="button" class="btn btn-white">
+            <button tsBtn (click)="modal.dismiss()">取消/返回</button>
+            <button tsBtn color="primary" (click)="inputFile.openFileDialog()">
                 <i class="fa fa-fw fa-file-picture-o"></i>选择图片
             </button>
             <button tsBtn loading (submit)="confirmSave($event)" color="success">确认保存</button>

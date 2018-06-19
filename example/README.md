@@ -10,7 +10,7 @@
 `ng build --stats-json`
 
 ## Map Analyse
-`ng build --prod --sourcemaps`
+`ng build --prod --source-map`
 `ls dist/*.bundle.js`
 `node_modules/.bin/source-map-explorer dist/main.*.bundle.js`
 

@@ -6,7 +6,6 @@ import {
     HttpRequest,
     HttpResponse,
     HttpErrorResponse,
-    HttpParams,
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, of, TimeoutError } from 'rxjs';
@@ -14,14 +13,12 @@ import { timeout, catchError, map } from 'rxjs/operators';
 import { ToastService } from 'ng-tools-ui';
 import { HttpConfig } from '../../configs/http.config';
 import { ApiData, ApiResponse } from '../classes/api-data.class';
-import { GlobalService } from './global.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
     constructor(
         private toast: ToastService,
-        private global: GlobalService,
         private router: Router,
     ) { }
 
