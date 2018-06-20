@@ -1,10 +1,9 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { MapConfig } from './map.config';
-import { GeometryUtil } from './map';
+import { GeometryUtil } from './map.interface';
 import { ScriptService } from '../../commons/services/script.service';
+import { MapConfig } from './map.config';
 declare const window: any;
-declare const document: any;
 
 @Injectable()
 export class MapService {
@@ -26,7 +25,7 @@ export class MapService {
                 sub.next(window.AMap);
                 sub.complete();
             };
-            this.script.load(`https://webapi.amap.com/maps?v=1.4.3&key=${mapConfig.appKey}&callback=aMapLoadCallBack`);
+            this.script.load(`https://webapi.amap.com/maps?v=1.4.3&key=${this.mapConfig.appKey}&callback=aMapLoadCallBack`);
         } else {
             this.ready = true;
         }

@@ -2,6 +2,7 @@ import { Directive, Input, ElementRef, AfterViewInit, Output, EventEmitter, OnDe
 import { MapService } from './map.service';
 import { DefaultConfig } from './default.config';
 import { Observable, Subject } from 'rxjs';
+import { MapEvent } from './map.interface';
 
 @Directive({
     selector: 'div[tsMap]',
@@ -12,6 +13,8 @@ export class MapDirective implements AfterViewInit, OnDestroy {
     @Input() center: [number, number];
     @Input() zoom: number;
     @Input() options: any;
+
+    @Output() positionChange = new EventEmitter<MapEvent>(false);
 
     amap: any;
     map: any;
@@ -44,13 +47,20 @@ export class MapDirective implements AfterViewInit, OnDestroy {
             this.options.zoom = this.zoom;
             this.options.center = this.center;
             this.map = new amap.Map(this.elementRef.nativeElement, this.mapOptions);
+            this.map.on('click', (event: MapEvent) => {
+                this.positionChange.emit(event);
+            });
             this.sub.next();
             this.sub.complete();
             this.status = true;
         });
     }
 
-    ngOnDestroy() { }
+    ngOnDestroy() {
+        if (this.map) {
+            this.map.destroy();
+        }
+    }
 
     private doFunc(func: () => void) {
         if (this.status) {

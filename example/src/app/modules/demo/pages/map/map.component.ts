@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { MapService, MapStyles } from 'ng-tools-ui';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { MapService, MapStyles, MapEvent } from 'ng-tools-ui';
 
 @Component({
     templateUrl: './map.component.html',
@@ -34,6 +34,12 @@ export class MapComponent implements OnInit {
     }
 
     getMyLocationInfo() { }
+
+    getPosition(event: MapEvent) {
+        const point = [event.lnglat.getLng(), event.lnglat.getLat()];
+        console.log(point);
+        this.map.setMarker(point);
+    }
 
     getPointDistance(lng1: number, lat1: number, lng2: number, lat2: number) {
         return this.mapService.geometryUtil((gutil, amap) => {

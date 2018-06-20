@@ -56,7 +56,7 @@ export { LoopCard, LoopCardConfig } from './components/loop-card/loop-card.inter
 export { QuillOptions } from './lib/quill/quill.interface';
 export { EchartsInstance } from './lib/echart/echart.interface';
 export { Badge } from './components/badge/badge.interface';
-
+export { GeometryUtil, LngLat, Size, Bounds, MapEvent } from './lib/map/map.interface';
 /**
  * Service export
  */
