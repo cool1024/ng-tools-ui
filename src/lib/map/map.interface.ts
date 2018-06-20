@@ -1,27 +1,29 @@
-export declare class Pixel {
-    constructor(x: number, y: number);
-    getX(): number;
-    getY(): number;
-    equals(point: Pixel): boolean;
-    toString(): string;
-}
-export declare class Size {
-    constructor(width: number, height: number);
-    getWidth(): number;
-    getHeight(): number;
-    toString(): string;
-}
-export declare class LngLat {
-    constructor(lng: number, lat: number);
-    offset(w: number, s: number): LngLat;
-    distance(lnglat: LngLat | [LngLat, LngLat]): number;
+export interface LngLat {
+    offset(lng: number, lat: number): LngLat;
+    distance(lnglat: LngLat | LngLat[]): number;
     getLng(): number;
     getLat(): number;
     equals(lnglat: LngLat): boolean;
     toString(): string;
 }
-export declare class Bounds {
-    constructor(southWest: LngLat, northEast: LngLat);
+export interface Pixel {
+    getX(): number;
+    getY(): number;
+    equals(point: Pixel): boolean;
+    toString(): string;
+}
+export interface MapEvent {
+    lnglat: LngLat;
+    pixel: Pixel;
+    type: string;
+    target: any;
+}
+export interface Size {
+    getWidth(): number;
+    getHeight(): number;
+    toString(): string;
+}
+export interface Bounds {
     contains(point: LngLat): boolean;
     getCenter(): LngLat;
     getSouthWest(): LngLat;
@@ -29,7 +31,7 @@ export declare class Bounds {
     equals(lnglat: LngLat): boolean;
     toString(): string;
 }
-export declare class GeometryUtil {
+export interface GeometryUtil {
     distance(p1: LngLat, p2: LngLat): number;
     ringArea(ring: LngLat[]): number;
     isClockwise(ring: LngLat[]): boolean;

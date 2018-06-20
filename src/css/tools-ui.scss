@@ -77,11 +77,40 @@ a:visited {
     user-select: none;
 }
 
-@each $color,
-$value in $theme-colors {
-    .tab-border-#{$color} {
-        border-top: 3px solid #{$value} !important;
-    }
+.tab-border-primary {
+    border-top: 3px solid #007bff !important;
+}
+
+.tab-border-danger {
+    border-top: 3px solid #dc3545 !important;
+}
+
+.tab-border-success {
+    border-top: 3px solid #28a745 !important;
+}
+
+.tab-border-light {
+    border-top: 3px solid #f8f9fa !important;
+}
+
+.tab-border-light {
+    border-top: 3px solid #ffffff !important;
+}
+
+.tab-border-dark {
+    border-top: 3px solid #343a40 !important;
+}
+
+.tab-border-secondary {
+    border-top: 3px solid #6c757d !important;
+}
+
+.tab-border-warning {
+    border-top: 3px solid #ffc107 !important;
+}
+
+.tab-border-info {
+    border-top: 3px solid #17a2b8 !important;
 }
 
 .btn-white,
@@ -143,6 +172,7 @@ $value in $theme-colors {
     text-align: center;
     display: inline-block;
     cursor: pointer;
+    color: #555 !important;
 }
 
 .btn-icon:hover {
@@ -153,12 +183,32 @@ $value in $theme-colors {
     opacity: 0.8;
 }
 
-@each $color,
-$value in $theme-colors {
-    .btn-icon-#{$color} {
-        color: #{$value} !important;
-    }
-    .btn-icon-#{$color}:hover {
-        background-color: #{$value} !important;
-    }
+.btn-icon-primary:hover {
+    border-color: #007bff !important;
+    background-color: #007bff !important;
+}
+
+.btn-icon-secondary:hover {
+    border-color: #6c757d !important;
+    background-color: #6c757d !important;
+}
+
+.btn-icon-success:hover {
+    border-color: #28a745 !important;
+    background-color: #28a745 !important;
+}
+
+.btn-icon-danger:hover {
+    border-color: #dc3545 !important;
+    background-color: #dc3545 !important;
+}
+
+.btn-icon-info:hover {
+    border-color: #17a2b8 !important;
+    background-color: #17a2b8 !important;
+}
+
+.btn-icon-warning:hover {
+    border-color: #ffc107 !important;
+    background-color: #ffc107 !important;
 }

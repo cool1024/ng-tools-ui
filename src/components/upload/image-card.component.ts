@@ -1,14 +1,17 @@
 
-import { Component, OnChanges, SimpleChanges, Input, Output, EventEmitter, ViewChildren } from '@angular/core';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { Component, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 import { DomAttr } from '../../commons/extends/attr.class';
 import { UploadConfig } from './upload.interface';
-import { styleStr, plusSvgData } from './upload.data';
+import { styleStr } from './upload.data';
 
 @Component({
     selector: 'ts-image-card',
     template: `
-    <div class="d-inline-block rounded border border-muted p-1 mb-1 align-top" [ngStyle]="blockStyle">
+    <div class="d-inline-block rounded border-muted align-top"
+        [class.p-1]="usePadding"
+        [class.border]="useBorder"
+        [class.border-muted]="useBorder"
+        [ngStyle]="blockStyle">
         <input #input_file class="d-none" type="file" accept="image/*" (change)="changeFile($event.target.files);input_file.value=null">
         <div  *ngIf="!((!showImage&&!src)||isLoading)" class="w-100 h-100 upload-block" [ngStyle]="{'background-image': getUrl()}">
             <div class="upload-block-window text-white text-center h-100 w-100" [ngStyle]="windowStyle">
@@ -34,6 +37,8 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
     @Input() src: string | { blobUrl: string };
     @Input() title: string;
     @Input() width: number;
+    @Input() useBorder: boolean;
+    @Input() usePadding: boolean;
 
     @Output() fileChange = new EventEmitter<File>(false);
     @Output() srcChange = new EventEmitter<string>(false);
@@ -61,14 +66,16 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
     }
 
     get windowStyle(): any {
-        return { lineHeight: (this.width - 7) + 'px' };
+        return { lineHeight: (this.width - (this.usePadding ? 9 : 0)) + 'px' };
     }
 
-    constructor(private domSanitizer: DomSanitizer) {
+    constructor() {
         super();
         this.width = 130;
         this.default = '';
         this.title = 'Click...';
+        this.useBorder = true;
+        this.usePadding = true;
     }
 
     ngOnChanges(changes: SimpleChanges): void {
