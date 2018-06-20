@@ -58,3 +58,9 @@ export interface GeometryUtil {
     isPointOnRing(p: LngLat, ring: LngLat[], tolerance: number): boolean;
     isPointOnPolygon(p: LngLat, rings: LngLat[][], tolerance: number): boolean;
 }
+
+export interface Geocoder {
+    getLocation(address: String, callback: (status: String, result: any) => void): void;
+    getAddress(location: LngLat | [number, number], callback: (status: String, result: any) => void): void;
+    setCity(city: String): void;
+}

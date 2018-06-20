@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { GeometryUtil } from './map.interface';
+import { Observable, fromEventPattern, Subject, Observer } from 'rxjs';
+import { GeometryUtil, Geocoder } from './map.interface';
 import { ScriptService } from '../../commons/services/script.service';
 import { MapConfig } from './map.config';
+import { switchMap } from 'rxjs/operators';
 declare const window: any;
 
 @Injectable()
@@ -29,7 +30,6 @@ export class MapService {
         } else {
             this.ready = true;
         }
-        console.log('load js');
     }
 
     doFuc(func: (amap: any) => void) {
@@ -41,21 +41,47 @@ export class MapService {
     }
 
     getPositionByAddress(address: string): Observable<{ result: boolean, datas: any }> {
-        const sub = new Subject<{ result: boolean, datas: any }>();
-        this.doFuc(() => {
-            window.AMap.service('AMap.Geocoder', () => {
-                const geocoder = new window.AMap.Geocoder({});
-                geocoder.getLocation(address, (status: any, result: any) => {
-                    if (status === 'complete' && result.info === 'OK') {
-                        sub.next({ result: true, datas: result });
-                    } else {
-                        sub.next({ result: false, datas: result });
-                    }
-                    sub.complete();
+        return this.doAMapGeocoder().pipe(
+            switchMap<Geocoder, { result: boolean, datas: any }>(geocoder => {
+                return fromEventPattern<{ result: boolean, datas: any }>((handle => {
+                    geocoder.getLocation(address, (status: string, result: any) => {
+                        if (status === 'complete' && result.info === 'OK') {
+                            handle({ result: true, datas: result });
+                        } else {
+                            handle({ result: false, datas: result });
+                        }
+                    });
+                }));
+            })
+        );
+    }
+
+    getAddressByPosition(point: [number, number]): Observable<{ result: boolean, datas: any }> {
+        return this.doAMapGeocoder().pipe(
+            switchMap<Geocoder, { result: boolean, datas: any }>(geocoder => {
+                return fromEventPattern<{ result: boolean, datas: any }>((handle => {
+                    geocoder.getAddress(point, (status: string, result: any) => {
+                        if (status === 'complete' && result.info === 'OK') {
+                            handle({ result: true, datas: result });
+                        } else {
+                            handle({ result: false, datas: result });
+                        }
+                    });
+                }));
+            })
+        );
+    }
+
+    doAMapGeocoder(options: any = {}): Observable<Geocoder> {
+        return Observable.create((observer: Observer<Geocoder>) => {
+            this.doFuc(() => {
+                window.AMap.service('AMap.Geocoder', () => {
+                    const geocoder = new window.AMap.Geocoder(options);
+                    observer.next(geocoder);
+                    observer.complete();
                 });
             });
         });
-        return sub.asObservable();
     }
 
     geometryUtil(callback: (gutil: GeometryUtil, amap: any) => void): void {

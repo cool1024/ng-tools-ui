@@ -8,7 +8,7 @@ import { ModalDirective } from './modal.directive';
         [ngStyle]="{display: show?'block':'none',overflowY:'auto'}">
         <div class="modal-dialog modal-{{size}}"
             [ngStyle]="{height: scroll==='in'?'90%':'auto'}" [class.modal-dialog-centered]="center">
-            <div class="modal-content h-100" [ngStyle]="{overflowY:'auto',overflowX:'hidden'}">
+            <div class="modal-content h-100" [ngStyle]="scroll==='in'?{overflowY:'auto',overflowX:'hidden'}:{}">
                 <ng-template tsModalHost></ng-template>
             </div>
         </div>

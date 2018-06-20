@@ -33,11 +33,21 @@ export class MapComponent implements OnInit {
         });
     }
 
+    getPointInfo(point: [number, number] = [116.396574, 39.992706]) {
+        this.mapService.getAddressByPosition(point).subscribe(res => {
+            this.consoleLog = res;
+            // 这里的数据无法实时更新到视图中，需要手动刷新视图
+            this.changeDetectorRef.detectChanges();
+        });
+    }
+
     getMyLocationInfo() { }
 
     getPosition(event: MapEvent) {
-        const point = [event.lnglat.getLng(), event.lnglat.getLat()];
+        const point: [number, number] = [event.lnglat.getLng(), event.lnglat.getLat()];
         console.log(point);
+        // 解析坐标地址，通过经纬度获取真实地址
+        this.getPointInfo(point);
         this.map.setMarker(point);
     }
 
