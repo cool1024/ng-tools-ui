@@ -4,9 +4,6 @@ import { UploadConfig } from 'ng-tools-ui';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-
-// import 'rxjs/add/operator/map';
-
 @Component({
     templateUrl: './simple.component.html',
 })
