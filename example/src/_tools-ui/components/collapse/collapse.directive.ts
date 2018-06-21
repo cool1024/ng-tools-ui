@@ -10,7 +10,7 @@ export class CollapseDirective implements AfterViewInit, OnChanges, Toggle {
 
     @Input() open: boolean;
 
-    @Output() stateChange = new EventEmitter<boolean>();
+    @Output() openChange = new EventEmitter<boolean>(false);
 
     private pad: HTMLElement;
 
@@ -40,7 +40,7 @@ export class CollapseDirective implements AfterViewInit, OnChanges, Toggle {
         const height = this.htmlDomService.getExpHeight(this.pad);
         this.pad.style.height = height + 'px';
         setTimeout(() => { this.pad.style.height = '0px'; }, 100);
-        this.stateChange.emit(this.open);
+        this.openChange.emit(this.open);
     }
 
     collapseOpen() {
@@ -50,7 +50,7 @@ export class CollapseDirective implements AfterViewInit, OnChanges, Toggle {
         this.pad.style.height = '0px';
         setTimeout(() => { this.pad.style.height = height + 'px'; });
         setTimeout(() => { this.pad.style.height = ''; }, 350);
-        this.stateChange.emit(this.open);
+        this.openChange.emit(this.open);
     }
 
     toggle() {

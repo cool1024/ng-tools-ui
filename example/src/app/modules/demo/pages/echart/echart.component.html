@@ -1,5 +1,8 @@
+<ts-datepicker #datepicker="tsDatepicker" color="dark" [weekTitles]="['一', '二', '三', '四', '五', '六', '日']" [monthTitles]="['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']">
+</ts-datepicker>
 <div class="card">
-    <div class="card-header bg-white">数据变更
+    <div class="card-header bg-white">
+        <span tsToggle [target]="datepicker" [bind]="datepicker">数据变更</span>
         <span class="pull-right">
             <a class="text-primary pointer" (click)="randomData()">变更数据</a>&nbsp;
             <a href="http://echarts.baidu.com/api.html#echarts" target="_blank">查看文档</a>
