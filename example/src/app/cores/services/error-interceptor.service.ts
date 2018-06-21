@@ -1,3 +1,8 @@
+/**
+ * 统一错误拦截器
+ * @author cool1024
+ * @date   2018-06-21
+ */
 import { Injectable } from '@angular/core';
 import {
     HttpEvent,
@@ -11,7 +16,7 @@ import { Router } from '@angular/router';
 import { Observable, of, TimeoutError } from 'rxjs';
 import { timeout, catchError, map } from 'rxjs/operators';
 import { ToastService } from 'ng-tools-ui';
-import { HttpConfig } from '../../configs/http.config';
+import { HttpConfig, INTERCEPTOR_MESSAGES } from '../../configs/http.config';
 import { ApiData, ApiResponse } from '../classes/api-data.class';
 
 @Injectable()
@@ -25,14 +30,16 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         // 获取请求参数
-        let httpParams = request.params;
+        const httpParams = request.params;
 
         // 获取请求超时时间
-        let timeOut = HttpConfig.TIME_OUT;
-        if (httpParams.has('REQUEST_TIME_OUT')) {
-            timeOut = parseInt(httpParams.get('REQUEST_TIME_OUT'), 10);
-            httpParams = httpParams.delete('REQUEST_TIME_OUT');
-        }
+        const maxRequestTime = HttpConfig.TIME_OUT;
+
+        // 允许重设请求超时，如果请求参数中出现了关键参数REQUEST_TIME_OUT
+        // if (httpParams.has('REQUEST_TIME_OUT')) {
+        //     maxRequestTime = parseInt(httpParams.get('REQUEST_TIME_OUT'), 10);
+        //     httpParams = httpParams.delete('REQUEST_TIME_OUT');
+        // }
 
         // 更新请求参数
         request = request.clone({ params: httpParams });
@@ -42,7 +49,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         // 后置错误拦截
         handle = handle.pipe(
             // 超时处理
-            timeout(timeOut),
+            timeout(maxRequestTime),
             // 异常捕获
             catchError(error => {
 
@@ -52,42 +59,33 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                 // 识别服务器响应错误
                 if (error instanceof HttpErrorResponse) {
+                    const code = error.status;
+                    errorTitle = `${code} : ${error.statusText}`;
 
-                    switch (error.status) {
-                        case 401: {
-                            errorMessage = HttpConfig.HTTP_ERRORS.TOKEN_ERROR;
-                            this.router.navigateByUrl(HttpConfig.TOKEN_ERROR_URL);
-                            this.toast.info('401', errorMessage, HttpConfig.TOAST_ERROR_TIME);
-                            break;
-                        }
-                        case 403: {
-                            errorMessage = HttpConfig.HTTP_ERRORS.AUTH_ERROR;
-                            this.router.navigateByUrl(HttpConfig.AUTH_ERROR_URL);
-                            this.toast.danger('403', errorMessage, HttpConfig.TOAST_ERROR_TIME);
-                            break;
-                        }
-                        case 404: {
-                            errorMessage = HttpConfig.HTTP_ERRORS.NOTFOUND_ERROR;
-                            this.toast.warning('404', errorMessage, HttpConfig.TOAST_ERROR_TIME);
-                            break;
-                        }
-                        case 422: {
-                            const apiData = new ApiData(error.error.error, error.error.message, error.error.datas);
-                            errorMessage = apiData.messageStr;
-                            this.toast.warning('422', errorMessage, HttpConfig.TOAST_ERROR_TIME);
-                            break;
-                        }
-                        case 500: {
-                            errorMessage = HttpConfig.HTTP_ERRORS.SERVER_ERROR;
-                            this.toast.danger('500', errorMessage, HttpConfig.TOAST_ERROR_TIME);
-                            break;
-                        }
-                        default: {
-                            errorMessage = HttpConfig.HTTP_ERRORS.RESPONSE_CONTENT_ERROR;
-                            this.toast.danger('500', errorMessage, HttpConfig.TOAST_ERROR_TIME);
-                            break;
-                        }
+                    // 需要跳转的状态码
+                    if (code === 401) {
+                        this.router.navigateByUrl(HttpConfig.TOKEN_ERROR_URL);
+                    } else if (code === 403) {
+                        this.router.navigateByUrl(HttpConfig.AUTH_ERROR_URL);
                     }
+
+                    // 获取状态码对应提示消息
+                    if (code === 422) {
+                        const apiData = new ApiData(error.error.error, error.error.message, error.error.datas);
+                        errorMessage = apiData.messageStr;
+                    } else {
+                        errorMessage = INTERCEPTOR_MESSAGES[code] || HttpConfig.HTTP_ERRORS.RESPONSE_CONTENT_ERROR;
+                    }
+
+                    // 显示提示消息
+                    if (~HttpConfig.INFO_CODES.indexOf(code)) {
+                        this.toast.info(errorTitle, errorMessage, HttpConfig.TOAST_ERROR_TIME);
+                    } else if (~HttpConfig.WARNING_CODES.indexOf(code)) {
+                        this.toast.warning(errorTitle, errorMessage, HttpConfig.TOAST_ERROR_TIME);
+                    } else {
+                        this.toast.danger(errorTitle, errorMessage, HttpConfig.TOAST_ERROR_TIME);
+                    }
+
                 } else if (error instanceof TimeoutError) {
                     errorMessage = HttpConfig.HTTP_ERRORS.TIMEOUT_ERROR;
                     errorTitle = '通信异常';

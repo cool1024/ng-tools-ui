@@ -49,6 +49,6 @@ export class CompanyService {
      * 上传商户图片
      */
     uploadCompayLogo(file: File): Observable<string> {
-        return this.request.ossUpload('/tooltest/oss/access/image', file);
+        return this.request.ossUpload('/admin/company/image/access', file);
     }
 }
