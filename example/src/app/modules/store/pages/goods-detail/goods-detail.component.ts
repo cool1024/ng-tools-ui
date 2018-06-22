@@ -125,7 +125,6 @@ export class GoodsDetailComponent implements OnInit {
             return;
         }
         const specificationDetails = this.goodsSpecificationDetails.map(detail => {
-            console.log(detail);
             detail.specificationTitles = detail.specificationTitleIndexs.map((j, i) => this.goodsSpecifications[i].specificationNames[j]);
             return detail;
         });
@@ -158,11 +157,8 @@ export class GoodsDetailComponent implements OnInit {
             };
 
             // 生成虚拟规格实际分布列表
-            // const tds = this.goodsSpecifications.map(item => tr % item.specificationNames.length);
             const tds = this.goodsSpecifications.map((_, i) => {
                 const fullItems = this.getSpecificationNameFullItems(i);
-                console.log(fullItems);
-                console.log(`tr=>${tr}`, fullItems[tr].index);
                 return fullItems[tr].index;
             });
             detail.specificationTitleIndexs.push(...tds);
