@@ -125,6 +125,7 @@ export class GoodsDetailComponent implements OnInit {
             return;
         }
         const specificationDetails = this.goodsSpecificationDetails.map(detail => {
+            console.log(detail);
             detail.specificationTitles = detail.specificationTitleIndexs.map((j, i) => this.goodsSpecifications[i].specificationNames[j]);
             return detail;
         });
@@ -155,16 +156,36 @@ export class GoodsDetailComponent implements OnInit {
                 goodsStocks: 0,
                 isActive: 0,
             };
-            const tds = this.goodsSpecifications.map(item => tr % item.specificationNames.length);
+
+            // 生成虚拟规格实际分布列表
+            // const tds = this.goodsSpecifications.map(item => tr % item.specificationNames.length);
+            const tds = this.goodsSpecifications.map((_, i) => {
+                const fullItems = this.getSpecificationNameFullItems(i);
+                console.log(fullItems);
+                console.log(`tr=>${tr}`, fullItems[tr].index);
+                return fullItems[tr].index;
+            });
             detail.specificationTitleIndexs.push(...tds);
-            const oldData = temp.find(item => item.specificationTitleIndexs.toString() === detail.specificationTitleIndexs.toString());
-            if (oldData !== undefined) {
-                detail.goodsPrice = oldData.goodsPrice;
-                detail.goodsStocks = oldData.goodsStocks;
-                detail.isActive = oldData.isActive;
-            }
+            // const oldData = temp.find(item => item.specificationTitleIndexs.toString() === detail.specificationTitleIndexs.toString());
+            // if (oldData !== undefined) {
+            //     detail.goodsPrice = oldData.goodsPrice;
+            //     detail.goodsStocks = oldData.goodsStocks;
+            //     detail.isActive = oldData.isActive;
+            // }
             this.goodsSpecificationDetails.push(detail);
         });
+    }
+
+    getSpecificationNameFullItems(index: number): { name: string, index: number }[] {
+        const rowspan = this.getRowsapn(index);
+        const fullItems: { name: string, index: number }[] = [];
+        const realItems = this.getNameWithIndexs(index);
+        realItems.forEach((item, i) => {
+            for (let j = 0; j < rowspan; j++) {
+                fullItems.push({ name: item.name, index: item.index });
+            }
+        });
+        return fullItems;
     }
 
     getSpecificationTr(): number[] {
@@ -185,7 +206,6 @@ export class GoodsDetailComponent implements OnInit {
 
     getSpecificationTd(index: number): { rowspan: number, name: string }[] {
         const tds = new Array<{ rowspan: number, name: string }>();
-        const max = this.getSpecificationTr.length;
         this.goodsSpecifications.forEach((specification, i) => {
             const rowspan = this.getRowsapn(i);
             const names = this.getNames(i);
@@ -205,7 +225,7 @@ export class GoodsDetailComponent implements OnInit {
         return count;
     }
 
-    getNames(index: number) {
+    getNames(index: number): string[] {
         let count = 1;
         const names = new Array<string>();
         this.goodsSpecifications.slice(0, index).forEach(goodsSpecification => {
@@ -215,6 +235,20 @@ export class GoodsDetailComponent implements OnInit {
             names.push(...this.goodsSpecifications[index].specificationNames);
         }
         return names;
+    }
+
+    getNameWithIndexs(index: number): { name: string, index: number }[] {
+        let count = 1;
+        const items = new Array<{ name: string, index: number }>();
+        this.goodsSpecifications.slice(0, index).forEach(goodsSpecification => {
+            count *= goodsSpecification.specificationNames.length;
+        });
+        for (let i = 0; i < count; i++) {
+            this.goodsSpecifications[index].specificationNames.forEach((name, j) => {
+                items.push({ name, index: j });
+            });
+        }
+        return items;
     }
 
     trackFunc(index: number, item: any): number { return 0; }
