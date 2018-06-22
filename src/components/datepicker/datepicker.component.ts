@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ElementRef, ViewChild, OnDestroy, forwardRef } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, OnDestroy, forwardRef } from '@angular/core';
 import { HtmlDomService } from '../../commons/services/htmldom.service';
 import { DomAttr } from '../../commons/extends/attr.class';
 import { Toggle } from '../../commons/interfaces/toggle.interface';

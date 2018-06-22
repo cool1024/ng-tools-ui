@@ -4,7 +4,10 @@ import { WindowDirective } from './window.directive';
 @Component({
     selector: 'ts-window',
     template: `
-    <div [class.d-none]="!show" class="animated zoomIn position-fixed h-100 w-100" [ngStyle]="windowStyle">
+    <div [class.d-none]="!show"
+        [class.zoomIn]="!ready"
+        [ngStyle]="windowStyle"
+        class="animated position-fixed h-100 w-100">
         <ng-template tsWindowHost></ng-template>
     </div>
     `,
@@ -36,6 +39,8 @@ export class WindowComponent {
 
     show = false;
 
+    ready = false;
+
     @ViewChild(WindowDirective) modalHost: WindowDirective;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver) {
@@ -53,6 +58,9 @@ export class WindowComponent {
         return this.modalHost.viewContainerRef.createComponent(componentFactory, undefined, injector);
     }
 
-    present() { this.show = true; }
+    present() {
+        this.show = true;
+        setTimeout(() => this.ready = true, 2000);
+    }
     close() { this.show = false; }
 }
