@@ -22,10 +22,10 @@ $grays: map-merge(( "100": $gray-100, "200": $gray-200, "300": $gray-300, "400":
 $blue: #3e9cff !default;
 $indigo: #6610f2 !default;
 $purple: #6f42c1 !default;
-$pink: #e83e8c !default;
+$pink: #e23d8a !default;
 $red: #ff4255 !default;
 $orange: #fd7e14 !default;
-$yellow: #ffd455 !default;
+$yellow: #ffcc53 !default;
 $green: #28a745 !default;
 $teal: #20c997 !default;
 $cyan: #17a2b8 !default;
@@ -55,7 +55,7 @@ $yiq-text-light: $white !default;
 $enable-caret: true !default;
 $enable-rounded: true !default;
 $enable-shadows: true !default;
-$enable-gradients: true !default;
+$enable-gradients: false !default;
 $enable-transitions: true !default;
 $enable-hover-media-query: false !default; // Deprecated, no longer affects any compiled CSS
 $enable-grid-classes: true !default;
@@ -129,16 +129,16 @@ $transition-collapse: height .35s ease !default;
 //
 // Font, line-height, and color for body text, headings, and more.
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: -apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
+$font-family-sans-serif: Helvetica Neue For Number,
+Segoe UI,
 Roboto,
-"Helvetica Neue",
+PingFang SC,
+Hiragino Sans GB,
+Microsoft YaHei,
+Helvetica Neue,
+Helvetica,
 Arial,
-sans-serif,
-"Apple Color Emoji",
-"Segoe UI Emoji",
-"Segoe UI Symbol" !default;
+sans-serif !default;
 $font-family-monospace: SFMono-Regular,
 Menlo,
 Monaco,
@@ -151,9 +151,9 @@ $font-family-base: $font-family-sans-serif !default;
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg: ($font-size-base * 1.25) !default;
 $font-size-sm: ($font-size-base * .875) !default;
-$font-weight-light: 300 !default;
-$font-weight-normal: 400 !default;
-$font-weight-bold: 700 !default;
+$font-weight-light: 200 !default;
+$font-weight-normal: 300 !default;
+$font-weight-bold: 600 !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: 1.5 !default;
 $h1-font-size: $font-size-base * 2.5 !default;
@@ -164,7 +164,7 @@ $h5-font-size: $font-size-base * 1.25 !default;
 $h6-font-size: $font-size-base !default;
 $headings-margin-bottom: ($spacer / 2) !default;
 $headings-font-family: inherit !default;
-$headings-font-weight: 500 !default;
+$headings-font-weight: 400 !default;
 $headings-line-height: 1.2 !default;
 $headings-color: inherit !default;
 $display1-size: 6rem !default;
@@ -598,8 +598,8 @@ $modal-backdrop-bg: $black !default;
 $modal-backdrop-opacity: .5 !default;
 $modal-header-border-color: $gray-200 !default;
 $modal-footer-border-color: $modal-header-border-color !default;
-$modal-header-border-width: $modal-content-border-width !default;
-$modal-footer-border-width: $modal-header-border-width !default;
+$modal-header-border-width: $border-width !default;
+$modal-footer-border-width: $border-width !default;
 $modal-header-padding: 1rem !default;
 $modal-lg: 800px !default;
 $modal-md: 600px !default;

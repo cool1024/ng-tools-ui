@@ -19,6 +19,6 @@ export class ManagerService {
     }
 
     uplodaAvatar(file: File): Observable<string> {
-        return this.request.ossUpload('/tooltest/oss/access/image', file);
+        return this.request.ossUpload('/managerapi/avatar/access', file);
     }
 }
