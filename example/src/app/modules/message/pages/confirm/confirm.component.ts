@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ConfirmService, ModalService, ToastService } from 'ng-tools-ui';
+import { ConfirmService, ModalService, ToastService, WindowService } from 'ng-tools-ui';
 import { ModalComponent } from './modal.component';
+import { WindowComponent } from './window.component';
 
 @Component({
     templateUrl: './confirm.component.html',
@@ -10,7 +11,8 @@ export class ConfirmComponent {
     constructor(
         private confirm: ConfirmService,
         private toast: ToastService,
-        private modal: ModalService
+        private modal: ModalService,
+        private window: WindowService,
     ) { }
 
     showAlert(type: string) {
@@ -67,9 +69,9 @@ export class ConfirmComponent {
     }
 
     paramsModal() {
-        const modal = this.modal.create(ModalComponent).modal;
+        const modal = this.modal.create(ModalComponent);
         modal.instance.content = `Message Content`;
-        this.modal.open().subscribe(res => {
+        modal.open().subscribe(res => {
             console.log(res);
         });
     }
@@ -80,5 +82,10 @@ export class ConfirmComponent {
 
     centerModal() {
         this.modal.create(ModalComponent, { size: 'sm', center: true }).open();
+    }
+
+    showWindow() {
+        const window = this.window.push(WindowComponent);
+        window.present();
     }
 }

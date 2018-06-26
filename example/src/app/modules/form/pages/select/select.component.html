@@ -75,10 +75,10 @@
                     <ts-tabs [tabs]="['html','ts']" [color]="global.getValue('color')" [target]="tsTabsOne" activeTab="html"></ts-tabs>
                     <div #tsTabsOne='tsTabs' tsTabs class="card rounded-0 border-top-0">
                         <div class="card-body">
-                            <div tsTab tab='html'>
+                            <div tsTab tab="html">
                                 <ts-prism [code]="codes[1]"></ts-prism>
                             </div>
-                            <div tsTab tab='ts'>
+                            <div tsTab tab="ts">
                                 <ts-prism [code]="codes[2]" language="typescript"></ts-prism>
                             </div>
                         </div>
@@ -123,8 +123,8 @@
                 <div tsToggle class="text-info pointer">
                     <i class="fa fa-fw fa-code"></i>查看代码</div>
                 <div tsCollapse>
-                    <ts-tabs [tabs]="['html','ts']" [color]="global.getValue('color')" [target]="tsTabsOne" activeTab="html"></ts-tabs>
-                    <div #tsTabsOne='tsTabs' tsTabs class="card rounded-0 border-top-0">
+                    <ts-tabs [tabs]="['html','ts']" [color]="global.getValue('color')" [target]="tsTabsTwo" activeTab="html"></ts-tabs>
+                    <div #tsTabsTwo='tsTabs' tsTabs class="card rounded-0 border-top-0">
                         <div class="card-body">
                             <div tsTab tab='html'>
                                 <ts-prism [code]="codes[3]"></ts-prism>
@@ -174,8 +174,8 @@
                 <div tsToggle class="text-info pointer">
                     <i class="fa fa-fw fa-code"></i>查看代码</div>
                 <div tsCollapse>
-                    <ts-tabs [tabs]="['html','ts']" [color]="global.getValue('color')" [target]="tsTabsOne" activeTab="html"></ts-tabs>
-                    <div #tsTabsOne='tsTabs' tsTabs class="card rounded-0 border-top-0">
+                    <ts-tabs [tabs]="['html','ts']" [color]="global.getValue('color')" [target]="tsTabsThree" activeTab="html"></ts-tabs>
+                    <div #tsTabsThree='tsTabs' tsTabs class="card rounded-0 border-top-0">
                         <div class="card-body">
                             <div tsTab tab='html'>
                                 <ts-prism [code]="codes[5]"></ts-prism>
@@ -358,7 +358,7 @@
                     <td>
                         <code>Item[]</code>
                     </td>
-                    <td>下拉选项列表（value,text是必须要有的）,content如果存在那么会展示contentk</td>
+                    <td>下拉选项列表（value,text是必须要有的）,content如果存在那么会展示content</td>
                 </tr>
             </tbody>
         </table>

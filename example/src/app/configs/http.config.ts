@@ -1,8 +1,8 @@
 export const HttpConfig = {
 
     // 服务器接口地址
-    SERVER_URL: 'https://www.cool1024.com',
-    // SERVER_URL: 'http://127.0.0.1',
+    // SERVER_URL: 'https://www.cool1024.com',
+    SERVER_URL: 'http://127.0.0.1',
 
     // 请求超时时间
     TIME_OUT: 10000,
@@ -29,7 +29,7 @@ export const HttpConfig = {
     // 显示警告消息状态码
     WARNING_CODES: [403, 404, 422],
 
-    // 不属于通知也不属于警告的状态码都将划分为危险消息中
+    // 不属于通知也不属于警告的状态码都将划分到危险消息中
     // DANGER_CODE：[],
 
     // 权限头部参数配置

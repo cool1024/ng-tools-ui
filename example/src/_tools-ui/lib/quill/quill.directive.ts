@@ -24,7 +24,7 @@ declare const window: any;
     exportAs: 'tsQuill',
 })
 
-export class QuillDirective implements AfterViewInit, OnInit, OnChanges, OnDestroy {
+export class QuillDirective implements AfterViewInit, OnInit, OnChanges {
 
 
     @Input() content: string;
@@ -85,11 +85,5 @@ export class QuillDirective implements AfterViewInit, OnInit, OnChanges, OnDestr
             this.cdRef.detectChanges();
         }
         this.noUpdateContent = false;
-    }
-
-    ngOnDestroy() {
-        if (this.ready) {
-
-        }
     }
 }

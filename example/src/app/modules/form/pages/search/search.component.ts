@@ -23,20 +23,20 @@ export class MyModule { }`,
         `<div tsSearch [search]="doSearch" placeholder="请选择用户" searchLabel="请输入要查询的用户昵称" [(ngModel)]="value"></div>`,
         `import { Component } from '@angular/core';
 
-        @Component({
-            templateUrl: './example.html',
-        })
-        export class ExampleComponent {
+@Component({
+    templateUrl: './example.html',
+})
+export class ExampleComponent {
 
-            // 默认值
-            value: Item[] = [
-                {
-                    value: 20,
-                    text: 'Carleton Carter'
-                }
-            ];
+    // 默认值
+    value: Item[] = [
+        {
+            value: 20,
+            text: 'Carleton Carter'
+        }
+    ];
 
-            /**
+    /**
      * 从服务器查询需要的选项
      * @param key 查询关键词
      */
