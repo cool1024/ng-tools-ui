@@ -36,12 +36,14 @@ export class AppModule { }
 ![图标实例](./images/echart.png)
 
 @Input
+
 名称 | 类型 | 详情
 ------------ | ------------- | ------------
 option | any  | 图标参数，同百度图表官方示例中的option,见上图
 resize | boolean  | 是否启用自适应宽度
 
 @Output
+
 事件名称 | 事件类型 | 详情
 ------------ | ------------- | ------------
 chartLoad | { echartsInstance: EchartsInstance, echarts: any }  | 图表加载成功后会提供图表的实例和echarts对象
