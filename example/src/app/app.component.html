@@ -60,7 +60,7 @@
                     [avatars]="avatars" [color]="global.getValue('color')"></ts-menu>
             </div>
         </div>
-        <div class="main-content-view">
+        <div class="main-content-view" #viewcontent>
             <ts-cssload *ngIf="global.getValue('lazyload');" [color]="global.getValue('color')"></ts-cssload>
             <div class="h-100" [class.d-none]="global.getValue('lazyload')">
                 <router-outlet></router-outlet>

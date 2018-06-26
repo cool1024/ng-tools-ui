@@ -1,0 +1,60 @@
+<div class="card">
+    <div class="card-header bg-white">
+        加载动画
+        <button tsBtn sm class="pull-right" (click)="showCssload=!showCssload">{{showCssload?'关闭动画':'开启动画'}}</button>
+    </div>
+    <div class="card-body">
+        <!--
+            1.使用ngIf显示或隐藏加载动画
+            2.加载动画会填充慢外部容器
+        -->
+        <div style="height:200px">
+            <ts-cssload *ngIf="showCssload" color="primary"></ts-cssload>
+        </div>
+    </div>
+</div>
+<div class="card mt-3">
+    <div class="card-header bg-white">
+        表格加载动画
+        <button tsBtn sm class="pull-right" (click)="showTableLoad=!showTableLoad">{{showTableLoad?'关闭动画':'开启动画'}}</button>
+    </div>
+    <div class="card-body">
+        <!--
+            1.使用display绑定显示或隐藏加载动画
+            2.加载动画会填充慢外部容器，外部容器使用relative定位可以把加载动画局限于容器中
+        -->
+        <div style="height:200px;position: relative;">
+            <ts-table-load color="primary" [display]="showTableLoad"></ts-table-load>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

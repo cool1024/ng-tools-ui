@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
     Router,
     RouteConfigLoadStart,
@@ -40,6 +40,8 @@ export class AppComponent implements OnInit {
         ];
     }
 
+    @ViewChild('viewcontent') viewContent: HTMLDivElement;
+
     constructor(
         private router: Router,
         public global: GlobalService,
@@ -58,12 +60,13 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        // 监听路由惰性加载状态
+        // 监听路由事件
         this.router.events.subscribe(event => {
             if (event instanceof RouteConfigLoadStart) {
                 this.global.setValue('lazyload', true);
             } else if (event instanceof NavigationEnd) {
                 this.global.setValue('lazyload', false);
+                this.viewContent.scrollTop = 0;
             }
         });
 
