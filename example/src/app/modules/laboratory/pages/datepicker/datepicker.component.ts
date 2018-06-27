@@ -1,7 +1,7 @@
 /**
- * 请编写页面文件说明
+ * 日期，时间选择
  *
- * @author 填写作者
+ * @author xiaojian
  * @file   datepicker.component.ts
  * @date   2018-6-26 22:16:50
  */

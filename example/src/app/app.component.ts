@@ -66,7 +66,9 @@ export class AppComponent implements OnInit {
                 this.global.setValue('lazyload', true);
             } else if (event instanceof NavigationEnd) {
                 this.global.setValue('lazyload', false);
-                this.viewContent.scrollTop = 0;
+                if (this.viewContent) {
+                    this.viewContent.scrollTop = 0;
+                }
             }
         });
 
