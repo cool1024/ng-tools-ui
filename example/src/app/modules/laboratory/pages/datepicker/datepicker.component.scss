@@ -15,14 +15,18 @@
     width: 33%;
 }
 
-// .ts-datepicker-ym td div {
-//     margin-left: 15px;
-//     margin-right: 15px;
-//     margin-top: 10px;
-//     margin-bottom: 10px;
-// }
 .ts-datepicker-ym td:hover button {
     color: white;
     background-color: #3e9cff;
     border-color: #3e9cff;
+}
+
+.ts-datepicker-hm {
+    height: 300px;
+    width: 280px;
+}
+
+.ts-datepicker-hm-box {
+    width: 33.33%;
+    line-height: 25px;
 }

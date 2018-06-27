@@ -1,9 +1,9 @@
 <div class="card">
     <div class="card-header bg-white">
-        日期选择（年/月）
+        日期选择（年/月）&nbsp; 时间选择（时/分）
     </div>
     <div class="card-body">
-        <div class="card p-3 ts-datepicker-ym">
+        <div class="card p-3 ts-datepicker-ym d-inline-block">
             <div class="ts-datepicker-ym-toolbar d-flex justify-content-between">
                 <div class="btn-group d-inline-block">
                     <button tsBtn sm>&lt;</button>
@@ -11,7 +11,7 @@
                     <button tsBtn sm>&gt;</button>
                 </div>
                 <div>
-                    <button tsBtn sm class="ml-2">今天</button>
+                    <button tsBtn sm class="ml-2">本月</button>
                     <button tsBtn sm class="ml-2">清空</button>
                 </div>
             </div>
@@ -65,5 +65,28 @@
                 </tbody>
             </table>
         </div>
+        <!-- <div class="card p-3 ts-datepicker-hm  d-inline-block ml-3">
+            <div class="ts-datepicker-ym-toolbar d-flex justify-content-between">
+                <div>
+                    <input value="23:59:59" class="form-control form-control-sm" type="text">
+                </div>
+                <div style="width:120px">
+                    <button tsBtn sm class="ml-2">现在</button>
+                    <button tsBtn sm class="ml-2">清空</button>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex text-center">
+                <div class="ts-datepicker-hm-box">
+                    <div *ngFor="let hour of hours.splice(0,6)">{{hour}}</div>
+                </div>
+                <div class="ts-datepicker-hm-box">
+                    <div *ngFor="let minute of minutes.splice(0,6)">{{minute}}</div>
+                </div>
+                <div class="ts-datepicker-hm-box">
+                    <div *ngFor="let second of seconds.splice(0,6)">{{second}}</div>
+                </div>
+            </div>
+        </div> -->
     </div>
 </div>

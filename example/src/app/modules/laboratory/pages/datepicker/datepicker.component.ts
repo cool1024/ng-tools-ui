@@ -13,7 +13,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatepickerComponent implements OnInit {
 
-    constructor() { }
+    hours = [];
+    minutes = [];
+    seconds = [];
+
+    constructor() {
+        for (let i = 0; i < 24; i++) {
+            this.hours.push(i);
+        }
+        for (let i = 0; i < 60; i++) {
+            this.minutes.push(i);
+            this.seconds.push(i);
+        }
+    }
 
     ngOnInit() {
 
