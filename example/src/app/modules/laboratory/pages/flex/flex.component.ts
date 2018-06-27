@@ -36,4 +36,8 @@ export class FlexComponent implements OnInit {
     removeItem() {
         return this.items.length > 0 && this.items.pop();
     }
+
+    showImage($event) {
+        console.log($event);
+    }
 }

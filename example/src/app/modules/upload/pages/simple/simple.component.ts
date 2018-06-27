@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../../cores/services';
-import { UploadConfig } from 'ng-tools-ui';
+import { UploadConfig, ModalService } from 'ng-tools-ui';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { ViewComponent } from './view.component';
 
 @Component({
     templateUrl: './simple.component.html',
@@ -53,7 +54,14 @@ export class MyModule { }`,
 
     constructor(
         public global: GlobalService,
+        private modal: ModalService,
     ) { }
 
     ngOnInit() { }
+
+    showImage(src: string) {
+        const modal = this.modal.create(ViewComponent, { center: true });
+        modal.instance.src = src;
+        modal.open();
+    }
 }

@@ -7,6 +7,8 @@ import {
     PrismModule,
     TabModule,
     CollapseModule,
+    ModalModule,
+    ButtonModule,
 } from 'ng-tools-ui';
 
 /*路由模块*/
@@ -15,6 +17,7 @@ import { UploadRoutingModule } from './upload.routing';
 /*页面组件*/
 import { SimpleComponent } from './pages/simple/simple.component';
 import { VideoComponent } from './pages/video/video.component';
+import { ViewComponent } from './pages/simple/view.component';
 
 
 @NgModule({
@@ -24,11 +27,17 @@ import { VideoComponent } from './pages/video/video.component';
         ProgressModule,
         PrismModule,
         TabModule,
+        ModalModule,
+        ButtonModule,
         CollapseModule,
     ],
     declarations: [
         SimpleComponent,
         VideoComponent,
+        ViewComponent,
     ],
+    entryComponents: [
+        ViewComponent,
+    ]
 })
 export class UploadModule { }
