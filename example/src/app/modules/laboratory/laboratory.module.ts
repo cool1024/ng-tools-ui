@@ -8,12 +8,13 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LaboratoryRoutingModule, declarationComponents, entryComponents, providers } from './laboratory.routing';
-import { ButtonModule, BadgeModule, ImageModule, CssloadModule } from 'ng-tools-ui';
+import { ButtonModule, BadgeModule, ImageModule, CssloadModule, DropdownModule } from 'ng-tools-ui';
 
 @NgModule({
     imports: [
         FormsModule,
         ButtonModule,
+        DropdownModule,
         BadgeModule,
         ImageModule,
         CssloadModule,

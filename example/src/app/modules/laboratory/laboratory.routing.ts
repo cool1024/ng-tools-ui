@@ -11,12 +11,14 @@ import { BadgeComponent } from './pages/badge/badge.component';
 import { ImageComponent } from './pages/image/image.component';
 import { LoadingComponent } from './pages/loading/loading.component';
 import { DatepickerComponent } from './pages/datepicker/datepicker.component';
+import { FlexComponent } from './pages/flex/flex.component';
 
 const routes: Routes = [
     { path: 'badge', component: BadgeComponent },
     { path: 'image', component: ImageComponent },
     { path: 'loading', component: LoadingComponent },
     { path: 'datepicker', component: DatepickerComponent },
+    { path: 'flex', component: FlexComponent },
 ];
 
 /**
@@ -27,6 +29,7 @@ export const declarationComponents = [
     ImageComponent,
     LoadingComponent,
     DatepickerComponent,
+    FlexComponent,
 ];
 
 /**
