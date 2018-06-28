@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../../cores/services';
-import { UploadConfig, ModalService } from 'ng-tools-ui';
+import { UploadConfig } from 'ng-tools-ui';
+import { ModalService } from './../../../../../_tools-ui';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { ViewComponent } from './view.component';
@@ -48,7 +49,7 @@ export class MyModule { }`,
         uploader: file => of('https://picsum.photos/300/300/?random').pipe(delay(2000))
     };
 
-    imageUrl = 'https://picsum.photos/300/300?random';
+    imageUrl = 'assets/images/background/1.jpg';
 
     imagesUrl = 'https://picsum.photos/300/300,https://picsum.photos/300/300?random';
 
@@ -60,7 +61,7 @@ export class MyModule { }`,
     ngOnInit() { }
 
     showImage(src: string) {
-        const modal = this.modal.create(ViewComponent, { center: true });
+        const modal = this.modal.create(ViewComponent, { center: true, scroll: 'in' });
         modal.instance.src = src;
         modal.open();
     }

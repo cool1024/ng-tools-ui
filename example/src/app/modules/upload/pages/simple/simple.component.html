@@ -29,7 +29,7 @@
                 其他样式--单图
             </div>
             <div class="card-body">
-                <ts-image-card [config]="config" [useView]="true" (viewHandle)="showImage($event)"></ts-image-card>
+                <ts-image-card [(src)]="imageUrl" [config]="config" [useView]="true" (viewHandle)="showImage($event)"></ts-image-card>
             </div>
             <div tsToggle [target]='imgCode' class="text-primary card-footer bg-white pointer">
                 <i class="fa fa-fw fa-code"></i>查看代码

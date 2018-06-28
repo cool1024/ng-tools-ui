@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from './modal.component';
-import { ModalDirective } from './modal.directive';
 import { ModalService } from './modal.service';
 
 @NgModule({
@@ -10,7 +9,6 @@ import { ModalService } from './modal.service';
     ],
     declarations: [
         ModalComponent,
-        ModalDirective,
     ],
     entryComponents: [
         ModalComponent,

@@ -8,6 +8,7 @@ import {
     AfterViewInit,
     ElementRef,
     forwardRef,
+    SimpleChanges,
 } from '@angular/core';
 import { Item } from './../../commons/interfaces/item.interface';
 import { DomAttr } from '../../commons/extends/attr.class';
@@ -106,7 +107,7 @@ export class SelectsComponent extends DomAttr implements AfterViewInit, OnChange
         return items;
     }
 
-    ngOnChanges() {
+    ngOnChanges(changes: SimpleChanges): void {
         if (this.changeInside) {
             this.changeInside = false;
         }

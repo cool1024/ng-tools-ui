@@ -7,9 +7,10 @@ import {
     PrismModule,
     TabModule,
     CollapseModule,
-    ModalModule,
     ButtonModule,
+    // ModalModule,
 } from 'ng-tools-ui';
+import { ModalModule } from './../../../_tools-ui';
 
 /*路由模块*/
 import { UploadRoutingModule } from './upload.routing';

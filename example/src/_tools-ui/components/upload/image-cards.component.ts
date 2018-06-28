@@ -15,7 +15,7 @@ import { styleStr } from './upload.data';
             [ngStyle]="blockStyle">
             <div *ngIf="!item.uploading" class="w-100 h-100 upload-block" [ngStyle]="{'background-image': getUrl(item)}">
                 <div class="upload-block-window text-white text-center h-100 w-100" [ngStyle]="windowStyle">
-                    <i *ngIf="useView" (click)="viewHandle.emit(item)" class="fa fa-fw fa-lg fa-eye pointer mr-1"></i>
+                    <i *ngIf="useView" (click)="showImageView(item)" class="fa fa-fw fa-lg fa-eye pointer mr-1"></i>
                     <i (click)="removeImage(i)" class="fa fa-fw fa-lg fa-trash pointer"></i>
                 </div>
             </div>
@@ -136,5 +136,9 @@ export class ImageCardsComponent extends DomAttr implements OnChanges {
         input.value = '';
         this.uploading = false;
         this.srcChange.emit(this.images.urls.join());
+    }
+
+    showImageView(item: any) {
+        this.viewHandle.emit(item);
     }
 }

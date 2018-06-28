@@ -15,7 +15,7 @@ import { styleStr } from './upload.data';
         <input #input_file class="d-none" type="file" accept="image/*" (change)="changeFile($event.target.files);input_file.value=null">
         <div  *ngIf="!((!showImage&&!src)||isLoading)" class="w-100 h-100 upload-block" [ngStyle]="{'background-image': getUrl()}">
             <div class="upload-block-window text-white text-center h-100 w-100" [ngStyle]="windowStyle">
-                <i *ngIf="useView" (click)="viewHandle.emit(src)" class="fa fa-fw fa-lg fa-eye pointer mr-1"></i>
+                <i *ngIf="useView" (click)="showImageView()" class="fa fa-fw fa-lg fa-eye pointer mr-1"></i>
                 <i (click)="cleanInput(input_file)" class="fa fa-fw fa-lg fa-trash pointer"></i>
             </div>
         </div>
@@ -135,5 +135,9 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
                 this.srcChange.emit(src);
             });
         }
+    }
+
+    showImageView() {
+        this.viewHandle.emit(this.src);
     }
 }

@@ -4,6 +4,7 @@ import {
     Output,
     EventEmitter,
     OnChanges,
+    SimpleChanges,
     forwardRef,
 } from '@angular/core';
 import { Item } from './../../commons/interfaces/item.interface';
@@ -99,7 +100,7 @@ export class SelectComponent extends DomAttr implements ControlValueAccessor, On
         return items;
     }
 
-    ngOnChanges() {
+    ngOnChanges(changes: SimpleChanges): void {
         this.setTitle();
     }
 
@@ -132,7 +133,6 @@ export class SelectComponent extends DomAttr implements ControlValueAccessor, On
         this.searchKey = '';
         this.optionChange.emit(item);
         this.applyChange(this.value);
-        // this.valueChange.emit(item.value);
     }
 
     setSearchKey(value: string) {
