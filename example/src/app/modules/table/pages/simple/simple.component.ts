@@ -15,6 +15,9 @@ export class SimpleComponent implements OnInit {
     // 表格标题
     theads = new Array<string>();
 
+    // 加载数据
+    loading = false;
+
     pagination = new Pagination();
 
     search = { start: '', end: '' };
@@ -31,6 +34,7 @@ export class SimpleComponent implements OnInit {
     }
 
     pageChanged() {
+        this.loading = true;
         const apiUrl = `https://randomuser.me/api/?page=${this.pagination.page}&results=${this.pagination.limit}`;
         this.reqeust.withoutHost().text(apiUrl).subscribe(res => {
             const response = JSON.parse(res);
@@ -46,8 +50,8 @@ export class SimpleComponent implements OnInit {
                     address: `${user.location.city} ${user.location.street}`,
                     registered: user.registered
                 });
+                this.loading = false;
             });
         });
     }
-
 }

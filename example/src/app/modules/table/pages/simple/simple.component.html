@@ -60,69 +60,73 @@
         </div>
     </div>
 </div>
-<table class="table table-bordered bg-white mt-2 mb-0">
-    <thead class="text-dark">
-        <tr class="bg-light">
-            <th *ngFor="let th of theads" class="border-0">{{th}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of list;index as i" class="mat-cell">
-            <td>{{pagination.offset+i+1}}</td>
-            <td>
-                <div class="media">
-                    <img tsImg [src]="item.avatar" dataSrc="assets/images/404.jpg" alt="avatar" class="align-self-center mr-3 rounded-circle"
-                        height="40">
-                    <div class="media-body">
-                        <p class="m-0">{{item.nick}}
-                            <small *ngIf="item.gender==='female'" class="text-danger">({{item.gender}})</small>
-                            <small *ngIf="item.gender==='male'" class="text-dark">({{item.gender}})</small>
-                        </p>
-                        <p class="m-0 text-muted">
-                            <small class="text-info">
-                                {{item.email}}
-                            </small>
-                        </p>
+<div class="card mt-3">
+    <ts-table-load [display]="loading" [color]="global.getValue('color')"></ts-table-load>
+    <table class="table bg-white border-0">
+        <thead class="text-dark">
+            <tr class="bg-light">
+                <th *ngFor="let th of theads" class="border-0">{{th}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of list;index as i" class="mat-cell">
+                <td>{{pagination.offset+i+1}}</td>
+                <td>
+                    <div class="media">
+                        <img tsImg [src]="item.avatar" dataSrc="assets/images/404.jpg" alt="avatar" class="align-self-center mr-3 rounded-circle"
+                            height="40">
+                        <div class="media-body">
+                            <p class="m-0">{{item.nick}}
+                                <small *ngIf="item.gender==='female'" class="text-danger">({{item.gender}})</small>
+                                <small *ngIf="item.gender==='male'" class="text-dark">({{item.gender}})</small>
+                            </p>
+                            <p class="m-0 text-muted">
+                                <small class="text-info">
+                                    {{item.email}}
+                                </small>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </td>
-            <td>
-                <p class="p-0 m-0">{{item.cell}}</p>
-                <p class="p-0 m-0">{{item.address}}</p>
-            </td>
-            <td>
-                <p class="p-0 m-0">{{item.registered.date}}</p>
-            </td>
-            <td>
-                <div tsDropdown>
-                    <div tsToggle class="btn-icon btn-icon-primary">
-                        <i class="fa fa-fw fa-hand-paper-o"></i>
+                </td>
+                <td>
+                    <p class="p-0 m-0">{{item.cell}}</p>
+                    <p class="p-0 m-0">{{item.address}}</p>
+                </td>
+                <td>
+                    <p class="p-0 m-0">{{item.registered.date}}</p>
+                </td>
+                <td>
+                    <div tsDropdown class="align-top">
+                        <div tsToggle class="btn-icon btn-icon-primary">
+                            <i class="fa fa-fw fa-lg fa-hand-paper-o"></i>
+                        </div>
+                        <div tsDropMenu [offsetX]="-50">
+                            <button class="dropdown-item pointer">Action</button>
+                            <button class="dropdown-item pointer">Another action</button>
+                            <button class="dropdown-item pointer">Something else here</button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item pointer">Separated link</button>
+                        </div>
                     </div>
-                    <div tsDropMenu>
-                        <button class="dropdown-item pointer"></button>
-                        <button class="dropdown-item pointer">审核通过</button>
-                        <button class="dropdown-item pointer">驳回/拒绝</button>
-                        <button class="dropdown-item pointer">重新审核</button>
-                    </div>
-                </div>
-                <a class="btn-icon btn-icon-info" title="详情">
-                    <img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANkSURBVFhH5ZhZyE5pHMA/ywhDsm8lu2RGytZcmJCtxI2sJWvGKCnh1gwKpSw1lgtL4s5cKFyIC1uJsiT7WKZcoNEUUWT7/Z7vO33r+73POe/5fBd+9av3//Q+5/zPc571lH0PdMNxOBuX4RKcgcOxLX5zmuIEPID/4pd6/IhX8E8ciA1Kc7R1/kFv/gHP4Uaci7+iraaT8DfcjfcwSfgUjsbcGYU30Js8xpXYAWP5GXfhW/yMh7Aj5sIatLX+xxVoS2alC+5Hk7R7lNSazfAvtNXOY0/MC7vAS3yH0yzIgv3H5A7jDxbkTG+8j+9xogVpWI0mdwSbWBCBLT4CvXEsTlEP0b452IIY7BfJCG1hQQQ/4mX0oexff2Asg/A13saWFtSHA8DR6oDoYUEky9HkEk3S1ollPlpvfYjqYSn6x99DFM9arJqg9sc0nEUHTcEHc4WwPzzCtFOJre2oTJI7jrF9N2EkWndriOrA5cs/rApRerqj8+QczDpX2u9fYJ2zhhOoQ75TiBqHRWgjTQlRDZzZfYLGxJXGAbYtRFWwD5n5phCloxfOrGE/zModvFj+s5KxaILzQpQO61i3qmlngar8ja/Kf1aS3GRMiNLhtOAAu4V5JLgDvUa1RcKdsIXDQpSNC5hHghvQa1TbziWjx7koK3kluBm9RrsQVTALLRwfomzkleAe/ITVJnq36V7YNTUreSV4Gp+W/6zE05cHHPeAWckjQVvtOZ4IUQ2u4t3yn5nII8EhaP11IapBMnqGhig9eSToPtL6HrJqMQBdZnaGKD2lJugGw+X2eogKcBLdfrsmpqXUBBeidReHqAC/oK3oziYWN6ZO9O4lkwSPVpTF0gafoR8Fih7QPFSb5OQQFaeutTgxlr3o/6eGqAguMfYFN459LCiCT9+3gDEk5xG/9UTjpw77oq8tzeEnLW5M3SR7UGttQRqmo5U9ozTEl6kF6PUfYGcLsuAnijfoudUL5oFdYh/6Wq9hyW/IE3+y1zuDvv4sOM/5kI5Wr3UQU7/WQrRCD9WeW724Zxe3aDHz5U/oB8wnaF37ddRozUJX9NzqCPdmTkeeIY7hdvRj5hZ0y+SuxIXf/+lN9KEa4kNULbyJI9DT1yX8D5NE1P2cLeauxIXfVmx0TLp9hd8LZWVfAYGj8Ag+GAfJAAAAAElFTkSuQmCC">
-                </a>
-                <a class="btn-icon btn-icon-danger" title="删除">
-                    <i class="fa fa-trash-o fa-lg fa-fw"></i>
-                </a>
-            </td>
-        </tr>
-        <tr class="mat-cell" *ngIf="list.length<=0">
-            <td [attr.colspan]="theads.length" class="text-center text-info">
-                暂无数据～
-            </td>
-        </tr>
-        <tr class="mat-cell">
-            <td [attr.colspan]="theads.length" class="text-right">
-                <ts-pagination outline (pageChange)="pageChanged()" [pagination]="pagination" [items]="[{text:'显示 5 条',value:5},{text:'显示 10 条',value:10},{text:'显示 20 条',value:20}]"
-                    [color]="global.getValue('color')" goTitle="跳转" prevTitle="上一页" nextTitle="下一页" startTitle="首页" endTitle="末尾"></ts-pagination>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                    <a class="btn-icon btn-icon-info ml-2" title="详情">
+                        <i class="fa fa-fw fa-lg fa-info"></i>
+                    </a>
+                    <a class="btn-icon btn-icon-danger ml-2" title="删除">
+                        <i class="fa fa-trash-o fa-lg fa-fw"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr class="mat-cell" *ngIf="list.length<=0">
+                <td [attr.colspan]="theads.length" class="text-center text-info">
+                    暂无数据～
+                </td>
+            </tr>
+            <tr class="mat-cell">
+                <td [attr.colspan]="theads.length" class="text-right">
+                    <ts-pagination outline (pageChange)="pageChanged()" [pagination]="pagination" [items]="[{text:'显示 5 条',value:5},{text:'显示 10 条',value:10},{text:'显示 20 条',value:20}]"
+                        [color]="global.getValue('color')" goTitle="跳转" prevTitle="上一页" nextTitle="下一页" startTitle="首页" endTitle="末尾"></ts-pagination>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
