@@ -88,19 +88,16 @@
             </td>
             <td>
                 <p class="p-0 m-0">{{item.cell}}</p>
-                <p class="p-0 m-0">{{item.phone}}</p>
-            </td>
-            <td>
                 <p class="p-0 m-0">{{item.address}}</p>
             </td>
             <td>
-                <p class="p-0 m-0">{{item.registered}}</p>
+                <p class="p-0 m-0">{{item.registered.date}}</p>
             </td>
             <td>
                 <div tsDropdown>
-                    <button tsToggle class="btn btn-outline-primary border-0 btn-sm dropdown-toggle">
-                        <i class="fa fa-fw fa-eye"></i>审核
-                    </button>
+                    <div tsToggle class="btn-icon btn-icon-primary">
+                        <i class="fa fa-fw fa-hand-paper-o"></i>
+                    </div>
                     <div tsDropMenu>
                         <button class="dropdown-item pointer"></button>
                         <button class="dropdown-item pointer">审核通过</button>
@@ -108,10 +105,12 @@
                         <button class="dropdown-item pointer">重新审核</button>
                     </div>
                 </div>
-                <button class="btn btn-outline-info btn-sm border-0">
-                    <i class="fa fa-info-circle fa-fw"></i>详情</button>
-                <button class="btn btn-outline-danger btn-sm border-0">
-                    <i class="fa fa-close fa-fw"></i>删除</button>
+                <a class="btn-icon btn-icon-info" title="详情">
+                    <img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANkSURBVFhH5ZhZyE5pHMA/ywhDsm8lu2RGytZcmJCtxI2sJWvGKCnh1gwKpSw1lgtL4s5cKFyIC1uJsiT7WKZcoNEUUWT7/Z7vO33r+73POe/5fBd+9av3//Q+5/zPc571lH0PdMNxOBuX4RKcgcOxLX5zmuIEPID/4pd6/IhX8E8ciA1Kc7R1/kFv/gHP4Uaci7+iraaT8DfcjfcwSfgUjsbcGYU30Js8xpXYAWP5GXfhW/yMh7Aj5sIatLX+xxVoS2alC+5Hk7R7lNSazfAvtNXOY0/MC7vAS3yH0yzIgv3H5A7jDxbkTG+8j+9xogVpWI0mdwSbWBCBLT4CvXEsTlEP0b452IIY7BfJCG1hQQQ/4mX0oexff2Asg/A13saWFtSHA8DR6oDoYUEky9HkEk3S1ollPlpvfYjqYSn6x99DFM9arJqg9sc0nEUHTcEHc4WwPzzCtFOJre2oTJI7jrF9N2EkWndriOrA5cs/rApRerqj8+QczDpX2u9fYJ2zhhOoQ75TiBqHRWgjTQlRDZzZfYLGxJXGAbYtRFWwD5n5phCloxfOrGE/zModvFj+s5KxaILzQpQO61i3qmlngar8ja/Kf1aS3GRMiNLhtOAAu4V5JLgDvUa1RcKdsIXDQpSNC5hHghvQa1TbziWjx7koK3kluBm9RrsQVTALLRwfomzkleAe/ITVJnq36V7YNTUreSV4Gp+W/6zE05cHHPeAWckjQVvtOZ4IUQ2u4t3yn5nII8EhaP11IapBMnqGhig9eSToPtL6HrJqMQBdZnaGKD2lJugGw+X2eogKcBLdfrsmpqXUBBeidReHqAC/oK3oziYWN6ZO9O4lkwSPVpTF0gafoR8Fih7QPFSb5OQQFaeutTgxlr3o/6eGqAguMfYFN459LCiCT9+3gDEk5xG/9UTjpw77oq8tzeEnLW5M3SR7UGttQRqmo5U9ozTEl6kF6PUfYGcLsuAnijfoudUL5oFdYh/6Wq9hyW/IE3+y1zuDvv4sOM/5kI5Wr3UQU7/WQrRCD9WeW724Zxe3aDHz5U/oB8wnaF37ddRozUJX9NzqCPdmTkeeIY7hdvRj5hZ0y+SuxIXf/+lN9KEa4kNULbyJI9DT1yX8D5NE1P2cLeauxIXfVmx0TLp9hd8LZWVfAYGj8Ag+GAfJAAAAAElFTkSuQmCC">
+                </a>
+                <a class="btn-icon btn-icon-danger" title="删除">
+                    <i class="fa fa-trash-o fa-lg fa-fw"></i>
+                </a>
             </td>
         </tr>
         <tr class="mat-cell" *ngIf="list.length<=0">

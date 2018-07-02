@@ -5,35 +5,37 @@
 }
 
 // 左侧菜单
-.main-content-menu{
-    transition: min-width 0.5s;    
+.main-content-menu {
+    transition: min-width 0.5s;
     min-width: 250px;
     box-shadow: 0px 1px 3px #aaa;
 }
-.main-content-menu-static{
+
+.main-content-menu-static {
     width: 250px;
 }
 
-.menu-close{
+.menu-close {
     overflow: hidden;
     transition: min-width 0.5s;
     min-width: 1px;
     width: 1px;
 }
-.menu-close:hover{
+
+.menu-close:hover {
     transition: min-width 0.5s;
     min-width: 250px;
 }
 
 // 视图面板
 .main-content-view {
-    flex-grow:1;
+    flex-grow: 1;
     overflow: auto;
-    padding:15px;
+    padding: 15px;
 }
 
 // 底部填充
-.main-content-bottom{
+.main-content-bottom {
     height: 15px;
     width: 100%;
 }
@@ -47,7 +49,7 @@
 }
 
 .navbar {
-   box-shadow: 0px 1px 4px #ccc;
+    box-shadow: 0px 1px 4px #ccc;
 }
 
 .badge-message {

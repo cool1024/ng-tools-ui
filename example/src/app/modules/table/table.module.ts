@@ -7,6 +7,7 @@ import {
     ButtonModule,
     DatePickerModule,
     PaginationModule,
+    DropdownModule,
 } from 'ng-tools-ui';
 
 /*路由模块*/
@@ -22,6 +23,7 @@ import { SimpleComponent } from './pages/simple/simple.component';
         ButtonModule,
         ImageModule,
         DatePickerModule,
+        DropdownModule,
         TableRoutingModule,
     ],
     declarations: [

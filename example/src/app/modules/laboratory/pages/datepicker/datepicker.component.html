@@ -1,9 +1,26 @@
 <div class="card">
-    <div class="card-header bg-white">
-        日期选择（年/月）&nbsp; 时间选择（时/分）
-    </div>
+    <div class="card-header bg-white">时间选择（时/分</div>
     <div class="card-body">
-        <div class="card p-3 ts-datepicker-ym d-inline-block">
+        <ts-timepicker [(ngModel)]="time" #timepicker="tsTimepicker" color="primary"></ts-timepicker>
+        <div class="form-inline">
+            <div class="input-group mb-3">
+                <input [value]="time" tsToggle [target]="timepicker" [bind]="timepicker" type="text" class="form-control bg-white pointer"
+                    readonly>
+                <div class="input-group-append">
+                    <button class="btn btn-white" type="button" tsToggle [target]="timepicker">
+                        <i class="fa fa-clock-o"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mt-3">
+    <div class="card-header bg-white">
+        日期选择（年/月）&nbsp;
+    </div>
+    <div class="card-body d-flex">
+        <div class="card p-3 ts-datepicker-ym">
             <div class="ts-datepicker-ym-toolbar d-flex justify-content-between">
                 <div class="btn-group d-inline-block">
                     <button tsBtn sm>&lt;</button>
@@ -65,28 +82,5 @@
                 </tbody>
             </table>
         </div>
-        <!-- <div class="card p-3 ts-datepicker-hm  d-inline-block ml-3">
-            <div class="ts-datepicker-ym-toolbar d-flex justify-content-between">
-                <div>
-                    <input value="23:59:59" class="form-control form-control-sm" type="text">
-                </div>
-                <div style="width:120px">
-                    <button tsBtn sm class="ml-2">现在</button>
-                    <button tsBtn sm class="ml-2">清空</button>
-                </div>
-            </div>
-            <hr>
-            <div class="d-flex text-center">
-                <div class="ts-datepicker-hm-box">
-                    <div *ngFor="let hour of hours.splice(0,6)">{{hour}}</div>
-                </div>
-                <div class="ts-datepicker-hm-box">
-                    <div *ngFor="let minute of minutes.splice(0,6)">{{minute}}</div>
-                </div>
-                <div class="ts-datepicker-hm-box">
-                    <div *ngFor="let second of seconds.splice(0,6)">{{second}}</div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>

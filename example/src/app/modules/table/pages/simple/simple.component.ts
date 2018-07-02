@@ -25,7 +25,7 @@ export class SimpleComponent implements OnInit {
 
     ngOnInit() {
 
-        this.theads = ['No.', '会员', '联系电话', '收货地址', '注册日期', '操作'];
+        this.theads = ['No.', '会员', '联系电话 | 住址', '注册日期', '操作'];
         this.pagination.total = 1000;
         this.pageChanged();
     }

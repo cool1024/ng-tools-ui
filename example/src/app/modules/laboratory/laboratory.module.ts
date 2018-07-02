@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LaboratoryRoutingModule, declarationComponents, entryComponents, providers } from './laboratory.routing';
 import { ButtonModule, BadgeModule, ImageModule, CssloadModule, DropdownModule } from 'ng-tools-ui';
-
+import { DatePickerModule } from './../../../_tools-ui';
 @NgModule({
     imports: [
         FormsModule,
@@ -18,6 +18,7 @@ import { ButtonModule, BadgeModule, ImageModule, CssloadModule, DropdownModule }
         BadgeModule,
         ImageModule,
         CssloadModule,
+        DatePickerModule,
         LaboratoryRoutingModule,
     ],
     declarations: [declarationComponents],
