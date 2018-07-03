@@ -8,7 +8,6 @@
 .main-content-menu {
     transition: min-width 0.5s;
     min-width: 250px;
-    box-shadow: 0px 1px 3px #aaa;
 }
 
 .main-content-menu-static {
@@ -46,10 +45,6 @@
 
 .dropdown-item:active {
     background-color: rgb(250,250,250);
-}
-
-.navbar {
-    box-shadow: 0px 1px 4px #ccc;
 }
 
 .badge-message {

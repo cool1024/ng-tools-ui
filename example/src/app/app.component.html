@@ -2,12 +2,12 @@
     <ts-cssload [color]="global.getValue('color')"></ts-cssload>
 </div>
 <ng-template #content>
-    <div class="p-fixed w-100" tsNavbar [color]="global.getValue('color')">
+    <div class="fixed-top w-100 navbar position-fixed flex-nowrap shadow-sm text-white bg-{{global.getValue('color')}}">
         <i (click)="toggleMenu()" class="fa fa-fw fa-bars pointer"></i>
-        <a tsNavBrand class="app-head-title pl-3">
+        <a class="navbar-brand app-head-title pl-3">
             <img height="35" src="assets/images/title.png" alt="管理系统模板">
         </a>
-        <div tsNavList>
+        <div class="flex-grow-1">
             <div class="app-breadcrumb">
                 <ts-menu-push (itemClick)="setPage($event);menuPad.setActive($event)" [items]="menuPush.items" color="light" outline></ts-menu-push>
             </div>
@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="main-content d-flex flex-nowrap">
-        <div [class.menu-close]="!global.getValue('showmenu')" class="main-content-menu">
+        <div [class.menu-close]="!global.getValue('showmenu')" class="main-content-menu shadow">
             <div class="main-content-menu-static h-100">
                 <!--
                     系统菜单

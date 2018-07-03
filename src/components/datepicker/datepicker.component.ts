@@ -14,7 +14,7 @@ const MAX_MONTH = 12;
     selector: 'ts-datepicker',
     template: `
     <div [ngClass]="{'d-none':!show}" #pad class="fixed-top h-100 w-100" (click)="tryClose($event)">
-        <div class="card rounded-0 border-0 ts-box" #datepicker [ngStyle]="datepickerStyle">
+        <div class="card rounded-0 border-0 ts-box" [ngStyle]="datepickerStyle">
             <div class="card-body">
                 <table class="ts-datepicker-table">
                     <thead>
@@ -126,8 +126,6 @@ export class DatepickerComponent extends DomAttr implements OnDestroy, Toggle, C
     @Input() toggleTarget: ToggleDirective;
 
     @ViewChild('pad') pad: ElementRef;
-
-    @ViewChild('datepicker') datepicker: ElementRef;
 
     year: number;
 

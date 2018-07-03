@@ -18,7 +18,7 @@ import { DomAttr } from '../../commons/extends/attr.class';
             </div>
             <ng-container *ngFor="let model of items;">
                 <hr class="mt-0 mb-2 ml-1 mr-1" [ngStyle]="{borderColor:config.LINE_COLOR}">
-                <div class="menu-block {{group.active?activeMainClass:''}}" *ngFor="let group of model.menuGroups">
+                <div class="menu-block no-select {{group.active?activeMainClass:''}}" *ngFor="let group of model.menuGroups">
                     <div class="menu-main pointer pl-2 pr-3 {{group.active?activeParentClass:''}}" (click)="toggleGroup(group)">
                         <div class="d-table w-100 pb-1">
                             <div class="d-table-cell text-center ts-icon">
@@ -51,117 +51,33 @@ import { DomAttr } from '../../commons/extends/attr.class';
             <div class="menu-temp-bar"></div>
         </div>
     </div>`,
-    styles: [
-        `
-        .text-truncate{
-            text-overflow: ellipsis;
-            max-width: 180px;
-        }
-        .ts-menu-fill{
-            overflow-y:auto;
-            overflow-x:hidden;
-        }
-        .ts-menu-bg{
-            background-size:cover;
-        }
-        .ts-icon-sm{
-            font-size:11px;
-        }
-        .ts-icon{
-            width:30px;
-        }
-        .icon-up {
-            animation: icon-up 0.5s ease-out forwards;
-        }
-        .icon-down {
-            animation: icon-down 0.5s ease-out forwards;
-        }
-        .model-title{
-            opacity: 0.8;
-        }
-        .menu-block {
-            overflow-y: hidden;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            -khtml-user-select: none;
-            user-select: none;
-            border-left-width:3px;
-            border-left-style:solid;
-            border-left-color:transparent;
-        }
-        .menu-main{
-            line-height:42px;
-        }
-        .menu-child-block{
-            line-height:42px;
-        }
-        .menu-child-item:hover{
-            background-color:#343a4011;;
-        }
-        .child-close {
-            max-height: 0px;
-            opacity: 0.5;
-            transform-origin: 50% 0%;
-            transition: all 0.5s linear;
-        }
-        .child-open {
-            max-height: 400px;
-            opacity: 1;
-            transform-origin: 50% 0%;
-            transition: all 1.5s linear;
-        }
-        @keyframes icon-up {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(180deg);
-            }
-        }
-        @keyframes icon-down {
-            0% {
-                transform: rotate(180deg);
-            }
-            100% {
-                transform: rotate(0deg);
-            }
-        }
-        .menu-temp-bar{
-            height:60px;
-        }
-        .bg-primary-fill{
-            background-color:#007bff11;
-        }
-        .bg-secondary-fill{
-            background-color:#6c757d11;
-        }
-        .bg-success-fill{
-            background-color:#28a74511;
-        }
-        .bg-danger-fill{
-            background-color:#dc354511;
-        }
-        .bg-warning-fill{
-            background-color:#ffc10711;
-        }
-        .bg-dark-fill{
-            background-color:#343a4011;
-        }
-        .bg-info-fill{
-            background-color:#17a2b811;
-        }
-        .bg-light-fill{
-            background-color:#ffffff22;
-        }
-        .bg-pink-fill{
-            background-color:#e83e8c11;
-        }
-        .bg-purple-fill{
-            background-color:#6f42c111;
-        }
-        `,
-    ]
+    styles: [`.text-truncate{text-overflow: ellipsis;max-width: 180px;}
+.ts-menu-fill{overflow-y:auto;overflow-x:hidden;}
+.ts-menu-bg{background-size:cover;}
+.ts-icon-sm{font-size:11px;}
+.ts-icon{width:30px;}
+.icon-up {animation: icon-up 0.5s ease-out forwards;}
+.icon-down {animation: icon-down 0.5s ease-out forwards;}
+.model-title{opacity: 0.8;}
+.menu-block {overflow-y: hidden;border-left-width:3px;border-left-style:solid;border-left-color:transparent;}
+.menu-main{line-height:42px;}
+.menu-child-block{line-height:42px;}
+.menu-child-item:hover{background-color:#343a4011;;}
+.child-close {max-height: 0px;opacity: 0.5;transform-origin: 50% 0%;transition: all 0.5s linear;}
+.child-open {max-height: 400px;opacity: 1;transform-origin: 50% 0%;transition: all 1.5s linear;}
+@keyframes icon-up {0% {transform: rotate(0deg);}100% {transform: rotate(180deg);}}
+@keyframes icon-down {0% {transform: rotate(180deg);}100% {transform: rotate(0deg);}}
+.menu-temp-bar{height:60px;}
+.bg-primary-fill{background-color:#007bff11;}
+.bg-secondary-fill{background-color:#6c757d11;}
+.bg-success-fill{background-color:#28a74511;}
+.bg-danger-fill{background-color:#dc354511;}
+.bg-warning-fill{background-color:#ffc10711;}
+.bg-dark-fill{background-color:#343a4011;}
+.bg-info-fill{background-color:#17a2b811;}
+.bg-light-fill{background-color:#ffffff22;}
+.bg-pink-fill{background-color:#e83e8c11;}
+.bg-purple-fill{background-color:#6f42c111;}`]
 })
 export class MenuComponent extends DomAttr {
 
@@ -172,6 +88,8 @@ export class MenuComponent extends DomAttr {
     @Input() config: any;
 
     @Input() useImage: boolean;
+
+    @Input() autoClose: boolean;
 
     @Output() menuActiveChange = new EventEmitter<MenuItem>();
 
@@ -192,6 +110,7 @@ export class MenuComponent extends DomAttr {
         this.items = new Array<MenuModel>();
         this.config = { BACKGROUND_IMAGE_SRC: '' };
         this.useImage = false;
+        this.autoClose = true;
     }
 
     toggleGroup(group: MenuGroup) {
@@ -225,12 +144,11 @@ export class MenuComponent extends DomAttr {
     setAllInActive() {
         this.items.forEach(item => {
             item.menuGroups.forEach(a => {
-                a.active = false;
+                if (this.autoClose) { a.active = false; }
                 a.menuItems.forEach(b => {
                     b.active = false;
                 });
             });
         });
     }
-
 }
