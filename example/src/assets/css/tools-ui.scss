@@ -82,7 +82,6 @@ a:visited {
 }
 
 .btn:disabled {
-    -webkit-box-shadow: none !important;
     box-shadow: none !important;
     cursor: not-allowed !important;
 }
@@ -98,7 +97,7 @@ a:visited {
 }
 
 .card {
-    box-shadow: 1px 2px 3px #ededed;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
 
 /*bootstrap4 样式拓展*/
@@ -158,26 +157,6 @@ $value in $theme-colors {
 .label-required::before {
     content: '* ';
     color: $red;
-}
-
-.rounded-top-0 {
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-}
-
-.rounded-bottom-0 {
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-}
-
-.rounded-left-0 {
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
-}
-
-.rounded-right-0 {
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
 }
 
 .btn-icon {
