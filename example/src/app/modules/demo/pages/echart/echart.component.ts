@@ -154,6 +154,13 @@ export class EchartComponent {
                     emphasis: {}
                 },
                 data: [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220]
+            },
+            {
+                type: 'line',
+                itemStyle: {
+                    normal: { color: '#3e9cff' }
+                },
+                data: [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220]
             }
         ]
     };
@@ -214,6 +221,7 @@ export class EchartComponent {
                 Math.random() * 500,
                 Math.random() * 500,
             ];
+            this.optionThree.series[2].data = this.optionThree.series[1].data;
             this.chart.setOption(this.optionThree);
         }
     }

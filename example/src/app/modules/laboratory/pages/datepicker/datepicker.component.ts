@@ -6,6 +6,7 @@
  * @date   2018-6-26 22:16:50
  */
 import { Component, OnInit } from '@angular/core';
+import { GlobalService } from '../../../../cores/services';
 
 @Component({
     templateUrl: './datepicker.component.html',
@@ -14,6 +15,8 @@ import { Component, OnInit } from '@angular/core';
 export class DatepickerComponent implements OnInit {
 
     time = '12:30:00';
+
+    constructor(public global: GlobalService) { }
 
     ngOnInit() { }
 }

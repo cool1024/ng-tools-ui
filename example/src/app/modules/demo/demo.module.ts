@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 
 /*tool-ui*/
 import {
-    ChartModule,
     MapModule,
     PrismModule,
     EChartModule,
@@ -18,7 +17,6 @@ import { DemoRoutingModule, declarationComponents } from './demo.routing';
     imports: [
         FormsModule,
         ButtonModule,
-        ChartModule,
         DemoRoutingModule,
         PrismModule,
         DatePickerModule,

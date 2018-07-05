@@ -1,19 +1,19 @@
 export const AppConfig = {
 
     LOGIN_PAGE: {
-        LOGO: 'favicon.ico',
+        LOGO: 'assets/images/angular.svg',
         TITLE: 'Angular Tools UI',
         SUBJECT: '管理员登入',
-        DESCRIPTION: '欢迎使用ng5-dashboard,为angualr爱好者打造的精简模板',
+        DESCRIPTION: '欢迎使用NG-TOOLSUI，为Angular爱好者打造的精简模板',
         FIRST_LABEL: '账户',
         FIRST_PLACEHOLDER: '请输入您的账户',
         SECOND_LABEL: '密码',
         SECOND_PLACEHOLDER: '请输入您的密码',
-        BACKGROUND_IMAGE_SRC: 'url(assets/images/background/3.jpg)'
+        BACKGROUND_IMAGE_SRC: 'url(assets/images/background/6.jpg)'
     },
 
     MENU_CONFIG: {
-        BACKGROUND_IMAGE_SRC: '', // 'url(assets/images/background/1.jpg)',
+        BACKGROUND_IMAGE_SRC: 'url(assets/images/background/1.jpg)',
         BACKGROUND_COLOR: 'rgba(255,255,255,0.9)',
         DEFAULT_TEXT_COLOR: 'black',
         LINE_COLOR: 'rgb(0, 0, 0,.1)'

@@ -25,7 +25,7 @@ export class EditComponent {
      */
     loadText() {
         this.request.withoutHost().withoutHeader().
-            text('https://hello1024.oss-cn-beijing.aliyuncs.com/upload/temp.txt')
+            text(`https://hello1024.oss-cn-beijing.aliyuncs.com/upload/temp.txt?${new Date().getTime()}`)
             .subscribe(content => this.content = content);
     }
 
