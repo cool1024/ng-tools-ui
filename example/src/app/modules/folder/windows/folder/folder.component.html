@@ -1,0 +1,56 @@
+<div class="h-100 d-flex">
+    <div class="bg-light h-75 w-75 m-auto shadow algin-self-center position-relative">
+        <nav class="navbar navbar-light bg-white position-absolute w-100">
+            <span class="navbar-brand">文件管理</span>
+            <div>
+                <span (click)="view.close()" class="text-muted text-danger-hover pointer">
+                    <i class="fa fa-times mr-2" aria-hidden="true"></i>关闭
+                </span>
+            </div>
+        </nav>
+        <div class="h-100 d-flex window-content p-2">
+            <div class="card file-box img-box mr-3 mb-3" [ngStyle]="{backgroundImage:'url(assets/images/background/1.jpg)'}">
+                <div>
+                    <ts-checkbox color="primary"></ts-checkbox>
+                </div>
+                <div class="file-click-box pointer"></div>
+                <div class="position-absolute file-tool-bar p-2 text-center text-muted w-100">
+                    <a class="file-btn shadow-sm d-inline-block pointer text-primary-hover">
+                        <i class="fa fa-arrow-circle-o-down"></i>
+                    </a>&nbsp;
+                    <a class="file-btn shadow-sm d-inline-block pointer text-primary-hover">
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card file-box img-box mr-3 mb-3" [ngStyle]="{backgroundImage:'url(assets/images/background/3.jpg)'}">
+                <div>
+                    <ts-checkbox color="primary"></ts-checkbox>
+                </div>
+                <div class="file-click-box pointer"></div>
+                <div class="position-absolute file-tool-bar p-2 text-center text-muted w-100">
+                    <a class="file-btn shadow-sm d-inline-block pointer text-primary-hover">
+                        <i class="fa fa-arrow-circle-o-down"></i>
+                    </a>&nbsp;
+                    <a class="file-btn shadow-sm d-inline-block pointer text-primary-hover">
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card file-box icon-box mr-3 mb-3x" [ngStyle]="{backgroundImage:'url(assets/images/file/word.png)'}">
+                <div>
+                    <ts-checkbox color="primary"></ts-checkbox>
+                </div>
+                <div class="file-click-box pointer"></div>
+                <div class="position-absolute file-tool-bar p-2 text-center text-muted w-100">
+                    <a class="file-btn shadow-sm d-inline-block pointer text-primary-hover">
+                        <i class="fa fa-arrow-circle-o-down"></i>
+                    </a>&nbsp;
+                    <a class="file-btn shadow-sm d-inline-block pointer text-primary-hover">
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

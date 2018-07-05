@@ -1,0 +1,43 @@
+@import "~bootstrap/scss/functions";
+@import "./../../../../../assets/css/variables";
+/**窗口样式**/
+
+.window-content {
+    margin-top: 58px;
+}
+
+/**文件预览元素**/
+
+.file-box {
+    height: 150px;
+    width: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.img-box {
+    background-size: cover;
+}
+
+.icon-box {
+    background-size: 80px 80px;
+}
+
+.file-click-box {
+    height: 100px;
+}
+
+.file-tool-bar {
+    bottom: 0;
+    left: 0;
+}
+
+.file-btn {
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: $white;
+}
