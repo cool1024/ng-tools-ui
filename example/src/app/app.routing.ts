@@ -16,11 +16,11 @@ const routes: Routes = [
     // { path: 'table', loadChildren: 'app/modules/table/table.module#TableModule', canActivate: [GuardService] },
     // { path: 'message', loadChildren: 'app/modules/message/message.module#MessageModule', canActivate: [GuardService] },
     // { path: 'demo', loadChildren: 'app/modules/demo/demo.module#DemoModule', canActivate: [GuardService] },
-    // { path: 'laboratory', loadChildren: 'app/modules/laboratory/laboratory.module#LaboratoryModule', canActivate: [GuardService] },
+    { path: 'laboratory', loadChildren: 'app/modules/laboratory/laboratory.module#LaboratoryModule', canActivate: [GuardService] },
     // { path: 'buttons', loadChildren: 'app/modules/buttons/buttons.module#ButtonsModule', canActivate: [GuardService] },
     // { path: 'admin', loadChildren: 'app/modules/admin/admin.module#AdminModule', canActivate: [GuardService] },
     // { path: 'store', loadChildren: 'app/modules/store/store.module#StoreModule', canActivate: [GuardService] },
-    { path: 'folder', loadChildren: './modules/folder/folder.module#FolderModule', canActivate: [GuardService] },
+    // { path: 'folder', loadChildren: './modules/folder/folder.module#FolderModule', canActivate: [GuardService] },
     // 最后全局匹配其他链接
     { path: '**', redirectTo: 'dashboard/error', pathMatch: 'full' },
 ];

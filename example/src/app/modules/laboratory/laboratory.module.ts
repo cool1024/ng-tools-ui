@@ -8,7 +8,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LaboratoryRoutingModule, declarationComponents, entryComponents, providers } from './laboratory.routing';
-import { ButtonModule, BadgeModule, ImageModule, CssloadModule, DropdownModule } from 'ng-tools-ui';
+import { ButtonModule, BadgeModule, ImageModule, CssloadModule, UploadModule, DropdownModule, WindowModule } from 'ng-tools-ui';
 import { DatePickerModule } from './../../../_tools-ui';
 @NgModule({
     imports: [
@@ -19,6 +19,8 @@ import { DatePickerModule } from './../../../_tools-ui';
         ImageModule,
         CssloadModule,
         DatePickerModule,
+        WindowModule,
+        UploadModule,
         LaboratoryRoutingModule,
     ],
     declarations: [declarationComponents],

@@ -12,6 +12,7 @@ import { ImageComponent } from './pages/image/image.component';
 import { LoadingComponent } from './pages/loading/loading.component';
 import { DatepickerComponent } from './pages/datepicker/datepicker.component';
 import { FlexComponent } from './pages/flex/flex.component';
+import { ClipComponent } from './windows/clip/clip.component';
 
 const routes: Routes = [
     { path: 'badge', component: BadgeComponent },
@@ -30,12 +31,15 @@ export const declarationComponents = [
     LoadingComponent,
     DatepickerComponent,
     FlexComponent,
+    ClipComponent,
 ];
 
 /**
  * 动态组件（模态框，窗口）
  */
-export const entryComponents = [];
+export const entryComponents = [
+    ClipComponent,
+];
 
 /**
  * 服务列表

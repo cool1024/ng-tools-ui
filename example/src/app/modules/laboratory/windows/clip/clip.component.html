@@ -1,0 +1,13 @@
+<div class="h-100 d-flex">
+    <div class="bg-light m-auto shadow algin-self-center position-relative">
+        <nav class="navbar navbar-light bg-white position-absolute w-100">
+            <span class="navbar-brand">文件管理</span>
+            <div>
+                <span (click)="view.close()" class="text-muted text-danger-hover pointer">
+                    <i class="fa fa-times mr-2" aria-hidden="true"></i>关闭
+                </span>
+            </div>
+        </nav>
+        <div #clipPad style="width:600px;height:400px;"></div>
+    </div>
+</div>
