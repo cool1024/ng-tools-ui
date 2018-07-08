@@ -1,5 +1,5 @@
 
-import { Component, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { DomAttr } from '../../commons/extends/attr.class';
 import { UploadConfig } from './upload.interface';
 import { styleStr } from './upload.data';
@@ -44,6 +44,8 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
     @Output() fileChange = new EventEmitter<File>(false);
     @Output() srcChange = new EventEmitter<string>(false);
     @Output() viewHandle = new EventEmitter<any>(false);
+
+    @ViewChild('input_file') inputFile: ElementRef;
 
     showImage = false;
     isLoading = false;
@@ -103,15 +105,15 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
         }
     }
 
-    resetInput(input: HTMLInputElement) {
-        this.showImage = false;
-        this.isLoading = false;
-        this.hasUpload = true;
-        this.file = null;
-        input.value = '';
-        this.src = this.default || '';
-        this.srcChange.emit(this.src);
-    }
+    // resetInput(input: HTMLInputElement) {
+    //     this.showImage = false;
+    //     this.isLoading = false;
+    //     this.hasUpload = true;
+    //     this.file = null;
+    //     input.value = '';
+    //     this.src = this.default || '';
+    //     this.srcChange.emit(this.src);
+    // }
 
     cleanInput(input: HTMLInputElement) {
         this.src = '';
@@ -132,6 +134,9 @@ export class ImageCardComponent extends DomAttr implements OnChanges {
             this.config.uploader(this.file).subscribe(src => {
                 this.isLoading = false;
                 this.src = src;
+                if (src === '') {
+                    this.showImage = false;
+                }
                 this.srcChange.emit(src);
             });
         }

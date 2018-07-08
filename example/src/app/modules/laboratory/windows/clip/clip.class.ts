@@ -1,4 +1,4 @@
-import { Observable, fromEvent } from 'rxjs';
+import { Observable, fromEvent, fromEventPattern } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 declare const Snap: any;
@@ -210,5 +210,28 @@ export class ClipPad {
         this.circles[1].attr({ cx: x + w / 2, cy: y + h });
         this.circles[2].attr({ cx: x, cy: y + h / 2 });
         this.circles[3].attr({ cx: x + w, cy: y + h / 2 });
+    }
+
+    getClipImg(): Observable<File> {
+        const realPoint = { x: 0, y: 0 };
+        const clipRect = { w: 0, h: 0 };
+        if (this.rect) {
+            const k = this.img.naturalWidth / this.expWidth;
+            clipRect.w = parseInt(this.rect.attr('width'), 10) * k;
+            clipRect.h = parseInt(this.rect.attr('height'), 10) * k;
+            realPoint.x = parseInt(this.rect.attr('x'), 10) * k;
+            realPoint.y = parseInt(this.rect.attr('y'), 10) * k;
+            const canvas = document.createElement('canvas');
+            canvas.width = clipRect.w;
+            canvas.height = clipRect.h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(this.img, -realPoint.x, -realPoint.y, this.img.naturalWidth, this.img.naturalHeight);
+            return fromEventPattern<File>(handle => {
+                canvas.toBlob(blob => {
+                    handle(new File([blob], 'clip.png'));
+                }, 'image/png');
+            });
+        }
+        return null;
     }
 }

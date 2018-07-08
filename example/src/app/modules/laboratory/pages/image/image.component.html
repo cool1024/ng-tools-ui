@@ -11,5 +11,20 @@
     <div class="card-body">
         <input tsFile (change)="showClipWindow($event.target.files)" #fileInput="tsFile" type="file" accept="image/*">
         <button tsBtn (click)="fileInput.openFileDialog()">选择图片</button>
+
+    </div>
+</div>
+<div class="card mt-3">
+    <div class="card-header bg-white">图片裁剪</div>
+    <div class="card-body">
+        <input tsFile (change)="showClipWindow($event.target.files)" #fileInput="tsFile" type="file" accept="image/*">
+        <img tsImg class="border rounded mr-2" height="38" [src]="clipImg" dataSrc="assets/images/404.jpg">
+        <button tsBtn (click)="fileInput.openFileDialog()">选择图片</button>
+    </div>
+</div>
+<div class="card mt-3">
+    <div class="card-header bg-white">图片裁剪上传</div>
+    <div class="card-body">
+        <ts-image-card [config]="options" title="选择裁剪"></ts-image-card>
     </div>
 </div>

@@ -27,4 +27,17 @@ export class ClipComponent implements AfterViewInit {
         this.clipPad.pad = this.divElement.nativeElement;
         this.clipPad.svgSize(this.file);
     }
+
+    confirmClip() {
+        const handle = this.clipPad.getClipImg();
+        if (handle) {
+            handle.subscribe(file => {
+                this.view.close(file);
+            });
+        }
+    }
+
+    confirmSource() {
+        this.view.close(this.file);
+    }
 }

@@ -8,8 +8,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LaboratoryRoutingModule, declarationComponents, entryComponents, providers } from './laboratory.routing';
-import { ButtonModule, BadgeModule, ImageModule, CssloadModule, UploadModule, DropdownModule, WindowModule } from 'ng-tools-ui';
-import { DatePickerModule } from './../../../_tools-ui';
+import { ButtonModule, BadgeModule, ImageModule, CssloadModule, DropdownModule, WindowModule } from 'ng-tools-ui';
+import { DatePickerModule, UploadModule } from './../../../_tools-ui';
 @NgModule({
     imports: [
         FormsModule,
