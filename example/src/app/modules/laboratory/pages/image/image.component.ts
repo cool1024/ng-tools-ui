@@ -25,7 +25,7 @@ export class ImageComponent {
 
     options: UploadConfig;
 
-    image: string;
+    image = '';
 
     constructor(
         private window: WindowService,
