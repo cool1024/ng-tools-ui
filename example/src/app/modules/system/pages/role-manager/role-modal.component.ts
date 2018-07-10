@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalService, ToastService } from 'ng-tools-ui';
 import { Role } from '../../interfaces/role.interface';
 import { RoleService } from '../../services/role.service';
 import { GlobalService } from '../../../../cores/services';
-import { PermissionGroup, PermissionGroupItem } from '../../interfaces/permission.interface';
+import { PermissionGroupItem } from '../../interfaces/permission.interface';
 
 @Component({
     template: `
@@ -45,7 +45,7 @@ import { PermissionGroup, PermissionGroupItem } from '../../interfaces/permissio
     <button tsBtn loading color="primary" (submit)="confirmSave($event)">确认保存</button>
 </div>`,
 })
-export class RoleModalComponent {
+export class RoleModalComponent implements OnInit {
 
     role: Role;
 
@@ -61,6 +61,10 @@ export class RoleModalComponent {
     ) {
         this.roleService.getPermissionOptions()
             .subscribe(permissionGroups => this.permissionGroupItems = permissionGroups);
+    }
+
+    ngOnInit() {
+        this.role.permissionIds = this.role.permissionIds || [];
     }
 
     /**
