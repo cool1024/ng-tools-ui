@@ -61,6 +61,7 @@ export class AppComponent implements OnInit {
         });
 
         // 加载菜单历史记录
+        this.menuPush.setMaxItemNum(3);
         this.menuPush.setDefaultItem({ title: '首页', url: '/' });
         const items: MenuItem[] = JSON.parse(this.global.getValueFromStorage('menuPush', '[]'));
         if (items.length > 0) { items.shift(); }

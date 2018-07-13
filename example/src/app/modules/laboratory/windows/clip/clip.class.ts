@@ -27,6 +27,8 @@ export class ClipPad {
         this.svg = Snap(0, 0);
         this.imgSize(file).subscribe(size => {
             const imgK = size.height / size.width;
+            this.expHeight = this.padSize.height;
+            this.expWidth = this.expHeight / imgK;
             if (size.height > this.padSize.height) {
                 this.expHeight = this.padSize.height;
                 this.expWidth = this.expHeight / imgK;
@@ -71,9 +73,6 @@ export class ClipPad {
                 strokeWidth: 2,
                 strokeDasharray: '5,5',
             });
-        // let filter = Snap.filter.shadow(1, 1, 2, 'black');
-        // filter = this.svg.paper.filter(filter);
-        // rect.attr({ filter });
         let cx = '0', cy = '0';
         rect.drag(
             (dx, dy) => {
@@ -106,7 +105,7 @@ export class ClipPad {
         circles.push(this.svg.paper.circle(x + w, y + h / 2, r)
             .attr({ fill: 'white', stroke: 'rgb(100,100,100)', strokeWidth: 2, style: 'cursor:pointer;' }));
         this.circles = circles;
-        // top
+        // top法
         circles[0].drag(
             (dx, dy) => {
                 const epy = parseInt(circles[0].attr('by'), 10) + dy;
@@ -117,7 +116,6 @@ export class ClipPad {
                 expy = expy > this.expHeight ? this.expHeight : expy;
                 rect.attr({ height: exph, y: expy });
                 this.moveCircle();
-
             },
             () => {
                 circles[0].attr({ 'bx': parseInt(circles[0].attr('cx'), 10) });
