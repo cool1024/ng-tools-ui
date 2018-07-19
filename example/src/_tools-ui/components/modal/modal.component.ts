@@ -36,6 +36,9 @@ import { Component, ViewChild } from '@angular/core';
     }
     :host ::ng-deep ng-component {
         height:100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
     }
     `]
 })
