@@ -106,7 +106,7 @@ timer | number  | 消息显示时间，如果不填那么默认采用全局配�
 ------------ | ------------- | ------------
 title | string  | 消息标题
 message | string  | 消息内容
-options |  Ojbect | 相关配置参数,color为消息的颜色样式类如'border-info',icon要显示的为图标样式，timeout为显示时间
+options |  Object | 相关配置参数,color为消息的颜色样式类如'border-info',icon要显示的为图标样式，timeout为显示时间
 
 用例
 ```typescript
