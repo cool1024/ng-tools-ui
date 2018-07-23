@@ -25,7 +25,7 @@ import {EChartModule} from 'ng-tools-ui';
 export class AppModule { }
 
 ```
-## 使用指令`baseEchart`让一个div变成百度图标的容器
+## 使用指令`baseEchart`让一个div变成百度图表的容器
 
 ```html
 <div baseEchart 
@@ -33,13 +33,13 @@ export class AppModule { }
     style="width:100%;height:400px;">    <!-- 需要给div高宽，不然看不见图表 -->
 </div>
 ```
-![图标实例](./images/echart.png)
+![图表实例](./images/echart.png)
 
 @Input
 
 名称 | 类型 | 详情
 ------------ | ------------- | ------------
-option | any  | 图标参数，同百度图表官方示例中的option,见上图
+option | any  | 图表参数，同百度图表官方示例中的option,见上图
 resize | boolean  | 是否启用自适应宽度
 
 @Output

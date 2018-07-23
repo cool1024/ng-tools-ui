@@ -3,6 +3,7 @@
  */
 
 @import "~bootstrap/scss/functions";
+
 // 参数配置
 @import "variables";
 @import "~bootstrap/scss/mixins";
@@ -30,6 +31,7 @@
 @import "~bootstrap/scss/close";
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/alert";
+
 /**
  * bootstrap 样式BUG修复
  */
@@ -70,7 +72,7 @@ a:link {
 }
 
 a:active {
-    text-decoration: none
+    text-decoration: none;
 }
 
 a:hover {
@@ -81,7 +83,8 @@ a:visited {
     text-decoration: none;
 }
 
-.btn:disabled {
+.btn:disabled,
+input:disabled {
     box-shadow: none !important;
     cursor: not-allowed !important;
 }
@@ -97,7 +100,7 @@ a:visited {
 }
 
 .card {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
 /*bootstrap4 样式拓展*/
@@ -114,15 +117,14 @@ a:visited {
     user-select: none;
 }
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .tab-border-#{$color} {
         border-top: 3px solid #{$value} !important;
     }
 }
 
 .m-btn .btn {
-    margin-left: $spacer * .25;
+    margin-left: $spacer * 0.25;
 }
 
 .m-btn .btn:first-child {
@@ -143,7 +145,7 @@ $value in $theme-colors {
 
 .btn-outline-white:not(:disabled):not(.disabled):active,
 .btn-outline-white:not(:disabled):not(.disabled).active,
-.show>.btn-outline-white.dropdown-toggle {
+.show > .btn-outline-white.dropdown-toggle {
     color: $dark;
     border-color: $gray-400;
     background-color: $gray-300;
@@ -177,15 +179,16 @@ $value in $theme-colors {
     opacity: 0.8;
 }
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .btn-icon-#{$color} {
         color: #{$value} !important;
     }
+
     .btn-icon-#{$color}:hover {
         // background-color: #{$value} !important;
         @include gradient-bg($value);
     }
+
     .text-#{$color}-hover:hover {
         color: #{$value} !important;
         transition: color 0.3s;
@@ -199,4 +202,9 @@ $value in $theme-colors {
 .hover:hover {
     transition: opacity 0.3s;
     opacity: 1;
+}
+
+.disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
 }

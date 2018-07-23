@@ -231,7 +231,7 @@
 <br>
 <strong>&#x6CE8;&#x610F;&#xFF0C;&#x4F7F;&#x7528;&#x7A97;&#x53E3;&#x8981;&#x6CE8;&#x610F;&#x5173;&#x95ED;&#x7A97;&#x53E3;&#x548C;&#x7A97;&#x53E3;&#x5173;&#x95ED;&#x65F6;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;&#x64CD;&#x4F5C;</strong></p>
 <h2 id="&#x5BFC;&#x5165;&#x76F8;&#x5173;&#x6A21;&#x5757;">&#x5BFC;&#x5165;&#x76F8;&#x5173;&#x6A21;&#x5757;</h2>
-<p>&#x5728;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x6A21;&#x6001;&#x6846;&#x9875;&#x9762;&#x6240;&#x5C5E;&#x6A21;&#x5757;&#x5BFC;&#x5165;ModalModule</p>
+<p>&#x5728;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x6A21;&#x6001;&#x6846;&#x9875;&#x9762;&#x6240;&#x5C5E;&#x6A21;&#x5757;&#x5BFC;&#x5165;WindowModule</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { NgModule } from <span class="hljs-string">&apos;@angular/core&apos;</span>;
 <span class="hljs-keyword">import</span> { WindowModule } from <span class="hljs-string">&apos;ng-tools-ui&apos;</span>;
 
@@ -299,7 +299,7 @@
     ]
 })
 </code></pre>
-<h2 id="&#x5728;&#x8FD9;&#x4E2A;&#x6A21;&#x5757;&#x4E2D;&#x7684;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;modalservice&#x670D;&#x52A1;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x6A21;&#x6001;&#x6846;">&#x5728;&#x8FD9;&#x4E2A;&#x6A21;&#x5757;&#x4E2D;&#x7684;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;ModalService&#x670D;&#x52A1;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x6A21;&#x6001;&#x6846;</h2>
+<h2 id="&#x5728;&#x8FD9;&#x4E2A;&#x6A21;&#x5757;&#x4E2D;&#x7684;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;windowservice&#x670D;&#x52A1;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;">&#x5728;&#x8FD9;&#x4E2A;&#x6A21;&#x5757;&#x4E2D;&#x7684;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;WindowService&#x670D;&#x52A1;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;</h2>
 <p>&#x5728;&#x9700;&#x8981;&#x7528;&#x5230;&#x7684;&#x9875;&#x9762;&#x7EC4;&#x4EF6;&#x4E2D;&#x6CE8;&#x5165;&#x6A21;&#x6001;&#x6846;&#x670D;&#x52A1;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E86;</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Component } from <span class="hljs-string">&apos;@angular/core&apos;</span>;
 <span class="hljs-comment">// &#x5F15;&#x5165;&#x7A97;&#x53E3;&#x670D;&#x52A1;</span>
@@ -368,40 +368,9 @@
 <p>&#x4E3B;&#x52A8;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x5728;present&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x53EF;&#x89C2;&#x5BDF;&#x5BF9;&#x8C61;&#x4E2D;&#x63A5;&#x6536;&#x5230;</p>
 </blockquote>
 <h3 id="&#x5C5E;&#x6027;">&#x5C5E;&#x6027;</h3>
-<p>instance <code>any</code> &#x540C;&#x6A21;&#x6001;&#x6846;&#xFF0C;&#x7A97;&#x53E3;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x7A97;&#x53E3;&#x7684;&#x5185;&#x90E8;&#x53C2;&#x6570;</p>
-<table>
-<thead>
-<tr>
-<th>&#x53C2;&#x6570;</th>
-<th>&#x7C7B;&#x578B;</th>
-<th>&#x8BE6;&#x60C5;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>content</td>
-<td>any</td>
-<td>&#x6A21;&#x6001;&#x6846;&#x7EC4;&#x4EF6;</td>
-</tr>
-<tr>
-<td>options</td>
-<td>object</td>
-<td>&#x914D;&#x7F6E;&#x53C2;&#x6570;</td>
-</tr>
-</tbody>
-</table>
-<p>3.<strong>close</strong>(params?: any): void;</p>
-<blockquote>
-<p>&#x5173;&#x95ED;&#x5F53;&#x524D;&#x6253;&#x5F00;&#x7684;&#x6A21;&#x6001;&#x6846;&#xFF0C;&#x5E76;&#x53EF;&#x4EE5;&#x4F20;&#x9012;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x7528;&#x4E0E;&#x5173;&#x95ED;&#x540E;&#x7684;&#x540E;&#x7EED;&#x64CD;&#x4F5C;</p>
-</blockquote>
-<p>4.<strong>dismiss</strong>(): void;</p>
-<blockquote>
-<p>&#x4EC0;&#x4E48;&#x90FD;&#x4E0D;&#x505A;&#xFF0C;&#x76F4;&#x63A5;&#x5173;&#x95ED;&#x5F53;&#x524D;&#x663E;&#x793A;&#x7684;&#x6A21;&#x6001;&#x6846;</p>
-</blockquote>
-<h3 id="&#x5C5E;&#x6027;">&#x5C5E;&#x6027;</h3>
 <p>instance <code>any</code></p>
 <blockquote>
-<p>&#x5F53;&#x524D;&#x521B;&#x5EFA;&#x7684;&#x6A21;&#x6001;&#x6846;&#x5B9E;&#x4F8B;&#xFF0C;&#x7528;&#x4E0E;&#x8BBE;&#x7F6E;&#x4FEE;&#x6539;&#x6A21;&#x6001;&#x6846;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x5C5E;&#x6027;</p>
+<p>&#x5F53;&#x524D;&#x521B;&#x5EFA;&#x7684;&#x7A97;&#x53E3;&#x5B9E;&#x4F8B;&#xFF0C;&#x7528;&#x4E0E;&#x8BBE;&#x7F6E;&#x4FEE;&#x6539;&#x6A21;&#x6001;&#x6846;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x5C5E;&#x6027;</p>
 </blockquote>
 <h2 id="windowviewservice-&#x53C2;&#x8003;">WindowViewService &#x53C2;&#x8003;</h2>
 <blockquote>
@@ -463,7 +432,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"窗口","level":"2.4","depth":1,"next":{"title":"百度图表","level":"3.1","depth":1,"path":"ECHARTS.md","ref":"ECHARTS.md","articles":[]},"previous":{"title":"模态框","level":"2.3","depth":1,"path":"MODAL.md","ref":"MODAL.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WINDOW.md","mtime":"2018-06-26T06:46:34.079Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-06-26T07:32:39.758Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"窗口","level":"2.4","depth":1,"next":{"title":"百度图表","level":"3.1","depth":1,"path":"ECHARTS.md","ref":"ECHARTS.md","articles":[]},"previous":{"title":"模态框","level":"2.3","depth":1,"path":"MODAL.md","ref":"MODAL.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WINDOW.md","mtime":"2018-07-23T03:12:28.702Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-23T03:12:47.056Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -104,6 +104,7 @@
                 'Rotterdam', 'Seville', 'Sheffield', 'Sofia', 'Stockholm', 'Stuttgart',
                 'The Hague', 'Turin', 'Valencia', 'Vienna', 'Vilnius', 'Warsaw', 'Wrocław',
                 'Zagreb', 'Zaragoza', 'Łódź']"></ts-select>
+                <ts-select class="form-control p-0 mt-2" ngModel [disabled]="true"></ts-select>
             </div>
         </div>
     </div>
@@ -169,6 +170,7 @@
             <div class="card-header bg-white">多选下拉</div>
             <div class="card-body">
                 <div tsSelects [items]="diySelects" [(ngModel)]="selectValues" [color]="global.getValue('color')"></div>
+                <div tsSelects class="mt-2" [items]="diySelects" [(ngModel)]="selectValues" [color]="global.getValue('color')" [disabled]="true"></div>
             </div>
             <div class="card-footer bg-white" tsCollapses>
                 <div tsToggle class="text-info pointer">

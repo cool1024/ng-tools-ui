@@ -4,7 +4,7 @@
 **注意，使用窗口要注意关闭窗口和窗口关闭时的垃圾回收操作**
 
 ## 导入相关模块
-在需要使用模态框页面所属模块导入ModalModule
+在需要使用模态框页面所属模块导入WindowModule
 ```typescript
 import { NgModule } from '@angular/core';
 import { WindowModule } from 'ng-tools-ui';
@@ -81,7 +81,7 @@ import { ExampleWindowComponent } from './example-window.component';
 })
 ```
 
-## 在这个模块中的任意一个页面组件中使用ModalService服务显示一个模态框
+## 在这个模块中的任意一个页面组件中使用WindowService服务显示一个窗口
 在需要用到的页面组件中注入模态框服务，就可以使用了
 
 ```typescript
@@ -140,24 +140,8 @@ content | any  | 窗口组件
 > 主动发送一个参数，这个参数可以在present方法返回的可观察对象中接收到
 
 ### 属性
-
-instance `any` 同模态框，窗口的实例，用于设置窗口的内部参数
-
-
-参数 | 类型 | 详情
------------- | ------------- | ------------
-content | any  | 模态框组件
-options | object  | 配置参数
-
-3.**close**(params?: any): void;
->关闭当前打开的模态框，并可以传递一个参数用与关闭后的后续操作
-
-4.**dismiss**(): void;
->什么都不做，直接关闭当前显示的模态框
-
-### 属性
 instance `any`
->当前创建的模态框实例，用与设置修改模态框中的变量属性
+>当前创建的窗口实例，用与设置修改模态框中的变量属性
 
 
 ## WindowViewService 参考

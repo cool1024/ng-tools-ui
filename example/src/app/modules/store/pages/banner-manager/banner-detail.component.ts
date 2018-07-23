@@ -6,7 +6,6 @@ import { GlobalService } from '../../../../cores/services';
 
 @Component({
     template: `
-    <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">幻灯片</h5>
             <button (click)="modal.dismiss()" type="button" class="close">
@@ -32,8 +31,7 @@ import { GlobalService } from '../../../../cores/services';
                 <i class="fa fa-fw fa-file-picture-o"></i>选择图片
             </button>
             <button tsBtn loading (submit)="confirmSave($event)" color="success">确认保存</button>
-        </div>
-    </div>`,
+        </div>`,
 })
 export class BannerDetailComponent {
 

@@ -39,7 +39,7 @@ export class BannerManagerComponent implements OnInit {
 
     showEditModal(banner?: Banner) {
         banner = banner || { id: 0, bannerLink: '', bannerSrc: '' };
-        const modal = this.modal.create(BannerDetailComponent, { center: true });
+        const modal = this.modal.create(BannerDetailComponent, { center: true, scroll: 'out' });
         modal.instance.banner = banner;
         modal.open().subscribe(() => {
             this.toast.success('保存成功', '成功保存新幻灯片');

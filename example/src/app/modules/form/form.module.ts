@@ -7,7 +7,7 @@ import {
     DropdownModule,
     SearchModule,
     CheckboxModule,
-    SelectModule,
+    // SelectModule,
     PrismModule,
     LoopCardModule,
     TabModule,
@@ -17,6 +17,7 @@ import {
     BadgeModule,
     WindowModule,
 } from 'ng-tools-ui';
+import { SelectModule } from '../../../_tools-ui';
 
 /*路由模块*/
 import { FormRoutingModule, declarationComponents } from './form.routing';
