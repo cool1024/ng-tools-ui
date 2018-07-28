@@ -13,7 +13,7 @@ export const AppConfig = {
     },
 
     MENU_CONFIG: {
-        BACKGROUND_IMAGE_SRC: 'url(assets/images/background/1.jpg)',
+        BACKGROUND_IMAGE_SRC: '', // 'url(assets/images/background/1.jpg)',
         BACKGROUND_COLOR: 'rgba(255,255,255,0.9)',
         DEFAULT_TEXT_COLOR: 'black',
         LINE_COLOR: 'rgb(0, 0, 0,.1)'

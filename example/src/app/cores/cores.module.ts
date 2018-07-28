@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import {
     MenuService,
@@ -15,8 +14,8 @@ import {
 
 @NgModule({
     exports: [
+        HttpClientModule,
         BrowserModule,
-        HttpClientModule
     ]
 })
 export class CoreModule {
@@ -27,13 +26,13 @@ export class CoreModule {
             providers: [
                 FormService,
                 RequestService,
-                MenuService,
-                GlobalService,
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: ErrorInterceptor,
                     multi: true,
                 },
+                MenuService,
+                GlobalService,
                 AuthService,
                 GuardService,
             ]

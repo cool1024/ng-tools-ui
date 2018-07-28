@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RequestService } from './request.service';
 import {
-    Pagination,
     MenuModel,
     MenuGroup,
     MenuItem,
