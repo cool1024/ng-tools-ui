@@ -222,7 +222,8 @@ export class EchartComponent {
                 Math.random() * 500,
             ];
             this.optionThree.series[2].data = this.optionThree.series[1].data;
-            this.chart.setOption(this.optionThree);
+            this.optionThree = Object.assign({}, this.optionThree);
+            // this.chart.setOption(this.optionThree);
         }
     }
 }

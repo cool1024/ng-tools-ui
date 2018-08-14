@@ -1,5 +1,5 @@
 
-import { Directive, ElementRef, Input, Output, OnInit, AfterViewInit, EventEmitter, Inject, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, Input, Output, OnInit, AfterViewInit, OnChanges, EventEmitter, Inject, OnDestroy, SimpleChanges } from '@angular/core';
 import { ScriptService } from './../../commons/services/script.service';
 import { EchartsInstance } from './echart.interface';
 declare const window: any;
@@ -9,7 +9,7 @@ declare const window: any;
     exportAs: 'baseEchart',
 })
 
-export class BaseEchartDirective implements OnInit, AfterViewInit, OnDestroy {
+export class BaseEchartDirective implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
     @Input() option: any;
 
@@ -33,6 +33,12 @@ export class BaseEchartDirective implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit() {
         this.script.load(this.src, window.echarts);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (this.echart && changes.option && !changes.option.firstChange) {
+            this.echart.setOption(changes.option.currentValue);
+        }
     }
 
     ngAfterViewInit() {
