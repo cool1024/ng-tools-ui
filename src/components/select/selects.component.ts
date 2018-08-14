@@ -20,12 +20,23 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
     template: `
     <div tsDropdown  #tsDropdown="tsDropdown" (displayChange)="cleanSearch()" class="w-100" [useItemClickClose]="false">
         <div tsToggle
+            [class.d-none]="isDisabled"
             [class.p-0]="activeItems.length>0"
             [class.p-2]="activeItems.length<=0"
-            class="pointer w-100">
+            class="w-100">
             <span class="text-muted" *ngIf="activeItems.length<=0">{{placeholder}}</span>
             <span class="badge p-2 m-1 no-select {{badgeClass}}" *ngFor="let active of activeItems">
                 <i (click)="setValue(active)" class="fa fa-fw fa-close"></i>
+                {{active.text}}
+            </span>
+        </div>
+        <div *ngIf="isDisabled"
+            [class.p-0]="activeItems.length>0"
+            [class.p-2]="activeItems.length<=0"
+            class="w-100">
+            <span class="text-muted" *ngIf="activeItems.length<=0">{{placeholder}}</span>
+            <span class="badge p-2 m-1 no-select {{badgeClass}}" *ngFor="let active of activeItems">
+                <i class="fa fa-fw fa-close"></i>
                 {{active.text}}
             </span>
         </div>
@@ -82,6 +93,7 @@ export class SelectsComponent extends DomAttr implements AfterViewInit, OnChange
     title: string;
     searchKey: string;
     activeItems: Array<Item>;
+    isDisabled: boolean;
     private changeInside: boolean;
     private values: any[];
     applyChange = (value: any) => { };
@@ -97,6 +109,7 @@ export class SelectsComponent extends DomAttr implements AfterViewInit, OnChange
         this.emptyLabel = 'No results found.';
         this.searchLabel = 'Search...';
         this.changeInside = false;
+        this.isDisabled = false;
     }
 
     get searchItems(): Item[] {
@@ -122,7 +135,7 @@ export class SelectsComponent extends DomAttr implements AfterViewInit, OnChange
 
     ngAfterViewInit() {
         const dom: HTMLElement = this.elementRef.nativeElement;
-        dom.classList.add('form-control', 'p-0');
+        dom.classList.add('form-control', 'p-0', 'pointer');
         if (this.sm !== null) {
             dom.classList.add('form-control-sm');
         }
@@ -130,7 +143,6 @@ export class SelectsComponent extends DomAttr implements AfterViewInit, OnChange
             dom.classList.add('form-control-lg');
         }
     }
-
 
     writeValue(values: any) {
         if (values === null || values === undefined) {
@@ -152,6 +164,14 @@ export class SelectsComponent extends DomAttr implements AfterViewInit, OnChange
     registerOnChange(fn: any): void { this.applyChange = fn; }
 
     registerOnTouched(fn: any): void { }
+
+    setDisabledState(isDisabled: boolean) {
+        this.isDisabled = isDisabled;
+        const dom: HTMLElement = this.elementRef.nativeElement;
+        if (dom) {
+            return isDisabled ? dom.classList.add('disabled') : dom.classList.remove('disabled');
+        }
+    }
 
     cleanSearch() {
         this.searchKey = '';

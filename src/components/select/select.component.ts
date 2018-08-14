@@ -16,6 +16,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
     template: `
     <div tsDropdown class="w-100">
         <input tsToggle
+            [disabled]="isDisabled"
             [attr.readonly]="readonly"
             [class.custom-select-sm]="sm!==null"
             [class.custom-select-lg]="lg!==null"
@@ -60,7 +61,8 @@ export class SelectComponent extends DomAttr implements ControlValueAccessor, On
 
     readonly: string;
 
-    @Input() disabled: boolean;
+    isDisabled: boolean;
+
     @Input() items: Array<string | number | { value: any, text: string }>;
     @Input() placeholder: string;
     @Input() emptyLabel: string;
@@ -74,7 +76,7 @@ export class SelectComponent extends DomAttr implements ControlValueAccessor, On
         super();
         this.color = Color.primary;
         this.readonly = 'readonly';
-        this.disabled = false;
+        this.isDisabled = false;
         this.placeholder = 'select...';
         this.searchKey = '';
         this.title = '';
@@ -108,10 +110,6 @@ export class SelectComponent extends DomAttr implements ControlValueAccessor, On
         this.value = value;
         this.setTitle();
     }
-
-    registerOnChange(fn: any): void { this.applyChange = fn; }
-
-    registerOnTouched(fn: any): void { }
 
     showActiveClass(item: Item): string {
         return item.value === this.value ? `text-${this.inLightOrDark} ${this.bgClass}` : '';
@@ -151,4 +149,10 @@ export class SelectComponent extends DomAttr implements ControlValueAccessor, On
         }
         this.title = '';
     }
+
+    registerOnChange(fn: any): void { this.applyChange = fn; }
+
+    registerOnTouched(fn: any): void { }
+
+    setDisabledState(isDisabled: boolean) { this.isDisabled = isDisabled; }
 }

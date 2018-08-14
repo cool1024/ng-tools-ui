@@ -32,6 +32,10 @@ export class MenuPushService {
         });
     }
 
+    cleanAll() {
+        this._items = [];
+    }
+
     setActive(item: MenuItem) {
         this.cleanAllActive();
         if (!!this.defaultItem && this.defaultItem.url === item.url && this.defaultItem.title === item.title) {
